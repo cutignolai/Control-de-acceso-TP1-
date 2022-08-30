@@ -40,11 +40,13 @@ typedef enum{LEFT,
  ******************************************************************************/
 
 
-void initEncoder();                     //Inicialización del encoder
+void initEncoder();                           //Inicialización del encoder
 
-bool encoderGetStatus();                //Me devuelve si hubo un cambio en la perilla
+bool encoderGetStatus();                      //Me devuelve si hubo un cambio en la perilla
 
-encoderEvent_t encoderGetEvent();      //Me devuelve si fue un giro hacia la derecha, izquierda, click o nada aun
+bool encoderSetStatus(bool change_state);     //Me setea el status para que no quede en evento
+
+encoderEvent_t encoderGetEvent();             //Me devuelve si fue un giro hacia la derecha, izquierda, click o nada aun
 
 
 

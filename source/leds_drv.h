@@ -17,7 +17,7 @@
  *              CONSTANT AND MACRO DEFINITIONS USING #DEFINE                    *
  ******************************************************************************/
 
-#define DISP_LEDS_NUM	3
+#define NUM_LEDS 3
 
 /*******************************************************************************
  *                  ENUMERATIONS AND STRUCTURES AND TYPEDEFS                    *
@@ -31,7 +31,7 @@
  *                  FUNCTION PROTOTYPES WITH GLOBAL SCOPE                       *
  ******************************************************************************/
 
-void initLEDs();
+void initLeds();
 void dispClearLED(int n);
 void dispSetLED(int n);
 void dispToggleLED(int n);
