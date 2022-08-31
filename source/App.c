@@ -12,6 +12,8 @@
 #include "gpio.h"
 #include "display.h"
 #include "leds.h"
+#include "encoder.h"
+#include "button.h"
 
 
 /*******************************************************************************
@@ -42,8 +44,9 @@ typedef enum{
 //----------- COLORES DEL LED ------------
 typedef enum{
     ROJO,
-    AMARILLO,
-    VERDE
+    VERDE,
+    AZUL,
+    TODOS
 }colored_led_t;
 //-----------------------------------------
 
@@ -61,8 +64,12 @@ typedef enum{
 #define ENTER_CLICK         1
 #define BRILLO_CLICK        2
 #define SUPR_CLICK          3
+ 
+#define SI                  true
+#define NO                  false
 
-
+#define ACTIVADO            true
+#define DESACTIVADO         false
 
 /*******************************************************************************
  * ENUMS AND STRUCTURES
@@ -83,7 +90,7 @@ typedef enum{
 
 // ESTADOS
 static estadosDelMenu_t estado = ESTADO_ID;
-static estadosDelMenu_t last_estado = ESTADO_ID;
+static estadosDelMenu_t ultimo_estado = ESTADO_ID;
 
 // ID 
 static int id[MAX_UNIT_ID] = [0, 0, 0, 0, 0, 0, 0, 0];
@@ -94,7 +101,7 @@ static int pass[MAX_UNIT_PASS] = [0, 0, 0, 0];
 static int posicion_pass = 0;
 
 // MESSAGE COMPLETE
-static bool user_is_ready = false;
+static bool ha_hecho_click = NO;
 
 
 
@@ -109,8 +116,9 @@ static bool user_is_ready = false;
 void App_Init (void)
 {
     initDisplay();
-    // initEncoder();
+    initEncoder();
     initLEDs();
+    initButton(); 
     // initCardReader();
 }
 
@@ -127,7 +135,13 @@ void App_Run (void)
     else if(encoderGetStatus())
     {
 		evento = encoderGetEvent();	
-
+        encoderSetStatus(DESACTIVADO);
+        
+	}
+    else if(buttonGetStatus())
+    {
+		evento = buttonGetEvent();	
+        buttonSetStatus(DESACTIVADO);
 	}
 
     // Si hubo un evento, veo en que estado de mi FSM estoy y le envio el evento
@@ -167,7 +181,7 @@ static estadosDelMenu_t modificar_id(eventosDelMenu_t evento)
     {
         case EVENTO_DER:
             // Si estoy dentro del rango de digitos max
-            if(posicion_id <= 3)
+            if(posicion_id <= MAX_UNIT_ID)
             {
                 num[posicion_id] += 1;
 
@@ -177,12 +191,12 @@ static estadosDelMenu_t modificar_id(eventosDelMenu_t evento)
                     num[posicion_id] = 0;
                 }
                 
-                setLongString(id);
+                setLongString(id, MAX_UNIT_ID);
             }
             break;
 
         case EVENTO_IZQ:
-            if(posicion_id <= 3)
+            if(posicion_id <= MAX_UNIT_ID)
             {
                 num[posicion_id] -= 1;
 
@@ -192,47 +206,59 @@ static estadosDelMenu_t modificar_id(eventosDelMenu_t evento)
                     num[posicion_id] = 9;
                 }
 
-                setLongString(id);
+                setLongString(id, MAX_UNIT_ID);
             }
             break;
 
         case EVENTO_CLICK:
             
+            ha_hecho_click = SI
+
             posicion_id += 1;
 
-            if(posicion_id > 3)
+            if(posicion_id > MAX_UNIT_ID)
             {
                 posicion_id = 0;
                 proximo_estado = ESTADO_PASS;
             }
 
-            setLongString(id);
+            setLongString(id, MAX_UNIT_ID);
 
             break;
 
         case EVENTO_CLICK_2:
 
-            if(user_is_ready == !READY)
+            if(ha_hecho_click == NO)
             {
                 // Guardo el estado actual para luego retomar desde aca
-                last_estado = ESTADO_ID;
+                ultimo_estado = ESTADO_ID;
                 proximo_estado = ESTADO_BRILLO;
             }
 
-            setLongString(id);
+            else if (ha_hecho_click == SI)
+            {
+                // Dejo en 0 el digito en donde estaba
+                num[posicion_id] = 0;
+
+                // Me ubico en el ultimo digito ingresado y lo pongo en 0
+                posicion_id -=1;
+                num[posicion_id] = 0;
+            }
+
+            setLongString(id, MAX_UNIT_ID);
+
+
 
             break;
         
         case EVENTO_CLICK_3:
 
-            // Dejo en 0 el digito en donde estaba
-            num[posicion_id] = 0;
+            if(ha_hecho_click == SI)
+            {
+                reset_all();
+            }
 
-            // Me ubico en el ultimo digito ingresado y lo pongo en 0
-            posicion_id -=1;
-            num[posicion_id] = 0;
-
-            setLongString(id);
+            setLongString(id, MAX_UNIT_ID);
 
             break;
             
@@ -251,13 +277,11 @@ static estadosDelMenu_t modificar_pass(eventosDelMenu_t evento)
 {
 	menuState_t proximo_estado = ESTADO_PASS;
 
-
-
     switch(evento)
     {
         case EVENTO_DER:
             // Si estoy dentro del rango de digitos max
-            if(posicion_pass <= 3)
+            if(posicion_pass <= MAX_UNIT_PASS)
             {
                 pass[posicion_pass] += 1;
 
@@ -267,12 +291,12 @@ static estadosDelMenu_t modificar_pass(eventosDelMenu_t evento)
                     pass[posicion_pass] = 0;
                 }
 
-                //IMPRIMIR SOLO
+                setShortChar(pass[posicion_pass], posicion_pass, MAX_UNIT_PASS)
             }
             break;
 
         case EVENTO_IZQ:
-            if(posicion_pass <= 3)
+            if(posicion_pass <= MAX_UNIT_PASS)
             {
                 pass[posicion_pass] -= 1;
 
@@ -281,46 +305,53 @@ static estadosDelMenu_t modificar_pass(eventosDelMenu_t evento)
                 {
                     pass[posicion_pass] = 9;
                 }
+
+                setShortChar(pass[posicion_pass], posicion_pass, MAX_UNIT_PASS)
             }
             break;
 
       
         case EVENTO_CLICK:
             
-            posicion_pass += 1;
-
-            if(posicion_pass > 3)
+            if(ha_hecho_click == SI)
             {
-                posicion_pass = 0;
-                proximo_estado = ESTADO_VERIFICAR;
-                user_is_ready = READY
-            }
+                posicion_pass += 1;
 
-            //IMPRIMIR SOLO
+                if(posicion_pass > MAX_UNIT_PASS)
+                {
+                    posicion_pass = 0;
+                    proximo_estado = ESTADO_VERIFICAR;
+                    user_is_ready = READY
+                }
+            }
+            
+
+            setShortChar(pass[posicion_pass], posicion_pass, MAX_UNIT_PASS)
 
         case EVENTO_CLICK_2:
 
-            if(user_is_ready == !READY)
+
+            if(ha_hecho_click == SI)
             {
-                last_estado = ESTADO_PASS;
-                proximo_estado = ESTADO_BRILLO;
+                // Dejo en 0 el digito en donde estaba
+                num[posicion_pass] = 0;
+
+                // Me ubico en el ultimo digito ingresado y lo pongo en 0
+                posicion_pass -=1;
+                num[posicion_pass] = 0;
+
+                setShortChar(pass[posicion_pass], posicion_pass, MAX_UNIT_PASS)
             }
 
             break;
 
         case EVENTO_CLICK_3:
 
-            // Dejo en 0 el digito en donde estaba
-            num[posicion_pass] = 0;
+            if(ha_hecho_click == SI)
+            {
+                reset_all();
+            }
 
-            // Me ubico en el ultimo digito ingresado y lo pongo en 0
-            posicion_pass -=1;
-            num[posicion_pass] = 0;
-
-            //IMPRIMIR SOLO
-            
-    
-            
             break;
 
         default:
@@ -349,7 +380,7 @@ static estadosDelMenu_t modificar_brillo(eventosDelMenu_t evento)
 
         case EVENTO_CLICK:
             
-            proximo_estado = last_estado;
+            proximo_estado = ultimo_estado;
             break;
     
         default:
@@ -365,15 +396,15 @@ static estadosDelMenu_t modificar_brillo(eventosDelMenu_t evento)
 static estadosDelMenu_t verificar_estado (void)
 {
     // Desactivar interrupciones
-    encender_led(AMARILLO);
+    set_led(AZUL);
     // traducir de arreglo a string de numeros
     if( checkUser(id, pass) == USUARIO_VALIDO)
     {
-        encender_led(VERDE);
+        set_led(VERDE);
     } 
     else
     {
-        encender_led(ROJO);
+        set_led(ROJO);
     }
     
     reset_all();
@@ -382,11 +413,23 @@ static estadosDelMenu_t verificar_estado (void)
 
 void reset_all (void)
 {
-    id = [0,0,0,0,0];
-    pass = [0,0,0,0,0];
+    // RESETEI ID
+    id = [0, 0, 0, 0, 0, 0, 0, 0];
     posicion_id = 0;
+
+    // RESETEO PASSWORD
+    pass = [0, 0, 0, 0];
     posicion_pass = 0;
+
+    // RESETEO ESTADOS
     estado = ESTADO_ID;
+    ultimo_estado = ESTADO_ID;
+
+    // RESETEO INTERFAZ
+    setLongString(id, MAX_UNIT_ID);
+    clear_led(TODOS);
+    ha_hecho_click = NO;
+
 }
 
 /*******************************************************************************

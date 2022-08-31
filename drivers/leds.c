@@ -9,69 +9,68 @@
  ******************************************************************************/
 
 #include "leds.h"
-#include "board.h"
+#include "timers.h"
+#include "boards.h"
+
 /*******************************************************************************
  *            CONSTANT AND MACRO DEFINITIONS USING #DEFINE                    *
  ******************************************************************************/
 
-//  #define PIN_LED_RED     PORTNUM2PIN(PB,22)	// PTB22
-//  #define PIN_LED_GREEN   PORTNUM2PIN(PE,26)	// PTE26
-//  #define PIN_LED_BLUE    PORTNUM2PIN(PB,21)	// PTB21
+#define LED_CONF_1  DIO_12
+#define LED_CONF_2  DIO_14
 
 /*******************************************************************************
  *                  ENUMERATIONS AND STRUCTURES AND TYPEDEFS                    *
  ******************************************************************************/
-
-//----------- COLORES DEL LED ------------
-typedef enum{
-    LED_ROJO,
-    LED_VERDE,
-    LED_AZUL
-}colored_led_t;
-//-----------------------------------------
+typedef struct led_selector_t
+{
+	bool led_bit_0;
+	bool led_bit_1;
+}led_selector_t;
 
 /*******************************************************************************
- *      STATIC VARIABLES AND CONST VARIABLES WITH FILE LEVEL SCOPE            *
+ *      FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE         *
  ******************************************************************************/
 
-
-static bool leds[NUM_LEDS];
-
-  //static int refresh_rate = 2;        //tasa de refresco del timer
-  //static tim_id_t rate_id;            //VERRRRRRRRRRR
-
 static void callback_leds();
+
+/*******************************************************************************
+ *                                  VARIABLES                                   *
+ ******************************************************************************/
+static bool leds[NUM_LEDS];
+static led_selector_t led_selector[] = {
+  {LOW,LOW},    //00 --> NINGUN LED
+  {LOW,HIGH},   //01 --> LED1
+  {HIGH,LOW},   //10 --> LED2
+  {HIGH,HIGH}   //11 --> LED3
+};
+static int index = 0;
+static tim_id_t leds_timer;
 
 /*******************************************************************************
  *******************************************************************************
                         GLOBAL FUNCTION DEFINITIONS
  *******************************************************************************
  ******************************************************************************/
-void initLEDs()
+void initLeds()
 {
-  gpioMode(PIN_LED_RED, OUTPUT);
-  gpioMode(PIN_LED_GREEN, OUTPUT);
-  gpioMode(PIN_LED_BLUE, OUTPUT);
+  gpioMode(LED_CONF_1, OUTPUT);
+	gpioMode(LED_CONF_2, OUTPUT);
 
-
-  for(int i=0; i<NUM_LEDS; i++)
+  for(int i = 0; i < NUM_LEDS; i++)
 	{
 		clear_led(i);
 	}
 
-  //rate_id = timerGetId();
-	//timerStart(rate_id, TIMER_MS2TICKS(my_refresh_rate), TIM_MODE_PERIODIC, &callback_leds);
+  leds_timer = timerGetId();
+  //Periodic Interuption ---> leds_callback (4ms)
+	timerStart(leds_timer, TIMER_MS2TICKS(4), TIM_MODE_PERIODIC, &callback_leds);
 
 }
 
 
-void set_led(int led_number)       //set  true
+void set_led(int l)       //set  true
 {
-  if(led_number == LED_AZUL)
-  {
-
-  }
-  else if (led_number == LED_AZUL)
 	leds[l] = true;
 }
 

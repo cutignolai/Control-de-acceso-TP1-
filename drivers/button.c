@@ -10,16 +10,16 @@
 
 #include "board.h"
 #include "button.h"
-//#include "timers_drv.h"
+#include "timers.h"
 
 
 /*******************************************************************************
  *                 CONSTANT AND MACRO DEFINITIONS USING #DEFINE                 *
  ******************************************************************************/
 
-//#define PIN_C 	    PORTNUM2PIN(Puerto, num)
-#define ON      	LOW         //Activo bajo ---> Prendido
-#define OFF      	HIGH        //Activo bajo ---> Apagado
+#define PIN_C   DIO_10
+#define ON      LOW         //Activo bajo ---> Prendido
+#define OFF     HIGH        //Activo bajo ---> Apagado
 
 /*******************************************************************************
  *                              ENUMS AND STRUCTURES                            *

@@ -10,15 +10,15 @@
 
 #include "board.h"
 #include "encoder.h"
-//#include "timers_drv.h"
+#include "timer.h"
 
 
 /*******************************************************************************
  *                 CONSTANT AND MACRO DEFINITIONS USING #DEFINE                 *
  ******************************************************************************/
 
-//#define PIN_A 		PORTNUM2PIN(Puerto, num)
-//#define PIN_B 		PORTNUM2PIN(Puerto, num)
+#define PIN_A   DIO_6
+#define PIN_B   DIO_8
 
 
 /*******************************************************************************
@@ -41,11 +41,11 @@ static void get_current_values(void);
  *                                  VARIABLES                                   *
  ******************************************************************************/
 static enum states current_state = START;
-static bool current_A;        //Valor actual de A
-static bool current_B;        //Valor actual de B
+static bool current_A;                      //Valor actual de A
+static bool current_B;                      //Valor actual de B
 static bool status;                         //Estado del encoder (para la FSM)
-static encoderEvent_t encoder_event;       //Eveneto del encoder
-static tim_id_t encoder_timer;             //timer
+static encoderEvent_t encoder_event;        //Eveneto del encoder
+static tim_id_t encoder_timer;              //timer
 
 
 
