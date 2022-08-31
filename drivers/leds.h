@@ -11,7 +11,7 @@
  *                          INCLUDE HEADER FILES                                *
  ******************************************************************************/
 
-#include "PDRV_GPIO.h"
+#include "gpio.h"
 
 /*******************************************************************************
  *              CONSTANT AND MACRO DEFINITIONS USING #DEFINE                    *

@@ -9,7 +9,8 @@
  ******************************************************************************/
 
 #include "leds.h"
-//#include "timers_drv.h"
+#include "timers.h"
+#include "boards.h"
 
 /*******************************************************************************
  *            CONSTANT AND MACRO DEFINITIONS USING #DEFINE                    *
@@ -28,7 +29,13 @@ typedef struct led_selector_t
 }led_selector_t;
 
 /*******************************************************************************
- *      STATIC VARIABLES AND CONST VARIABLES WITH FILE LEVEL SCOPE            *
+ *      FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE         *
+ ******************************************************************************/
+
+static void callback_leds();
+
+/*******************************************************************************
+ *                                  VARIABLES                                   *
  ******************************************************************************/
 static bool leds[NUM_LEDS];
 static led_selector_t led_selector[] = {
@@ -36,30 +43,28 @@ static led_selector_t led_selector[] = {
   {LOW,HIGH},   //01 --> LED1
   {HIGH,LOW},   //10 --> LED2
   {HIGH,HIGH}   //11 --> LED3
-  };
-  static int index = 0;
-  //static int refresh_rate = 2;        //tasa de refresco del timer
-  //static tim_id_t rate_id;            //VERRRRRRRRRRR
-
-  static void callback_leds();
+};
+static int index = 0;
+static tim_id_t leds_timer;
 
 /*******************************************************************************
  *******************************************************************************
                         GLOBAL FUNCTION DEFINITIONS
  *******************************************************************************
  ******************************************************************************/
-void initLEDs()
+void initLeds()
 {
   gpioMode(LED_CONF_1, OUTPUT);
 	gpioMode(LED_CONF_2, OUTPUT);
 
-  for(int i=0; i<DISP_LEDS_NUM;i++)
+  for(int i = 0; i < NUM_LEDS; i++)
 	{
 		clear_led(i);
 	}
 
-  //rate_id = timerGetId();
-	//timerStart(rate_id, TIMER_MS2TICKS(my_refresh_rate), TIM_MODE_PERIODIC, &callback_leds);
+  leds_timer = timerGetId();
+  //Periodic Interuption ---> leds_callback (4ms)
+	timerStart(leds_timer, TIMER_MS2TICKS(4), TIM_MODE_PERIODIC, &callback_leds);
 
 }
 
