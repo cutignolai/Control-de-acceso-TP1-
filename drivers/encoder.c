@@ -109,6 +109,9 @@ bool encoderSetStatus(bool change_state){            //Setter para que la app me
  *******************************************************************************
  ******************************************************************************/
 
+// contador = 0
+// bool flag_timer
+// bool flag_timer_is_running
 
 static encoderEvent_t event_coming(bool A, bool B){         //FSM: check if the user switch left or right
 
@@ -120,10 +123,26 @@ static encoderEvent_t event_coming(bool A, bool B){         //FSM: check if the 
     // Veo si hubo cambió (flanco descendente o ascendente)
     bool current_state_button = (current_C == ON);
     if(!last_state_button && current_state_button){         //si el estados de ambos son distintos, entonces hubo un cambio (se pulso el botton)
-    	turn = CLICK;                                       //entonces el estado fue un click
-    	status = true;                                      //hubo un cambio
+        // contador += 1
+        // if (contador == 1)
+        //      inicializar timer
+        //      flag_timer_is_running = true
+    	turn = CLICK;                                       //entonces el estado fue un click   VUELA
+    	status = true;                                      //hubo un cambio                    VUELA
     }
     last_state_button = current_state_button;               //cambio variable para que quede arriba
+
+    // if(flag_timer == ENCENDIDO)
+    //      if(contador == 1)
+    //          turn = CLICK
+    //          status = true
+    //          contador = 0
+
+    //      if(contador == 2)
+    //          turn = CLICK_2
+    //          status = true
+    //          contador = 0
+
 
     //FSM del encoder
     switch(current_state){          //RECORDAR QUE ES ACTIVO BAJO!!!!
@@ -214,7 +233,9 @@ static encoderEvent_t event_coming(bool A, bool B){         //FSM: check if the 
 
 
     }
-    return turn;                              //DEVUELVO EL RESULTADO: IZQ O DERECHA
+
+
+    return turn;                              //DEVUELVO EL RESULTADO: IZQ, DERECHA o DIFERENTES CLICKS
 }
 
 
