@@ -16,8 +16,8 @@
  *            CONSTANT AND MACRO DEFINITIONS USING #DEFINE                    *
  ******************************************************************************/
 
-//#define LED_CONF_1 PORTNUM2PIN(Puerto,num)
-//#define LED_CONF_2 PORTNUM2PIN(Puerto,num)
+#define LED_CONF_1  DIO_12
+#define LED_CONF_2  DIO_14
 
 /*******************************************************************************
  *                  ENUMERATIONS AND STRUCTURES AND TYPEDEFS                    *
