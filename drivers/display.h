@@ -45,7 +45,7 @@ void initDisplay();
             long_message = ID_MESSAGE_LONG 
 --------------------------------------------------------- 
 */
-void setLongString(int message[], int long_message, int password_long);
+void setLongString(int message[], int long_message);
 
 
 /* 
