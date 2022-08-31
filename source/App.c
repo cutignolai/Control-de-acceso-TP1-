@@ -10,6 +10,8 @@
 
 #include "board.h"
 #include "gpio.h"
+#include "display.h"
+#include "leds.h"
 
 
 /*******************************************************************************
@@ -31,6 +33,8 @@ typedef enum{
     EVENTO_IZQ,
     EVENTO_DER,
     EVENTO_CLICK,
+    EVENTO_CLICK_2,
+    EVENTO_CLICK_3,
     EVENTO_TARJETA
 }eventosDelMenu_t;
 //----------------------------------------
@@ -45,8 +49,8 @@ typedef enum{
 
 
 
-#define MAX_UNIT_ID         5
-#define MAX_UNIT_PASS       5
+#define MAX_UNIT_ID         8
+#define MAX_UNIT_PASS       4
 
 #define READY               true
 #define NOT_READY           !READY'
@@ -57,6 +61,8 @@ typedef enum{
 #define ENTER_CLICK         1
 #define BRILLO_CLICK        2
 #define SUPR_CLICK          3
+
+
 
 /*******************************************************************************
  * ENUMS AND STRUCTURES
@@ -75,15 +81,19 @@ typedef enum{
  * VARIABLES
  ******************************************************************************/
 
+// ESTADOS
 static estadosDelMenu_t estado = ESTADO_ID;
 static estadosDelMenu_t last_estado = ESTADO_ID;
 
-static int id[MAX_UNIT_ID] = [0, 0, 0, 0];
-static int pass[MAX_UNIT_PASS] = [0, 0, 0, 0];
+// ID 
+static int id[MAX_UNIT_ID] = [0, 0, 0, 0, 0, 0, 0, 0];
 static int posicion_id = 0;
-static int posicion_pass = 0;
-static int click_counter = 0;
 
+// CONTRASENA
+static int pass[MAX_UNIT_PASS] = [0, 0, 0, 0];
+static int posicion_pass = 0;
+
+// MESSAGE COMPLETE
 static bool user_is_ready = false;
 
 
@@ -98,9 +108,9 @@ static bool user_is_ready = false;
 /* Función que se llama 1 vez, al comienzo del programa */
 void App_Init (void)
 {
-    // initDisplay();
+    initDisplay();
     // initEncoder();
-    // initLEDs();
+    initLEDs();
     // initCardReader();
 }
 
@@ -117,6 +127,7 @@ void App_Run (void)
     else if(encoderGetStatus())
     {
 		evento = encoderGetEvent();	
+
 	}
 
     // Si hubo un evento, veo en que estado de mi FSM estoy y le envio el evento
@@ -166,7 +177,7 @@ static estadosDelMenu_t modificar_id(eventosDelMenu_t evento)
                     num[posicion_id] = 0;
                 }
                 
-                //IMPRIMIR COMPLETO
+                setLongString(id);
             }
             break;
 
@@ -181,70 +192,51 @@ static estadosDelMenu_t modificar_id(eventosDelMenu_t evento)
                     num[posicion_id] = 9;
                 }
 
-                //IMPRIMIR COMPLETO
+                setLongString(id);
             }
             break;
 
         case EVENTO_CLICK:
             
-            click_counter = ENTER_CLICK;
-            // Tal vez se necesita delay, espero un rato a que haya otro click
-            if(encoderGetStatus())
+            posicion_id += 1;
+
+            if(posicion_id > 3)
             {
-                evento = encoderGetEvent();	
-                if (evento == EVENTO_CLICK)
-                {
-                    click_counter = BRILLO_CLICK;
-                    // Delay
-                    if(encoderGetStatus())
-                    {
-                        evento = encoderGetEvent();	
-                        if (evento == EVENTO_CLICK)
-                        {
-                            click_counter = SUPR_CLICK;
-                    
-                        }
-                    }
+                posicion_id = 0;
+                proximo_estado = ESTADO_PASS;
+            }
+
+            setLongString(id);
+
+            break;
+
+        case EVENTO_CLICK_2:
+
+            if(user_is_ready == !READY)
+            {
+                // Guardo el estado actual para luego retomar desde aca
+                last_estado = ESTADO_ID;
+                proximo_estado = ESTADO_BRILLO;
+            }
+
+            setLongString(id);
+
+            break;
+        
+        case EVENTO_CLICK_3:
+
+            // Dejo en 0 el digito en donde estaba
+            num[posicion_id] = 0;
+
+            // Me ubico en el ultimo digito ingresado y lo pongo en 0
+            posicion_id -=1;
+            num[posicion_id] = 0;
+
+            setLongString(id);
+
+            break;
             
-                }
-            }
-            
-            if (click_counter == ENTER_CLICK)
-            {
-                posicion_id += 1;
 
-                if(posicion_id > 3)
-                {
-                    posicion_id = 0;
-                    proximo_estado = ESTADO_PASS;
-                }
-
-                //IMPRIMIR COMPLETO
-            }
-
-            else if (click_counter == BRILLO_CLICK)
-            {
-                if(user_is_ready == !READY)
-                {
-                    // Guardo el estado actual para luego retomar desde aca
-                    last_estado = ESTADO_ID;
-                    proximo_estado = ESTADO_BRILLO;
-                }
-            }
-
-            else if (click_counter == SUPR_CLICK)
-            {
-                // Dejo en 0 el digito en donde estaba
-                num[posicion_id] = 0;
-
-                // Me ubico en el ultimo digito ingresado y lo pongo en 0
-                posicion_id -=1;
-                num[posicion_id] = 0;
-
-                //IMPRIMIR COMPLETO
-
-            }
-    
 
         default:
             break;
@@ -292,64 +284,41 @@ static estadosDelMenu_t modificar_pass(eventosDelMenu_t evento)
             }
             break;
 
+      
         case EVENTO_CLICK:
             
-            click_counter = ENTER_CLICK;
-            // Tal vez se necesita delay, espero un rato a que haya otro click
-            if(encoderGetStatus())
+            posicion_pass += 1;
+
+            if(posicion_pass > 3)
             {
-                evento = encoderGetEvent();	
-                if (evento == EVENTO_CLICK)
-                {
-                    click_counter = BRILLO_CLICK;
-                    // Delay
-                    if(encoderGetStatus())
-                    {
-                        evento = encoderGetEvent();	
-                        if (evento == EVENTO_CLICK)
-                        {
-                            click_counter = SUPR_CLICK;
-                    
-                        }
-                    }
+                posicion_pass = 0;
+                proximo_estado = ESTADO_VERIFICAR;
+                user_is_ready = READY
+            }
+
+            //IMPRIMIR SOLO
+
+        case EVENTO_CLICK_2:
+
+            if(user_is_ready == !READY)
+            {
+                last_estado = ESTADO_PASS;
+                proximo_estado = ESTADO_BRILLO;
+            }
+
+            break;
+
+        case EVENTO_CLICK_3:
+
+            // Dejo en 0 el digito en donde estaba
+            num[posicion_pass] = 0;
+
+            // Me ubico en el ultimo digito ingresado y lo pongo en 0
+            posicion_pass -=1;
+            num[posicion_pass] = 0;
+
+            //IMPRIMIR SOLO
             
-                }
-            }
-            
-            if (click_counter == ENTER_CLICK)
-            {
-                posicion_pass += 1;
-
-                if(posicion_pass > 3)
-                {
-                    posicion_pass = 0;
-                    proximo_estado = ESTADO_VERIFICAR;
-                    user_is_ready = READY
-                }
-
-                //IMPRIMIR SOLO
-            }
-
-            else if (click_counter == BRILLO_CLICK)
-            {
-                if(user_is_ready == !READY)
-                {
-                    last_estado = ESTADO_PASS;
-                    proximo_estado = ESTADO_BRILLO;
-                }
-            }
-
-            else if (click_counter == SUPR_CLICK)
-            {
-                // Dejo en 0 el digito en donde estaba
-                num[posicion_pass] = 0;
-
-                // Me ubico en el ultimo digito ingresado y lo pongo en 0
-                posicion_pass -=1;
-                num[posicion_pass] = 0;
-
-                //IMPRIMIR SOLO
-            }
     
             
             break;
@@ -370,12 +339,12 @@ static estadosDelMenu_t modificar_brillo(eventosDelMenu_t evento)
     {
         case EVENTO_DER:
 
-            // subir_brillo();
+            bright_up();
             break;
 
         case EVENTO_IZQ:
 
-            // bajar_brillo();
+            bright_down();
             break;
 
         case EVENTO_CLICK:
@@ -408,7 +377,7 @@ static estadosDelMenu_t verificar_estado (void)
     }
     
     reset_all();
-    //IMPRIMIR TODO
+    setLongString(id);
 }
 
 void reset_all (void)
