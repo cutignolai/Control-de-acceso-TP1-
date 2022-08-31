@@ -50,17 +50,17 @@ void setLongString(int message[], int long_message, int password_long);
 
 /* 
 --------------------------------------------------------- 
-   Se encarga de recibir un valor y la posicion
+   Se encarga de recibir un valor, la posicion y el largo
    (el resto de los numeros los oculta)
    
    Ejemplo:
             message = 1
             position = 3 
 
-            mensaje: _ _ 1 _
+            mensaje: _ _ 1 
 --------------------------------------------------------- 
 */
-void setShortChar(int number, int position);
+void setShortChar(int number, int position, int password_long);
 
 
 /* 

@@ -9,38 +9,38 @@
  ******************************************************************************/
 
 #include "leds.h"
-
+#include "board.h"
 /*******************************************************************************
  *            CONSTANT AND MACRO DEFINITIONS USING #DEFINE                    *
  ******************************************************************************/
 
-//#define LED_CONF_1 PORTNUM2PIN(Puerto,num)
-//#define LED_CONF_2 PORTNUM2PIN(Puerto,num)
+//  #define PIN_LED_RED     PORTNUM2PIN(PB,22)	// PTB22
+//  #define PIN_LED_GREEN   PORTNUM2PIN(PE,26)	// PTE26
+//  #define PIN_LED_BLUE    PORTNUM2PIN(PB,21)	// PTB21
 
 /*******************************************************************************
  *                  ENUMERATIONS AND STRUCTURES AND TYPEDEFS                    *
  ******************************************************************************/
-typedef struct led_selector_t
-{
-	bool led_bit_0;
-	bool led_bit_1;
-}led_selector_t;
+
+//----------- COLORES DEL LED ------------
+typedef enum{
+    LED_ROJO,
+    LED_VERDE,
+    LED_AZUL
+}colored_led_t;
+//-----------------------------------------
 
 /*******************************************************************************
  *      STATIC VARIABLES AND CONST VARIABLES WITH FILE LEVEL SCOPE            *
  ******************************************************************************/
+
+
 static bool leds[NUM_LEDS];
-static led_selector_t led_selector[] = {
-  {LOW,LOW},    //00 --> NINGUN LED
-  {LOW,HIGH},   //01 --> LED1
-  {HIGH,LOW},   //10 --> LED2
-  {HIGH,HIGH}   //11 --> LED3
-  };
-  static int index = 0;
+
   //static int refresh_rate = 2;        //tasa de refresco del timer
   //static tim_id_t rate_id;            //VERRRRRRRRRRR
 
-  static void callback_leds();
+static void callback_leds();
 
 /*******************************************************************************
  *******************************************************************************
@@ -49,10 +49,12 @@ static led_selector_t led_selector[] = {
  ******************************************************************************/
 void initLEDs()
 {
-  gpioMode(LED_CONF_1, OUTPUT);
-	gpioMode(LED_CONF_2, OUTPUT);
+  gpioMode(PIN_LED_RED, OUTPUT);
+  gpioMode(PIN_LED_GREEN, OUTPUT);
+  gpioMode(PIN_LED_BLUE, OUTPUT);
 
-  for(int i=0; i<DISP_LEDS_NUM;i++)
+
+  for(int i=0; i<NUM_LEDS; i++)
 	{
 		clear_led(i);
 	}
@@ -63,8 +65,13 @@ void initLEDs()
 }
 
 
-void set_led(int l)       //set  true
+void set_led(int led_number)       //set  true
 {
+  if(led_number == LED_AZUL)
+  {
+
+  }
+  else if (led_number == LED_AZUL)
 	leds[l] = true;
 }
 
