@@ -12,6 +12,8 @@
 #include "gpio.h"
 #include "display.h"
 #include "leds.h"
+#include "encoder.h"
+#include "button.h"
 
 
 /*******************************************************************************
@@ -66,6 +68,9 @@ typedef enum{
 #define SI                  true
 #define NO                  false
 
+#define ACTIVADO            true
+#define DESACTIVADO         false
+
 /*******************************************************************************
  * ENUMS AND STRUCTURES
  ******************************************************************************/
@@ -111,8 +116,9 @@ static bool ha_hecho_click = NO;
 void App_Init (void)
 {
     initDisplay();
-    // initEncoder();
+    initEncoder();
     initLEDs();
+    initButton(); 
     // initCardReader();
 }
 
@@ -129,7 +135,13 @@ void App_Run (void)
     else if(encoderGetStatus())
     {
 		evento = encoderGetEvent();	
-
+        encoderSetStatus(DESACTIVADO);
+        
+	}
+    else if(buttonGetStatus())
+    {
+		evento = buttonGetEvent();	
+        buttonSetStatus(DESACTIVADO);
 	}
 
     // Si hubo un evento, veo en que estado de mi FSM estoy y le envio el evento
@@ -265,8 +277,6 @@ static estadosDelMenu_t modificar_pass(eventosDelMenu_t evento)
 {
 	menuState_t proximo_estado = ESTADO_PASS;
 
-
-
     switch(evento)
     {
         case EVENTO_DER:
@@ -341,10 +351,7 @@ static estadosDelMenu_t modificar_pass(eventosDelMenu_t evento)
             {
                 reset_all();
             }
-            
 
-            
-               
             break;
 
         default:
