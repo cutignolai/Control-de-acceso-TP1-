@@ -25,9 +25,6 @@
  ******************************************************************************/
 typedef enum{LEFT,
 	RIGHT,
-	CLICK,
-  CLICK_2,
-  CLICK_3,
 	NONE
 }encoderEvent_t;
 
