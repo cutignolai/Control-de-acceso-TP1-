@@ -1,6 +1,6 @@
 /***************************************************************************//**
    @file    leds.h
-  @brief    leds driver
+  @brief    Leds driver
   @author   Micho
  ******************************************************************************/
 
@@ -32,9 +32,9 @@
  ******************************************************************************/
 
 void initLeds();
-void dispClearLED(int n);
-void dispSetLED(int n);
-void dispToggleLED(int n);
+void set_led(int l);
+void clear_led(int l);
+void toggle_led(int l);
 
 
 /*******************************************************************************
