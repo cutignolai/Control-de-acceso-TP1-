@@ -65,7 +65,7 @@ void clearDisplay();
  * @param message puntero al arreglo que contiene el mensaje. ESTE ARREGLO TIENE QUE CONTENER LOS CHAR IDX
  * @param message_len longitud del mensaje
  */
-void showMessage(digit_t* message, uint8_t message_len);
+void showMessage(uint8_t* message, uint8_t message_len);
 
 
 /**
@@ -74,7 +74,7 @@ void showMessage(digit_t* message, uint8_t message_len);
  * @param char_idx char idx del caracter a mostrar
  * @param position posición en la que mostrar el caracter
  */
-void showPasswordDigit(digit_t char_idx, uint8_t position);
+void showPasswordDigit(uint8_t char_idx, uint8_t position);
 
 /* 
 --------------------------------------------------------- 

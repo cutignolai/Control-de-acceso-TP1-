@@ -141,11 +141,11 @@ void clearDisplay(){
     set_display(&arr);
 }
 
-void showMessage(digit_t *message, uint8_t message_len){
+void showMessage(uint8_t *message, uint8_t message_len){
     set_buffer(message, message_len);
 }
 
-void showPasswordDigit(digit_t char_idx, uint8_t position){
+void showPasswordDigit(uint8_t char_idx, uint8_t position){
     digit_t arr[] = {LOW_DASH, LOW_DASH, LOW_DASH, LOW_DASH};
     if( position == 4){ position = 3; }
     arr[position] = char_arr[char_idx];
