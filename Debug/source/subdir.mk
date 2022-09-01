@@ -7,6 +7,7 @@ C_SRCS += \
 ../source/App.c \
 ../source/SysTick.c \
 ../source/button.c \
+../source/card_reader.c \
 ../source/display.c \
 ../source/encoder.c \
 ../source/gpio.c \
@@ -18,6 +19,7 @@ OBJS += \
 ./source/App.o \
 ./source/SysTick.o \
 ./source/button.o \
+./source/card_reader.o \
 ./source/display.o \
 ./source/encoder.o \
 ./source/gpio.o \
@@ -29,6 +31,7 @@ C_DEPS += \
 ./source/App.d \
 ./source/SysTick.d \
 ./source/button.d \
+./source/card_reader.d \
 ./source/display.d \
 ./source/encoder.d \
 ./source/gpio.d \

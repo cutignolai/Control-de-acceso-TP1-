@@ -14,6 +14,7 @@
 #include "display.h"
 #include "leds.h"
 #include "encoder.h"
+#include "card_reader.h"
 #include "button.h"
 #include "user.h"
 
