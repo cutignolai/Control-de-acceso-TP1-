@@ -300,23 +300,12 @@ void downBrightness(){
 //     // init timer
 // }
 
-/* 
---------------------------------------------------------- 
-   Se encarga de subir y bajar el brillo
---------------------------------------------------------- 
-*/
-void bright_up(void);
-void bright_down(void);
-
-
 /*******************************************************************************
  *******************************************************************************
                         LOCAL FUNCTION DEFINITIONS
  *******************************************************************************
  ******************************************************************************/
 
-// TODO:
-// BRILLO
 void refresh_display(){
 
     switch (display_state){
@@ -382,6 +371,7 @@ void set_segment(uint8_t seg, uint8_t set){
 void set_buffer(digit_t *dig_arr, uint8_t arr_len){
     uint8_t i;
     clear_buffer();
+    clear_display();
     for (i = 0; i < arr_len; i++){
         buffer[i] = *(dig_arr + i);
     }

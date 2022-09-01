@@ -127,6 +127,22 @@ void setBufferIndex(uint8_t idx);
  */
 void setBlinkingDigits(bool* arr);
 
+/**
+ * @brief Setea el nivel de brillo idicado
+ * @param bright Intensidad de brillo, entre 1 y 4
+ */
+void setBrightness(brightness_states_t bright);
+
+/**
+ * @brief Aumenta en 1 el nivel de brillo, siempre que no supere al máximo
+ */
+void upBrightness();
+
+/**
+ * @brief Disminuye en 1 el nivel de brillo, siempre que no sea menor que el mínimo
+ */
+void downBrightness();
+
 // /**
 //  * @brief Muestra en el display un mensaje de longitud variable entre 1 y 16 dígitos
 //  * 
@@ -150,18 +166,6 @@ void setBlinkingDigits(bool* arr);
 //  * @param position posición en la que mostrar el caracter
 //  */
 // void showPasswordDigit(uint8_t char_idx, uint8_t position);
-
-/* 
---------------------------------------------------------- 
-   Se encarga de subir y bajar el brillo
---------------------------------------------------------- 
-*/
-void bright_up(void);
-void bright_down(void);
-
-
-//------------------------ LOCAL ------------------------
-
 
 /*******************************************************************************
  ******************************************************************************/
