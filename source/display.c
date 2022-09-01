@@ -165,6 +165,7 @@ void initDisplay(){
     }
 
     // CREATE TIMERS
+    timerInit();
     refresh_timer = timerGetId();
     timerCreate(refresh_timer, TIMER_MS2TICKS(MAX_REFRESH_T/brightness), TIM_MODE_PERIODIC, refresh_display);
     blink_timer = timerGetId();
