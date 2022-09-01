@@ -89,6 +89,7 @@ static estadosDelMenu_t modificar_pass(eventosDelMenu_t evento);
 static estadosDelMenu_t modificar_brillo(eventosDelMenu_t evento);
 static estadosDelMenu_t verificar_estado (void);
 static void reset_all (void);
+static void showMessage(digit_t *input_ptr, uint8_t input_ptr_len, uint8_t pos);
 
 
 /*******************************************************************************
@@ -201,7 +202,7 @@ static estadosDelMenu_t modificar_id(eventosDelMenu_t evento)
                     id[posicion_id] = 0;
                 }
                 
-                //showMessage(id, MAX_UNIT_ID);
+                showMessage(&id, MAX_UNIT_ID, posicion_id);
             }
             break;
 
@@ -216,7 +217,7 @@ static estadosDelMenu_t modificar_id(eventosDelMenu_t evento)
                     id[posicion_id] = 9;
                 }
 
-                //showMessage(id, MAX_UNIT_ID);
+                showMessage(&id, MAX_UNIT_ID, posicion_id);
             }
             break;
 
@@ -232,7 +233,7 @@ static estadosDelMenu_t modificar_id(eventosDelMenu_t evento)
                 proximo_estado = ESTADO_PASS;
             }
 
-            //showMessage(id, MAX_UNIT_ID);
+            showMessage(&id, MAX_UNIT_ID, posicion_id);
 
             break;
 
@@ -255,7 +256,7 @@ static estadosDelMenu_t modificar_id(eventosDelMenu_t evento)
                 id[posicion_id] = 0;
             }
 
-            //showMessage(id, MAX_UNIT_ID);
+            showMessage(&id, MAX_UNIT_ID, posicion_id);
 
 
 
@@ -268,7 +269,7 @@ static estadosDelMenu_t modificar_id(eventosDelMenu_t evento)
                 reset_all();
             }
 
-            //showMessage(id, MAX_UNIT_ID);
+            showMessage(&id, MAX_UNIT_ID, posicion_id);
 
             break;
             
@@ -277,7 +278,7 @@ static estadosDelMenu_t modificar_id(eventosDelMenu_t evento)
             //id_buffer = getIdTarjeta();
             //hacer for
             proximo_estado = ESTADO_PASS;
-            //showMessage(id, MAX_UNIT_ID);
+            showMessage(&id, MAX_UNIT_ID, posicion_id);
             posicion_id = 0;
             break;
         
@@ -308,7 +309,9 @@ static estadosDelMenu_t modificar_pass(eventosDelMenu_t evento)
                     pass[posicion_pass] = 0;
                 }
 
-                //showPasswordDigit(pass[posicion_pass], posicion_pass, MAX_UNIT_PASS);
+                digit_t pass_censored[] = {10, 10, 10, 10};
+                pass_censored[posicion_pass] = pass[posicion_pass];
+                showMessage(&pass_censored, MAX_UNIT_PASS, posicion_pass);
             }
             break;
 
@@ -323,7 +326,9 @@ static estadosDelMenu_t modificar_pass(eventosDelMenu_t evento)
                     pass[posicion_pass] = 9;
                 }
 
-                //showPasswordDigit(pass[posicion_pass], posicion_pass, MAX_UNIT_PASS);
+                digit_t pass_censored[] = {10, 10, 10, 10};
+                pass_censored[posicion_pass] = pass[posicion_pass];
+                showMessage(&pass_censored, MAX_UNIT_PASS, posicion_pass);
             }
             break;
 
@@ -343,7 +348,9 @@ static estadosDelMenu_t modificar_pass(eventosDelMenu_t evento)
             }
             
 
-            //showPasswordDigit(pass[posicion_pass], posicion_pass, MAX_UNIT_PASS);
+            digit_t pass_censored[] = {10, 10, 10, 10};
+            pass_censored[posicion_pass] = pass[posicion_pass];
+            showMessage(&pass_censored, MAX_UNIT_PASS, posicion_pass);
 
         case EVENTO_CLICK_2:
 
@@ -357,7 +364,9 @@ static estadosDelMenu_t modificar_pass(eventosDelMenu_t evento)
                 posicion_pass -=1;
                 id[posicion_pass] = 0;
 
-                //showPasswordDigit(pass[posicion_pass], posicion_pass, MAX_UNIT_PASS);
+                int pass_censored[] = {10, 10, 10, 10};
+                pass_censored[posicion_pass] = pass[posicion_pass];
+                showMessage(&pass_censored, MAX_UNIT_PASS, posicion_pass);
             }
 
             break;
@@ -458,7 +467,7 @@ static estadosDelMenu_t verificar_estado (void)
     return proximo_estado;
 }
 
-void reset_all (void)
+static void reset_all (void)
 {
     // RESETEO ID
     for (int i = 0; i < MAX_UNIT_ID; i++)
@@ -483,6 +492,25 @@ void reset_all (void)
     //clear_led(TODOS);
     ha_hecho_click = NO;
 
+}
+
+static void showMessage(digit_t *input_ptr, uint8_t input_ptr_len, uint8_t pos)
+{
+    bool blink[] = {false, false, false, false};
+    if(pos<DISPLAY_LEN)
+    {
+
+        blink[pos] = true;
+    }
+    else
+    {
+        blink[DISPLAY_LEN-1] = true;
+    }
+
+    setBlinkingDigits(&blink[0]);
+    showLastDigits(true);
+    loadBuffer(input_ptr, input_ptr_len);
+    setBlinkMode();
 }
 
 /*******************************************************************************

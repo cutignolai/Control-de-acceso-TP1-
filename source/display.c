@@ -117,6 +117,7 @@ static void scroll_message();
 static void display_blink(digit_t* arr);
 static void clear_display();
 static void auto_set_buffer_index();
+static void autoSetBufferIndex(void);
 
 /*******************************************************************************
  * ROM CONST VARIABLES WITH FILE LEVEL SCOPE
@@ -471,5 +472,9 @@ static void clear_buffer(void)
     buffer_len = 0;
 }
 
+void autoSetBufferIndex(void)
+{
+
+}
 /*******************************************************************************
  ******************************************************************************/
