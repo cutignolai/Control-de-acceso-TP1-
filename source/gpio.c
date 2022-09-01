@@ -8,6 +8,7 @@
  * INCLUDE HEADER FILES
  ******************************************************************************/
 #include "MK64F12.h"
+#include "hardware.h"
 #include "gpio.h"
 
 /*******************************************************************************
@@ -17,15 +18,17 @@
 // CLOCK ENABLE
 #define PORT_ENABLE_MASK_CLK 0x200
 #define PORT_LIMIT_MASK_CLK 0x3E00
-#define CLK_CONTROL(port,x) (uint32_t (uint32_t PORT_ENABLE_MASK)<<(port) & PORT_LIMIT_MASK_CLK)
+#define CLK_CONTROL(port,x) (((uint32_t)(((uint32_t)(x)) << (9+port))) & PORT_LIMIT_MASK_CLK)
 
-
-static PORT_Type* const PORT_PTRS[PORT_X_NUM] = PORT_BASE_PTRS;
-static GPIO_Type* const GPIO_PTRS[PORT_X_NUM] = GPIO_BASE_PTRS;
 
 #define PORTX_IRQn(p) (PORTA_IRQn+p)
 #define PINS_PER_PORT 32
 #define ARRAY_SIZE (FSL_FEATURE_SOC_PORT_COUNT*PINS_PER_PORT)
+
+static PORT_Type* const PORT_PTRS[FSL_FEATURE_SOC_PORT_COUNT] = PORT_BASE_PTRS;
+static GPIO_Type* const GPIO_PTRS[FSL_FEATURE_SOC_PORT_COUNT] = GPIO_BASE_PTRS;
+
+
 
 /*
     0b0000: Interrupt/DMA request disabled
@@ -55,15 +58,15 @@ static void IRQHandler(int32_t port);
 /*******************************************************************************
  * FUNCTION PROTOTYPES WITH GLOBAL SCOPE
  ******************************************************************************/
-bool gpioMode (pin_t pin, uint8_t mode) {
+void gpioMode (pin_t pin, uint8_t mode)
+{
     
     // Verifico que se ingresaron los datos correctos
     if ( pin > PORTNUM2PIN(PE,31) ) return false;
-	if ( irqMode >= GPIO_IRQ_CANT_MODES ) return false;
 
     // Obtengo el puerto y el numero de pin
     uint32_t port = PIN2PORT(pin);
-    const num_pin = PIN2NUM(pin);
+    int num_pin = PIN2NUM(pin);
 
     //----------------------- Clock Enable ----------------------------
     //                      12.2.12 (pag. 323)
@@ -121,6 +124,7 @@ bool gpioMode (pin_t pin, uint8_t mode) {
 
 void gpioWrite (pin_t pin, bool value) {
     if ( pin > PORTNUM2PIN(PE,31) ) return false;
+
     uint32_t new_value =  (uint32_t)(1 << PIN2NUM(pin));
     GPIO_Type* gpio_ptr = GPIO_PTRS[PIN2PORT(pin)];
     if(value)
@@ -132,7 +136,7 @@ void gpioWrite (pin_t pin, bool value) {
     }
 }
 
-void gpioRead (pin_t pin) {
+bool gpioRead (pin_t pin) {
     if ( pin > PORTNUM2PIN(PE,31) ) return false;
     GPIO_Type* gpio_ptr = GPIO_PTRS[PIN2PORT(pin)];
     uint32_t pin_read = gpio_ptr->PDIR;     //Leo el puerto

@@ -24,7 +24,7 @@
 #define CLKSOURCE_CSR       0x04
 
 // Reload Value Registrer
-#define LOAD_RVR            (FRECUENCY_CLOCK/SYSTICK_ISR_FREQUENCY_HZ - 1)
+#define LOAD_RVR            (CLK_FREQ/SYSTICK_ISR_FREQUENCY_HZ - 1)
 #define RVR_MASK            0x00FFFFFF
 
 // Current Value Registrer
@@ -65,7 +65,7 @@ bool SysTick_Init (void (*callback)(void))
 
     callback_ptr = callback;
 
-    return true
+    return true;
 
 }
 

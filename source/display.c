@@ -8,7 +8,7 @@
  *                      INCLUDE HEADER FILES                                    *
  ******************************************************************************/
 #include "gpio.h"
-#include "./source/board.h"
+#include "board.h"
 #include "display.h"
 #include "timer.h"
 
@@ -105,16 +105,18 @@ typedef enum {
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
  ******************************************************************************/
-void refresh_display();
-void set_segment(uint8_t seg, uint8_t set);
-void set_display(digit_t arr[]);
-void set_digit(digit_t number, uint8_t position);
-void set_buffer(digit_t *dig_arr, uint8_t arr_len);
-void clear_buffer();
-void blink_digits();
-void scroll_buffer();
-void display_blink(digit_t* arr);
-void clear_display();
+static void refresh_display(void);
+static void set_segment(uint8_t seg, uint8_t set);
+static void set_display(digit_t arr[]);
+static void set_digit(digit_t number, uint8_t position);
+static void set_buffer(digit_t *dig_arr, uint8_t arr_len);
+static void clear_buffer();
+static void blink_digits();
+static void scroll_buffer();
+static void scroll_message();
+static void display_blink(digit_t* arr);
+static void clear_display();
+static void auto_set_buffer_index();
 
 /*******************************************************************************
  * ROM CONST VARIABLES WITH FILE LEVEL SCOPE
@@ -306,49 +308,51 @@ void downBrightness(){
  *******************************************************************************
  ******************************************************************************/
 
-void refresh_display(){
+static void refresh_display()
+{
 
-    switch (display_state){
+    switch (display_state)
+    {
 
-    case DISPLAY_SCROLL:
-        if (buffer_len <= DISPLAY_LEN){
-            set_display(&buffer[0]);
-        } else {
-            scroll_message();
-        }
-        break;
+		case DISPLAY_SCROLL:
+			if (buffer_len <= DISPLAY_LEN){
+				set_display(&buffer[0]);
+			} else {
+				scroll_display();
+			}
+			break;
 
-    case DISPLAY_BLINK:
-        display_blink(&buffer[buffer_idx]);
-        break;
+		case DISPLAY_BLINK:
+			display_blink(&buffer[buffer_idx]);
+			break;
 
-    case DISPLAY_STATIC:
-        set_display(&buffer[buffer_idx]);
-        break;
-    // case DISPLAY_PASS:
-    //     display_pass();
-    //     break;
+		case DISPLAY_STATIC:
+			set_display(&buffer[buffer_idx]);
+			break;
+		// case DISPLAY_PASS:
+		//     display_pass();
+		//     break;
 
-    case DISPLAY_CLEAR:
-    default:
-        clear_display();
-        break;
+		case DISPLAY_CLEAR:
+		default:
+			clear_display();
+			break;
     }
 }
 
-void clear_display(){
+static void clear_display(){
     clear_buffer();
     buffer_idx = 0;
 }
 
-void set_display(digit_t* arr){
+static void set_display(digit_t* arr){
     uint8_t i;
     for (i = 0; i < DISPLAY_LEN; i++){
         set_digit(*(arr + i), i);
     }
 }
 
-void set_digit(digit_t number, uint8_t position){
+static void set_digit(digit_t number, uint8_t position){
 
     digit_t character = char_arr[number];
     
@@ -364,11 +368,11 @@ void set_digit(digit_t number, uint8_t position){
     }
 }
 
-void set_segment(uint8_t seg, uint8_t set){
+static void set_segment(uint8_t seg, uint8_t set){
     gpioWrite(seg, set);
 }
 
-void set_buffer(digit_t *dig_arr, uint8_t arr_len){
+static void set_buffer(digit_t *dig_arr, uint8_t arr_len){
     uint8_t i;
     clear_buffer();
     clear_display();
@@ -378,7 +382,7 @@ void set_buffer(digit_t *dig_arr, uint8_t arr_len){
     buffer_len = arr_len;
 }
 
-void auto_set_buffer_index(){
+static void auto_set_buffer_index(){
     if (buffer_len > DISPLAY_LEN){
         buffer_idx = buffer_len - DISPLAY_LEN;
     } else {
@@ -386,7 +390,7 @@ void auto_set_buffer_index(){
     }
 }
 
-void scroll_buffer(){
+static void scroll_message(){
     digit_t* idx = &buffer[0];
     if (scroll_idx > buffer_len){ scroll_idx = 0; }
     if (scroll_idx + DISPLAY_LEN <= buffer_len){
@@ -420,7 +424,7 @@ void scroll_buffer(){
 //     }
 // }
 
-void display_blink(digit_t* arr){
+static void display_blink(digit_t* arr){
     uint8_t i;
     for (i = 0; i < DISPLAY_LEN; i++){
         if (blink && blinking_digits[i]){
@@ -449,18 +453,20 @@ void display_blink(digit_t* arr){
 // }
 
 // callback
-void scroll_buffer(){
+static void scroll_buffer(){
     scroll_idx++;
 }
 
-void blink_digits(){
+static void blink_digits(){
     blink = !blink;
 }
 
-void clear_buffer(){
+static void clear_buffer(void)
+{
     uint8_t i;
-    for (i = 0; i < buffer_len; i++){
-        buffer[i] = CLEAR;
+    for (i = 0; i < buffer_len; i++)
+    {
+    	buffer[i] = CLEAR;
     }
     buffer_len = 0;
 }

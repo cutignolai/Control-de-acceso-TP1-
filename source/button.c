@@ -10,7 +10,7 @@
 
 #include "board.h"
 #include "button.h"
-#include "timers.h"
+#include "timer.h"
 
 
 /*******************************************************************************
@@ -61,7 +61,7 @@ void initButton() {
     //Pins Modes//
 	gpioMode(PIN_C, INPUT);             //modo del pin
 
-    button_event = NONE;               //Se inicializa con el evento nulo (que no hay)
+    button_event = NONE_CLICK;               //Se inicializa con el evento nulo (que no hay)
     status = false;                     //Variable de cambio en falso
 
     //Periodic Interuption ---> button_callback (1ms)
@@ -122,7 +122,7 @@ static void callback_button(void){                         //el callback
 }
 
 static void callback_click(void){                           //el callback
-    buttonEvent_t turn = NONE;
+    buttonEvent_t turn = NONE_CLICK;
     if(click_counter == 1){         //si se apreto una vez
         turn = CLICK;
         status = true;            //hubo un cambio

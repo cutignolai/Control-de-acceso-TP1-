@@ -3,8 +3,8 @@
   @brief    Button Driver
   @author   Micho
  ******************************************************************************/
-#ifndef _ENCODER_H_
-#define _ENCODER_H_
+#ifndef _BUTTON_H_
+#define _BUTTON_H_
 
 /*******************************************************************************
  *                      INCLUDE HEADER FILES                                    *
@@ -26,7 +26,7 @@
 typedef enum{CLICK,
 	CLICK_2,
     CLICK_3,
-	NONE
+	NONE_CLICK
 }buttonEvent_t;
 
 
@@ -40,7 +40,7 @@ typedef enum{CLICK,
  ******************************************************************************/
 
 
-void initButton();                           //Inicialización del encoder
+void initButton(void);                           //Inicialización del encoder
 
 bool buttonGetStatus();                      //Me devuelve si hubo un cambio en la perilla
 
@@ -54,4 +54,4 @@ buttonEvent_t buttonGetEvent();             //Me devuelve si fue un giro hacia l
 /*******************************************************************************
  ******************************************************************************/
 
-#endif // _ENCODER_H_
+#endif // _BUTTON_H_

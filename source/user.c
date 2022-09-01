@@ -1,36 +1,48 @@
 /***************************************************************************//**
-  @file     display_test.c
-  @brief    Display Driver
-  @author   Ignacio Cutignols
+  @file     user.h
+  @brief    user data base
+  @author   Ignacio Cutignola
  ******************************************************************************/
 
 /*******************************************************************************
- *                              INCLUDE HEADER FILES                            *
+ *                      INCLUDE HEADER FILES                                    *
  ******************************************************************************/
+#include "user.h"
 
-#include "display.h"
-#include <stdio.h>
-#include <string.h>
- 
+/*******************************************************************************
+ *          CONSTANT AND MACRO DEFINITIONS USING #DEFINE                        *
+ ******************************************************************************/
 
 
 /*******************************************************************************
- *                 CONSTANT AND MACRO DEFINITIONS USING #DEFINE                 *
+ *               ENUMERATIONS AND STRUCTURES AND TYPEDEFS                       *
  ******************************************************************************/
-#define LONG_WORD   5
+
+
+/*******************************************************************************
+ *                  VARIABLE PROTOTYPES WITH GLOBAL SCOPE                       *
+ ******************************************************************************/
+User_t user1 = {"00000000", "0000"};
+User_t user2 = {"00000001", "0001"};
+User_t user3 = {"12340000", "1144"};
+User_t user4 = {"34890223", "2341"};
+User_t user5 = {"12345678", "1234"};
+
 
 
 /*******************************************************************************
- *                              ENUMS AND STRUCTURES                            *
+ * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
+ ******************************************************************************/
+
+
+/*******************************************************************************
+ * ROM CONST VARIABLES WITH FILE LEVEL SCOPE
  ******************************************************************************/
 
 /*******************************************************************************
- *      FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE         *
+ * STATIC VARIABLES AND CONST VARIABLES WITH FILE LEVEL SCOPE
  ******************************************************************************/
 
-/*******************************************************************************
- *                                  VARIABLES                                   *
- ******************************************************************************/
 
 /*******************************************************************************
  *******************************************************************************
@@ -38,38 +50,26 @@
  *******************************************************************************
  ******************************************************************************/
 
-void initEncoder() 
+bool checkUser(char id[], char pass[])
 {
-    printf("Display inicializado\n");
-    dispClearBuffer();
-}
+	User_t all_users[] = {user1, user2, user3, user4, user5};
+    bool answer = false;
 
-
-void setLongString(int message[], int long_message)
-{
-    printf("String: %s\n", message );
-}
-
-
-void setShortChar(int number, int position, int password_long)
-{
-    if (password_long == PASS_MESSAGE_LONG)
+    for(int i = 0; i < sizeof(all_users)/sizeof(all_users[0]); i++)
     {
-        char message[password_long] = {'_', '_', '_', '_',};
-        message[position] = char(number);
-        printf("String: %s\n", message );   
+        if ( (all_users[i].id == id) && (all_users[i].pass == pass) )
+        {
+            answer = true;
+            break;
+        }
+        
     }
+
+    return answer;
+
 }
 
-void bright_up(void)
-{
-    printf("sube brillo");
-}
 
-void bright_down(void)
-{
-    printf("baja brillo");
-}
 
 
 /*******************************************************************************
@@ -77,7 +77,6 @@ void bright_down(void)
                         LOCAL FUNCTION DEFINITIONS
  *******************************************************************************
  ******************************************************************************/
-
 
 
 /*******************************************************************************

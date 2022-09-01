@@ -106,7 +106,7 @@ void setStaticMode();
  * @param msg Mensaje a cargar
  * @param msg_len Longitud del mensaje, si es mayor al tamaño máximo se trunca
  */
-void loadBuffer(digit_t *msj, uint8_t msj_len);
+void loadBuffer(digit_t *msg, uint8_t msg_len);
 
 /**
  * @brief Configura el display para mostar los últimos 4 dígitos del buffer

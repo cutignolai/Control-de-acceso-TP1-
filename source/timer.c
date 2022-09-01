@@ -189,11 +189,9 @@ bool timerExpired(tim_id_t id){
 }
 
 
-void timerDelay(ttick_t ticks)
-{
+void timerDelay(ttick_t ticks){
     timerStart(TIMER_ID_INTERNAL, ticks, TIM_MODE_SINGLESHOT, NULL);
-    while (!timerExpired(TIMER_ID_INTERNAL))
-    {
+    while (!timerExpired(TIMER_ID_INTERNAL)){
         // wait...
     }
 }
