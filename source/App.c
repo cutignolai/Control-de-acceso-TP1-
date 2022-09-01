@@ -351,6 +351,7 @@ static estadosDelMenu_t modificar_pass(eventosDelMenu_t evento)
             digit_t pass_censored[] = {10, 10, 10, 10};
             pass_censored[posicion_pass] = pass[posicion_pass];
             showMessage(&pass_censored, MAX_UNIT_PASS, posicion_pass);
+            break;
 
         case EVENTO_CLICK_2:
 
