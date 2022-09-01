@@ -115,7 +115,7 @@ void timerReset(tim_id_t id);
  * @brief Activate a timer with its previous configuration
  * @param id ID of the timer to activate
  */
-void timerActivate(tim_id_t id){
+void timerActivate(tim_id_t id);
 
 /**
  * @brief Verify if a timer has run timeout

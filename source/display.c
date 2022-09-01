@@ -105,18 +105,18 @@ typedef enum {
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
  ******************************************************************************/
-static void refresh_display(void);
-static void set_segment(uint8_t seg, uint8_t set);
-static void set_display(digit_t arr[]);
-static void set_digit(digit_t number, uint8_t position);
-static void set_buffer(digit_t *dig_arr, uint8_t arr_len);
-static void clear_buffer();
-static void blink_digits();
-static void scroll_buffer();
-static void scroll_message();
-static void display_blink(digit_t* arr);
-static void clear_display();
-static void auto_set_buffer_index();
+void refresh_display(void);
+void set_segment(uint8_t seg, uint8_t set);
+void set_display(digit_t arr[]);
+void set_digit(digit_t number, uint8_t position);
+void set_buffer(digit_t *dig_arr, uint8_t arr_len);
+void clear_buffer();
+void blink_digits();
+void scroll_buffer();
+void scroll_message();
+void display_blink(digit_t* arr);
+void clear_display();
+void auto_set_buffer_index();
 
 /*******************************************************************************
  * ROM CONST VARIABLES WITH FILE LEVEL SCOPE
@@ -125,28 +125,28 @@ static void auto_set_buffer_index();
 /*******************************************************************************
  * STATIC VARIABLES AND CONST VARIABLES WITH FILE LEVEL SCOPE
  ******************************************************************************/
-static digit_t char_arr[] = {NUM_0, NUM_1, NUM_2, NUM_3, NUM_4, NUM_5, NUM_6, NUM_7, NUM_8, NUM_9, DASH, LOW_DASH, POINT, CLEAR, LET_A, LET_a, LET_E, LET_e, LET_I, LET_O, LET_P, LET_r, LET_S, LET_U, LET_Y };
-static uint8_t seg_arr[] = {SEGA, SEGB, SEGC, SEGD, SEGE, SEGF, SEGG, SEGDP};
+digit_t char_arr[] = {NUM_0, NUM_1, NUM_2, NUM_3, NUM_4, NUM_5, NUM_6, NUM_7, NUM_8, NUM_9, DASH, LOW_DASH, POINT, CLEAR, LET_A, LET_a, LET_E, LET_e, LET_I, LET_O, LET_P, LET_r, LET_S, LET_U, LET_Y };
+uint8_t seg_arr[] = {SEGA, SEGB, SEGC, SEGD, SEGE, SEGF, SEGG, SEGDP};
 
-static display_states_t display_state = CLEAR;
+display_states_t display_state = CLEAR;
 
-static digit_t buffer[BUFFER_MAX_LEN];
-static uint8_t buffer_len;         // Cantidad de caracteres seteados del buffer
-static uint8_t buffer_idx;         // Caracter a partir del cual mostrar
+digit_t buffer[BUFFER_MAX_LEN];
+uint8_t buffer_len;         // Cantidad de caracteres seteados del buffer
+uint8_t buffer_idx;         // Caracter a partir del cual mostrar
 
-static uint8_t brightness = 1;
+uint8_t brightness = 1;
 
-static uint8_t scroll_idx;
+uint8_t scroll_idx;
 
-static bool show_last = false;
+bool show_last = false;
 
-static bool blink = false;
-static bool blinking_digits[DISPLAY_LEN] = { false, false, false, false};
+bool blink = false;
+bool blinking_digits[DISPLAY_LEN] = { false, false, false, false};
 
 // TIMERS
-static tim_id_t refresh_timer;
-static tim_id_t blink_timer;
-static tim_id_t scroll_timer;
+tim_id_t refresh_timer;
+tim_id_t blink_timer;
+tim_id_t scroll_timer;
 
 /*******************************************************************************
  *******************************************************************************
@@ -164,6 +164,7 @@ void initDisplay(){
     }
 
     // CREATE TIMERS
+    timerInit();
     refresh_timer = timerGetId();
     timerCreate(refresh_timer, TIMER_MS2TICKS(MAX_REFRESH_T/brightness), TIM_MODE_PERIODIC, refresh_display);
     blink_timer = timerGetId();
@@ -235,7 +236,7 @@ void loadBuffer(digit_t *msg, uint8_t msg_len){
 
 void showLastDigits(bool b){
     show_last = b;
-    if (show_last) { autoSetBufferIndex(); }
+    if (show_last) { auto_set_buffer_index(); }
 }
 
 void setBufferIndex(uint8_t idx){
@@ -308,7 +309,7 @@ void downBrightness(){
  *******************************************************************************
  ******************************************************************************/
 
-static void refresh_display()
+void refresh_display()
 {
 
     switch (display_state)
@@ -318,7 +319,7 @@ static void refresh_display()
 			if (buffer_len <= DISPLAY_LEN){
 				set_display(&buffer[0]);
 			} else {
-				scroll_display();
+				scroll_message();
 			}
 			break;
 
@@ -340,19 +341,19 @@ static void refresh_display()
     }
 }
 
-static void clear_display(){
+void clear_display(){
     clear_buffer();
     buffer_idx = 0;
 }
 
-static void set_display(digit_t* arr){
+void set_display(digit_t* arr){
     uint8_t i;
     for (i = 0; i < DISPLAY_LEN; i++){
         set_digit(*(arr + i), i);
     }
 }
 
-static void set_digit(digit_t number, uint8_t position){
+void set_digit(digit_t number, uint8_t position){
 
     digit_t character = char_arr[number];
     
@@ -368,11 +369,11 @@ static void set_digit(digit_t number, uint8_t position){
     }
 }
 
-static void set_segment(uint8_t seg, uint8_t set){
+void set_segment(uint8_t seg, uint8_t set){
     gpioWrite(seg, set);
 }
 
-static void set_buffer(digit_t *dig_arr, uint8_t arr_len){
+void set_buffer(digit_t *dig_arr, uint8_t arr_len){
     uint8_t i;
     clear_buffer();
     clear_display();
@@ -382,7 +383,7 @@ static void set_buffer(digit_t *dig_arr, uint8_t arr_len){
     buffer_len = arr_len;
 }
 
-static void auto_set_buffer_index(){
+void auto_set_buffer_index(){
     if (buffer_len > DISPLAY_LEN){
         buffer_idx = buffer_len - DISPLAY_LEN;
     } else {
@@ -390,7 +391,7 @@ static void auto_set_buffer_index(){
     }
 }
 
-static void scroll_message(){
+void scroll_message(){
     digit_t* idx = &buffer[0];
     if (scroll_idx > buffer_len){ scroll_idx = 0; }
     if (scroll_idx + DISPLAY_LEN <= buffer_len){
@@ -424,7 +425,7 @@ static void scroll_message(){
 //     }
 // }
 
-static void display_blink(digit_t* arr){
+void display_blink(digit_t* arr){
     uint8_t i;
     for (i = 0; i < DISPLAY_LEN; i++){
         if (blink && blinking_digits[i]){
@@ -453,15 +454,15 @@ static void display_blink(digit_t* arr){
 // }
 
 // callback
-static void scroll_buffer(){
+void scroll_buffer(){
     scroll_idx++;
 }
 
-static void blink_digits(){
+void blink_digits(){
     blink = !blink;
 }
 
-static void clear_buffer(void)
+void clear_buffer(void)
 {
     uint8_t i;
     for (i = 0; i < buffer_len; i++)

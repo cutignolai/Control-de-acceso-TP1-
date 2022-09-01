@@ -88,6 +88,7 @@ static estadosDelMenu_t modificar_pass(eventosDelMenu_t evento);
 static estadosDelMenu_t modificar_brillo(eventosDelMenu_t evento);
 static estadosDelMenu_t verificar_estado (void);
 static void reset_all (void);
+bool CardReaderIsReady();
 
 
 /*******************************************************************************
@@ -469,6 +470,10 @@ void reset_all (void)
     //clear_led(TODOS);
     ha_hecho_click = NO;
 
+}
+
+bool CardReaderIsReady(){
+	return false;
 }
 
 /*******************************************************************************
