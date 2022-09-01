@@ -112,6 +112,7 @@ static int posicion_pass = 0;
 static bool ha_hecho_click = NO;
 static bool user_is_ready = false;
 
+static int i = 0;
 
 
 
@@ -134,44 +135,11 @@ void App_Init (void)
 /* Función que se llama constantemente en un ciclo infinito */
 void App_Run (void)
 {
-	eventosDelMenu_t evento = EVENTO_NONE;
-
-    // Analizo si hubo un evento
-    if(CardReaderIsReady())
+	if( i == 0)
     {
-		evento = EVENTO_TARJETA;
-	}
-    else if(encoderGetStatus())
-    {
-		evento = encoderGetEvent();	
-        encoderSetStatus(DESACTIVADO);
-        
-	}
-    else if(buttonGetStatus())
-    {
-		evento = buttonGetEvent();	
-        buttonSetStatus(DESACTIVADO);
-	}
-
-    // Si hubo un evento, veo en que estado de mi FSM estoy y le envio el evento
-	if(evento != EVENTO_NONE)
-    {
-		switch(estado){
-            case ESTADO_ID:
-                estado = modificar_id(evento);
-                break;
-            case ESTADO_PASS:
-                estado = modificar_pass(evento);
-                break;
-            case ESTADO_BRILLO:
-                estado = modificar_brillo(evento);
-                break;
-            case ESTADO_VERIFICAR:
-                estado = verificar_estado();
-                break;
-            default: break;
-		}
-	}
+        set_led(2);
+        //showMessage(&id, MAX_UNIT_ID, posicion_id);
+    }
 
     
 }

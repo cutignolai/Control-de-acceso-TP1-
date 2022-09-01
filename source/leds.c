@@ -91,7 +91,9 @@ void toggle_led(int l)    //not leds
 
 static void callback_leds()         //callback
 {
+  printf('muestro algo');
   if(leds[index]){
+    printf("muestro_leds");
     gpioWrite (LED_CONF_1, led_selector[index].led_bit_0);     //escribo en el primer selector, lo que vale el bit 0
     gpioWrite (LED_CONF_2, led_selector[index].led_bit_1);     //escribo en el segundo selector, lo que vale el bit 1
   }

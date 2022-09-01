@@ -1,3 +1,57 @@
+Archive member included to satisfy reference by file (symbol)
+
+c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(fpprintf.o)
+                              ./source/leds.o (printf)
+c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(printf.o)
+                              c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(fpprintf.o) (__vfprintf)
+c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(strlen.o)
+                              c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(printf.o) (strlen)
+c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(memset.o)
+                              c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(fpprintf.o) (memset)
+c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_deferredlazyseek.o)
+                              c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(fpprintf.o) (__flsbuf)
+c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_fflush.o)
+                              c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_deferredlazyseek.o) (_fflush)
+c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_frexpl.o)
+                              c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(fpprintf.o) (_frexpl)
+c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_ldexpl.o)
+                              c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(fpprintf.o) (_ldexpl)
+c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_writebuf.o)
+                              c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_deferredlazyseek.o) (_Cwritebuf)
+c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(alloc.o)
+                              c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(fpprintf.o) (malloc)
+c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(errno.o)
+                              c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_ldexpl.o) (errno)
+c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(fseek.o)
+                              c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_deferredlazyseek.o) (fseek)
+c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(ftell.o)
+                              c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(fseek.o) (ftell)
+c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(memcpy.o)
+                              c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(alloc.o) (memcpy)
+c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(__init_alloc.o)
+                              c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(alloc.o) (__heaps)
+c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_cr_sbrk.o)
+                              c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(alloc.o) (_sbrk)
+c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_hugeval.o)
+                              c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_ldexpl.o) (__huge_vall)
+c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_cr_check_heap.o)
+                              c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_cr_sbrk.o) (__check_heap_overflow)
+c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard\libcr_eabihelpers.a(double.o)
+                              c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(fpprintf.o) (__aeabi_dmul)
+c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard\libcr_eabihelpers.a(memcpy.o)
+                              c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(memcpy.o) (__aeabi_memcpy)
+c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__ciob.o)
+                              c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(fpprintf.o) (__Ciob)
+c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__sys_appexit.o)
+                              c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(alloc.o) (__sys_appexit)
+c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__sys_flen.o)
+                              c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_writebuf.o) (__sys_flen)
+c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__sys_istty.o)
+                              c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_deferredlazyseek.o) (__sys_istty)
+c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__sys_seek.o)
+                              c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_writebuf.o) (__sys_seek)
+c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__sys_write.o)
+                              c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(fpprintf.o) (__sys_write)
 
 Discarded input sections
 
@@ -43,6 +97,32 @@ Discarded input sections
  .text          0x00000000        0x0 ./source/App.o
  .data          0x00000000        0x0 ./source/App.o
  .bss           0x00000000        0x0 ./source/App.o
+ .bss.estado    0x00000000        0x1 ./source/App.o
+ .bss.ultimo_estado
+                0x00000000        0x1 ./source/App.o
+ .bss.id        0x00000000       0x20 ./source/App.o
+ .bss.posicion_id
+                0x00000000        0x4 ./source/App.o
+ .bss.pass      0x00000000       0x10 ./source/App.o
+ .bss.posicion_pass
+                0x00000000        0x4 ./source/App.o
+ .bss.ha_hecho_click
+                0x00000000        0x1 ./source/App.o
+ .bss.user_is_ready
+                0x00000000        0x1 ./source/App.o
+ .text.modificar_id
+                0x00000000      0x1b8 ./source/App.o
+ .rodata        0x00000000       0x14 ./source/App.o
+ .text.modificar_pass
+                0x00000000      0x21c ./source/App.o
+ .text.modificar_brillo
+                0x00000000       0x40 ./source/App.o
+ .text.verificar_estado
+                0x00000000       0x98 ./source/App.o
+ .text.reset_all
+                0x00000000       0x90 ./source/App.o
+ .text.showMessage
+                0x00000000       0x54 ./source/App.o
  .group         0x00000000        0xc ./source/SysTick.o
  .group         0x00000000        0xc ./source/SysTick.o
  .group         0x00000000        0xc ./source/SysTick.o
@@ -59,7 +139,7 @@ Discarded input sections
  .text          0x00000000        0x0 ./source/SysTick.o
  .data          0x00000000        0x0 ./source/SysTick.o
  .bss           0x00000000        0x0 ./source/SysTick.o
- .debug_macro   0x00000000      0xa5a ./source/SysTick.o
+ .debug_macro   0x00000000      0xa60 ./source/SysTick.o
  .debug_macro   0x00000000       0x22 ./source/SysTick.o
  .debug_macro   0x00000000      0x34e ./source/SysTick.o
  .group         0x00000000        0xc ./source/button.o
@@ -90,7 +170,13 @@ Discarded input sections
  .data          0x00000000        0x0 ./source/button.o
  .bss           0x00000000        0x0 ./source/button.o
  .data.turn     0x00000000        0x1 ./source/button.o
- .debug_macro   0x00000000      0xa5a ./source/button.o
+ .text.buttonGetStatus
+                0x00000000       0x28 ./source/button.o
+ .text.buttonGetEvent
+                0x00000000       0x18 ./source/button.o
+ .text.buttonSetStatus
+                0x00000000       0x24 ./source/button.o
+ .debug_macro   0x00000000      0xa60 ./source/button.o
  .debug_macro   0x00000000      0x34e ./source/button.o
  .debug_macro   0x00000000       0x22 ./source/button.o
  .debug_macro   0x00000000       0x3a ./source/button.o
@@ -153,10 +239,12 @@ Discarded input sections
  .bss           0x00000000        0x0 ./source/card_reader.o
  .text.getError
                 0x00000000       0x18 ./source/card_reader.o
+ .text.CardReaderIsReady
+                0x00000000       0x28 ./source/card_reader.o
  .text.getID    0x00000000       0x28 ./source/card_reader.o
  .text.resetReader
                 0x00000000       0x64 ./source/card_reader.o
- .debug_macro   0x00000000      0xa5a ./source/card_reader.o
+ .debug_macro   0x00000000      0xa60 ./source/card_reader.o
  .debug_macro   0x00000000       0x5c ./source/card_reader.o
  .debug_macro   0x00000000      0x34e ./source/card_reader.o
  .debug_macro   0x00000000       0x1c ./source/card_reader.o
@@ -223,21 +311,37 @@ Discarded input sections
  .text          0x00000000        0x0 ./source/display.o
  .data          0x00000000        0x0 ./source/display.o
  .bss           0x00000000        0x0 ./source/display.o
+ .bss.show_last
+                0x00000000        0x1 ./source/display.o
  .text.setClearMode
                 0x00000000       0x38 ./source/display.o
  .text.setScrollMode
                 0x00000000       0x40 ./source/display.o
  .text.setStaticMode
                 0x00000000       0x38 ./source/display.o
+ .text.setBlinkMode
+                0x00000000       0x4c ./source/display.o
+ .text.loadBuffer
+                0x00000000       0x38 ./source/display.o
+ .text.showLastDigits
+                0x00000000       0x28 ./source/display.o
  .text.setBufferIndex
                 0x00000000       0x28 ./source/display.o
+ .text.setBlinkingDigits
+                0x00000000       0x38 ./source/display.o
  .text.setBrightness
                 0x00000000       0x44 ./source/display.o
  .text.upBrightness
                 0x00000000       0x1c ./source/display.o
  .text.downBrightness
                 0x00000000       0x1c ./source/display.o
- .debug_macro   0x00000000      0xa5a ./source/display.o
+ .text.set_buffer
+                0x00000000       0x4c ./source/display.o
+ .text.auto_set_buffer_index
+                0x00000000       0x34 ./source/display.o
+ .text.autoSetBufferIndex
+                0x00000000        0xe ./source/display.o
+ .debug_macro   0x00000000      0xa60 ./source/display.o
  .debug_macro   0x00000000      0x34e ./source/display.o
  .debug_macro   0x00000000       0x22 ./source/display.o
  .debug_macro   0x00000000       0x3a ./source/display.o
@@ -288,7 +392,13 @@ Discarded input sections
  .text          0x00000000        0x0 ./source/encoder.o
  .data          0x00000000        0x0 ./source/encoder.o
  .bss           0x00000000        0x0 ./source/encoder.o
- .debug_macro   0x00000000      0xa5a ./source/encoder.o
+ .text.encoderGetStatus
+                0x00000000       0x28 ./source/encoder.o
+ .text.encoderGetEvent
+                0x00000000       0x18 ./source/encoder.o
+ .text.encoderSetStatus
+                0x00000000       0x24 ./source/encoder.o
+ .debug_macro   0x00000000      0xa60 ./source/encoder.o
  .debug_macro   0x00000000      0x34e ./source/encoder.o
  .debug_macro   0x00000000       0x22 ./source/encoder.o
  .debug_macro   0x00000000       0x3a ./source/encoder.o
@@ -331,7 +441,7 @@ Discarded input sections
  .bss           0x00000000        0x0 ./source/gpio.o
  .text.gpioToggle
                 0x00000000       0x48 ./source/gpio.o
- .debug_macro   0x00000000      0xa5a ./source/gpio.o
+ .debug_macro   0x00000000      0xa60 ./source/gpio.o
  .debug_macro   0x00000000       0x5c ./source/gpio.o
  .debug_macro   0x00000000      0x34e ./source/gpio.o
  .debug_macro   0x00000000       0x1c ./source/gpio.o
@@ -371,10 +481,9 @@ Discarded input sections
  .text          0x00000000        0x0 ./source/leds.o
  .data          0x00000000        0x0 ./source/leds.o
  .bss           0x00000000        0x0 ./source/leds.o
- .text.set_led  0x00000000       0x24 ./source/leds.o
  .text.toggle_led
                 0x00000000       0x40 ./source/leds.o
- .debug_macro   0x00000000      0xa5a ./source/leds.o
+ .debug_macro   0x00000000      0xa60 ./source/leds.o
  .debug_macro   0x00000000      0x34e ./source/leds.o
  .debug_macro   0x00000000       0x22 ./source/leds.o
  .debug_macro   0x00000000       0x3a ./source/leds.o
@@ -436,7 +545,7 @@ Discarded input sections
                 0x00000000       0x4c ./source/timer.o
  .text.timerDelay
                 0x00000000       0x30 ./source/timer.o
- .debug_macro   0x00000000      0xa5a ./source/timer.o
+ .debug_macro   0x00000000      0xa60 ./source/timer.o
  .debug_macro   0x00000000      0x34e ./source/timer.o
  .debug_macro   0x00000000       0x22 ./source/timer.o
  .debug_macro   0x00000000       0x17 ./source/timer.o
@@ -495,7 +604,20 @@ Discarded input sections
  .text          0x00000000        0x0 ./source/user.o
  .data          0x00000000        0x0 ./source/user.o
  .bss           0x00000000        0x0 ./source/user.o
- .debug_macro   0x00000000      0xa5a ./source/user.o
+ .data.user1    0x00000000        0xc ./source/user.o
+ .data.user2    0x00000000        0xc ./source/user.o
+ .data.user3    0x00000000        0xc ./source/user.o
+ .data.user4    0x00000000        0xc ./source/user.o
+ .data.user5    0x00000000        0xc ./source/user.o
+ .text.checkUser
+                0x00000000       0xb8 ./source/user.o
+ .debug_info    0x00000000      0x9aa ./source/user.o
+ .debug_abbrev  0x00000000      0x1fa ./source/user.o
+ .debug_aranges
+                0x00000000       0x20 ./source/user.o
+ .debug_ranges  0x00000000       0x10 ./source/user.o
+ .debug_macro   0x00000000      0x1d9 ./source/user.o
+ .debug_macro   0x00000000      0xa60 ./source/user.o
  .debug_macro   0x00000000       0x22 ./source/user.o
  .debug_macro   0x00000000       0x52 ./source/user.o
  .debug_macro   0x00000000       0x17 ./source/user.o
@@ -528,6 +650,13 @@ Discarded input sections
  .debug_macro   0x00000000       0x16 ./source/user.o
  .debug_macro   0x00000000       0x35 ./source/user.o
  .debug_macro   0x00000000       0x22 ./source/user.o
+ .debug_macro   0x00000000       0x10 ./source/user.o
+ .debug_line    0x00000000      0x32b ./source/user.o
+ .debug_str     0x00000000     0x7582 ./source/user.o
+ .comment       0x00000000       0x7f ./source/user.o
+ .debug_frame   0x00000000       0x38 ./source/user.o
+ .ARM.attributes
+                0x00000000       0x39 ./source/user.o
  .group         0x00000000        0xc ./SDK/startup/hardware.o
  .group         0x00000000        0xc ./SDK/startup/hardware.o
  .group         0x00000000        0xc ./SDK/startup/hardware.o
@@ -544,7 +673,7 @@ Discarded input sections
  .text          0x00000000        0x0 ./SDK/startup/hardware.o
  .data          0x00000000        0x0 ./SDK/startup/hardware.o
  .bss           0x00000000        0x0 ./SDK/startup/hardware.o
- .debug_macro   0x00000000      0xa5a ./SDK/startup/hardware.o
+ .debug_macro   0x00000000      0xa60 ./SDK/startup/hardware.o
  .debug_macro   0x00000000      0x34e ./SDK/startup/hardware.o
  .debug_macro   0x00000000       0x22 ./SDK/startup/hardware.o
  .debug_macro   0x00000000       0x10 ./SDK/startup/hardware.o
@@ -573,7 +702,7 @@ Discarded input sections
  .text          0x00000000        0x0 ./SDK/startup/main.o
  .data          0x00000000        0x0 ./SDK/startup/main.o
  .bss           0x00000000        0x0 ./SDK/startup/main.o
- .debug_macro   0x00000000      0xa5a ./SDK/startup/main.o
+ .debug_macro   0x00000000      0xa60 ./SDK/startup/main.o
  .debug_macro   0x00000000      0x34e ./SDK/startup/main.o
  .debug_macro   0x00000000       0x22 ./SDK/startup/main.o
  .debug_macro   0x00000000       0x10 ./SDK/startup/main.o
@@ -590,7 +719,7 @@ Discarded input sections
  .text          0x00000000        0x0 ./SDK/startup/semihost_hardfault.o
  .data          0x00000000        0x0 ./SDK/startup/semihost_hardfault.o
  .bss           0x00000000        0x0 ./SDK/startup/semihost_hardfault.o
- .debug_macro   0x00000000      0xa5a ./SDK/startup/semihost_hardfault.o
+ .debug_macro   0x00000000      0xa60 ./SDK/startup/semihost_hardfault.o
  .group         0x00000000        0xc ./SDK/startup/startup_mk64f12.o
  .text          0x00000000        0x0 ./SDK/startup/startup_mk64f12.o
  .data          0x00000000        0x0 ./SDK/startup/startup_mk64f12.o
@@ -605,7 +734,7 @@ Discarded input sections
                 0x00000000        0x8 ./SDK/startup/startup_mk64f12.o
  .text.PORTE_IRQHandler
                 0x00000000        0x8 ./SDK/startup/startup_mk64f12.o
- .debug_macro   0x00000000      0xa5a ./SDK/startup/startup_mk64f12.o
+ .debug_macro   0x00000000      0xa60 ./SDK/startup/startup_mk64f12.o
  .group         0x00000000        0xc ./SDK/CMSIS/system_MK64F12.o
  .group         0x00000000        0xc ./SDK/CMSIS/system_MK64F12.o
  .group         0x00000000        0xc ./SDK/CMSIS/system_MK64F12.o
@@ -624,7 +753,7 @@ Discarded input sections
                 0x00000000        0x4 ./SDK/CMSIS/system_MK64F12.o
  .text.SystemCoreClockUpdate
                 0x00000000      0x278 ./SDK/CMSIS/system_MK64F12.o
- .debug_macro   0x00000000      0xa5a ./SDK/CMSIS/system_MK64F12.o
+ .debug_macro   0x00000000      0xa60 ./SDK/CMSIS/system_MK64F12.o
  .debug_macro   0x00000000      0x34e ./SDK/CMSIS/system_MK64F12.o
  .debug_macro   0x00000000       0x10 ./SDK/CMSIS/system_MK64F12.o
  .debug_macro   0x00000000       0x5c ./SDK/CMSIS/system_MK64F12.o
@@ -635,6 +764,161 @@ Discarded input sections
  .debug_macro   0x00000000       0x48 ./SDK/CMSIS/system_MK64F12.o
  .debug_macro   0x00000000     0xe07b ./SDK/CMSIS/system_MK64F12.o
  .debug_macro   0x00000000     0x122b ./SDK/CMSIS/system_MK64F12.o
+ .text          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(fpprintf.o)
+ .data          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(fpprintf.o)
+ .bss           0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(fpprintf.o)
+ .text.fprintf  0x00000000       0x30 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(fpprintf.o)
+ .text.printf_char
+                0x00000000       0x34 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(fpprintf.o)
+ .text.snprintf
+                0x00000000       0x68 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(fpprintf.o)
+ .text.vfprintf
+                0x00000000       0x20 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(fpprintf.o)
+ .text.vprintf  0x00000000       0x28 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(fpprintf.o)
+ .text.vsprintf
+                0x00000000       0x5c c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(fpprintf.o)
+ .text          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(printf.o)
+ .data          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(printf.o)
+ .bss           0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(printf.o)
+ .text.no_fp_display
+                0x00000000        0x4 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(printf.o)
+ .text._fprintf
+                0x00000000       0x30 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(printf.o)
+ .text._printf_char
+                0x00000000       0x34 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(printf.o)
+ .text._sprintf
+                0x00000000       0x6c c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(printf.o)
+ .text._snprintf
+                0x00000000       0x68 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(printf.o)
+ .text._vfprintf
+                0x00000000       0x20 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(printf.o)
+ .text._vprintf
+                0x00000000       0x28 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(printf.o)
+ .text._vsprintf
+                0x00000000       0x5c c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(printf.o)
+ .text._vsnprintf
+                0x00000000       0x5c c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(printf.o)
+ .text._printf  0x00000000       0x54 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(printf.o)
+ .text          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(strlen.o)
+ .data          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(strlen.o)
+ .bss           0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(strlen.o)
+ .text          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(memset.o)
+ .data          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(memset.o)
+ .bss           0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(memset.o)
+ .text          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_deferredlazyseek.o)
+ .data          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_deferredlazyseek.o)
+ .bss           0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_deferredlazyseek.o)
+ .text          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_fflush.o)
+ .data          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_fflush.o)
+ .bss           0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_fflush.o)
+ .text          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_frexpl.o)
+ .data          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_frexpl.o)
+ .bss           0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_frexpl.o)
+ .text          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_ldexpl.o)
+ .data          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_ldexpl.o)
+ .bss           0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_ldexpl.o)
+ .text          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_writebuf.o)
+ .data          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_writebuf.o)
+ .bss           0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_writebuf.o)
+ .text          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(alloc.o)
+ .data          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(alloc.o)
+ .bss           0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(alloc.o)
+ .text.calloc   0x00000000       0x50 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(alloc.o)
+ .text.realloc  0x00000000       0x24 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(alloc.o)
+ .text          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(errno.o)
+ .data          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(errno.o)
+ .bss           0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(errno.o)
+ .text          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(fseek.o)
+ .data          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(fseek.o)
+ .bss           0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(fseek.o)
+ .text          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(ftell.o)
+ .data          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(ftell.o)
+ .bss           0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(ftell.o)
+ .text          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(memcpy.o)
+ .data          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(memcpy.o)
+ .bss           0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(memcpy.o)
+ .text.memcpy   0x00000000        0x4 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(memcpy.o)
+ .comment       0x00000000       0x7f c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(memcpy.o)
+ .ARM.attributes
+                0x00000000       0x39 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(memcpy.o)
+ .text          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(__init_alloc.o)
+ .data          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(__init_alloc.o)
+ .bss           0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(__init_alloc.o)
+ .text._init_alloc
+                0x00000000       0x14 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(__init_alloc.o)
+ .text          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_cr_sbrk.o)
+ .data          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_cr_sbrk.o)
+ .bss           0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_cr_sbrk.o)
+ .text          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_hugeval.o)
+ .data          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_hugeval.o)
+ .bss           0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_hugeval.o)
+ .rodata.__huge_val
+                0x00000000        0x8 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_hugeval.o)
+ .text          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_cr_check_heap.o)
+ .data          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_cr_check_heap.o)
+ .bss           0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_cr_check_heap.o)
+ .text          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard\libcr_eabihelpers.a(double.o)
+ .data          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard\libcr_eabihelpers.a(double.o)
+ .bss           0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard\libcr_eabihelpers.a(double.o)
+ .text.__aeabi_drsub
+                0x00000000       0x18 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard\libcr_eabihelpers.a(double.o)
+ .text.__aeabi_dneg
+                0x00000000        0xe c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard\libcr_eabihelpers.a(double.o)
+ .text.__aeabi_d2f
+                0x00000000       0x54 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard\libcr_eabihelpers.a(double.o)
+ .text.__aeabi_d2uiz
+                0x00000000       0x30 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard\libcr_eabihelpers.a(double.o)
+ .text.__aeabi_d2lz
+                0x00000000       0x6c c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard\libcr_eabihelpers.a(double.o)
+ .text.__aeabi_d2ulz
+                0x00000000       0x56 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard\libcr_eabihelpers.a(double.o)
+ .text.__bhs_ul2d
+                0x00000000       0x8a c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard\libcr_eabihelpers.a(double.o)
+ .text.__aeabi_ui2d
+                0x00000000        0x8 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard\libcr_eabihelpers.a(double.o)
+ .text.__aeabi_l2d
+                0x00000000       0x1a c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard\libcr_eabihelpers.a(double.o)
+ .text.__aeabi_ul2d
+                0x00000000        0x8 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard\libcr_eabihelpers.a(double.o)
+ .text.__aeabi_dcmpgt
+                0x00000000       0x58 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard\libcr_eabihelpers.a(double.o)
+ .text.__aeabi_dcmpun
+                0x00000000       0x1a c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard\libcr_eabihelpers.a(double.o)
+ .text.__aeabi_cdcmple
+                0x00000000       0x2c c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard\libcr_eabihelpers.a(double.o)
+ .text.__aeabi_cdrcmple
+                0x00000000       0x14 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard\libcr_eabihelpers.a(double.o)
+ .text          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard\libcr_eabihelpers.a(memcpy.o)
+ .data          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard\libcr_eabihelpers.a(memcpy.o)
+ .bss           0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard\libcr_eabihelpers.a(memcpy.o)
+ .text.__aeabi_memcpy
+                0x00000000       0x34 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard\libcr_eabihelpers.a(memcpy.o)
+ .text.__aeabi_memmove
+                0x00000000       0x1c c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard\libcr_eabihelpers.a(memcpy.o)
+ .text.__aeabi_memclr
+                0x00000000        0x8 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard\libcr_eabihelpers.a(memcpy.o)
+ .text.__aeabi_memset
+                0x00000000        0xa c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard\libcr_eabihelpers.a(memcpy.o)
+ .text          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__ciob.o)
+ .data          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__ciob.o)
+ .bss           0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__ciob.o)
+ .rodata.__num_Ciob_streams
+                0x00000000        0x4 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__ciob.o)
+ .text          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__sys_appexit.o)
+ .data          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__sys_appexit.o)
+ .bss           0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__sys_appexit.o)
+ .text          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__sys_flen.o)
+ .data          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__sys_flen.o)
+ .bss           0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__sys_flen.o)
+ .text          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__sys_istty.o)
+ .data          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__sys_istty.o)
+ .bss           0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__sys_istty.o)
+ .text          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__sys_seek.o)
+ .data          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__sys_seek.o)
+ .bss           0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__sys_seek.o)
+ .text          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__sys_write.o)
+ .data          0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__sys_write.o)
+ .bss           0x00000000        0x0 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__sys_write.o)
 
 Memory Configuration
 
@@ -663,6 +947,7 @@ LOAD ./SDK/startup/semihost_hardfault.o
 LOAD ./SDK/startup/startup_mk64f12.o
 LOAD ./SDK/CMSIS/system_MK64F12.o
 START GROUP
+LOAD c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a
 LOAD c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a
 LOAD c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard\libcr_eabihelpers.a
 END GROUP
@@ -683,7 +968,7 @@ END GROUP
                 0x14001000                __top_FLEX_RAM = 0x14001000
                 0x14001000                __top_RAM3 = 0x14001000
 
-.text           0x00000000     0x28f8
+.text           0x00000000     0x4478
  FILL mask 0xff
                 0x00000000                __vectors_start__ = ABSOLUTE (.)
  *(SORT_BY_ALIGNMENT(.isr_vector))
@@ -693,19 +978,19 @@ END GROUP
                 0x00000198                . = ALIGN (0x4)
                 0x00000198                __section_table_start = .
                 0x00000198                __data_section_table = .
-                0x00000198        0x4 LONG 0x28f8 LOADADDR (.data)
+                0x00000198        0x4 LONG 0x4478 LOADADDR (.data)
                 0x0000019c        0x4 LONG 0x20000000 ADDR (.data)
-                0x000001a0        0x4 LONG 0x70 SIZEOF (.data)
-                0x000001a4        0x4 LONG 0x28f8 LOADADDR (.data_RAM2)
+                0x000001a0        0x4 LONG 0x30 SIZEOF (.data)
+                0x000001a4        0x4 LONG 0x4478 LOADADDR (.data_RAM2)
                 0x000001a8        0x4 LONG 0x1fff0000 ADDR (.data_RAM2)
                 0x000001ac        0x4 LONG 0x0 SIZEOF (.data_RAM2)
-                0x000001b0        0x4 LONG 0x28f8 LOADADDR (.data_RAM3)
+                0x000001b0        0x4 LONG 0x4478 LOADADDR (.data_RAM3)
                 0x000001b4        0x4 LONG 0x14000000 ADDR (.data_RAM3)
                 0x000001b8        0x4 LONG 0x0 SIZEOF (.data_RAM3)
                 0x000001bc                __data_section_table_end = .
                 0x000001bc                __bss_section_table = .
-                0x000001bc        0x4 LONG 0x20000070 ADDR (.bss)
-                0x000001c0        0x4 LONG 0x410 SIZEOF (.bss)
+                0x000001bc        0x4 LONG 0x20000030 ADDR (.bss)
+                0x000001c0        0x4 LONG 0x498 SIZEOF (.bss)
                 0x000001c4        0x4 LONG 0x1fff0000 ADDR (.bss_RAM2)
                 0x000001c8        0x4 LONG 0x0 SIZEOF (.bss_RAM2)
                 0x000001cc        0x4 LONG 0x14000000 ADDR (.bss_RAM3)
@@ -822,511 +1107,576 @@ END GROUP
                 0x00000410                PROVIDE (__FLASH_CONFIG_END__, .)
                 0x00000001                ASSERT (! ((__FLASH_CONFIG_START__ == __FLASH_CONFIG_END__)), Linker Flash Config Support Enabled, but no .FlashConfig section provided within application)
  *(SORT_BY_ALIGNMENT(.text*))
- .text.App_Run  0x00000410       0xc8 ./source/App.o
-                0x00000410                App_Run
- .text.modificar_id
-                0x000004d8      0x1b8 ./source/App.o
- .text.modificar_pass
-                0x00000690      0x21c ./source/App.o
- .text.modificar_brillo
-                0x000008ac       0x40 ./source/App.o
- .text.verificar_estado
-                0x000008ec       0x7c ./source/App.o
- .text.reset_all
-                0x00000968       0x84 ./source/App.o
+ .text.fp_display
+                0x00000410      0x974 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(fpprintf.o)
+ *fill*         0x00000d84        0x4 ff
+ .text._frexpl  0x00000d88       0x68 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_frexpl.o)
+                0x00000d88                _frexpl
+ .text._ldexpl  0x00000df0       0x58 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_ldexpl.o)
+                0x00000df0                _ldexpl
+ .text.App_Run  0x00000e48       0x1c ./source/App.o
+                0x00000e48                App_Run
  .text.SysTick_Init
-                0x000009ec       0x40 ./source/SysTick.o
-                0x000009ec                SysTick_Init
+                0x00000e64       0x40 ./source/SysTick.o
+                0x00000e64                SysTick_Init
  .text.SysTick_Handler
-                0x00000a2c       0x24 ./source/SysTick.o
-                0x00000a2c                SysTick_Handler
+                0x00000ea4       0x24 ./source/SysTick.o
+                0x00000ea4                SysTick_Handler
  .text.initButton
-                0x00000a50       0x4c ./source/button.o
-                0x00000a50                initButton
- .text.buttonGetStatus
-                0x00000a9c       0x28 ./source/button.o
-                0x00000a9c                buttonGetStatus
- .text.buttonGetEvent
-                0x00000ac4       0x18 ./source/button.o
-                0x00000ac4                buttonGetEvent
- .text.buttonSetStatus
-                0x00000adc       0x24 ./source/button.o
-                0x00000adc                buttonSetStatus
+                0x00000ec8       0x4c ./source/button.o
+                0x00000ec8                initButton
  .text.event_coming
-                0x00000b00       0xb0 ./source/button.o
+                0x00000f14       0xb0 ./source/button.o
  .text.callback_button
-                0x00000bb0       0x1c ./source/button.o
+                0x00000fc4       0x1c ./source/button.o
  .text.callback_click
-                0x00000bcc       0x6c ./source/button.o
+                0x00000fe0       0x6c ./source/button.o
  .text.get_current_values
-                0x00000c38       0x1c ./source/button.o
- .text.CardReaderIsReady
-                0x00000c54       0x28 ./source/card_reader.o
-                0x00000c54                CardReaderIsReady
+                0x0000104c       0x1c ./source/button.o
  .text.readCard
-                0x00000c7c       0xb4 ./source/card_reader.o
-                0x00000c7c                readCard
+                0x00001068       0xb4 ./source/card_reader.o
+                0x00001068                readCard
  .text.initCardReader
-                0x00000d30       0xa0 ./source/card_reader.o
-                0x00000d30                initCardReader
+                0x0000111c       0xa0 ./source/card_reader.o
+                0x0000111c                initCardReader
  .text.irq_clk_falling_edge
-                0x00000dd0       0x18 ./source/card_reader.o
+                0x000011bc       0x18 ./source/card_reader.o
  .text.pin2data
-                0x00000de8      0x108 ./source/card_reader.o
+                0x000011d4      0x108 ./source/card_reader.o
  .text.validateParity
-                0x00000ef0       0x80 ./source/card_reader.o
-                0x00000ef0                validateParity
+                0x000012dc       0x80 ./source/card_reader.o
+                0x000012dc                validateParity
  .text.validateChar
-                0x00000f70       0x68 ./source/card_reader.o
-                0x00000f70                validateChar
+                0x0000135c       0x68 ./source/card_reader.o
+                0x0000135c                validateChar
  .text.add2track
-                0x00000fd8      0x144 ./source/card_reader.o
-                0x00000fd8                add2track
- .text.add2ID   0x0000111c       0x3c ./source/card_reader.o
-                0x0000111c                add2ID
+                0x000013c4      0x144 ./source/card_reader.o
+                0x000013c4                add2track
+ .text.add2ID   0x00001508       0x3c ./source/card_reader.o
+                0x00001508                add2ID
  .text.validate_LRC
-                0x00001158       0x80 ./source/card_reader.o
-                0x00001158                validate_LRC
+                0x00001544       0x80 ./source/card_reader.o
+                0x00001544                validate_LRC
  .text.initDisplay
-                0x000011d8       0xcc ./source/display.o
-                0x000011d8                initDisplay
- .text.setBlinkMode
-                0x000012a4       0x4c ./source/display.o
-                0x000012a4                setBlinkMode
- .text.loadBuffer
-                0x000012f0       0x38 ./source/display.o
-                0x000012f0                loadBuffer
- .text.showLastDigits
-                0x00001328       0x28 ./source/display.o
-                0x00001328                showLastDigits
- .text.setBlinkingDigits
-                0x00001350       0x38 ./source/display.o
-                0x00001350                setBlinkingDigits
+                0x000015c4       0xd0 ./source/display.o
+                0x000015c4                initDisplay
  .text.refresh_display
-                0x00001388       0x68 ./source/display.o
+                0x00001694       0x68 ./source/display.o
  .text.clear_display
-                0x000013f0       0x18 ./source/display.o
+                0x000016fc       0x18 ./source/display.o
  .text.set_digit
-                0x00001408       0x8c ./source/display.o
- .text.set_buffer
-                0x00001494       0x4c ./source/display.o
- .text.auto_set_buffer_index
-                0x000014e0       0x34 ./source/display.o
+                0x00001714       0x8c ./source/display.o
  .text.scroll_message
-                0x00001514       0xc8 ./source/display.o
+                0x000017a0       0xc8 ./source/display.o
  .text.display_blink
-                0x000015dc       0x5c ./source/display.o
+                0x00001868       0x5c ./source/display.o
  .text.scroll_buffer
-                0x00001638       0x20 ./source/display.o
+                0x000018c4       0x20 ./source/display.o
  .text.blink_digits
-                0x00001658       0x30 ./source/display.o
+                0x000018e4       0x30 ./source/display.o
  .text.clear_buffer
-                0x00001688       0x40 ./source/display.o
+                0x00001914       0x40 ./source/display.o
  .text.initEncoder
-                0x000016c8       0x54 ./source/encoder.o
-                0x000016c8                initEncoder
- .text.encoderGetStatus
-                0x0000171c       0x28 ./source/encoder.o
-                0x0000171c                encoderGetStatus
- .text.encoderGetEvent
-                0x00001744       0x18 ./source/encoder.o
-                0x00001744                encoderGetEvent
- .text.encoderSetStatus
-                0x0000175c       0x24 ./source/encoder.o
-                0x0000175c                encoderSetStatus
+                0x00001954       0x54 ./source/encoder.o
+                0x00001954                initEncoder
  .text.event_coming
-                0x00001780      0x1f8 ./source/encoder.o
+                0x000019a8      0x1f8 ./source/encoder.o
  .text.callback_encoder
-                0x00001978       0x30 ./source/encoder.o
+                0x00001ba0       0x30 ./source/encoder.o
  .text.get_current_values
-                0x000019a8       0x2c ./source/encoder.o
+                0x00001bd0       0x2c ./source/encoder.o
  .text.__NVIC_EnableIRQ
-                0x000019d4       0x3c ./source/gpio.o
+                0x00001bfc       0x3c ./source/gpio.o
  .text.__NVIC_DisableIRQ
-                0x00001a10       0x44 ./source/gpio.o
+                0x00001c38       0x44 ./source/gpio.o
  .text.gpioMode
-                0x00001a54      0x13c ./source/gpio.o
-                0x00001a54                gpioMode
+                0x00001c7c      0x13c ./source/gpio.o
+                0x00001c7c                gpioMode
  .text.gpioWrite
-                0x00001b90       0x5c ./source/gpio.o
-                0x00001b90                gpioWrite
+                0x00001db8       0x5c ./source/gpio.o
+                0x00001db8                gpioWrite
  .text.gpioRead
-                0x00001bec       0x58 ./source/gpio.o
-                0x00001bec                gpioRead
- .text.gpioIRQ  0x00001c44       0xbc ./source/gpio.o
-                0x00001c44                gpioIRQ
+                0x00001e14       0x58 ./source/gpio.o
+                0x00001e14                gpioRead
+ .text.gpioIRQ  0x00001e6c       0xbc ./source/gpio.o
+                0x00001e6c                gpioIRQ
  .text.IRQHandler
-                0x00001d00       0x74 ./source/gpio.o
+                0x00001f28       0x74 ./source/gpio.o
  .text.initLeds
-                0x00001d74       0x5c ./source/leds.o
-                0x00001d74                initLeds
+                0x00001f9c       0x5c ./source/leds.o
+                0x00001f9c                initLeds
+ .text.set_led  0x00001ff8       0x24 ./source/leds.o
+                0x00001ff8                set_led
  .text.clear_led
-                0x00001dd0       0x24 ./source/leds.o
-                0x00001dd0                clear_led
+                0x0000201c       0x24 ./source/leds.o
+                0x0000201c                clear_led
  .text.callback_leds
-                0x00001df4       0x84 ./source/leds.o
+                0x00002040       0x98 ./source/leds.o
  .text.timerInit
-                0x00001e78       0x28 ./source/timer.o
-                0x00001e78                timerInit
+                0x000020d8       0x28 ./source/timer.o
+                0x000020d8                timerInit
  .text.timerGetId
-                0x00001ea0       0x2c ./source/timer.o
-                0x00001ea0                timerGetId
+                0x00002100       0x2c ./source/timer.o
+                0x00002100                timerGetId
  .text.timerStart
-                0x00001ecc       0xa4 ./source/timer.o
-                0x00001ecc                timerStart
+                0x0000212c       0xa4 ./source/timer.o
+                0x0000212c                timerStart
  .text.timerRestart
-                0x00001f70       0x6c ./source/timer.o
-                0x00001f70                timerRestart
+                0x000021d0       0x6c ./source/timer.o
+                0x000021d0                timerRestart
  .text.timerFinish
-                0x00001fdc       0x5c ./source/timer.o
-                0x00001fdc                timerFinish
+                0x0000223c       0x5c ./source/timer.o
+                0x0000223c                timerFinish
  .text.timerReset
-                0x00002038       0x58 ./source/timer.o
-                0x00002038                timerReset
+                0x00002298       0x58 ./source/timer.o
+                0x00002298                timerReset
  .text.timerActivate
-                0x00002090       0x58 ./source/timer.o
-                0x00002090                timerActivate
+                0x000022f0       0x58 ./source/timer.o
+                0x000022f0                timerActivate
  .text.timer_isr
-                0x000020e8       0xd4 ./source/timer.o
- .text.checkUser
-                0x000021bc       0xb8 ./source/user.o
-                0x000021bc                checkUser
- .text.hw_Init  0x00002274      0x10c ./SDK/startup/hardware.o
-                0x00002274                hw_Init
+                0x00002348       0xd4 ./source/timer.o
+ .text.hw_Init  0x0000241c      0x10c ./SDK/startup/hardware.o
+                0x0000241c                hw_Init
  .text.hw_EnableInterrupts
-                0x00002380       0x30 ./SDK/startup/hardware.o
-                0x00002380                hw_EnableInterrupts
+                0x00002528       0x30 ./SDK/startup/hardware.o
+                0x00002528                hw_EnableInterrupts
  .text.hw_DisableInterrupts
-                0x000023b0       0x20 ./SDK/startup/hardware.o
-                0x000023b0                hw_DisableInterrupts
+                0x00002558       0x20 ./SDK/startup/hardware.o
+                0x00002558                hw_DisableInterrupts
  .text.SystemInit
-                0x000023d0       0x3c ./SDK/CMSIS/system_MK64F12.o
-                0x000023d0                SystemInit
+                0x00002578       0x3c ./SDK/CMSIS/system_MK64F12.o
+                0x00002578                SystemInit
+ .text.sprintf  0x000025b4       0x6c c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(fpprintf.o)
+                0x000025b4                sprintf
+ .text.vsnprintf
+                0x00002620       0x5c c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(fpprintf.o)
+                0x00002620                vsnprintf
+ .text.printf   0x0000267c       0x54 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(fpprintf.o)
+                0x0000267c                printf
+ .text.__vfprintf
+                0x000026d0      0xb98 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(printf.o)
+                0x000026d0                __vfprintf
+ .text._Cwritebuf
+                0x00003268       0x6c c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_writebuf.o)
+                0x00003268                _Cwritebuf
+ .text.malloc   0x000032d4       0xc8 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(alloc.o)
+                0x000032d4                malloc
+ .text._Csys_alloc
+                0x0000339c       0x20 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(alloc.o)
+                0x0000339c                _Csys_alloc
+ .text.fseek    0x000033bc      0x100 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(fseek.o)
+                0x000033bc                fseek
+ .text.ftell    0x000034bc       0x44 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(ftell.o)
+                0x000034bc                ftell
+ .text._sbrk    0x00003500       0x3c c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_cr_sbrk.o)
+                0x00003500                _sbrk
+ .text.__check_heap_overflow
+                0x0000353c       0x18 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_cr_check_heap.o)
+                0x0000353c                __check_heap_overflow
+ .text.__aeabi_dmul
+                0x00003554      0x11c c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard\libcr_eabihelpers.a(double.o)
+                0x00003554                __aeabi_dmul
+ .text.__aeabi_ddiv
+                0x00003670      0x138 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard\libcr_eabihelpers.a(double.o)
+                0x00003670                __aeabi_ddiv
+ .text.__aeabi_dsub
+                0x000037a8      0x1b4 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard\libcr_eabihelpers.a(double.o)
+                0x000037a8                __aeabi_dsub
+ .text.__aeabi_dadd
+                0x0000395c      0x10c c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard\libcr_eabihelpers.a(double.o)
+                0x0000395c                __aeabi_dadd
+ .text.__sys_appexit
+                0x00003a68        0xc c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__sys_appexit.o)
+                0x00003a68                __sys_appexit
+                0x00003a68                __exit
  .text.App_Init
-                0x0000240c       0x1c ./source/App.o
-                0x0000240c                App_Init
- .text.showMessage
-                0x00002428       0x54 ./source/App.o
+                0x00003a74       0x1c ./source/App.o
+                0x00003a74                App_Init
  .text.irq_enable
-                0x0000247c        0xc ./source/card_reader.o
+                0x00003a90        0xc ./source/card_reader.o
  .text.set_display
-                0x00002488       0x34 ./source/display.o
+                0x00003a9c       0x34 ./source/display.o
  .text.set_segment
-                0x000024bc       0x2e ./source/display.o
- .text.autoSetBufferIndex
-                0x000024ea        0xe ./source/display.o
+                0x00003ad0       0x2e ./source/display.o
  .text.PORTA_IRQHandler
-                0x000024f8       0x1e ./source/gpio.o
-                0x000024f8                PORTA_IRQHandler
+                0x00003afe       0x1e ./source/gpio.o
+                0x00003afe                PORTA_IRQHandler
  .text.PORTB_IRQHandler
-                0x00002516       0x1e ./source/gpio.o
-                0x00002516                PORTB_IRQHandler
+                0x00003b1c       0x1e ./source/gpio.o
+                0x00003b1c                PORTB_IRQHandler
  .text.PORTC_IRQHandler
-                0x00002534       0x1e ./source/gpio.o
-                0x00002534                PORTC_IRQHandler
+                0x00003b3a       0x1e ./source/gpio.o
+                0x00003b3a                PORTC_IRQHandler
  .text.PORTD_IRQHandler
-                0x00002552       0x1e ./source/gpio.o
-                0x00002552                PORTD_IRQHandler
+                0x00003b58       0x1e ./source/gpio.o
+                0x00003b58                PORTD_IRQHandler
  .text.PORTE_IRQHandler
-                0x00002570       0x1e ./source/gpio.o
-                0x00002570                PORTE_IRQHandler
+                0x00003b76       0x1e ./source/gpio.o
+                0x00003b76                PORTE_IRQHandler
  .text.timerCreate
-                0x0000258e       0x2e ./source/timer.o
-                0x0000258e                timerCreate
- .text.main     0x000025bc       0x1a ./SDK/startup/main.o
-                0x000025bc                main
+                0x00003b94       0x2e ./source/timer.o
+                0x00003b94                timerCreate
+ .text.main     0x00003bc2       0x1a ./SDK/startup/main.o
+                0x00003bc2                main
  .text.HardFault_Handler
-                0x000025d6       0x2c ./SDK/startup/semihost_hardfault.o
-                0x000025d6                HardFault_Handler
+                0x00003bdc       0x2c ./SDK/startup/semihost_hardfault.o
+                0x00003bdc                HardFault_Handler
  .text.DMA0_IRQHandler
-                0x00002602        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00002602                DMA0_IRQHandler
+                0x00003c08        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003c08                DMA0_IRQHandler
  .text.DMA1_IRQHandler
-                0x0000260a        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000260a                DMA1_IRQHandler
+                0x00003c10        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003c10                DMA1_IRQHandler
  .text.DMA2_IRQHandler
-                0x00002612        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00002612                DMA2_IRQHandler
+                0x00003c18        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003c18                DMA2_IRQHandler
  .text.DMA3_IRQHandler
-                0x0000261a        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000261a                DMA3_IRQHandler
+                0x00003c20        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003c20                DMA3_IRQHandler
  .text.DMA4_IRQHandler
-                0x00002622        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00002622                DMA4_IRQHandler
+                0x00003c28        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003c28                DMA4_IRQHandler
  .text.DMA5_IRQHandler
-                0x0000262a        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000262a                DMA5_IRQHandler
+                0x00003c30        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003c30                DMA5_IRQHandler
  .text.DMA6_IRQHandler
-                0x00002632        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00002632                DMA6_IRQHandler
+                0x00003c38        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003c38                DMA6_IRQHandler
  .text.DMA7_IRQHandler
-                0x0000263a        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000263a                DMA7_IRQHandler
+                0x00003c40        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003c40                DMA7_IRQHandler
  .text.DMA8_IRQHandler
-                0x00002642        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00002642                DMA8_IRQHandler
+                0x00003c48        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003c48                DMA8_IRQHandler
  .text.DMA9_IRQHandler
-                0x0000264a        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000264a                DMA9_IRQHandler
+                0x00003c50        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003c50                DMA9_IRQHandler
  .text.DMA10_IRQHandler
-                0x00002652        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00002652                DMA10_IRQHandler
+                0x00003c58        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003c58                DMA10_IRQHandler
  .text.DMA11_IRQHandler
-                0x0000265a        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000265a                DMA11_IRQHandler
+                0x00003c60        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003c60                DMA11_IRQHandler
  .text.DMA12_IRQHandler
-                0x00002662        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00002662                DMA12_IRQHandler
+                0x00003c68        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003c68                DMA12_IRQHandler
  .text.DMA13_IRQHandler
-                0x0000266a        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000266a                DMA13_IRQHandler
+                0x00003c70        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003c70                DMA13_IRQHandler
  .text.DMA14_IRQHandler
-                0x00002672        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00002672                DMA14_IRQHandler
+                0x00003c78        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003c78                DMA14_IRQHandler
  .text.DMA15_IRQHandler
-                0x0000267a        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000267a                DMA15_IRQHandler
+                0x00003c80        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003c80                DMA15_IRQHandler
  .text.DMA_Error_IRQHandler
-                0x00002682        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00002682                DMA_Error_IRQHandler
+                0x00003c88        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003c88                DMA_Error_IRQHandler
  .text.MCM_IRQHandler
-                0x0000268a        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000268a                MCM_IRQHandler
+                0x00003c90        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003c90                MCM_IRQHandler
  .text.FTFE_IRQHandler
-                0x00002692        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00002692                FTFE_IRQHandler
+                0x00003c98        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003c98                FTFE_IRQHandler
  .text.Read_Collision_IRQHandler
-                0x0000269a        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000269a                Read_Collision_IRQHandler
+                0x00003ca0        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003ca0                Read_Collision_IRQHandler
  .text.LVD_LVW_IRQHandler
-                0x000026a2        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000026a2                LVD_LVW_IRQHandler
+                0x00003ca8        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003ca8                LVD_LVW_IRQHandler
  .text.LLWU_IRQHandler
-                0x000026aa        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000026aa                LLWU_IRQHandler
+                0x00003cb0        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003cb0                LLWU_IRQHandler
  .text.WDOG_EWM_IRQHandler
-                0x000026b2        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000026b2                WDOG_EWM_IRQHandler
+                0x00003cb8        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003cb8                WDOG_EWM_IRQHandler
  .text.RNG_IRQHandler
-                0x000026ba        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000026ba                RNG_IRQHandler
+                0x00003cc0        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003cc0                RNG_IRQHandler
  .text.I2C0_IRQHandler
-                0x000026c2        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000026c2                I2C0_IRQHandler
+                0x00003cc8        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003cc8                I2C0_IRQHandler
  .text.I2C1_IRQHandler
-                0x000026ca        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000026ca                I2C1_IRQHandler
+                0x00003cd0        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003cd0                I2C1_IRQHandler
  .text.SPI0_IRQHandler
-                0x000026d2        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000026d2                SPI0_IRQHandler
+                0x00003cd8        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003cd8                SPI0_IRQHandler
  .text.SPI1_IRQHandler
-                0x000026da        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000026da                SPI1_IRQHandler
+                0x00003ce0        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003ce0                SPI1_IRQHandler
  .text.I2S0_Tx_IRQHandler
-                0x000026e2        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000026e2                I2S0_Tx_IRQHandler
+                0x00003ce8        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003ce8                I2S0_Tx_IRQHandler
  .text.I2S0_Rx_IRQHandler
-                0x000026ea        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000026ea                I2S0_Rx_IRQHandler
+                0x00003cf0        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003cf0                I2S0_Rx_IRQHandler
  .text.UART0_LON_IRQHandler
-                0x000026f2        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000026f2                UART0_LON_IRQHandler
+                0x00003cf8        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003cf8                UART0_LON_IRQHandler
  .text.UART0_RX_TX_IRQHandler
-                0x000026fa        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000026fa                UART0_RX_TX_IRQHandler
+                0x00003d00        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003d00                UART0_RX_TX_IRQHandler
  .text.UART0_ERR_IRQHandler
-                0x00002702        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00002702                UART0_ERR_IRQHandler
+                0x00003d08        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003d08                UART0_ERR_IRQHandler
  .text.UART1_RX_TX_IRQHandler
-                0x0000270a        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000270a                UART1_RX_TX_IRQHandler
+                0x00003d10        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003d10                UART1_RX_TX_IRQHandler
  .text.UART1_ERR_IRQHandler
-                0x00002712        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00002712                UART1_ERR_IRQHandler
+                0x00003d18        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003d18                UART1_ERR_IRQHandler
  .text.UART2_RX_TX_IRQHandler
-                0x0000271a        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000271a                UART2_RX_TX_IRQHandler
+                0x00003d20        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003d20                UART2_RX_TX_IRQHandler
  .text.UART2_ERR_IRQHandler
-                0x00002722        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00002722                UART2_ERR_IRQHandler
+                0x00003d28        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003d28                UART2_ERR_IRQHandler
  .text.UART3_RX_TX_IRQHandler
-                0x0000272a        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000272a                UART3_RX_TX_IRQHandler
+                0x00003d30        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003d30                UART3_RX_TX_IRQHandler
  .text.UART3_ERR_IRQHandler
-                0x00002732        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00002732                UART3_ERR_IRQHandler
+                0x00003d38        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003d38                UART3_ERR_IRQHandler
  .text.ADC0_IRQHandler
-                0x0000273a        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000273a                ADC0_IRQHandler
+                0x00003d40        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003d40                ADC0_IRQHandler
  .text.CMP0_IRQHandler
-                0x00002742        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00002742                CMP0_IRQHandler
+                0x00003d48        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003d48                CMP0_IRQHandler
  .text.CMP1_IRQHandler
-                0x0000274a        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000274a                CMP1_IRQHandler
+                0x00003d50        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003d50                CMP1_IRQHandler
  .text.FTM0_IRQHandler
-                0x00002752        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00002752                FTM0_IRQHandler
+                0x00003d58        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003d58                FTM0_IRQHandler
  .text.FTM1_IRQHandler
-                0x0000275a        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000275a                FTM1_IRQHandler
+                0x00003d60        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003d60                FTM1_IRQHandler
  .text.FTM2_IRQHandler
-                0x00002762        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00002762                FTM2_IRQHandler
+                0x00003d68        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003d68                FTM2_IRQHandler
  .text.CMT_IRQHandler
-                0x0000276a        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000276a                CMT_IRQHandler
+                0x00003d70        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003d70                CMT_IRQHandler
  .text.RTC_IRQHandler
-                0x00002772        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00002772                RTC_IRQHandler
+                0x00003d78        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003d78                RTC_IRQHandler
  .text.RTC_Seconds_IRQHandler
-                0x0000277a        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000277a                RTC_Seconds_IRQHandler
+                0x00003d80        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003d80                RTC_Seconds_IRQHandler
  .text.PIT0_IRQHandler
-                0x00002782        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00002782                PIT0_IRQHandler
+                0x00003d88        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003d88                PIT0_IRQHandler
  .text.PIT1_IRQHandler
-                0x0000278a        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000278a                PIT1_IRQHandler
+                0x00003d90        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003d90                PIT1_IRQHandler
  .text.PIT2_IRQHandler
-                0x00002792        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00002792                PIT2_IRQHandler
+                0x00003d98        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003d98                PIT2_IRQHandler
  .text.PIT3_IRQHandler
-                0x0000279a        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000279a                PIT3_IRQHandler
+                0x00003da0        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003da0                PIT3_IRQHandler
  .text.PDB0_IRQHandler
-                0x000027a2        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000027a2                PDB0_IRQHandler
+                0x00003da8        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003da8                PDB0_IRQHandler
  .text.USB0_IRQHandler
-                0x000027aa        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000027aa                USB0_IRQHandler
+                0x00003db0        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003db0                USB0_IRQHandler
  .text.USBDCD_IRQHandler
-                0x000027b2        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000027b2                USBDCD_IRQHandler
+                0x00003db8        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003db8                USBDCD_IRQHandler
  .text.Reserved71_IRQHandler
-                0x000027ba        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000027ba                Reserved71_IRQHandler
+                0x00003dc0        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003dc0                Reserved71_IRQHandler
  .text.DAC0_IRQHandler
-                0x000027c2        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000027c2                DAC0_IRQHandler
+                0x00003dc8        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003dc8                DAC0_IRQHandler
  .text.MCG_IRQHandler
-                0x000027ca        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000027ca                MCG_IRQHandler
+                0x00003dd0        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003dd0                MCG_IRQHandler
  .text.LPTMR0_IRQHandler
-                0x000027d2        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000027d2                LPTMR0_IRQHandler
+                0x00003dd8        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003dd8                LPTMR0_IRQHandler
  .text.SWI_IRQHandler
-                0x000027da        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000027da                SWI_IRQHandler
+                0x00003de0        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003de0                SWI_IRQHandler
  .text.SPI2_IRQHandler
-                0x000027e2        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000027e2                SPI2_IRQHandler
+                0x00003de8        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003de8                SPI2_IRQHandler
  .text.UART4_RX_TX_IRQHandler
-                0x000027ea        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000027ea                UART4_RX_TX_IRQHandler
+                0x00003df0        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003df0                UART4_RX_TX_IRQHandler
  .text.UART4_ERR_IRQHandler
-                0x000027f2        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000027f2                UART4_ERR_IRQHandler
+                0x00003df8        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003df8                UART4_ERR_IRQHandler
  .text.UART5_RX_TX_IRQHandler
-                0x000027fa        0x8 ./SDK/startup/startup_mk64f12.o
-                0x000027fa                UART5_RX_TX_IRQHandler
+                0x00003e00        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003e00                UART5_RX_TX_IRQHandler
  .text.UART5_ERR_IRQHandler
-                0x00002802        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00002802                UART5_ERR_IRQHandler
+                0x00003e08        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003e08                UART5_ERR_IRQHandler
  .text.CMP2_IRQHandler
-                0x0000280a        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000280a                CMP2_IRQHandler
+                0x00003e10        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003e10                CMP2_IRQHandler
  .text.FTM3_IRQHandler
-                0x00002812        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00002812                FTM3_IRQHandler
+                0x00003e18        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003e18                FTM3_IRQHandler
  .text.DAC1_IRQHandler
-                0x0000281a        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000281a                DAC1_IRQHandler
+                0x00003e20        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003e20                DAC1_IRQHandler
  .text.ADC1_IRQHandler
-                0x00002822        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00002822                ADC1_IRQHandler
+                0x00003e28        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003e28                ADC1_IRQHandler
  .text.I2C2_IRQHandler
-                0x0000282a        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000282a                I2C2_IRQHandler
+                0x00003e30        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003e30                I2C2_IRQHandler
  .text.CAN0_ORed_Message_buffer_IRQHandler
-                0x00002832        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00002832                CAN0_ORed_Message_buffer_IRQHandler
+                0x00003e38        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003e38                CAN0_ORed_Message_buffer_IRQHandler
  .text.CAN0_Bus_Off_IRQHandler
-                0x0000283a        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000283a                CAN0_Bus_Off_IRQHandler
+                0x00003e40        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003e40                CAN0_Bus_Off_IRQHandler
  .text.CAN0_Error_IRQHandler
-                0x00002842        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00002842                CAN0_Error_IRQHandler
+                0x00003e48        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003e48                CAN0_Error_IRQHandler
  .text.CAN0_Tx_Warning_IRQHandler
-                0x0000284a        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000284a                CAN0_Tx_Warning_IRQHandler
+                0x00003e50        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003e50                CAN0_Tx_Warning_IRQHandler
  .text.CAN0_Rx_Warning_IRQHandler
-                0x00002852        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00002852                CAN0_Rx_Warning_IRQHandler
+                0x00003e58        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003e58                CAN0_Rx_Warning_IRQHandler
  .text.CAN0_Wake_Up_IRQHandler
-                0x0000285a        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000285a                CAN0_Wake_Up_IRQHandler
+                0x00003e60        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003e60                CAN0_Wake_Up_IRQHandler
  .text.SDHC_IRQHandler
-                0x00002862        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00002862                SDHC_IRQHandler
+                0x00003e68        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003e68                SDHC_IRQHandler
  .text.ENET_1588_Timer_IRQHandler
-                0x0000286a        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000286a                ENET_1588_Timer_IRQHandler
+                0x00003e70        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003e70                ENET_1588_Timer_IRQHandler
  .text.ENET_Transmit_IRQHandler
-                0x00002872        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00002872                ENET_Transmit_IRQHandler
+                0x00003e78        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003e78                ENET_Transmit_IRQHandler
  .text.ENET_Receive_IRQHandler
-                0x0000287a        0x8 ./SDK/startup/startup_mk64f12.o
-                0x0000287a                ENET_Receive_IRQHandler
+                0x00003e80        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003e80                ENET_Receive_IRQHandler
  .text.ENET_Error_IRQHandler
-                0x00002882        0x8 ./SDK/startup/startup_mk64f12.o
-                0x00002882                ENET_Error_IRQHandler
+                0x00003e88        0x8 ./SDK/startup/startup_mk64f12.o
+                0x00003e88                ENET_Error_IRQHandler
  .text.SystemInitHook
-                0x0000288a        0xe ./SDK/CMSIS/system_MK64F12.o
-                0x0000288a                SystemInitHook
+                0x00003e90        0xe ./SDK/CMSIS/system_MK64F12.o
+                0x00003e90                SystemInitHook
+ .text.fp_round
+                0x00003e9e       0x4e c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(fpprintf.o)
+ .text.pr_dec.constprop.1
+                0x00003eec       0x26 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(fpprintf.o)
+ .text.strlen   0x00003f12       0x4a c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(strlen.o)
+                0x00003f12                strlen
+ .text.memset   0x00003f5c        0x4 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(memset.o)
+                0x00003f5c                memset
+ .text._deferredlazyseek
+                0x00003f60       0x40 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_deferredlazyseek.o)
+                0x00003f60                _deferredlazyseek
+ .text.__flsbuf
+                0x00003fa0      0x140 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_deferredlazyseek.o)
+                0x00003fa0                __flsbuf
+ .text._fflush  0x000040e0       0x52 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_fflush.o)
+                0x000040e0                _fflush
+ .text.free     0x00004132       0x30 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(alloc.o)
+                0x00004132                free
+ .text.__aeabi_d2iz
+                0x00004162       0x40 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard\libcr_eabihelpers.a(double.o)
+                0x00004162                __aeabi_d2iz
+ .text.__bhs_ui2d
+                0x000041a2       0x46 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard\libcr_eabihelpers.a(double.o)
+                0x000041a2                __bhs_ui2d
+ .text.__aeabi_i2d
+                0x000041e8       0x12 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard\libcr_eabihelpers.a(double.o)
+                0x000041e8                __aeabi_i2d
+ .text.__aeabi_dcmpeq
+                0x000041fa       0x30 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard\libcr_eabihelpers.a(double.o)
+                0x000041fa                __aeabi_dcmpeq
+ .text.__aeabi_dcmplt
+                0x0000422a       0x58 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard\libcr_eabihelpers.a(double.o)
+                0x0000422a                __aeabi_dcmplt
+ .text.__aeabi_dcmple
+                0x00004282       0x5a c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard\libcr_eabihelpers.a(double.o)
+                0x00004282                __aeabi_dcmple
+ .text.__aeabi_dcmpge
+                0x000042dc       0x58 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard\libcr_eabihelpers.a(double.o)
+                0x000042dc                __aeabi_dcmpge
+ .text.__aeabi_memset_lowlevel
+                0x00004334       0x32 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard\libcr_eabihelpers.a(memcpy.o)
+                0x00004334                __aeabi_lowlevel_memset
+ .text.__sys_flen
+                0x00004366        0xc c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__sys_flen.o)
+                0x00004366                __sys_flen
+ .text.__sys_istty
+                0x00004372        0xc c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__sys_istty.o)
+                0x00004372                __sys_istty
+ .text.__sys_seek
+                0x0000437e        0xc c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__sys_seek.o)
+                0x0000437e                __sys_seek
+ .text.__sys_write
+                0x0000438a        0xc c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__sys_write.o)
+                0x0000438a                __sys_write
  *(SORT_BY_ALIGNMENT(.rodata) SORT_BY_ALIGNMENT(.rodata.*) SORT_BY_ALIGNMENT(.constdata) SORT_BY_ALIGNMENT(.constdata.*))
- .rodata        0x00002898       0x14 ./source/App.o
- .rodata        0x000028ac        0xa ./source/display.o
- *fill*         0x000028b6        0x2 ff
+ *fill*         0x00004396        0x2 ff
+ .rodata.__huge_vall
+                0x00004398        0x8 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_hugeval.o)
+                0x00004398                __huge_vall
+ .rodata        0x000043a0        0xa ./source/display.o
+ *fill*         0x000043aa        0x2 ff
  .rodata.PORT_PTRS
-                0x000028b8       0x14 ./source/gpio.o
+                0x000043ac       0x14 ./source/gpio.o
  .rodata.GPIO_PTRS
-                0x000028cc       0x14 ./source/gpio.o
+                0x000043c0       0x14 ./source/gpio.o
  .rodata.IRQC_MODES
-                0x000028e0       0x18 ./source/gpio.o
-                0x000028f8                . = ALIGN (0x8)
+                0x000043d4       0x18 ./source/gpio.o
+ .rodata        0x000043ec        0xd ./source/leds.o
+ .rodata.fp_display.str1.1
+                0x000043f9       0x34 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(fpprintf.o)
+                                 0x35 (size before relaxing)
+ .rodata.__vfprintf.str1.1
+                0x0000442d       0x31 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(printf.o)
+                                 0x38 (size before relaxing)
+ .rodata._Csys_alloc.str1.1
+                0x0000445e       0x18 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(alloc.o)
+                0x00004478                . = ALIGN (0x8)
+ *fill*         0x00004476        0x2 ff
 
-.glue_7         0x000028f8        0x0
- .glue_7        0x000028f8        0x0 linker stubs
+.glue_7         0x00004478        0x0
+ .glue_7        0x00004478        0x0 linker stubs
 
-.glue_7t        0x000028f8        0x0
- .glue_7t       0x000028f8        0x0 linker stubs
+.glue_7t        0x00004478        0x0
+ .glue_7t       0x00004478        0x0 linker stubs
 
-.vfp11_veneer   0x000028f8        0x0
- .vfp11_veneer  0x000028f8        0x0 linker stubs
+.vfp11_veneer   0x00004478        0x0
+ .vfp11_veneer  0x00004478        0x0 linker stubs
 
-.v4_bx          0x000028f8        0x0
- .v4_bx         0x000028f8        0x0 linker stubs
+.v4_bx          0x00004478        0x0
+ .v4_bx         0x00004478        0x0 linker stubs
 
-.iplt           0x000028f8        0x0
- .iplt          0x000028f8        0x0 ./source/App.o
+.iplt           0x00004478        0x0
+ .iplt          0x00004478        0x0 ./source/App.o
 
-.rel.dyn        0x000028f8        0x0
- .rel.iplt      0x000028f8        0x0 ./source/App.o
+.rel.dyn        0x00004478        0x0
+ .rel.iplt      0x00004478        0x0 ./source/App.o
 
 .ARM.extab
  *(SORT_BY_ALIGNMENT(.ARM.extab*) SORT_BY_ALIGNMENT(.gnu.linkonce.armextab.*))
-                0x000028f8                __exidx_start = .
+                0x00004478                __exidx_start = .
 
 .ARM.exidx
  *(SORT_BY_ALIGNMENT(.ARM.exidx*) SORT_BY_ALIGNMENT(.gnu.linkonce.armexidx.*))
-                0x000028f8                __exidx_end = .
-                0x000028f8                _etext = .
+                0x00004478                __exidx_end = .
+                0x00004478                _etext = .
 
 .m_usb_data
  *(SORT_BY_ALIGNMENT(m_usb_bdt))
 
-.data_RAM2      0x1fff0000        0x0 load address 0x000028f8
+.data_RAM2      0x1fff0000        0x0 load address 0x00004478
  FILL mask 0xff
                 [!provide]                PROVIDE (__start_data_RAM2, .)
  *(SORT_BY_ALIGNMENT(.ramfunc.$RAM2))
@@ -1336,7 +1686,7 @@ END GROUP
                 0x1fff0000                . = ALIGN (0x8)
                 [!provide]                PROVIDE (__end_data_RAM2, .)
 
-.data_RAM3      0x14000000        0x0 load address 0x000028f8
+.data_RAM3      0x14000000        0x0 load address 0x00004478
  FILL mask 0xff
                 [!provide]                PROVIDE (__start_data_RAM3, .)
  *(SORT_BY_ALIGNMENT(.ramfunc.$RAM3))
@@ -1352,7 +1702,7 @@ END GROUP
                 0x20000000                . = ALIGN (0x4)
                 0x20000000                _end_uninit_RESERVED = .
 
-.data           0x20000000       0x70 load address 0x000028f8
+.data           0x20000000       0x30 load address 0x00004478
  FILL mask 0xff
                 0x20000000                _data = .
  *(SORT_BY_ALIGNMENT(vtable))
@@ -1365,26 +1715,16 @@ END GROUP
  .data.led_selector
                 0x20000024        0x8 ./source/leds.o
                 0x20000024                led_selector
- .data.user1    0x2000002c        0xc ./source/user.o
-                0x2000002c                user1
- .data.user2    0x20000038        0xc ./source/user.o
-                0x20000038                user2
- .data.user3    0x20000044        0xc ./source/user.o
-                0x20000044                user3
- .data.user4    0x20000050        0xc ./source/user.o
-                0x20000050                user4
- .data.user5    0x2000005c        0xc ./source/user.o
-                0x2000005c                user5
  .data.brightness
-                0x20000068        0x1 ./source/display.o
+                0x2000002c        0x1 ./source/display.o
  .data.timers_cant
-                0x20000069        0x1 ./source/timer.o
-                0x20000070                . = ALIGN (0x8)
- *fill*         0x2000006a        0x6 ff
-                0x20000070                _edata = .
+                0x2000002d        0x1 ./source/timer.o
+                0x20000030                . = ALIGN (0x8)
+ *fill*         0x2000002e        0x2 ff
+                0x20000030                _edata = .
 
-.igot.plt       0x20000070        0x0 load address 0x00002968
- .igot.plt      0x20000070        0x0 ./source/App.o
+.igot.plt       0x20000030        0x0 load address 0x000044a8
+ .igot.plt      0x20000030        0x0 ./source/App.o
 
 .bss_RAM2       0x1fff0000        0x0
                 [!provide]                PROVIDE (__start_bss_RAM2, .)
@@ -1400,102 +1740,98 @@ END GROUP
                 0x14000000                . = ALIGN ((. != 0x0)?0x8:0x1)
                 [!provide]                PROVIDE (__end_bss_RAM3, .)
 
-.bss            0x20000070      0x410
-                0x20000070                _bss = .
+.bss            0x20000030      0x498
+                0x20000030                _bss = .
  *(SORT_BY_ALIGNMENT(.bss*))
- .bss.id        0x20000070       0x20 ./source/App.o
- .bss.posicion_id
-                0x20000090        0x4 ./source/App.o
- .bss.pass      0x20000094       0x10 ./source/App.o
- .bss.posicion_pass
-                0x200000a4        0x4 ./source/App.o
+ .bss.i         0x20000030        0x4 ./source/App.o
  .bss.callback_ptr
-                0x200000a8        0x4 ./source/SysTick.o
+                0x20000034        0x4 ./source/SysTick.o
  .bss.click_counter
-                0x200000ac        0x4 ./source/button.o
+                0x20000038        0x4 ./source/button.o
  .bss.current_char
-                0x200000b0        0x1 ./source/card_reader.o
- *fill*         0x200000b1        0x3 
- .bss.Track     0x200000b4        0x4 ./source/card_reader.o
- .bss.ID        0x200000b8        0x4 ./source/card_reader.o
+                0x2000003c        0x1 ./source/card_reader.o
+ *fill*         0x2000003d        0x3 
+ .bss.Track     0x20000040        0x4 ./source/card_reader.o
+ .bss.ID        0x20000044        0x4 ./source/card_reader.o
  .bss.stored_ID
-                0x200000bc        0x4 ./source/card_reader.o
+                0x20000048        0x4 ./source/card_reader.o
  .bss.track_index
-                0x200000c0        0x4 ./source/card_reader.o
- .bss.buffer    0x200000c4       0x10 ./source/display.o
+                0x2000004c        0x4 ./source/card_reader.o
+ .bss.buffer    0x20000050       0x10 ./source/display.o
  .bss.blinking_digits
-                0x200000d4        0x4 ./source/display.o
+                0x20000060        0x4 ./source/display.o
  .bss.CALLBACKS
-                0x200000d8      0x280 ./source/gpio.o
- .bss.leds      0x20000358        0x3 ./source/leds.o
-                0x20000358                leds
- *fill*         0x2000035b        0x1 
- .bss.timers    0x2000035c      0x100 ./source/timer.o
+                0x20000064      0x280 ./source/gpio.o
+ .bss.leds      0x200002e4        0x3 ./source/leds.o
+                0x200002e4                leds
+ *fill*         0x200002e7        0x1 
+ .bss.timers    0x200002e8      0x100 ./source/timer.o
  .bss.__LDM_interruptDisableCount
-                0x2000045c        0x4 ./SDK/startup/hardware.o
- .bss.estado    0x20000460        0x1 ./source/App.o
- .bss.ultimo_estado
-                0x20000461        0x1 ./source/App.o
- .bss.ha_hecho_click
-                0x20000462        0x1 ./source/App.o
- .bss.user_is_ready
-                0x20000463        0x1 ./source/App.o
+                0x200003e8        0x4 ./SDK/startup/hardware.o
+ .bss.errno     0x200003ec        0x4 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(errno.o)
+                0x200003ec                errno
+ .bss.__end_of_heap
+                0x200003f0        0x4 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(__init_alloc.o)
+                0x200003f0                __end_of_heap
+ .bss.__heaps   0x200003f4        0x4 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(__init_alloc.o)
+                0x200003f4                __heaps
+ .bss.__Ciob    0x200003f8       0xb4 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__ciob.o)
+                0x200003f8                __Ciob
  .bss.last_state_button
-                0x20000464        0x1 ./source/button.o
+                0x200004ac        0x1 ./source/button.o
  .bss.current_C
-                0x20000465        0x1 ./source/button.o
- .bss.status    0x20000466        0x1 ./source/button.o
+                0x200004ad        0x1 ./source/button.o
+ .bss.status    0x200004ae        0x1 ./source/button.o
  .bss.button_event
-                0x20000467        0x1 ./source/button.o
+                0x200004af        0x1 ./source/button.o
  .bss.button_timer
-                0x20000468        0x1 ./source/button.o
+                0x200004b0        0x1 ./source/button.o
  .bss.click_timer
-                0x20000469        0x1 ./source/button.o
+                0x200004b1        0x1 ./source/button.o
  .bss.error_type
-                0x2000046a        0x1 ./source/card_reader.o
- .bss.init      0x2000046b        0x1 ./source/card_reader.o
+                0x200004b2        0x1 ./source/card_reader.o
+ .bss.init      0x200004b3        0x1 ./source/card_reader.o
  .bss.clock_received
-                0x2000046c        0x1 ./source/card_reader.o
+                0x200004b4        0x1 ./source/card_reader.o
  .bss.data_was_stored
-                0x2000046d        0x1 ./source/card_reader.o
+                0x200004b5        0x1 ./source/card_reader.o
  .bss.display_state
-                0x2000046e        0x1 ./source/display.o
+                0x200004b6        0x1 ./source/display.o
  .bss.buffer_len
-                0x2000046f        0x1 ./source/display.o
+                0x200004b7        0x1 ./source/display.o
  .bss.buffer_idx
-                0x20000470        0x1 ./source/display.o
+                0x200004b8        0x1 ./source/display.o
  .bss.scroll_idx
-                0x20000471        0x1 ./source/display.o
- .bss.show_last
-                0x20000472        0x1 ./source/display.o
- .bss.blink     0x20000473        0x1 ./source/display.o
+                0x200004b9        0x1 ./source/display.o
+ .bss.blink     0x200004ba        0x1 ./source/display.o
  .bss.refresh_timer
-                0x20000474        0x1 ./source/display.o
+                0x200004bb        0x1 ./source/display.o
  .bss.blink_timer
-                0x20000475        0x1 ./source/display.o
+                0x200004bc        0x1 ./source/display.o
  .bss.scroll_timer
-                0x20000476        0x1 ./source/display.o
+                0x200004bd        0x1 ./source/display.o
  .bss.current_state
-                0x20000477        0x1 ./source/encoder.o
+                0x200004be        0x1 ./source/encoder.o
  .bss.current_A
-                0x20000478        0x1 ./source/encoder.o
+                0x200004bf        0x1 ./source/encoder.o
  .bss.current_B
-                0x20000479        0x1 ./source/encoder.o
- .bss.status    0x2000047a        0x1 ./source/encoder.o
+                0x200004c0        0x1 ./source/encoder.o
+ .bss.status    0x200004c1        0x1 ./source/encoder.o
  .bss.encoder_event
-                0x2000047b        0x1 ./source/encoder.o
+                0x200004c2        0x1 ./source/encoder.o
  .bss.encoder_timer
-                0x2000047c        0x1 ./source/encoder.o
- .bss.index     0x2000047d        0x1 ./source/leds.o
-                0x2000047d                index
+                0x200004c3        0x1 ./source/encoder.o
+ .bss.index     0x200004c4        0x1 ./source/leds.o
+                0x200004c4                index
  .bss.leds_timer
-                0x2000047e        0x1 ./source/leds.o
-                0x2000047e                leds_timer
+                0x200004c5        0x1 ./source/leds.o
+                0x200004c5                leds_timer
  .bss.yaInit.5624
-                0x2000047f        0x1 ./source/timer.o
+                0x200004c6        0x1 ./source/timer.o
  *(SORT_BY_ALIGNMENT(COMMON))
-                0x20000480                . = ALIGN (0x8)
-                0x20000480                _ebss = .
+                0x200004c8                . = ALIGN (0x8)
+ *fill*         0x200004c7        0x1 
+                0x200004c8                _ebss = .
                 [!provide]                PROVIDE (end, .)
 
 .noinit_RAM2    0x1fff0000        0x0
@@ -1508,70 +1844,68 @@ END GROUP
  *(SORT_BY_ALIGNMENT(.noinit.$FLEX_RAM*))
                 0x14000000                . = ALIGN (0x8)
 
-.noinit         0x20000480        0x0
-                0x20000480                _noinit = .
+.noinit         0x200004c8        0x0
+                0x200004c8                _noinit = .
  *(SORT_BY_ALIGNMENT(.noinit*))
-                0x20000480                . = ALIGN (0x8)
-                0x20000480                _end_noinit = .
+                0x200004c8                . = ALIGN (0x8)
+                0x200004c8                _end_noinit = .
                 0x00001000                _HeapSize = 0x1000
 
-.heap           0x20000480     0x1000
-                0x20000480                _pvHeapStart = .
-                0x20001480                . = (. + _HeapSize)
- *fill*         0x20000480     0x1000 
-                0x20001480                . = ALIGN (0x8)
-                0x20001480                _pvHeapLimit = .
+.heap           0x200004c8     0x1000
+                0x200004c8                _pvHeapStart = .
+                0x200014c8                . = (. + _HeapSize)
+ *fill*         0x200004c8     0x1000 
+                0x200014c8                . = ALIGN (0x8)
+                0x200014c8                _pvHeapLimit = .
                 0x00001000                _StackSize = 0x1000
 
 .heap2stackfill
-                0x20001480     0x1000
-                0x20002480                . = (. + _StackSize)
- *fill*         0x20001480     0x1000 
+                0x200014c8     0x1000
+                0x200024c8                . = (. + _StackSize)
+ *fill*         0x200014c8     0x1000 
 
 .stack          0x2002f000        0x0
                 0x2002f000                _vStackBase = .
                 0x2002f000                . = ALIGN (0x8)
                 0x20030000                _vStackTop = (. + _StackSize)
                 0x00000000                _image_start = LOADADDR (.text)
-                0x00002968                _image_end = (LOADADDR (.data) + SIZEOF (.data))
-                0x00002968                _image_size = (_image_end - _image_start)
+                0x000044a8                _image_end = (LOADADDR (.data) + SIZEOF (.data))
+                0x000044a8                _image_size = (_image_end - _image_start)
 OUTPUT(Blink.axf elf32-littlearm)
 
-.debug_info     0x00000000     0x7ef6
- .debug_info    0x00000000      0xc61 ./source/App.o
- .debug_info    0x00000c61      0x14e ./source/SysTick.o
- .debug_info    0x00000daf      0xa9e ./source/button.o
- .debug_info    0x0000184d      0xc90 ./source/card_reader.o
- .debug_info    0x000024dd      0xe40 ./source/display.o
- .debug_info    0x0000331d      0xa9a ./source/encoder.o
- .debug_info    0x00003db7      0xb20 ./source/gpio.o
- .debug_info    0x000048d7      0xa37 ./source/leds.o
- .debug_info    0x0000530e      0xc2b ./source/timer.o
- .debug_info    0x00005f39      0x9aa ./source/user.o
- .debug_info    0x000068e3      0x675 ./SDK/startup/hardware.o
- .debug_info    0x00006f58       0xb7 ./SDK/startup/main.o
- .debug_info    0x0000700f       0x3b ./SDK/startup/semihost_hardfault.o
- .debug_info    0x0000704a      0x8b0 ./SDK/startup/startup_mk64f12.o
- .debug_info    0x000078fa      0x5fc ./SDK/CMSIS/system_MK64F12.o
+.debug_info     0x00000000     0x757c
+ .debug_info    0x00000000      0xc7d ./source/App.o
+ .debug_info    0x00000c7d      0x14e ./source/SysTick.o
+ .debug_info    0x00000dcb      0xa9e ./source/button.o
+ .debug_info    0x00001869      0xc90 ./source/card_reader.o
+ .debug_info    0x000024f9      0xe42 ./source/display.o
+ .debug_info    0x0000333b      0xa9a ./source/encoder.o
+ .debug_info    0x00003dd5      0xb20 ./source/gpio.o
+ .debug_info    0x000048f5      0xa49 ./source/leds.o
+ .debug_info    0x0000533e      0xc2b ./source/timer.o
+ .debug_info    0x00005f69      0x675 ./SDK/startup/hardware.o
+ .debug_info    0x000065de       0xb7 ./SDK/startup/main.o
+ .debug_info    0x00006695       0x3b ./SDK/startup/semihost_hardfault.o
+ .debug_info    0x000066d0      0x8b0 ./SDK/startup/startup_mk64f12.o
+ .debug_info    0x00006f80      0x5fc ./SDK/CMSIS/system_MK64F12.o
 
-.debug_abbrev   0x00000000     0x1c96
- .debug_abbrev  0x00000000      0x2c8 ./source/App.o
- .debug_abbrev  0x000002c8      0x104 ./source/SysTick.o
- .debug_abbrev  0x000003cc      0x276 ./source/button.o
- .debug_abbrev  0x00000642      0x321 ./source/card_reader.o
- .debug_abbrev  0x00000963      0x34f ./source/display.o
- .debug_abbrev  0x00000cb2      0x26f ./source/encoder.o
- .debug_abbrev  0x00000f21      0x243 ./source/gpio.o
- .debug_abbrev  0x00001164      0x231 ./source/leds.o
+.debug_abbrev   0x00000000     0x1a9c
+ .debug_abbrev  0x00000000      0x296 ./source/App.o
+ .debug_abbrev  0x00000296      0x104 ./source/SysTick.o
+ .debug_abbrev  0x0000039a      0x276 ./source/button.o
+ .debug_abbrev  0x00000610      0x321 ./source/card_reader.o
+ .debug_abbrev  0x00000931      0x369 ./source/display.o
+ .debug_abbrev  0x00000c9a      0x26f ./source/encoder.o
+ .debug_abbrev  0x00000f09      0x243 ./source/gpio.o
+ .debug_abbrev  0x0000114c      0x249 ./source/leds.o
  .debug_abbrev  0x00001395      0x288 ./source/timer.o
- .debug_abbrev  0x0000161d      0x1fa ./source/user.o
- .debug_abbrev  0x00001817      0x138 ./SDK/startup/hardware.o
- .debug_abbrev  0x0000194f       0x7d ./SDK/startup/main.o
- .debug_abbrev  0x000019cc       0x2f ./SDK/startup/semihost_hardfault.o
- .debug_abbrev  0x000019fb      0x15c ./SDK/startup/startup_mk64f12.o
- .debug_abbrev  0x00001b57      0x13f ./SDK/CMSIS/system_MK64F12.o
+ .debug_abbrev  0x0000161d      0x138 ./SDK/startup/hardware.o
+ .debug_abbrev  0x00001755       0x7d ./SDK/startup/main.o
+ .debug_abbrev  0x000017d2       0x2f ./SDK/startup/semihost_hardfault.o
+ .debug_abbrev  0x00001801      0x15c ./SDK/startup/startup_mk64f12.o
+ .debug_abbrev  0x0000195d      0x13f ./SDK/CMSIS/system_MK64F12.o
 
-.debug_aranges  0x00000000      0x7d0
+.debug_aranges  0x00000000      0x7b0
  .debug_aranges
                 0x00000000       0x58 ./source/App.o
  .debug_aranges
@@ -1591,19 +1925,17 @@ OUTPUT(Blink.axf elf32-littlearm)
  .debug_aranges
                 0x00000350       0x90 ./source/timer.o
  .debug_aranges
-                0x000003e0       0x20 ./source/user.o
+                0x000003e0       0x30 ./SDK/startup/hardware.o
  .debug_aranges
-                0x00000400       0x30 ./SDK/startup/hardware.o
+                0x00000410       0x20 ./SDK/startup/main.o
  .debug_aranges
-                0x00000430       0x20 ./SDK/startup/main.o
+                0x00000430       0x20 ./SDK/startup/semihost_hardfault.o
  .debug_aranges
-                0x00000450       0x20 ./SDK/startup/semihost_hardfault.o
+                0x00000450      0x330 ./SDK/startup/startup_mk64f12.o
  .debug_aranges
-                0x00000470      0x330 ./SDK/startup/startup_mk64f12.o
- .debug_aranges
-                0x000007a0       0x30 ./SDK/CMSIS/system_MK64F12.o
+                0x00000780       0x30 ./SDK/CMSIS/system_MK64F12.o
 
-.debug_ranges   0x00000000      0x6e0
+.debug_ranges   0x00000000      0x6d0
  .debug_ranges  0x00000000       0x48 ./source/App.o
  .debug_ranges  0x00000048       0x18 ./source/SysTick.o
  .debug_ranges  0x00000060       0x48 ./source/button.o
@@ -1613,138 +1945,132 @@ OUTPUT(Blink.axf elf32-littlearm)
  .debug_ranges  0x00000230       0x70 ./source/gpio.o
  .debug_ranges  0x000002a0       0x30 ./source/leds.o
  .debug_ranges  0x000002d0       0x80 ./source/timer.o
- .debug_ranges  0x00000350       0x10 ./source/user.o
- .debug_ranges  0x00000360       0x20 ./SDK/startup/hardware.o
- .debug_ranges  0x00000380       0x10 ./SDK/startup/main.o
- .debug_ranges  0x00000390       0x10 ./SDK/startup/semihost_hardfault.o
- .debug_ranges  0x000003a0      0x320 ./SDK/startup/startup_mk64f12.o
- .debug_ranges  0x000006c0       0x20 ./SDK/CMSIS/system_MK64F12.o
+ .debug_ranges  0x00000350       0x20 ./SDK/startup/hardware.o
+ .debug_ranges  0x00000370       0x10 ./SDK/startup/main.o
+ .debug_ranges  0x00000380       0x10 ./SDK/startup/semihost_hardfault.o
+ .debug_ranges  0x00000390      0x320 ./SDK/startup/startup_mk64f12.o
+ .debug_ranges  0x000006b0       0x20 ./SDK/CMSIS/system_MK64F12.o
 
-.debug_macro    0x00000000    0x13882
+.debug_macro    0x00000000    0x1369f
  .debug_macro   0x00000000      0x282 ./source/App.o
- .debug_macro   0x00000282      0xa5a ./source/App.o
- .debug_macro   0x00000cdc       0x22 ./source/App.o
- .debug_macro   0x00000cfe       0x52 ./source/App.o
- .debug_macro   0x00000d50       0x17 ./source/App.o
- .debug_macro   0x00000d67       0x8d ./source/App.o
- .debug_macro   0x00000df4       0x35 ./source/App.o
- .debug_macro   0x00000e29       0x9c ./source/App.o
- .debug_macro   0x00000ec5       0x16 ./source/App.o
- .debug_macro   0x00000edb       0x57 ./source/App.o
- .debug_macro   0x00000f32       0x97 ./source/App.o
- .debug_macro   0x00000fc9      0x330 ./source/App.o
- .debug_macro   0x000012f9       0xfd ./source/App.o
- .debug_macro   0x000013f6       0x10 ./source/App.o
- .debug_macro   0x00001406       0x58 ./source/App.o
- .debug_macro   0x0000145e       0x1f ./source/App.o
- .debug_macro   0x0000147d       0x43 ./source/App.o
- .debug_macro   0x000014c0       0x20 ./source/App.o
- .debug_macro   0x000014e0      0x18e ./source/App.o
- .debug_macro   0x0000166e       0x10 ./source/App.o
- .debug_macro   0x0000167e       0x6a ./source/App.o
- .debug_macro   0x000016e8       0x1c ./source/App.o
- .debug_macro   0x00001704       0x52 ./source/App.o
- .debug_macro   0x00001756       0x40 ./source/App.o
- .debug_macro   0x00001796       0x10 ./source/App.o
- .debug_macro   0x000017a6       0x40 ./source/App.o
- .debug_macro   0x000017e6       0xd7 ./source/App.o
- .debug_macro   0x000018bd       0x1c ./source/App.o
- .debug_macro   0x000018d9       0x3d ./source/App.o
- .debug_macro   0x00001916       0x16 ./source/App.o
- .debug_macro   0x0000192c      0x16f ./source/App.o
- .debug_macro   0x00001a9b       0x16 ./source/App.o
- .debug_macro   0x00001ab1       0x35 ./source/App.o
- .debug_macro   0x00001ae6      0x34e ./source/App.o
- .debug_macro   0x00001e34       0x22 ./source/App.o
- .debug_macro   0x00001e56       0x3a ./source/App.o
- .debug_macro   0x00001e90       0x5e ./source/App.o
- .debug_macro   0x00001eee       0xac ./source/App.o
- .debug_macro   0x00001f9a       0x10 ./source/App.o
- .debug_macro   0x00001faa       0x16 ./source/App.o
- .debug_macro   0x00001fc0       0xe6 ./source/SysTick.o
- .debug_macro   0x000020a6       0x5c ./source/SysTick.o
- .debug_macro   0x00002102       0x1c ./source/SysTick.o
- .debug_macro   0x0000211e       0x22 ./source/SysTick.o
- .debug_macro   0x00002140       0xdf ./source/SysTick.o
- .debug_macro   0x0000221f      0xecf ./source/SysTick.o
- .debug_macro   0x000030ee       0x48 ./source/SysTick.o
- .debug_macro   0x00003136     0xe07b ./source/SysTick.o
- .debug_macro   0x000111b1       0x10 ./source/SysTick.o
- .debug_macro   0x000111c1     0x122b ./source/SysTick.o
- .debug_macro   0x000123ec       0x16 ./source/SysTick.o
- .debug_macro   0x00012402      0x15b ./source/button.o
- .debug_macro   0x0001255d       0x16 ./source/button.o
- .debug_macro   0x00012573      0x10e ./source/button.o
- .debug_macro   0x00012681       0x8d ./source/button.o
- .debug_macro   0x0001270e       0x16 ./source/button.o
- .debug_macro   0x00012724       0x29 ./source/button.o
- .debug_macro   0x0001274d       0x1c ./source/button.o
- .debug_macro   0x00012769      0x239 ./source/card_reader.o
- .debug_macro   0x000129a2      0x32a ./source/card_reader.o
- .debug_macro   0x00012ccc      0x27a ./source/display.o
- .debug_macro   0x00012f46       0x64 ./source/display.o
- .debug_macro   0x00012faa      0x155 ./source/encoder.o
- .debug_macro   0x000130ff       0xcd ./source/gpio.o
- .debug_macro   0x000131cc       0x40 ./source/gpio.o
- .debug_macro   0x0001320c      0x155 ./source/leds.o
- .debug_macro   0x00013361      0x136 ./source/timer.o
- .debug_macro   0x00013497       0x10 ./source/timer.o
- .debug_macro   0x000134a7      0x1d9 ./source/user.o
- .debug_macro   0x00013680       0x10 ./source/user.o
- .debug_macro   0x00013690       0x9c ./SDK/startup/hardware.o
- .debug_macro   0x0001372c       0x9c ./SDK/startup/main.o
- .debug_macro   0x000137c8       0x11 ./SDK/startup/semihost_hardfault.o
- .debug_macro   0x000137d9       0x29 ./SDK/startup/startup_mk64f12.o
- .debug_macro   0x00013802       0x80 ./SDK/CMSIS/system_MK64F12.o
+ .debug_macro   0x00000282      0xa60 ./source/App.o
+ .debug_macro   0x00000ce2       0x22 ./source/App.o
+ .debug_macro   0x00000d04       0x52 ./source/App.o
+ .debug_macro   0x00000d56       0x17 ./source/App.o
+ .debug_macro   0x00000d6d       0x8d ./source/App.o
+ .debug_macro   0x00000dfa       0x35 ./source/App.o
+ .debug_macro   0x00000e2f       0x9c ./source/App.o
+ .debug_macro   0x00000ecb       0x16 ./source/App.o
+ .debug_macro   0x00000ee1       0x57 ./source/App.o
+ .debug_macro   0x00000f38       0x97 ./source/App.o
+ .debug_macro   0x00000fcf      0x330 ./source/App.o
+ .debug_macro   0x000012ff       0xfd ./source/App.o
+ .debug_macro   0x000013fc       0x10 ./source/App.o
+ .debug_macro   0x0000140c       0x58 ./source/App.o
+ .debug_macro   0x00001464       0x1f ./source/App.o
+ .debug_macro   0x00001483       0x43 ./source/App.o
+ .debug_macro   0x000014c6       0x20 ./source/App.o
+ .debug_macro   0x000014e6      0x18e ./source/App.o
+ .debug_macro   0x00001674       0x10 ./source/App.o
+ .debug_macro   0x00001684       0x6a ./source/App.o
+ .debug_macro   0x000016ee       0x1c ./source/App.o
+ .debug_macro   0x0000170a       0x52 ./source/App.o
+ .debug_macro   0x0000175c       0x40 ./source/App.o
+ .debug_macro   0x0000179c       0x10 ./source/App.o
+ .debug_macro   0x000017ac       0x40 ./source/App.o
+ .debug_macro   0x000017ec       0xd7 ./source/App.o
+ .debug_macro   0x000018c3       0x1c ./source/App.o
+ .debug_macro   0x000018df       0x3d ./source/App.o
+ .debug_macro   0x0000191c       0x16 ./source/App.o
+ .debug_macro   0x00001932      0x16f ./source/App.o
+ .debug_macro   0x00001aa1       0x16 ./source/App.o
+ .debug_macro   0x00001ab7       0x35 ./source/App.o
+ .debug_macro   0x00001aec      0x34e ./source/App.o
+ .debug_macro   0x00001e3a       0x22 ./source/App.o
+ .debug_macro   0x00001e5c       0x3a ./source/App.o
+ .debug_macro   0x00001e96       0x5e ./source/App.o
+ .debug_macro   0x00001ef4       0xac ./source/App.o
+ .debug_macro   0x00001fa0       0x10 ./source/App.o
+ .debug_macro   0x00001fb0       0x16 ./source/App.o
+ .debug_macro   0x00001fc6       0xe6 ./source/SysTick.o
+ .debug_macro   0x000020ac       0x5c ./source/SysTick.o
+ .debug_macro   0x00002108       0x1c ./source/SysTick.o
+ .debug_macro   0x00002124       0x22 ./source/SysTick.o
+ .debug_macro   0x00002146       0xdf ./source/SysTick.o
+ .debug_macro   0x00002225      0xecf ./source/SysTick.o
+ .debug_macro   0x000030f4       0x48 ./source/SysTick.o
+ .debug_macro   0x0000313c     0xe07b ./source/SysTick.o
+ .debug_macro   0x000111b7       0x10 ./source/SysTick.o
+ .debug_macro   0x000111c7     0x122b ./source/SysTick.o
+ .debug_macro   0x000123f2       0x16 ./source/SysTick.o
+ .debug_macro   0x00012408      0x15b ./source/button.o
+ .debug_macro   0x00012563       0x16 ./source/button.o
+ .debug_macro   0x00012579      0x10e ./source/button.o
+ .debug_macro   0x00012687       0x8d ./source/button.o
+ .debug_macro   0x00012714       0x16 ./source/button.o
+ .debug_macro   0x0001272a       0x29 ./source/button.o
+ .debug_macro   0x00012753       0x1c ./source/button.o
+ .debug_macro   0x0001276f      0x239 ./source/card_reader.o
+ .debug_macro   0x000129a8      0x32a ./source/card_reader.o
+ .debug_macro   0x00012cd2      0x27a ./source/display.o
+ .debug_macro   0x00012f4c       0x64 ./source/display.o
+ .debug_macro   0x00012fb0      0x155 ./source/encoder.o
+ .debug_macro   0x00013105       0xcd ./source/gpio.o
+ .debug_macro   0x000131d2       0x40 ./source/gpio.o
+ .debug_macro   0x00013212      0x155 ./source/leds.o
+ .debug_macro   0x00013367      0x136 ./source/timer.o
+ .debug_macro   0x0001349d       0x10 ./source/timer.o
+ .debug_macro   0x000134ad       0x9c ./SDK/startup/hardware.o
+ .debug_macro   0x00013549       0x9c ./SDK/startup/main.o
+ .debug_macro   0x000135e5       0x11 ./SDK/startup/semihost_hardfault.o
+ .debug_macro   0x000135f6       0x29 ./SDK/startup/startup_mk64f12.o
+ .debug_macro   0x0001361f       0x80 ./SDK/CMSIS/system_MK64F12.o
 
-.debug_line     0x00000000     0x3100
- .debug_line    0x00000000      0x4eb ./source/App.o
- .debug_line    0x000004eb      0x19f ./source/SysTick.o
- .debug_line    0x0000068a      0x324 ./source/button.o
- .debug_line    0x000009ae      0x554 ./source/card_reader.o
- .debug_line    0x00000f02      0x53d ./source/display.o
- .debug_line    0x0000143f      0x3b8 ./source/encoder.o
- .debug_line    0x000017f7      0x2ee ./source/gpio.o
- .debug_line    0x00001ae5      0x2f7 ./source/leds.o
- .debug_line    0x00001ddc      0x3b8 ./source/timer.o
- .debug_line    0x00002194      0x32b ./source/user.o
- .debug_line    0x000024bf      0x1d4 ./SDK/startup/hardware.o
- .debug_line    0x00002693      0x175 ./SDK/startup/main.o
- .debug_line    0x00002808       0x59 ./SDK/startup/semihost_hardfault.o
- .debug_line    0x00002861      0x6d8 ./SDK/startup/startup_mk64f12.o
- .debug_line    0x00002f39      0x1c7 ./SDK/CMSIS/system_MK64F12.o
+.debug_line     0x00000000     0x2dc8
+ .debug_line    0x00000000      0x4db ./source/App.o
+ .debug_line    0x000004db      0x19f ./source/SysTick.o
+ .debug_line    0x0000067a      0x324 ./source/button.o
+ .debug_line    0x0000099e      0x554 ./source/card_reader.o
+ .debug_line    0x00000ef2      0x53e ./source/display.o
+ .debug_line    0x00001430      0x3b8 ./source/encoder.o
+ .debug_line    0x000017e8      0x2ee ./source/gpio.o
+ .debug_line    0x00001ad6      0x2f9 ./source/leds.o
+ .debug_line    0x00001dcf      0x3b8 ./source/timer.o
+ .debug_line    0x00002187      0x1d4 ./SDK/startup/hardware.o
+ .debug_line    0x0000235b      0x175 ./SDK/startup/main.o
+ .debug_line    0x000024d0       0x59 ./SDK/startup/semihost_hardfault.o
+ .debug_line    0x00002529      0x6d8 ./SDK/startup/startup_mk64f12.o
+ .debug_line    0x00002c01      0x1c7 ./SDK/CMSIS/system_MK64F12.o
 
-.debug_str      0x00000000    0x7dc48
- .debug_str     0x00000000     0x82b6 ./source/App.o
-                               0x8566 (size before relaxing)
- .debug_str     0x000082b6    0x738fa ./source/SysTick.o
-                              0x77133 (size before relaxing)
- .debug_str     0x0007bbb0      0x2d5 ./source/button.o
-                               0x706a (size before relaxing)
- .debug_str     0x0007be85      0x2d8 ./source/card_reader.o
-                              0x74f16 (size before relaxing)
- .debug_str     0x0007c15d      0x52f ./source/display.o
-                               0x756d (size before relaxing)
- .debug_str     0x0007c68c      0x11a ./source/encoder.o
-                               0x7068 (size before relaxing)
- .debug_str     0x0007c7a6      0x84e ./source/gpio.o
-                              0x779b6 (size before relaxing)
- .debug_str     0x0007cff4       0xa4 ./source/leds.o
-                               0x6fcc (size before relaxing)
- .debug_str     0x0007d098      0x159 ./source/timer.o
-                               0x6e97 (size before relaxing)
- .debug_str     0x0007d1f1       0x57 ./source/user.o
-                               0x756f (size before relaxing)
- .debug_str     0x0007d248      0x178 ./SDK/startup/hardware.o
-                              0x7721d (size before relaxing)
- .debug_str     0x0007d3c0       0x1b ./SDK/startup/main.o
-                              0x76ff1 (size before relaxing)
- .debug_str     0x0007d3db       0x36 ./SDK/startup/semihost_hardfault.o
-                               0x2d57 (size before relaxing)
- .debug_str     0x0007d411      0x7d5 ./SDK/startup/startup_mk64f12.o
-                               0x35c5 (size before relaxing)
- .debug_str     0x0007dbe6       0x62 ./SDK/CMSIS/system_MK64F12.o
-                              0x7712c (size before relaxing)
+.debug_str      0x00000000    0x7dc1b
+ .debug_str     0x00000000     0x82d9 ./source/App.o
+                               0x8589 (size before relaxing)
+ .debug_str     0x000082d9    0x738fa ./source/SysTick.o
+                              0x77146 (size before relaxing)
+ .debug_str     0x0007bbd3      0x2d5 ./source/button.o
+                               0x707e (size before relaxing)
+ .debug_str     0x0007bea8      0x2d8 ./source/card_reader.o
+                              0x74f29 (size before relaxing)
+ .debug_str     0x0007c180      0x52f ./source/display.o
+                               0x7581 (size before relaxing)
+ .debug_str     0x0007c6af      0x11a ./source/encoder.o
+                               0x707c (size before relaxing)
+ .debug_str     0x0007c7c9      0x84e ./source/gpio.o
+                              0x779c9 (size before relaxing)
+ .debug_str     0x0007d017       0xab ./source/leds.o
+                               0x6fe7 (size before relaxing)
+ .debug_str     0x0007d0c2      0x159 ./source/timer.o
+                               0x6eaa (size before relaxing)
+ .debug_str     0x0007d21b      0x178 ./SDK/startup/hardware.o
+                              0x77230 (size before relaxing)
+ .debug_str     0x0007d393       0x1b ./SDK/startup/main.o
+                              0x77004 (size before relaxing)
+ .debug_str     0x0007d3ae       0x36 ./SDK/startup/semihost_hardfault.o
+                               0x2d6a (size before relaxing)
+ .debug_str     0x0007d3e4      0x7d5 ./SDK/startup/startup_mk64f12.o
+                               0x35d8 (size before relaxing)
+ .debug_str     0x0007dbb9       0x62 ./SDK/CMSIS/system_MK64F12.o
+                              0x7713f (size before relaxing)
 
 .comment        0x00000000       0x7e
  .comment       0x00000000       0x7e ./source/App.o
@@ -1757,15 +2083,33 @@ OUTPUT(Blink.axf elf32-littlearm)
  .comment       0x0000007e       0x7f ./source/gpio.o
  .comment       0x0000007e       0x7f ./source/leds.o
  .comment       0x0000007e       0x7f ./source/timer.o
- .comment       0x0000007e       0x7f ./source/user.o
  .comment       0x0000007e       0x7f ./SDK/startup/hardware.o
  .comment       0x0000007e       0x7f ./SDK/startup/main.o
  .comment       0x0000007e       0x7f ./SDK/startup/semihost_hardfault.o
  .comment       0x0000007e       0x7f ./SDK/startup/startup_mk64f12.o
  .comment       0x0000007e       0x7f ./SDK/CMSIS/system_MK64F12.o
+ .comment       0x0000007e       0x7f c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(fpprintf.o)
+ .comment       0x0000007e       0x7f c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(printf.o)
+ .comment       0x0000007e       0x7f c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(strlen.o)
+ .comment       0x0000007e       0x7f c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(memset.o)
+ .comment       0x0000007e       0x7f c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_deferredlazyseek.o)
+ .comment       0x0000007e       0x7f c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_fflush.o)
+ .comment       0x0000007e       0x7f c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_frexpl.o)
+ .comment       0x0000007e       0x7f c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_ldexpl.o)
+ .comment       0x0000007e       0x7f c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_writebuf.o)
+ .comment       0x0000007e       0x7f c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(alloc.o)
+ .comment       0x0000007e       0x7f c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(errno.o)
+ .comment       0x0000007e       0x7f c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(fseek.o)
+ .comment       0x0000007e       0x7f c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(ftell.o)
+ .comment       0x0000007e       0x7f c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(__init_alloc.o)
+ .comment       0x0000007e       0x7f c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_cr_sbrk.o)
+ .comment       0x0000007e       0x7f c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_hugeval.o)
+ .comment       0x0000007e       0x7f c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_cr_check_heap.o)
+ .comment       0x0000007e       0x7f c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard\libcr_eabihelpers.a(double.o)
+ .comment       0x0000007e       0x7f c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__ciob.o)
 
 .ARM.attributes
-                0x00000000       0x39
+                0x00000000       0x37
  .ARM.attributes
                 0x00000000       0x39 ./source/App.o
  .ARM.attributes
@@ -1785,31 +2129,78 @@ OUTPUT(Blink.axf elf32-littlearm)
  .ARM.attributes
                 0x000001c8       0x39 ./source/timer.o
  .ARM.attributes
-                0x00000201       0x39 ./source/user.o
+                0x00000201       0x39 ./SDK/startup/hardware.o
  .ARM.attributes
-                0x0000023a       0x39 ./SDK/startup/hardware.o
+                0x0000023a       0x39 ./SDK/startup/main.o
  .ARM.attributes
-                0x00000273       0x39 ./SDK/startup/main.o
+                0x00000273       0x39 ./SDK/startup/semihost_hardfault.o
  .ARM.attributes
-                0x000002ac       0x39 ./SDK/startup/semihost_hardfault.o
+                0x000002ac       0x39 ./SDK/startup/startup_mk64f12.o
  .ARM.attributes
-                0x000002e5       0x39 ./SDK/startup/startup_mk64f12.o
+                0x000002e5       0x39 ./SDK/CMSIS/system_MK64F12.o
  .ARM.attributes
-                0x0000031e       0x39 ./SDK/CMSIS/system_MK64F12.o
+                0x0000031e       0x39 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(fpprintf.o)
+ .ARM.attributes
+                0x00000357       0x39 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(printf.o)
+ .ARM.attributes
+                0x00000390       0x39 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(strlen.o)
+ .ARM.attributes
+                0x000003c9       0x39 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(memset.o)
+ .ARM.attributes
+                0x00000402       0x39 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_deferredlazyseek.o)
+ .ARM.attributes
+                0x0000043b       0x39 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_fflush.o)
+ .ARM.attributes
+                0x00000474       0x39 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_frexpl.o)
+ .ARM.attributes
+                0x000004ad       0x39 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_ldexpl.o)
+ .ARM.attributes
+                0x000004e6       0x39 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_writebuf.o)
+ .ARM.attributes
+                0x0000051f       0x39 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(alloc.o)
+ .ARM.attributes
+                0x00000558       0x39 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(errno.o)
+ .ARM.attributes
+                0x00000591       0x39 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(fseek.o)
+ .ARM.attributes
+                0x000005ca       0x39 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(ftell.o)
+ .ARM.attributes
+                0x00000603       0x39 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(__init_alloc.o)
+ .ARM.attributes
+                0x0000063c       0x39 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_cr_sbrk.o)
+ .ARM.attributes
+                0x00000675       0x39 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_hugeval.o)
+ .ARM.attributes
+                0x000006ae       0x39 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_cr_check_heap.o)
+ .ARM.attributes
+                0x000006e7       0x39 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard\libcr_eabihelpers.a(double.o)
+ .ARM.attributes
+                0x00000720       0x25 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard\libcr_eabihelpers.a(memcpy.o)
+ .ARM.attributes
+                0x00000745       0x39 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__ciob.o)
+ .ARM.attributes
+                0x0000077e       0x25 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__sys_appexit.o)
+ .ARM.attributes
+                0x000007a3       0x25 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__sys_flen.o)
+ .ARM.attributes
+                0x000007c8       0x25 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__sys_istty.o)
+ .ARM.attributes
+                0x000007ed       0x25 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__sys_seek.o)
+ .ARM.attributes
+                0x00000812       0x25 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__sys_write.o)
 
-.debug_frame    0x00000000     0x1884
- .debug_frame   0x00000000      0x134 ./source/App.o
- .debug_frame   0x00000134       0x64 ./source/SysTick.o
- .debug_frame   0x00000198      0x118 ./source/button.o
- .debug_frame   0x000002b0      0x1f4 ./source/card_reader.o
- .debug_frame   0x000004a4      0x350 ./source/display.o
- .debug_frame   0x000007f4       0xf4 ./source/encoder.o
- .debug_frame   0x000008e8      0x224 ./source/gpio.o
- .debug_frame   0x00000b0c       0xc8 ./source/leds.o
- .debug_frame   0x00000bd4      0x244 ./source/timer.o
- .debug_frame   0x00000e18       0x38 ./source/user.o
- .debug_frame   0x00000e50       0x70 ./SDK/startup/hardware.o
- .debug_frame   0x00000ec0       0x2c ./SDK/startup/main.o
- .debug_frame   0x00000eec       0x20 ./SDK/startup/semihost_hardfault.o
- .debug_frame   0x00000f0c      0x904 ./SDK/startup/startup_mk64f12.o
- .debug_frame   0x00001810       0x74 ./SDK/CMSIS/system_MK64F12.o
+.debug_frame    0x00000000     0x1840
+ .debug_frame   0x00000000      0x128 ./source/App.o
+ .debug_frame   0x00000128       0x64 ./source/SysTick.o
+ .debug_frame   0x0000018c      0x118 ./source/button.o
+ .debug_frame   0x000002a4      0x1f4 ./source/card_reader.o
+ .debug_frame   0x00000498      0x350 ./source/display.o
+ .debug_frame   0x000007e8       0xf4 ./source/encoder.o
+ .debug_frame   0x000008dc      0x224 ./source/gpio.o
+ .debug_frame   0x00000b00       0xc8 ./source/leds.o
+ .debug_frame   0x00000bc8      0x244 ./source/timer.o
+ .debug_frame   0x00000e0c       0x70 ./SDK/startup/hardware.o
+ .debug_frame   0x00000e7c       0x2c ./SDK/startup/main.o
+ .debug_frame   0x00000ea8       0x20 ./SDK/startup/semihost_hardfault.o
+ .debug_frame   0x00000ec8      0x904 ./SDK/startup/startup_mk64f12.o
+ .debug_frame   0x000017cc       0x74 ./SDK/CMSIS/system_MK64F12.o
