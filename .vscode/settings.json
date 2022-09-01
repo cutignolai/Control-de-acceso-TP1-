@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "board.h": "c",
-        "mk64f12.h": "c"
+        "mk64f12.h": "c",
+        "timer.h": "c"
     }
 }

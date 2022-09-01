@@ -128,7 +128,7 @@ void App_Init (void)
     initEncoder();
     initLeds();
     initButton(); 
-    // initCardReader();
+    initCardReader();
 }
 
 /* Función que se llama constantemente en un ciclo infinito */
@@ -430,7 +430,20 @@ static estadosDelMenu_t verificar_estado (void)
     //set_led(AZUL);
     
     // traducir de arreglo a string de numeros
-    if( checkUser(id, pass) == USUARIO_VALIDO)
+
+    char id_char[MAX_UNIT_ID];
+    for(int i = 0 ; i < MAX_UNIT_ID ; i++)
+    {
+    	id_char[i] = (char)(id[i]);
+    }
+
+    char pass_char[MAX_UNIT_ID];
+        for(int i = 0 ; i < MAX_UNIT_PASS ; i++)
+        {
+        	pass_char[i] = (char)(pass[i]);
+        }
+
+    if( checkUser(id_char, pass_char) == USUARIO_VALIDO)
     {
         //set_led(VERDE);
     } 
