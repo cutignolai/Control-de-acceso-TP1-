@@ -89,7 +89,7 @@ void timerStop(tim_id_t id);
 
 /**
  * @brief Resumes the count of a timer
- * @param id ID of the timer to stop
+ * @param id ID of the timer to play
  */
 void timerPlay(tim_id_t id);
 
@@ -113,7 +113,7 @@ void timerReset(tim_id_t id);
 
 /**
  * @brief Activate a timer with its previous configuration
- * @param id ID of the timer to reset
+ * @param id ID of the timer to activate
  */
 void timerActivate(tim_id_t id){
 
@@ -126,14 +126,14 @@ bool timerExpired(tim_id_t id);
 
 /**
  * @brief Change the period of a timer
- * @param id ID of the timer to stop
+ * @param id ID of the timer to modify
  * @param ticks new time until timer expires, in ticks
  */
 void timerChangePeriod(tim_id_t id, ttick_t ticks);
 
 /**
  * @brief Change the function to call when the timer expires
- * @param id ID of the timer to stop
+ * @param id ID of the timer to modify
  * @param callback New function to call when timer expires
  */
 void timerChangeCallback(tim_id_t id, tim_callback_t callback);
