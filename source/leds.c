@@ -53,15 +53,17 @@ tim_id_t leds_timer;
  *******************************************************************************
  ******************************************************************************/
 void initLeds(){
-  gpioMode(LED_CONF_1, OUTPUT);
+	timerInit();
+	gpioMode(LED_CONF_1, OUTPUT);
 	gpioMode(LED_CONF_2, OUTPUT);
 
-  for(int i = 0; i < NUM_LEDS; i++){
+	for(int i = 0; i < NUM_LEDS; i++)
+	{
 		clear_led(i);
 	}
 
-  leds_timer = timerGetId();
-  //Periodic Interuption ---> leds_callback (4ms)
+	leds_timer = timerGetId();
+	//Periodic Interuption ---> leds_callback (4ms)
 	timerStart(leds_timer, TIMER_MS2TICKS(4), TIM_MODE_PERIODIC, &callback_leds);
 
 }
