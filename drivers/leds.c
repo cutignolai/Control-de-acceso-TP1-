@@ -96,8 +96,14 @@ void toggle_led(int l)    //not leds
 
 static void callback_leds()         //callback
 {
-  gpioWrite (LED_CONF_1, leds_selector[index].led_bit_0);     //escribo en el primer selector, lo que vale el bit 0
-  gpioWrite (LED_CONF_2, leds_selector[index].led_bit_1);     //escribo en el segundo selector, lo que vale el bit 1
-	index++;
+  if(leds[index]){
+    gpioWrite (LED_CONF_1, leds_selector[index].led_bit_0);     //escribo en el primer selector, lo que vale el bit 0
+    gpioWrite (LED_CONF_2, leds_selector[index].led_bit_1);     //escribo en el segundo selector, lo que vale el bit 1
+  }
+  else{
+    gpioWrite (LED_CONF_1, leds_selector[LOW].led_bit_0);     //escribo en el primer selector, lo que vale el bit 0
+    gpioWrite (LED_CONF_2, leds_selector[LOW].led_bit_1);     //escribo en el segundo selector, lo que vale el bit 1
+  }
+  index++;
   index = (index == NUM_LEDS)? 0 : index;                     //si es mayor a la cantidad de leds, vuelvo el counter a 0
 }
