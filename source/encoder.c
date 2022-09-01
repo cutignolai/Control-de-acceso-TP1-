@@ -85,7 +85,7 @@ encoderEvent_t encoderGetEvent(){          //Getter del evento del encoder
 }
 
 bool encoderSetStatus(bool change_state){            //Setter para que la app me lo pueda cambiar
-	status = change_status;
+	status = change_state;
 }
 
 /*******************************************************************************

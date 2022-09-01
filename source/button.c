@@ -12,7 +12,6 @@
 #include "button.h"
 #include "timer.h"
 
-
 /*******************************************************************************
  *                 CONSTANT AND MACRO DEFINITIONS USING #DEFINE                 *
  ******************************************************************************/
@@ -30,10 +29,9 @@
  *      FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE         *
  ******************************************************************************/
 
-static buttonEvent_t event_coming(bool C);
+static void event_coming(bool C);
 static void callback_click(void);
 static void get_current_values(void);
-
 
 /*******************************************************************************
  *                                  VARIABLES                                   *
@@ -45,8 +43,6 @@ static bool status;                         //Estado del button
 static buttonEvent_t button_event;          //Eveneto del button
 static tim_id_t button_timer;               //timer
 static tim_id_t click_timer;                //timer
-
-
 
 /*******************************************************************************
  *******************************************************************************
@@ -83,7 +79,7 @@ buttonEvent_t buttonGetEvent(){          //Getter del evento del button
 }
 
 bool buttonSetStatus(bool change_state){            //Setter para que la app me lo pueda cambiar
-	status = change_status;
+	status = change_state;
 }
 
 /*******************************************************************************
@@ -92,9 +88,9 @@ bool buttonSetStatus(bool change_state){            //Setter para que la app me 
  *******************************************************************************
  ******************************************************************************/
 
-static buttonEvent_t event_coming(bool C){         //FSM: check if the user switch left or right
+static void event_coming(bool C){        
 
-    static enum states current_state = OFF;
+    uint8_t current_state = OFF;
 
     // Veo si hubo cambió (flanco descendente)
     bool current_state_button = (current_C == ON);
@@ -112,13 +108,12 @@ static buttonEvent_t event_coming(bool C){         //FSM: check if the user swit
         }
     }
     last_state_button = current_state_button;               //cambio variable para que quede arriba
-    return turn;                                            //DEVUELVO EL RESULTADO: IZQ O DERECHA
 }
 
 
 static void callback_button(void){                         //el callback
     get_current_values();                                   //Me fijo valores actuales de los pines de A, B y C
-    button_event = event_coming(current_C);     //Me fijo si hubo un cambio en A o en B
+    event_coming(current_C);     //Me fijo si hubo un cambio en A o en B
 }
 
 static void callback_click(void){                           //el callback
