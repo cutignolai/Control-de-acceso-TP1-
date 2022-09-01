@@ -120,7 +120,7 @@ static buttonEvent_t event_coming(bool C){         //FSM: check if the user swit
     if(click_counter == 1){
         if (last_state_button && current_state_button && long_click){       //si sigue en el mismo estado, entonces puede ser un long click
             click_long_timer = timerGetId();                 //inicializo timer
-            timerStart(click_long_timer, TIMER_MS2TICKS(PERIODIC_LONG_CLICK_TIME), TIM_MODE_PERIODIC, &callback_click_long);     //pregunto cada 10 ms si sigo ahi, y sumo counter long
+            timerStart(click_long_timer, TIMER_MS2TICKS(PERIODIC_LONG_CLICK_TIME), TIM_MODE_PERIODIC, callback_click_long);     //pregunto cada 10 ms si sigo ahi, y sumo counter long
         }
         else if (last_state_button && !current_state_button && long_click){     //si no fue click long, entonces fue click normal
             long_click = false;

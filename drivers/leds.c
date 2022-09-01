@@ -65,7 +65,7 @@ void initLeds()
 
   leds_timer = timerGetId();
   //Periodic Interuption ---> leds_callback (4ms)
-	timerStart(leds_timer, TIMER_MS2TICKS(4), TIM_MODE_PERIODIC, &callback_leds);
+	timerStart(leds_timer, TIMER_MS2TICKS(4), TIM_MODE_PERIODIC, callback_leds);
 
 }
 

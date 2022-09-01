@@ -67,7 +67,7 @@ void initEncoder() {
     status = false;                     //Variable de cambio en falso
 
     //Periodic Interuption ---> encoder_callback (1ms)
-	timerStart(encoder_timer, TIMER_MS2TICKS(1), TIM_MODE_PERIODIC, &callback_encoder);
+	timerStart(encoder_timer, TIMER_MS2TICKS(1), TIM_MODE_PERIODIC, callback_encoder);
 }
 
 bool encoderGetStatus(){            //Si hay un evento, devolveme true, sino devolveme un false
