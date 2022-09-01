@@ -63,7 +63,7 @@ void initEncoder() {
 	gpioMode(PIN_A, INPUT);
 	gpioMode(PIN_B, INPUT);
 
-    encoder_event = NONE;               //Se inicializa con el evento nulo (que no hay)
+    encoder_event = NONE_ENCODER;               //Se inicializa con el evento nulo (que no hay)
     status = false;                     //Variable de cambio en falso
 
     //Periodic Interuption ---> encoder_callback (1ms)
@@ -96,7 +96,7 @@ bool encoderSetStatus(bool change_state){            //Setter para que la app me
 
 static encoderEvent_t event_coming(bool A, bool B){         //FSM: check if the user switch left or right
 
-    encoderEvent_t turn = NONE;                             //Todavía no hay giro ni nada
+    encoderEvent_t turn = NONE_ENCODER;                             //Todavía no hay giro ni nada
     // Veo si hubo cambió (flanco descendente o ascendente)
 
     //FSM del encoder

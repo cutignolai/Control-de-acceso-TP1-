@@ -47,7 +47,7 @@ static bool last_state_button = false;      //el switch arranca en false
 static bool long_click = false;             //el switch arranca en false
 static bool current_C;                      //Valor actual de C
 static bool status;                         //Estado del button
-static buttonEvent_t turn = NONE;
+static buttonEvent_t turn = NONE_CLICK;
 static buttonEvent_t button_event;          //Eveneto del button
 static tim_id_t button_timer;               //timer
 static tim_id_t click_timer;                //timer
@@ -68,7 +68,7 @@ void initButton() {
     //Pins Modes//
 	gpioMode(PIN_C, INPUT);             //modo del pin
 
-    button_event = NONE;               //Se inicializa con el evento nulo (que no hay)
+    button_event = NONE_CLICK;               //Se inicializa con el evento nulo (que no hay)
     status = false;                     //Variable de cambio en falso
 
     //Periodic Interuption ---> button_callback (1ms)
@@ -139,7 +139,7 @@ static void callback_button(void){                          //el callback
 }
 
 static void callback_click(void){                           //el callback
-    buttonEvent_t turn = NONE;
+    buttonEvent_t turn = NONE_CLICK;
     if(long_click_counter >= MAX_LONG_CLICK){
         turn = CLICK_LONG;              //si se apreto mucho tiempo, tengo un click sostenido
         status = true;                  //hubo un cambio

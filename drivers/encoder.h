@@ -25,7 +25,7 @@
  ******************************************************************************/
 typedef enum{LEFT,
 	RIGHT,
-	NONE
+	NONE_ENCODER
 }encoderEvent_t;
 
 

@@ -32,7 +32,7 @@ typedef enum{CLICK,
 	CLICK_2,
   CLICK_3,
   CLICK_LONG,
-	NONE
+	NONE_CLICK
 }buttonEvent_t;
 
 
