@@ -44,10 +44,10 @@ typedef struct{
 } card_char;
 
 static card_char current_char;
-static char Track[];
+static char* Track;
 
-static int ID[];
-static int stored_ID[];
+static int* ID;
+static int* stored_ID;
 static int track_index;
 
 static bool clock_received = false;
@@ -55,6 +55,7 @@ static bool data_was_stored;
 /*******************************************************************************
  *                      GLOBAL FUNCTION PROTOTYPES
  ******************************************************************************/
+int getError(void);
 bool CardReaderIsReady (void);
 int* getID (void);
 void readCard (void);
@@ -74,6 +75,10 @@ void validate_LRC(uint8_t new_char);
                         GLOBAL FUNCTION DEFINITIONS
  *******************************************************************************
  ******************************************************************************/
+int getError (void){
+	return error_type;
+}
+
 bool CardReaderIsReady (void){
 	if (error_type == NO_ERROR)
 	        return data_was_stored;  //in case data was stored, but an unexpected error happened
@@ -88,59 +93,6 @@ int* getID (void){
         return NULL;
 }
 
-/*void cr_fsm(void){
-    if(init){
-        switch (state){
-        case CR_READ:
-            while((gpioRead(PIN_CR_ENABLE) == 0) && (error_type == NO_ERROR)){ //card is sliding and no error was detected
-
-                // if(to_evnt){
-                //     to_evnt = false;        
-                //     card_received = false; //¿Se ha pasado la tarejta demasiado lento?
-                //     error_type = TO_ERROR;
-                //     ID = NULL;
-                //     state = CR_WAIT;
-                //     break;
-                // }
-                // else{
-                    if (clock_received){                    //was a falling edge was detected?
-                        clock_received = false;             //flag down to expect next edge
-                        pin2data(!gpioRead(PIN_CR_DATA));   //thus, it proceeds to read incomming data
-                    }
-                       
-                // }  
-            }
-            if (track_index != 40){     //It finished reading & there are less characters than expected
-                error_type = UNFINISHED_MESSAGE;
-            } 
-
-            // to.detach();
-            // to_evnt = false;
-            card_received = false;      //card ended sliding
-            state = CR_WAIT;
-            for (int i = 0; i<=40; i++){
-            	stored_ID[i] = ID[i];
-            }
-            data_was_stored = true;     //finished reading, new ID stored
-            break;
-    
-        default: //CR_WAIT
-            // to_evnt = false;
-            if(card_received){
-                // to.attach_us(to_isr, xxxx); //timeout
-                state = CR_READ;
-            }
-            break;
-        } //switch(state)
-
-        __disable_irq();
-        if(!card_received) {
-        // if(!to_evnt && !card_received) {
-        cr_can_sleep = true;
-        }
-        __enable_irq();
-    }
-}*/
 
 void readCard (void){
 	while((gpioRead(PIN_CR_ENABLE) == 0) && (error_type == NO_ERROR)){ //card is sliding and no error was detected

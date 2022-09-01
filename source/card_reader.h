@@ -43,7 +43,7 @@ void initCardReader(void);
 
 /**
  * @brief Checks if there's some information available regarding the card
- * @return If the information is ready
+ * @return -True if the information is ready
  */
 bool CardReaderIsReady (void);
 
@@ -57,6 +57,8 @@ int* getID (void);
  * @brief Resets the card reader data in case it's necessary
  */
 void resetReader (void);
+
+int getError(void);
 
 /*******************************************************************************
  ******************************************************************************/
