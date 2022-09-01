@@ -165,7 +165,6 @@ void initCardReader(void){
     if(!init){ //to avoid more than one call at a time to this FSM
         init = true;
         error_type = NO_ERROR;
-        card_received = false;
         current_char.parity = 0b0;
 		current_char.data = 0x0;
 		current_char.loaded_bits = 0;
@@ -185,7 +184,6 @@ void initCardReader(void){
 void resetReader (void){
     init = true;
     error_type = NO_ERROR;
-    card_received = false;
     current_char.parity = 0b0;
 	current_char.data = 0x0;
 	current_char.loaded_bits = 0;
