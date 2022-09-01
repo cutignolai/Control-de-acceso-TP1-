@@ -29,8 +29,9 @@
  *      FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE         *
  ******************************************************************************/
 
-static void event_coming(bool C);
+static buttonEvent_t event_coming(bool C);
 static void callback_click(void);
+static void callback_button(void);
 static void get_current_values(void);
 
 /*******************************************************************************
@@ -39,6 +40,7 @@ static void get_current_values(void);
 static int click_counter = 0;               //Cantidad de clicks
 static bool last_state_button = false;      //el switch arranca en false
 static bool current_C;                      //Valor actual de C
+static buttonEvent_t turn = NONE;
 static bool status;                         //Estado del button
 static buttonEvent_t button_event;          //Eveneto del button
 static tim_id_t button_timer;               //timer
@@ -89,8 +91,6 @@ bool buttonSetStatus(bool change_state){            //Setter para que la app me 
  ******************************************************************************/
 
 static void event_coming(bool C){        
-
-    uint8_t current_state = OFF;
 
     // Veo si hubo cambió (flanco descendente)
     bool current_state_button = (current_C == ON);
