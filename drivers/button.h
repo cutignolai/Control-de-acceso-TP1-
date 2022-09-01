@@ -17,6 +17,10 @@
  *          CONSTANT AND MACRO DEFINITIONS USING #DEFINE                        *
  ******************************************************************************/
 
+#define MAX_LONG_CLICK 500            //ms
+#define PERIODIC_BUTTON_TIME 1        //ms
+#define PERIODIC_LONG_CLICK_TIME 10   //ms
+#define SINGLESHOT_CLICK_TIME 700     //ms
 
 
 
@@ -25,7 +29,8 @@
  ******************************************************************************/
 typedef enum{CLICK,
 	CLICK_2,
-    CLICK_3,
+  CLICK_3,
+  CLICK_LONG,
 	NONE
 }buttonEvent_t;
 
