@@ -56,7 +56,7 @@ static tim_id_t encoder_timer;              //timer
  ******************************************************************************/
 
 void initEncoder() {
-	initTimers();                               //Inicializo Timer
+	timerInit();                               //Inicializo Timer
 	encoder_timer = timerGetId();
 
     //Pins Modes//

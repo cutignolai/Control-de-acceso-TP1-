@@ -55,6 +55,7 @@ static tim_id_t leds_timer;
  ******************************************************************************/
 void initLeds()
 {
+  timerInit();                               //Inicializo Timer
   gpioMode(LED_CONF_1, OUTPUT);
 	gpioMode(LED_CONF_2, OUTPUT);
 

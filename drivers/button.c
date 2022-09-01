@@ -62,7 +62,7 @@ static tim_id_t click_long_timer;           //timer
  ******************************************************************************/
 
 void initButton() {
-	initTimers();                               //Inicializo Timer
+	timerInit();                               //Inicializo Timer
 	button_timer = timerGetId();
 
     //Pins Modes//
