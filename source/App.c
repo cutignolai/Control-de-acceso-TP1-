@@ -113,8 +113,8 @@ static int posicion_pass = 0;
 static bool ha_hecho_click = NO;
 static bool user_is_ready = false;
 
-
-
+int eventos_cola[] = {EVENTO_CLICK, EVENTO_CLICK, EVENTO_CLICK, EVENTO_CLICK, EVENTO_CLICK, EVENTO_CLICK, EVENTO_CLICK, EVENTO_CLICK, EVENTO_CLICK, EVENTO_CLICK, EVENTO_CLICK, EVENTO_CLICK};
+int i = 0;
 
 /*******************************************************************************
  *******************************************************************************
@@ -136,6 +136,12 @@ void App_Init (void)
 void App_Run (void)
 {
 	eventosDelMenu_t evento = EVENTO_NONE;
+
+    evento = eventos_cola[i];
+    i += 1;
+
+    printf("%d",estado);
+
 
     // Analizo si hubo un evento
     if(CardReaderIsReady())
@@ -194,6 +200,7 @@ static estadosDelMenu_t modificar_id(eventosDelMenu_t evento)
             // Si estoy dentro del rango de digitos max
             if(posicion_id <= MAX_UNIT_ID)
             {
+            	printf("entre evento derecha \n");
                 id[posicion_id] += 1;
 
                 // Si ya alcance el maximo, vuelvo a cero
@@ -209,6 +216,7 @@ static estadosDelMenu_t modificar_id(eventosDelMenu_t evento)
         case EVENTO_IZQ:
             if(posicion_id <= MAX_UNIT_ID)
             {
+            	printf("entre evento izquierda \n");
                 id[posicion_id] -= 1;
 
                 // Si ya alcance el maximo, vuelvo a cero
@@ -223,8 +231,9 @@ static estadosDelMenu_t modificar_id(eventosDelMenu_t evento)
 
         case EVENTO_CLICK:
             
+        	printf("entre evento click \n");
             ha_hecho_click = SI;
-
+            printf("%d \n", posicion_id);
             posicion_id += 1;
 
             if(posicion_id > MAX_UNIT_ID)
@@ -238,7 +247,7 @@ static estadosDelMenu_t modificar_id(eventosDelMenu_t evento)
             break;
 
         case EVENTO_CLICK_2:
-
+        	printf("entre evento click2 \n");
             if(ha_hecho_click == NO)
             {
                 // Guardo el estado actual para luego retomar desde aca
@@ -264,6 +273,7 @@ static estadosDelMenu_t modificar_id(eventosDelMenu_t evento)
         
         case EVENTO_CLICK_3:
 
+        	printf("entre evento click 3 \n");
             if(ha_hecho_click == SI)
             {
                 reset_all();
@@ -298,6 +308,7 @@ static estadosDelMenu_t modificar_pass(eventosDelMenu_t evento)
     switch(evento)
     {
         case EVENTO_DER:
+        	printf("entre evento derecha \n");
             // Si estoy dentro del rango de digitos max
             if(posicion_pass <= MAX_UNIT_PASS)
             {
@@ -316,6 +327,7 @@ static estadosDelMenu_t modificar_pass(eventosDelMenu_t evento)
             break;
 
         case EVENTO_IZQ:
+        	printf("entre evento izquierda \n");
             if(posicion_pass <= MAX_UNIT_PASS)
             {
                 pass[posicion_pass] -= 1;
@@ -334,9 +346,10 @@ static estadosDelMenu_t modificar_pass(eventosDelMenu_t evento)
 
       
         case EVENTO_CLICK:
-            
+        	printf("entre evento click \n");
             if(ha_hecho_click == SI)
             {
+
                 posicion_pass += 1;
 
                 if(posicion_pass > MAX_UNIT_PASS)
@@ -354,7 +367,7 @@ static estadosDelMenu_t modificar_pass(eventosDelMenu_t evento)
 
         case EVENTO_CLICK_2:
 
-
+        	printf("entre evento click2 \n");
             if(ha_hecho_click == SI)
             {
                 // Dejo en 0 el digito en donde estaba
@@ -372,7 +385,7 @@ static estadosDelMenu_t modificar_pass(eventosDelMenu_t evento)
             break;
 
         case EVENTO_CLICK_3:
-
+        	printf("entre evento click 3 \n");
             if(ha_hecho_click == SI)
             {
                 reset_all();
