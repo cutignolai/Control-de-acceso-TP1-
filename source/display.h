@@ -38,12 +38,13 @@
 #define IDX_E       16
 #define IDX_e       17
 #define IDX_I       18
-#define IDX_O       19
-#define IDX_P       20
-#define IDX_r       21
-#define IDX_S       22
-#define IDX_U       23
-#define IDX_Y       24
+#define IDX_n       19
+#define IDX_O       20
+#define IDX_P       21
+#define IDX_r       22
+#define IDX_S       23
+#define IDX_U       24
+#define IDX_Y       25
 
 /*******************************************************************************
  *               ENUMERATIONS AND STRUCTURES AND TYPEDEFS                       *

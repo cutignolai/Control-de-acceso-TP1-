@@ -81,6 +81,7 @@
 #define LET_E       0x79 //0b01111001
 #define LET_e       0x7B //0b01111011
 #define LET_I       NUM_1
+#define LET_n       0x37 //0b00110111
 #define LET_O       NUM_0
 #define LET_P       0x73 //0b01110011
 #define LET_r       0x33 //0b00110011
@@ -125,7 +126,7 @@ void auto_set_buffer_index();
 /*******************************************************************************
  * STATIC VARIABLES AND CONST VARIABLES WITH FILE LEVEL SCOPE
  ******************************************************************************/
-digit_t char_arr[] = {NUM_0, NUM_1, NUM_2, NUM_3, NUM_4, NUM_5, NUM_6, NUM_7, NUM_8, NUM_9, DASH, LOW_DASH, POINT, CLEAR, LET_A, LET_a, LET_E, LET_e, LET_I, LET_O, LET_P, LET_r, LET_S, LET_U, LET_Y };
+digit_t char_arr[] = {NUM_0, NUM_1, NUM_2, NUM_3, NUM_4, NUM_5, NUM_6, NUM_7, NUM_8, NUM_9, DASH, LOW_DASH, POINT, CLEAR, LET_A, LET_a, LET_E, LET_e, LET_I, LET_n, LET_O, LET_P, LET_r, LET_S, LET_U, LET_Y };
 uint8_t seg_arr[] = {SEGA, SEGB, SEGC, SEGD, SEGE, SEGF, SEGG, SEGDP};
 
 display_states_t display_state = CLEAR;
