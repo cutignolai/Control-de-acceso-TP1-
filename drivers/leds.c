@@ -11,6 +11,7 @@
 #include "leds.h"
 #include "timers.h"
 #include "boards.h"
+#include "gpio.h"
 
 /*******************************************************************************
  *            CONSTANT AND MACRO DEFINITIONS USING #DEFINE                    *

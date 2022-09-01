@@ -10,7 +10,7 @@
 
 #include "board.h"
 #include "button.h"
-#include "timers.h"
+#include "timer.h"
 
 
 /*******************************************************************************
@@ -47,6 +47,7 @@ static bool last_state_button = false;      //el switch arranca en false
 static bool long_click = false;             //el switch arranca en false
 static bool current_C;                      //Valor actual de C
 static bool status;                         //Estado del button
+static buttonEvent_t turn = NONE;
 static buttonEvent_t button_event;          //Eveneto del button
 static tim_id_t button_timer;               //timer
 static tim_id_t click_timer;                //timer
@@ -71,7 +72,7 @@ void initButton() {
     status = false;                     //Variable de cambio en falso
 
     //Periodic Interuption ---> button_callback (1ms)
-	timerStart(button_timer, TIMER_MS2TICKS(PERIODIC_BUTTON_TIME), TIM_MODE_PERIODIC, &callback_button);
+	timerStart(button_timer, TIMER_MS2TICKS(PERIODIC_BUTTON_TIME), TIM_MODE_PERIODIC, callback_button);
 }
 
 bool buttonGetStatus(){            //Si hay un evento, devolveme true, sino devolveme un false
@@ -88,7 +89,7 @@ buttonEvent_t buttonGetEvent(){          //Getter del evento del button
 	return button_event;
 }
 
-bool buttonSetStatus(bool change_state){            //Setter para que la app me lo pueda cambiar
+bool buttonSetStatus(bool change_status){            //Setter para que la app me lo pueda cambiar
 	status = change_status;
 }
 
@@ -99,8 +100,6 @@ bool buttonSetStatus(bool change_state){            //Setter para que la app me 
  ******************************************************************************/
 
 static buttonEvent_t event_coming(bool C){         //FSM: check if the user switch left or right
-
-    static enum states current_state = OFF;
 
     // Veo si hubo cambió (flanco descendente)
     bool current_state_button = (current_C == ON);
