@@ -318,7 +318,7 @@ static void refresh_display()
 			if (buffer_len <= DISPLAY_LEN){
 				set_display(&buffer[0]);
 			} else {
-				scroll_display();
+				scroll_message();
 			}
 			break;
 

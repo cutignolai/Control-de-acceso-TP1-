@@ -40,7 +40,7 @@ static void get_current_values(void);
 static int click_counter = 0;               //Cantidad de clicks
 static bool last_state_button = false;      //el switch arranca en false
 static bool current_C;                      //Valor actual de C
-static buttonEvent_t turn = NONE;
+static buttonEvent_t turn = NONE_CLICK;
 static bool status;                         //Estado del button
 static buttonEvent_t button_event;          //Eveneto del button
 static tim_id_t button_timer;               //timer
@@ -53,7 +53,7 @@ static tim_id_t click_timer;                //timer
  ******************************************************************************/
 
 void initButton() {
-	initTimers();                               //Inicializo Timer
+	timerInit();                               //Inicializo Timer
 	button_timer = timerGetId();
 
     //Pins Modes//
@@ -63,7 +63,7 @@ void initButton() {
     status = false;                     //Variable de cambio en falso
 
     //Periodic Interuption ---> button_callback (1ms)
-	timerStart(button_timer, TIMER_MS2TICKS(1), TIM_MODE_PERIODIC, &callback_button);
+	timerStart(button_timer, TIMER_MS2TICKS(1), TIM_MODE_PERIODIC, callback_button);
 }
 
 bool buttonGetStatus(){            //Si hay un evento, devolveme true, sino devolveme un false
@@ -90,7 +90,7 @@ bool buttonSetStatus(bool change_state){            //Setter para que la app me 
  *******************************************************************************
  ******************************************************************************/
 
-static void event_coming(bool C){        
+static buttonEvent_t event_coming(bool C){
 
     // Veo si hubo cambió (flanco descendente)
     bool current_state_button = (current_C == ON);
