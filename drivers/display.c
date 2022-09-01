@@ -16,16 +16,17 @@
  *          CONSTANT AND MACRO DEFINITIONS USING #DEFINE                        *
  ******************************************************************************/
 
-#define DISPLAY_LEN     4
 #define SEGMENTS        8
 #define ON      1
 #define OFF     0
 #define SEG_ON  1
 #define SEG_OFF 0
+
 #define MAX_BRIGHTNESS  4
+#define MIN_BRIGHTNESS  1
+
 #define BLINK_T         500
 #define SCROLL_T        500
-#define BUFFER_MAX_LEN  16
 #define MAX_REFRESH_T   30
 
 /******* PINS *******/
@@ -75,6 +76,17 @@
 #define LOW_DASH    0x08 //0b00001000
 #define POINT       0x80 //0b10000000
 #define CLEAR       0x00 //0b00000000
+#define LET_A       0x77 //0b01110111
+#define LET_a       0x5F //0b01011111
+#define LET_E       0x79 //0b01111001
+#define LET_e       0x7B //0b01111011
+#define LET_I       NUM_1
+#define LET_O       NUM_0
+#define LET_P       0x73 //0b01110011
+#define LET_r       0x33 //0b00110011
+#define LET_S       NUM_5
+#define LET_U       0x3E //0b00111110
+#define LET_Y       0x6E //0b01101110
 
 /*******************************************************************************
  *               ENUMERATIONS AND STRUCTURES AND TYPEDEFS                       *
@@ -111,7 +123,7 @@ void clear_display();
 /*******************************************************************************
  * STATIC VARIABLES AND CONST VARIABLES WITH FILE LEVEL SCOPE
  ******************************************************************************/
-static digit_t char_arr[] = {NUM_0, NUM_1, NUM_2, NUM_3, NUM_4, NUM_5, NUM_6, NUM_7, NUM_8, NUM_9, DASH, LOW_DASH, POINT, CLEAR};
+static digit_t char_arr[] = {NUM_0, NUM_1, NUM_2, NUM_3, NUM_4, NUM_5, NUM_6, NUM_7, NUM_8, NUM_9, DASH, LOW_DASH, POINT, CLEAR, LET_A, LET_a, LET_E, LET_e, LET_I, LET_O, LET_P, LET_r, LET_S, LET_U, LET_Y };
 static uint8_t seg_arr[] = {SEGA, SEGB, SEGC, SEGD, SEGE, SEGF, SEGG, SEGDP};
 
 static display_states_t display_state = CLEAR;
@@ -133,8 +145,6 @@ static bool blinking_digits[DISPLAY_LEN] = { false, false, false, false};
 static tim_id_t refresh_timer;
 static tim_id_t blink_timer;
 static tim_id_t scroll_timer;
-
-
 
 /*******************************************************************************
  *******************************************************************************
@@ -237,6 +247,21 @@ void setBlinkingDigits(bool* arr){
     for (i = 0; i < DISPLAY_LEN; i++){
         blinking_digits[i] = *(arr + i);
     }
+}
+
+void setBrightness(brightness_states_t bright){
+    if ( MIN_BRIGHTNESS < bright && bright < MAX_BRIGHTNESS){
+        brightness = bright;
+    }
+    timerChangePeriod(refresh_timer, TIMER_MS2TICKS(MAX_REFRESH_T/brightness));
+}
+
+void upBrightness(){
+    setBrightness(brightness + 1);
+}
+
+void downBrightness(){
+    setBrightness(brightness - 1);
 }
 
 

@@ -15,8 +15,8 @@
  *          CONSTANT AND MACRO DEFINITIONS USING #DEFINE                        *
  ******************************************************************************/
 
-#define ID_MESSAGE_LONG     8
-#define PASS_MESSAGE_LONG   5
+#define BUFFER_MAX_LEN  16
+#define DISPLAY_LEN     4
 
 /********** CHAR INDEX **********/
 #define IDX_0       0
@@ -33,16 +33,32 @@
 #define IDX_LOW_DASH    11
 #define IDX_POINT       12
 #define IDX_CLEAR       13
+#define IDX_A       14 
+#define IDX_a       15
+#define IDX_E       16
+#define IDX_e       17
+#define IDX_I       18
+#define IDX_O       19
+#define IDX_P       20
+#define IDX_r       21
+#define IDX_S       22
+#define IDX_U       23
+#define IDX_Y       24
 
 /*******************************************************************************
  *               ENUMERATIONS AND STRUCTURES AND TYPEDEFS                       *
  ******************************************************************************/
 typedef uint8_t digit_t;
+typedef enum {
+   BRIGHTNESS_LOW = 1,
+   BRIGHTNESS_MEDIUM = 2,
+   BRIGHTNESS_HIGH = 3,
+   BRIGHTNESS_MAX = 4
+} brightness_states_t;
 
 /*******************************************************************************
  *                  VARIABLE PROTOTYPES WITH GLOBAL SCOPE                       *
  ******************************************************************************/
-
 
 /*******************************************************************************
  *                   FUNCTION PROTOTYPES WITH GLOBAL SCOPE                      *
