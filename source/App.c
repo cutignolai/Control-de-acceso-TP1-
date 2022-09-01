@@ -46,10 +46,9 @@ typedef enum{
 
 //----------- COLORES DEL LED ------------
 typedef enum{
-    ROJO,
-    VERDE,
-    AZUL,
-    TODOS
+    LED1,
+    LED2,
+    LED3
 }colored_led_t;
 //-----------------------------------------
 
@@ -437,7 +436,7 @@ static estadosDelMenu_t modificar_brillo(eventosDelMenu_t evento)
 static estadosDelMenu_t verificar_estado (void)
 {
     estadosDelMenu_t proximo_estado = ESTADO_ID;
-    //set_led(AZUL);
+    set_led(LED1);
     
     // traducir de arreglo a string de numeros
 
@@ -455,11 +454,11 @@ static estadosDelMenu_t verificar_estado (void)
 
     if( checkUser(id_char, pass_char) == USUARIO_VALIDO)
     {
-        //set_led(VERDE);
+        set_led(LED2);
     } 
     else
     {
-        //set_led(ROJO);
+        set_led(LED3);
     }
     
     reset_all();
@@ -489,7 +488,8 @@ static void reset_all (void)
     ultimo_estado = ESTADO_ID;
 
     // RESETEO INTERFAZ
-    //setLongString(id, MAX_UNIT_ID);
+    showMessage(&id, MAX_UNIT_ID, posicion_id);
+    //poner timer
     //clear_led(TODOS);
     ha_hecho_click = NO;
 
