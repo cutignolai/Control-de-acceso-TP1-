@@ -62,13 +62,22 @@ void timerInit(void);
  */
 tim_id_t timerGetId(void);
 
+/**
+ * @brief Create a new timer, not running
+ * 
+ * @param id ID of the timer to create
+ * @param ticks time until timer expires, in ticks
+ * @param mode SINGLESHOT or PERIODIC
+ * @param callback Function to call when timer expires
+ */
+void timerCreate(tim_id_t id, ttick_t ticks, uint8_t mode, tim_callback_t callback);
 
 /**
  * @brief Begin to run a new timer
  * @param id ID of the timer to start
  * @param ticks time until timer expires, in ticks
  * @param mode SINGLESHOT or PERIODIC
- * @param callback Function to be call when timer expires
+ * @param callback Function to call when timer expires
  */
 void timerStart(tim_id_t id, ttick_t ticks, uint8_t mode, tim_callback_t callback);
 
@@ -77,6 +86,12 @@ void timerStart(tim_id_t id, ttick_t ticks, uint8_t mode, tim_callback_t callbac
  * @param id ID of the timer to stop
  */
 void timerStop(tim_id_t id);
+
+/**
+ * @brief Resumes the count of a timer
+ * @param id ID of the timer to stop
+ */
+void timerPlay(tim_id_t id);
 
 /**
  * @brief Restart timer
@@ -97,11 +112,31 @@ void timerFinish(tim_id_t id);
 void timerReset(tim_id_t id);
 
 /**
+ * @brief Activate a timer with its previous configuration
+ * @param id ID of the timer to reset
+ */
+void timerActivate(tim_id_t id){
+
+/**
  * @brief Verify if a timer has run timeout
  * @param id ID of the timer to check for expiration
  * @return 1 = timer expired
  */
 bool timerExpired(tim_id_t id);
+
+/**
+ * @brief Change the period of a timer
+ * @param id ID of the timer to stop
+ * @param ticks new time until timer expires, in ticks
+ */
+void timerChangePeriod(tim_id_t id, ttick_t ticks);
+
+/**
+ * @brief Change the function to call when the timer expires
+ * @param id ID of the timer to stop
+ * @param callback New function to call when timer expires
+ */
+void timerChangeCallback(tim_id_t id, tim_callback_t callback);
 
 
 // Blocking services ////////////////////////////////////////////////

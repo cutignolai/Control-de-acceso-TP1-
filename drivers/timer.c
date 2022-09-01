@@ -99,16 +99,22 @@ tim_id_t timerGetId(void)
     }
 }
 
+// Crea un timer apagado
+void timerCreate(tim_id_t id, ttick_t ticks, uint8_t mode, tim_callback_t callback){
+    timerStart(id, ticks, mode, callback);
+    timerReset(id);
+}
 
+// Crea un timer encendido
 void timerStart(tim_id_t id, ttick_t ticks, uint8_t mode, tim_callback_t callback)
 {
 #ifdef TIMER_DEVELOPMENT_MODE
     if ((id < timers_cant) && (mode < CANT_TIM_MODES))
 #endif // TIMER_DEVELOPMENT_MODE
     {
-        timers[id].running = 0;
+        timers[id].running = 1;
         timers[id].expired = 0;
-        timers[id].cnt = 0;
+        timers[id].cnt = ticks;
         timers[id].mode = mode;
         timers[id].period = ticks;
         timers[id].callback = callback;
@@ -122,12 +128,17 @@ void timerStop(tim_id_t id){
     timers[id].expired = 0;
 }
 
+// Resume el timer
+void timerPlay(tim_id_t id){
+    timers[id].running = 1;
+}
 
-void timerReset(tim_id_t id){
+// Reinicia el timer
+void timerRestart(tim_id_t id){
     timers[id].running = 0;
     timers[id].cnt = timers[id].period;
-    timers[id].running = 1;
     timers[id].expired = 0;
+    timers[id].running = 1;
 }
 
 // Expira el timer y lo hace llegar a cero
@@ -142,7 +153,32 @@ void timerFinish(tim_id_t id){
 void timerReset(tim_id_t id){
     timers[id].running = 0;
     timers[id].expired = 0;
-    timers[id].cnt = 0;
+    timers[id].cnt = timers[id].period;
+}
+
+// Activa un timer que estaba apagado
+void timerActivate(tim_id_t id){
+    timers[id].cnt = timers[id].period;
+    timers[id].expired = 0;
+    timers[id].running = 1;
+}
+
+// Modifica el tiempo de un timer y lo reinicia
+void timerChangePeriod(tim_id_t id, ttick_t ticks){
+    timers[id].running = 0;
+    timers[id].period = ticks;
+    timers[id].cnt = ticks;
+    timers[id].expired = 0;
+    timers[id].running = 1;
+}
+
+// Modifica la callback de un timer y lo reinicia
+void timerChangeCallback(tim_id_t id, tim_callback_t callback){
+    timers[id].running = 0;
+    timers[id].callback = callback;
+    timers[id].expired = 0;
+    timers[id].cnt = timers[id].period;
+    timers[id].running = 1;
 }
 
 // Indica si expiró o no el timer
