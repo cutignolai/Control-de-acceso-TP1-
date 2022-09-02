@@ -17,8 +17,8 @@
  *                 CONSTANT AND MACRO DEFINITIONS USING #DEFINE                 *
  ******************************************************************************/
 
-#define PIN_A   DIO_6
-#define PIN_B   DIO_8
+#define PIN_A   DIO_8
+#define PIN_B   DIO_6
 #define ENCODER_TIME    1
 
 /*******************************************************************************
@@ -40,7 +40,7 @@ static void get_current_values(void);
 /*******************************************************************************
  *                                  VARIABLES                                   *
  ******************************************************************************/
-static uint8_t current_state = START;
+
 static bool current_A;                      //Valor actual de A
 static bool current_B;                      //Valor actual de B
 static bool status;                         //Estado del encoder (para la FSM)
@@ -97,6 +97,8 @@ bool encoderSetStatus(bool change_state){            //Setter para que la app me
  ******************************************************************************/
 
 static encoderEvent_t event_coming(bool A, bool B){         //FSM: check if the user switch left or right
+
+	static uint8_t current_state = START;
 
     encoderEvent_t turn = NONE_ENCODER;                             //Todavía no hay giro ni nada
     // Veo si hubo cambió (flanco descendente o ascendente)

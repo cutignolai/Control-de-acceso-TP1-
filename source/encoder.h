@@ -24,7 +24,7 @@
  *               ENUMERATIONS AND STRUCTURES AND TYPEDEFS                       *
  ******************************************************************************/
 typedef enum{
-  NONE_ENCODER,
+  NONE_ENCODER = 0,
   LEFT,
   RIGHT
 }encoderEvent_t;
