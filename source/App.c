@@ -129,6 +129,8 @@ void App_Init (void)
     initLeds();
     initButton(); 
     initCardReader();
+    gpioMode(PIN_LED_GREEN, OUTPUT);
+    gpioMode(PIN_LED_RED, OUTPUT);
 }
 
 /* Función que se llama constantemente en un ciclo infinito */
@@ -136,44 +138,27 @@ void App_Run (void)
 {
 	eventosDelMenu_t evento = EVENTO_NONE;
 
-    // Analizo si hubo un evento
-    if(CardReaderIsReady())
+	if(encoderGetStatus())
     {
-		evento = EVENTO_TARJETA;
-	}
-    else if(encoderGetStatus())
-    {
-		evento = encoderGetEvent();	
+        evento = encoderGetEvent();
         encoderSetStatus(DESACTIVADO);
-        
-	}
-    else if(buttonGetStatus())
-    {
-		evento = buttonGetEvent();	
-        buttonSetStatus(DESACTIVADO);
-	}
+    }
 
-    // Si hubo un evento, veo en que estado de mi FSM estoy y le envio el evento
-	if(evento != EVENTO_NONE)
+    if(evento != EVENTO_NONE)
     {
-		switch(estado){
-            case ESTADO_ID:
-                estado = modificar_id(evento);
+        switch(evento){
+            EVENTO_DER:
+                //printf("DERECHA");
+				gpioWrite(PIN_LED_GREEN, LED_ACTIVE);
                 break;
-            case ESTADO_PASS:
-                estado = modificar_pass(evento);
+            EVENTO_IZQ:
+				gpioWrite(PIN_LED_RED, LED_ACTIVE);
                 break;
-            case ESTADO_BRILLO:
-                estado = modificar_brillo(evento);
+            default:
                 break;
-            case ESTADO_VERIFICAR:
-                estado = verificar_estado();
-                break;
-            default: break;
-		}
-	}
-
-    
+        }
+        gpioWrite(PIN_LED_GREEN, !LED_ACTIVE);
+    }
 }
 
 

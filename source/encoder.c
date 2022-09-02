@@ -195,10 +195,10 @@ static encoderEvent_t event_coming(bool A, bool B){         //FSM: check if the 
 
 
 void callback_encoder(void){  
-    gpioWrite(PIN_LED_BLUE, LED_ACTIVE);                       //el callback
+    //gpioWrite(PIN_LED_BLUE, LED_ACTIVE);                       //el callback
     get_current_values();                                   //Me fijo valores actuales de los pines de A y B
     encoder_event = event_coming(current_A, current_B);     //Me fijo si hubo un cambio en A o en B
-    gpioWrite(PIN_LED_BLUE, !LED_ACTIVE);
+    //gpioWrite(PIN_LED_BLUE, !LED_ACTIVE);
 }
 
 
