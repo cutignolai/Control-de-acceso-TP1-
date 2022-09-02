@@ -22,9 +22,6 @@
 #define SEG_ON  1
 #define SEG_OFF 0
 
-#define MAX_BRIGHTNESS  4
-#define MIN_BRIGHTNESS  1
-
 #define BLINK_T         500
 #define SCROLL_T        700
 #define MAX_REFRESH_T   8
@@ -277,10 +274,11 @@ void setBlinkingDigits(bool* arr){
 }
 
 void setBrightness(brightness_states_t bright){
-    if ( MIN_BRIGHTNESS <= bright && bright <= MAX_BRIGHTNESS){
+    if ( BRIGHTNESS_LOW <= bright && bright <= BRIGHTNESS_HIGH ){
         brightness = bright;
     }
-    timerChangePeriod(refresh_timer, TIMER_MS2TICKS(MAX_REFRESH_T/brightness + 2));
+    uint8_t intensity = 1 << brightness;
+    timerChangePeriod(refresh_timer, TIMER_MS2TICKS(MAX_REFRESH_T/intensity));
 }
 
 void upBrightness(){

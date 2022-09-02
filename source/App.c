@@ -74,7 +74,7 @@ void App_Init (void)
 	digit_t msg[] = {IDX_8, IDX_8, IDX_8, IDX_8};
 	// igit_t msg[] = {IDX_H, IDX_O, IDX_L, IDX_A, IDX_CLEAR, IDX_C, IDX_H, IDX_I, IDX_C, IDX_O, IDX_S};
 
-	setBrightness(1);
+	setBrightness(BRIGHTNESS_LOW);
 	gpioMode(PIN_LED_RED, OUTPUT);
     gpioMode(PIN_LED_GREEN, OUTPUT);
 
@@ -113,11 +113,12 @@ void App_Run (void)
 	// 	}
 	// }
 
-	if (b == 4){
+	if (b == 3){
 		timerStop(intensity_timer);
-		setBrightness(1);
+		setBrightness(BRIGHTNESS_LOW);
 		gpioWrite(PIN_LED_GREEN, !LED_ACTIVE);
 		gpioWrite(PIN_LED_RED, LED_ACTIVE);
+		b++;
 	}
 
   // setScrollMode();

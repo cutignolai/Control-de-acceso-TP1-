@@ -64,10 +64,9 @@
  ******************************************************************************/
 typedef uint8_t digit_t;
 typedef enum {
-   BRIGHTNESS_LOW = 1,
-   BRIGHTNESS_MEDIUM = 2,
-   BRIGHTNESS_HIGH = 3,
-   BRIGHTNESS_MAX = 4
+   BRIGHTNESS_LOW = 0,
+   BRIGHTNESS_MEDIUM = 1,
+   BRIGHTNESS_HIGH = 2
 } brightness_states_t;
 
 /*******************************************************************************
