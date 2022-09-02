@@ -150,6 +150,7 @@ uint8_t buffer_len;         // Cantidad de caracteres seteados del buffer
 uint8_t buffer_idx = 0;         // Caracter a partir de la cual mostrar
 
 uint8_t brightness = 1;
+uint8_t intensity = 1;
 
 uint8_t scroll_idx;         // Índice que indica el dígito del buffer que se va a mostrar en la posición 1 en ese instante de scroll
 
@@ -366,7 +367,8 @@ void refresh_display()
     }
 
     display_idx++;
-    if (display_idx == DISPLAY_LEN){ display_idx = 0; }
+    if (display_idx >= DISPLAY_LEN && intensity % BRIGHTNESS_HIGH){ display_idx = 0; }
+    else if( intensity % BRIGHTNESS_HIGH)
 }
 
 
