@@ -52,7 +52,7 @@ typedef struct {
 /**
  * @brief Periodic service
  */
-static void timer_isr(void);
+void timer_isr(void);
 
 
 /*******************************************************************************
@@ -63,8 +63,8 @@ static void timer_isr(void);
  * STATIC VARIABLES AND CONST VARIABLES WITH FILE LEVEL SCOPE
  ******************************************************************************/
 
-static timer_t timers[TIMERS_MAX_CANT];
-static tim_id_t timers_cant = TIMER_ID_INTERNAL+1;
+timer_t timers[TIMERS_MAX_CANT];
+tim_id_t timers_cant = TIMER_ID_INTERNAL+1;
 
 
 /*******************************************************************************
@@ -75,7 +75,7 @@ static tim_id_t timers_cant = TIMER_ID_INTERNAL+1;
 
 void timerInit(void)
 {
-    static bool yaInit = false;
+    bool yaInit = false;
     if (yaInit)
         return;
     
@@ -204,7 +204,7 @@ void timerDelay(ttick_t ticks){
  ******************************************************************************/
 
 // Recorre el arreglo de timers y busca si expiró alguno
-static void timer_isr(void){
+void timer_isr(void){
     tim_id_t id_idx;
     for (id_idx = timers_cant; id_idx; id_idx--){
         if (timers[id_idx].running && timers[id_idx].cnt){
@@ -213,6 +213,8 @@ static void timer_isr(void){
                 if (timers[id_idx].mode == TIM_MODE_SINGLESHOT){
                     timers[id_idx].expired = 1;
                     timers[id_idx].running = 0;
+                } else {
+                	timers[id_idx].cnt = timers[id_idx].period;
                 }
                 if (timers[id_idx].callback != NULL){
                     timers[id_idx].callback();

@@ -33,19 +33,19 @@ enum states {START, LEFT_1, LEFT_2, LEFT_3, RIGHT_1, RIGHT_2, RIGHT_3};         
  ******************************************************************************/
 
 static encoderEvent_t event_coming(bool A, bool B);
-static void callback_encoder(void);
+void callback_encoder(void);
 static void get_current_values(void);
 
 
 /*******************************************************************************
  *                                  VARIABLES                                   *
  ******************************************************************************/
-static enum states current_state = START;
-static bool current_A;                      //Valor actual de A
-static bool current_B;                      //Valor actual de B
-static bool status;                         //Estado del encoder (para la FSM)
-static encoderEvent_t encoder_event;        //Eveneto del encoder
-static tim_id_t encoder_timer;              //timer
+enum states current_state = START;
+bool current_A;                      //Valor actual de A
+bool current_B;                      //Valor actual de B
+bool status;                         //Estado del encoder (para la FSM)
+encoderEvent_t encoder_event;        //Eveneto del encoder
+tim_id_t encoder_timer;              //timer
 
 
 
@@ -86,6 +86,7 @@ encoderEvent_t encoderGetEvent(){          //Getter del evento del encoder
 
 bool encoderSetStatus(bool change_state){            //Setter para que la app me lo pueda cambiar
 	status = change_state;
+	return status;
 }
 
 /*******************************************************************************
@@ -190,7 +191,7 @@ static encoderEvent_t event_coming(bool A, bool B){         //FSM: check if the 
 }
 
 
-static void callback_encoder(void){                         //el callback
+void callback_encoder(void){                         //el callback
     get_current_values();                                   //Me fijo valores actuales de los pines de A y B
     encoder_event = event_coming(current_A, current_B);     //Me fijo si hubo un cambio en A o en B
 }
