@@ -46,7 +46,6 @@ typedef struct{
 static card_char current_char;
 static char Track[40]; 
 
-static uint8_t* ID;
 static uint8_t stored_ID[] = {0, 0, 0, 0, 0, 0, 0, 0};
 static uint8_t track_index;
 
@@ -57,6 +56,7 @@ static bool volatile clock_received;
 static bool data_was_stored;
 static bool volatile enable_interrupt;
 static bool SS_arrived;
+static bool data_pin;
 /*******************************************************************************
  *                      GLOBAL FUNCTION PROTOTYPES
  ******************************************************************************/
@@ -187,8 +187,6 @@ static void readCard (void){
     }
     else if (index == MAX_DATA){
         data_was_stored = true;
-        uint8_t a;
-        gpioWrite(PIN_LED_RED, HIGH);
     }
     else{
         //do nothing

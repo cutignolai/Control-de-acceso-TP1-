@@ -61,7 +61,7 @@ ERROR_TYPE getError(void);
  * @brief Asks for the data stored 
  * @return An array of 200 int in case there is no error stored, NULL otherwise
  */
-int* getData (void);
+uint8_t* getData (void);
 
 /**
  * @brief process the 200 bits into the card information
