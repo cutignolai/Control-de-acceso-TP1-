@@ -3,24 +3,20 @@
   @brief    Button Driver
   @author   Micho
  ******************************************************************************/
-#ifndef _ENCODER_H_
-#define _ENCODER_H_
+#ifndef _BUTTON_H_
+#define _BUTTON_H_
 
 /*******************************************************************************
  *                      INCLUDE HEADER FILES                                    *
  ******************************************************************************/
 
 
-
-
 /*******************************************************************************
  *          CONSTANT AND MACRO DEFINITIONS USING #DEFINE                        *
  ******************************************************************************/
 
-#define PERIODIC_BUTTON_TIME 1        //ms
-#define SINGLESHOT_CLICK_TIME   4   //ms
-
-
+#define PERIODIC_BUTTON_TIME    1     //ms
+#define SINGLESHOT_CLICK_TIME   500   //ms
 
 
 /*******************************************************************************
@@ -35,7 +31,6 @@ typedef enum{
   CLICK_2,
   CLICK_3,
 }buttonEvent_t;
-
 
 
 /*******************************************************************************
@@ -53,12 +48,10 @@ bool buttonGetStatus();                      //Me devuelve si hubo un cambio en 
 
 bool buttonSetStatus(bool change_state);     //Me setea el status para que no quede en evento
 
-buttonEvent_t buttonGetEvent();             //Me devuelve si fue un giro hacia la derecha, izquierda, click o nada aun
-
-
+buttonEvent_t buttonGetEvent();              //Me devuelve si fue un giro hacia la derecha, izquierda, click o nada aun
 
 
 /*******************************************************************************
  ******************************************************************************/
 
-#endif // _ENCODER_H_
+#endif // _BUTTON_H_
