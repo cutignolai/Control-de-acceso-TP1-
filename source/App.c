@@ -112,7 +112,7 @@ static int posicion_pass = 0;
 static bool ha_hecho_click = NO;
 static bool user_is_ready = false;
 
-
+static uint8_t evento = EVENTO_NONE;
 
 
 /*******************************************************************************
@@ -131,33 +131,43 @@ void App_Init (void)
     initCardReader();
     gpioMode(PIN_LED_GREEN, OUTPUT);
     gpioMode(PIN_LED_RED, OUTPUT);
+    gpioWrite(PIN_LED_RED, !LED_ACTIVE);
+    gpioWrite(PIN_LED_BLUE, !LED_ACTIVE);
+    gpioWrite(PIN_LED_GREEN, !LED_ACTIVE);
 }
 
 /* Función que se llama constantemente en un ciclo infinito */
 void App_Run (void)
 {
-	eventosDelMenu_t evento = EVENTO_NONE;
-
-	if(encoderGetStatus())
+	if(buttonGetStatus())
     {
-        evento = encoderGetEvent();
-        encoderSetStatus(DESACTIVADO);
+        evento = buttonGetEvent();
+        buttonSetStatus(DESACTIVADO);
     }
-
+    // Si hubo un evento, veo en que estado de mi FSM estoy y le envio el evento
     if(evento != EVENTO_NONE)
     {
         switch(evento){
-            EVENTO_DER:
-                //printf("DERECHA");
-				gpioWrite(PIN_LED_GREEN, LED_ACTIVE);
+            case EVENTO_CLICK:
+                //printf("click");
+                gpioWrite(PIN_LED_GREEN, LED_ACTIVE);
+                gpioWrite(PIN_LED_RED, !LED_ACTIVE);
+                gpioWrite(PIN_LED_BLUE, !LED_ACTIVE);
                 break;
-            EVENTO_IZQ:
-				gpioWrite(PIN_LED_RED, LED_ACTIVE);
+            case EVENTO_CLICK_2:
+                gpioWrite(PIN_LED_RED, LED_ACTIVE);
+                gpioWrite(PIN_LED_GREEN, !LED_ACTIVE);
+                gpioWrite(PIN_LED_BLUE, !LED_ACTIVE);
+                break;
+            case EVENTO_CLICK_3:
+                gpioWrite(PIN_LED_BLUE, LED_ACTIVE);
+                gpioWrite(PIN_LED_RED, !LED_ACTIVE);
+                gpioWrite(PIN_LED_GREEN, !LED_ACTIVE);
                 break;
             default:
+                //printf("evento:%d\n\n", evento);
                 break;
         }
-        gpioWrite(PIN_LED_GREEN, !LED_ACTIVE);
     }
 }
 
