@@ -108,7 +108,7 @@ static buttonEvent_t event_coming(bool C){         //FSM: check if the user swit
         if(click_counter == 1){
             long_click = true;                          //branch
             click_timer = timerGetId();                 //inicializo timer
-            timerStart(click_timer, TIMER_MS2TICKS(SINGLESHOT_CLICK_TIME), TIM_MODE_SINGLESHOT, &callback_click);     //inicializo el timer (de clicks futuros)
+            timerStart(click_timer, TIMER_MS2TICKS(SINGLESHOT_CLICK_TIME), TIM_MODE_SINGLESHOT, callback_click);     //inicializo el timer (de clicks futuros)
         }
         else if(click_counter == 2){
             timerRestart(click_timer);     //inicializo el timer
