@@ -1,4 +1,4 @@
-/Debug/
+/Debug/*
 TP1 Micros PE Debug.launch
 TP1 Micros PE Release.launch
 Debug/TP1 Micros.axf
@@ -27,3 +27,9 @@ Debug/SDK/startup/main.o
 Debug/SDK/startup/hardware.o
 Debug/SDK/CMSIS/system_MK64F12.o
 Debug/SDK/CMSIS/system_MK64F12.d
+Debug/TP1 Micros.axf
+Debug/TP1_Micros_Debug_library.ld
+Debug/source/App.d
+Debug/source/App.o
+Debug/source/subdir.mk
+Debug/source/display.o

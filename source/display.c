@@ -27,14 +27,14 @@
 
 #define BLINK_T         500
 #define SCROLL_T        500
-#define MAX_REFRESH_T   30
+#define MAX_REFRESH_T   10
 
 /******* PINS *******/
 #define SEGA    DIO_1
 #define SEGB    DIO_3
 #define SEGC    DIO_5
 #define SEGD    DIO_7
-#define SEGE    DIO_9
+#define SEGE    DIO_10
 #define SEGF    DIO_11
 #define SEGG    DIO_13
 #define SEGDP   DIO_15
@@ -182,19 +182,20 @@ void initDisplay(){
     gpioMode(SEL0, OUTPUT);
     gpioMode(SEL1, OUTPUT);
 
-    clear_display();
 
     // CREATE TIMERS
     timerInit();
     refresh_timer = timerGetId();
     timerCreate(refresh_timer, TIMER_MS2TICKS(MAX_REFRESH_T/brightness), TIM_MODE_PERIODIC, refresh_display);
     blink_timer = timerGetId();
-    timerCreate(refresh_timer, TIMER_MS2TICKS(BLINK_T), TIM_MODE_PERIODIC, blink_digits);
+    timerCreate(blink_timer, TIMER_MS2TICKS(BLINK_T), TIM_MODE_PERIODIC, blink_digits);
     scroll_timer = timerGetId();
-    timerCreate(refresh_timer, TIMER_MS2TICKS(BLINK_T), TIM_MODE_PERIODIC, scroll_buffer);
+    timerCreate(scroll_timer, TIMER_MS2TICKS(SCROLL_T), TIM_MODE_PERIODIC, scroll_buffer);
 
     // INIT 7 SEGMENTS
+    buffer_len = BUFFER_MAX_LEN;
     clear_buffer();
+    clear_display();
 
     // START DISPLAY
     timerActivate(refresh_timer);
