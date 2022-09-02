@@ -56,8 +56,14 @@ static tim_id_t leds_timer;
 void initLeds()
 {
   timerInit();                               //Inicializo Timer
+
+  // Leds para mostrar en la App
   gpioMode(LED_CONF_1, OUTPUT);
   gpioMode(LED_CONF_2, OUTPUT);
+
+  // Led para mostrar cuando se ejecuta una interrupcion
+  gpioMode(PIN_LED_BLUE, OUTPUT);
+
   for(int i = 0; i < NUM_LEDS; i++)
 	{
 		clear_led(i);
@@ -97,7 +103,7 @@ void toggle_led(int l)    //not leds
 
 static void callback_leds()         //callback
 {
-
+  gpioWrite(PIN_LED_BLUE, LED_ACTIVE);
   if(leds[index]){
 	// Si se quieren probar sin necesidad de leds, se analiza el estado
 	// printf("%d", led_selector[index].led_bit_0);
@@ -113,4 +119,5 @@ static void callback_leds()         //callback
   }
   index++;
   index = (index == NUM_LEDS)? 0 : index;                     //si es mayor a la cantidad de leds, vuelvo el counter a 0
+  gpioWrite(PIN_LED_BLUE, !LED_ACTIVE);
 }

@@ -63,11 +63,14 @@ void initEncoder() {
 	gpioMode(PIN_A, INPUT);
 	gpioMode(PIN_B, INPUT);
 
+    // Led para mostrar cuando se ejecuta una interrupcion
+    gpioMode(PIN_LED_BLUE, OUTPUT);
+
     encoder_event = NONE_ENCODER;               //Se inicializa con el evento nulo (que no hay)
     status = false;                     //Variable de cambio en falso
 
     //Periodic Interuption ---> encoder_callback (1ms)
-	timerStart(encoder_timer, TIMER_MS2TICKS(1), TIM_MODE_PERIODIC, &callback_encoder);
+	timerStart(encoder_timer, TIMER_MS2TICKS(1), TIM_MODE_PERIODIC, callback_encoder);
 }
 
 bool encoderGetStatus(){            //Si hay un evento, devolveme true, sino devolveme un false
@@ -191,10 +194,13 @@ static encoderEvent_t event_coming(bool A, bool B){         //FSM: check if the 
 }
 
 
-void callback_encoder(void){                         //el callback
+void callback_encoder(void){  
+    gpioWrite(PIN_LED_BLUE, LED_ACTIVE);                       //el callback
     get_current_values();                                   //Me fijo valores actuales de los pines de A y B
     encoder_event = event_coming(current_A, current_B);     //Me fijo si hubo un cambio en A o en B
+    gpioWrite(PIN_LED_BLUE, !LED_ACTIVE);
 }
+
 
 static void get_current_values(void){       //Me fijo valor actual del pin
 	current_A = gpioRead(PIN_A);
