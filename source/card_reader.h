@@ -10,7 +10,6 @@
 /*******************************************************************************
  * INCLUDE HEADER FILES
  ******************************************************************************/
-
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -23,7 +22,6 @@
 /*******************************************************************************
  * ENUMERATIONS AND STRUCTURES AND TYPEDEFS
  ******************************************************************************/
-
 typedef enum {NO_ERROR,UNFINISHED_MESSAGE,DATA_AFTER_LRC,SS_EXPECTED,FS_EXPECTED, ES_EXPECTED, PARITY_ERROR, UNEXPECTED_CHARACTER, BAD_LRC, TO_ERROR}ERROR_TYPE;
 
 /*******************************************************************************
@@ -33,8 +31,6 @@ typedef enum {NO_ERROR,UNFINISHED_MESSAGE,DATA_AFTER_LRC,SS_EXPECTED,FS_EXPECTED
 /*******************************************************************************
  * FUNCTION PROTOTYPES WITH GLOBAL SCOPE
  ******************************************************************************/
- 
-
 /**
  * @brief Initializes the card reader
  */
@@ -68,14 +64,6 @@ uint8_t* getData (void);
  * @return A pointer to an 8 unsigned ints array corresponding to the ID
  */
 uint8_t* processData (void);
-
-
-
-
-
-
-
-
 
 /*******************************************************************************
  ******************************************************************************/

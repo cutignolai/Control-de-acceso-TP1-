@@ -27,58 +27,55 @@
 #define FS '='
 #define ES '?'
 
+//Maximum data size
 #define MAX_DATA 200
 
 /*******************************************************************************
  * STATIC VARIABLES AND CONST VARIABLES WITH FILE LEVEL SCOPE
  ******************************************************************************/
-static ERROR_TYPE error_type;
-
 static bool init;   //True after call to initCardReader()
+
+static ERROR_TYPE error_type;
 
 typedef struct{
     uint8_t parity      :1;
 	uint8_t data        :4;
 	uint8_t loaded_bits :3;
 } card_char;
-
-
 static card_char current_char;
+
 static char Track[40]; 
+static uint8_t track_index;
 
 static uint8_t stored_ID[] = {0, 0, 0, 0, 0, 0, 0, 0};
-static uint8_t track_index;
 
 static uint8_t data[200];
 static uint8_t index;
 
-static bool volatile clock_received;
+static bool data_pin;
+
 static bool data_was_stored;
 static bool volatile enable_interrupt;
 static bool SS_arrived;
-static bool data_pin;
-/*******************************************************************************
- *                      GLOBAL FUNCTION PROTOTYPES
- ******************************************************************************/
 
+/*******************************************************************************
+ *         FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
+ ******************************************************************************/
 static void irq_enable (void);
 static void irq_clk_falling_edge (void);
 static void readCard (void);
 static void pin2data (bool pin, uint8_t index);
 static void orderData (uint8_t pin);
-bool validateParity (void);
-void validate_LRC(uint8_t new_char);
-void add2track (uint8_t new_char);
-void add2ID (uint8_t index, uint8_t new_char);
-
-
+static bool validateParity (void);
+static void validate_LRC(uint8_t new_char);
+static void add2track (uint8_t new_char);
+static void add2ID (uint8_t index, uint8_t new_char);
 
 /*******************************************************************************
  *******************************************************************************
                         GLOBAL FUNCTION DEFINITIONS
  *******************************************************************************
  ******************************************************************************/
-
 void initCardReader(void){
     if(!init){  //to avoid more than one call at a time to the Card Reader program
         init = true;
@@ -97,11 +94,10 @@ void initCardReader(void){
 
         NVIC_EnableIRQ(PORTB_IRQn);
 
-        clock_received = false;
         data_was_stored = false;
         enable_interrupt = false;
         SS_arrived = false;
-      
+
     }
 }
 
@@ -167,7 +163,6 @@ uint8_t* processData (void){
                         LOCAL FUNCTION DEFINITIONS
  *******************************************************************************
  ******************************************************************************/
-
 static void irq_enable (void) {
     enable_interrupt = !gpioRead(PIN_CR_ENABLE);
     
@@ -249,7 +244,7 @@ static void orderData (uint8_t pin){
         }
 }
 
-bool validateParity (void){
+static bool validateParity (void){
     uint8_t counter = 0;
     uint8_t zero;                                   //how many zeros does it have?
     uint8_t i;
@@ -264,7 +259,7 @@ bool validateParity (void){
         return false;
 }
 
-void validate_LRC(uint8_t new_char){
+static void validate_LRC(uint8_t new_char){
 	uint8_t LRC = current_char.data;
     uint8_t xor_char = 0;
     uint8_t i;
@@ -278,7 +273,7 @@ void validate_LRC(uint8_t new_char){
 }
 
 
-void add2track (uint8_t new_char){
+static void add2track (uint8_t new_char){
     if (track_index == 0){                      //SS
         if (new_char == SS){
             Track[track_index] = new_char;
@@ -337,11 +332,12 @@ void add2track (uint8_t new_char){
    
 }
 
-void add2ID (uint8_t index, uint8_t new_char){
+static void add2ID (uint8_t index, uint8_t new_char){
     if (index > 11){                                 //takes the last 8 digits of the PAN
         uint8_t converted_char = (new_char - '0');   //Converts from char to uint8_t the current number
         stored_ID[index-12] = converted_char;
     }
 }
 
-
+/*******************************************************************************
+ ******************************************************************************/
