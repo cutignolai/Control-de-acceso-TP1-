@@ -58,7 +58,7 @@ void bright_callback();
  ******************************************************************************/
 pin_t pin_arr[] = {DIO_1, DIO_3, DIO_5, DIO_7, DIO_10, DIO_11, DIO_13, DIO_15, DIO_2, DIO_4};
 tim_id_t intensity_timer;
-uint8_t b;
+uint8_t b = 0;
 
 /*******************************************************************************
  *******************************************************************************
@@ -75,12 +75,17 @@ void App_Init (void)
 	// igit_t msg[] = {IDX_H, IDX_O, IDX_L, IDX_A, IDX_CLEAR, IDX_C, IDX_H, IDX_I, IDX_C, IDX_O, IDX_S};
 
 	setBrightness(1);
+	gpioMode(PIN_LED_RED, OUTPUT);
+    gpioMode(PIN_LED_GREEN, OUTPUT);
+
+    gpioWrite(PIN_LED_RED, !LED_ACTIVE);
+    gpioWrite(PIN_LED_GREEN, !LED_ACTIVE);
 
 	setStaticMode();
 	loadBuffer(&msg[0], 4);
 
 	intensity_timer = timerGetId();
-	timerCreate(intensity_timer, TIMER_MS2TICKS(5000), TIM_MODE_PERIODIC, bright_callback);
+	timerStart(intensity_timer, TIMER_MS2TICKS(5000), TIM_MODE_PERIODIC, bright_callback);
 		
 	// setScrollMode();
   	// loadBuffer(&msg[0], 11);
@@ -111,6 +116,8 @@ void App_Run (void)
 	if (b == 4){
 		timerStop(intensity_timer);
 		setBrightness(1);
+		gpioWrite(PIN_LED_GREEN, !LED_ACTIVE);
+		gpioWrite(PIN_LED_RED, LED_ACTIVE);
 	}
 
   // setScrollMode();
@@ -136,6 +143,11 @@ void App_Run (void)
 void bright_callback(){
 	b++;
 	upBrightness();
+	if (gpioRead(PIN_LED_GREEN) == LED_ACTIVE){
+		gpioWrite(PIN_LED_GREEN, !LED_ACTIVE);
+	} else {
+		gpioWrite(PIN_LED_GREEN, LED_ACTIVE);
+	}
 }
 
 /*******************************************************************************

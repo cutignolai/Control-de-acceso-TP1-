@@ -150,7 +150,7 @@ uint8_t display_idx = 0;        // Índice que indica qué dígito del display c
 
 digit_t buffer[BUFFER_MAX_LEN + 1] = {IDX_CLEAR, IDX_CLEAR, IDX_CLEAR, IDX_CLEAR, IDX_CLEAR, IDX_CLEAR, IDX_CLEAR, IDX_CLEAR, IDX_CLEAR, IDX_CLEAR, IDX_CLEAR, IDX_CLEAR, IDX_CLEAR, IDX_CLEAR, IDX_CLEAR, IDX_CLEAR, IDX_CLEAR};
 uint8_t buffer_len;         // Cantidad de caracteres seteados del buffer
-uint8_t buffer_idx;         // Caracter a partir de la cual mostrar
+uint8_t buffer_idx = 0;         // Caracter a partir de la cual mostrar
 
 uint8_t brightness = 1;
 
@@ -196,7 +196,7 @@ void initDisplay(){
     // INIT 7 SEGMENTS
     buffer_len = BUFFER_MAX_LEN;
     clear_buffer();
-    buffer[BUFFER_MAX_LEN] = 0;
+    buffer[BUFFER_MAX_LEN] = IDX_CLEAR;
     clear_display();
 
     // START DISPLAY
@@ -277,10 +277,10 @@ void setBlinkingDigits(bool* arr){
 }
 
 void setBrightness(brightness_states_t bright){
-    if ( MIN_BRIGHTNESS < bright && bright < MAX_BRIGHTNESS){
+    if ( MIN_BRIGHTNESS <= bright && bright <= MAX_BRIGHTNESS){
         brightness = bright;
     }
-    timerChangePeriod(refresh_timer, TIMER_MS2TICKS(MAX_REFRESH_T/brightness));
+    timerChangePeriod(refresh_timer, TIMER_MS2TICKS(MAX_REFRESH_T/brightness + 2));
 }
 
 void upBrightness(){
