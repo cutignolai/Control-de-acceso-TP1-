@@ -55,7 +55,7 @@ void App_Init (void)
 	red_state = LED_ACTIVE;
 	gpioWrite(PIN_LED_RED, red_state);
 	gpioWrite(PIN_LED_BLUE, !LED_ACTIVE);
-	timerStart(red_timer, TIMER_MS2TICKS(10000), TIM_MODE_PERIODIC, red_callback);
+	timerStart(red_timer, TIMER_MS2TICKS(1000), TIM_MODE_PERIODIC, red_callback);
 	timerStart(blue_timer, TIMER_MS2TICKS(5000), TIM_MODE_SINGLESHOT, blue_callback);
 }
 
