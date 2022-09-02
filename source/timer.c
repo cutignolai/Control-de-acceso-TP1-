@@ -213,6 +213,8 @@ void timer_isr(void){
                 if (timers[id_idx].mode == TIM_MODE_SINGLESHOT){
                     timers[id_idx].expired = 1;
                     timers[id_idx].running = 0;
+                } else {
+                	timers[id_idx].cnt = timers[id_idx].period;
                 }
                 if (timers[id_idx].callback != NULL){
                     timers[id_idx].callback();

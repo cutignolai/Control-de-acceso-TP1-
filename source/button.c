@@ -81,6 +81,7 @@ buttonEvent_t buttonGetEvent(){          //Getter del evento del button
 
 bool buttonSetStatus(bool change_state){            //Setter para que la app me lo pueda cambiar
 	button_status = change_state;
+	return button_status;
 }
 
 /*******************************************************************************
@@ -90,8 +91,6 @@ bool buttonSetStatus(bool change_state){            //Setter para que la app me 
  ******************************************************************************/
 
 static void event_coming(bool C){
-
-    uint8_t current_state = OFF;
 
     // Veo si hubo cambió (flanco descendente)
     bool current_state_button = (current_C == ON);
