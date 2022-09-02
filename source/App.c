@@ -112,7 +112,7 @@ static int posicion_pass = 0;
 static bool ha_hecho_click = NO;
 static bool user_is_ready = false;
 
-static uint8_t evento = EVENTO_NONE;
+
 
 
 /*******************************************************************************
@@ -129,47 +129,50 @@ void App_Init (void)
     initLeds();
     initButton(); 
     initCardReader();
-    gpioMode(PIN_LED_GREEN, OUTPUT);
-    gpioMode(PIN_LED_RED, OUTPUT);
-    gpioWrite(PIN_LED_RED, !LED_ACTIVE);
-    gpioWrite(PIN_LED_BLUE, !LED_ACTIVE);
-    gpioWrite(PIN_LED_GREEN, !LED_ACTIVE);
 }
 
 /* Función que se llama constantemente en un ciclo infinito */
 void App_Run (void)
 {
-	if(buttonGetStatus())
+	eventosDelMenu_t evento = EVENTO_NONE;
+
+    // Analizo si hubo un evento
+    if(CardReaderIsReady())
     {
-        evento = buttonGetEvent();
+		evento = EVENTO_TARJETA;
+	}
+    else if(encoderGetStatus())
+    {
+		evento = encoderGetEvent();	
+        encoderSetStatus(DESACTIVADO);
+        
+	}
+    else if(buttonGetStatus())
+    {
+		evento = buttonGetEvent();	
         buttonSetStatus(DESACTIVADO);
-    }
+	}
+
     // Si hubo un evento, veo en que estado de mi FSM estoy y le envio el evento
-    if(evento != EVENTO_NONE)
+	if(evento != EVENTO_NONE)
     {
-        switch(evento){
-            case EVENTO_CLICK:
-                //printf("click");
-                gpioWrite(PIN_LED_GREEN, LED_ACTIVE);
-                gpioWrite(PIN_LED_RED, !LED_ACTIVE);
-                gpioWrite(PIN_LED_BLUE, !LED_ACTIVE);
+		switch(estado){
+            case ESTADO_ID:
+                estado = modificar_id(evento);
                 break;
-            case EVENTO_CLICK_2:
-                gpioWrite(PIN_LED_RED, LED_ACTIVE);
-                gpioWrite(PIN_LED_GREEN, !LED_ACTIVE);
-                gpioWrite(PIN_LED_BLUE, !LED_ACTIVE);
+            case ESTADO_PASS:
+                estado = modificar_pass(evento);
                 break;
-            case EVENTO_CLICK_3:
-                gpioWrite(PIN_LED_BLUE, LED_ACTIVE);
-                gpioWrite(PIN_LED_RED, !LED_ACTIVE);
-                gpioWrite(PIN_LED_GREEN, !LED_ACTIVE);
+            case ESTADO_BRILLO:
+                estado = modificar_brillo(evento);
                 break;
-            default:
-                //printf("evento:%d\n\n", evento);
+            case ESTADO_VERIFICAR:
+                estado = verificar_estado();
                 break;
-        }
-    }
-}
+            default: break;
+		}
+	}
+
 
 
 /*******************************************************************************
