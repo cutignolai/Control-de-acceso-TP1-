@@ -34,7 +34,7 @@ typedef enum{
 
 //----------- EVENTOS DEL MENU -----------
 typedef enum{
-    EVENTO_NONE,
+    EVENTO_NONE = 0,
     EVENTO_IZQ,
     EVENTO_DER,
     EVENTO_CLICK,
@@ -131,6 +131,9 @@ void App_Init (void)
     initCardReader();
     gpioMode(PIN_LED_GREEN, OUTPUT);
     gpioMode(PIN_LED_RED, OUTPUT);
+    gpioWrite(PIN_LED_GREEN, !LED_ACTIVE);
+    gpioWrite(PIN_LED_RED, !LED_ACTIVE);
+
 }
 
 /* Función que se llama constantemente en un ciclo infinito */
@@ -147,17 +150,19 @@ void App_Run (void)
     if(evento != EVENTO_NONE)
     {
         switch(evento){
-            EVENTO_DER:
+            case EVENTO_DER:
                 //printf("DERECHA");
+            	gpioWrite(PIN_LED_RED, !LED_ACTIVE);
 				gpioWrite(PIN_LED_GREEN, LED_ACTIVE);
                 break;
-            EVENTO_IZQ:
+            case EVENTO_IZQ:
+            	gpioWrite(PIN_LED_GREEN, !LED_ACTIVE);
 				gpioWrite(PIN_LED_RED, LED_ACTIVE);
                 break;
             default:
                 break;
         }
-        gpioWrite(PIN_LED_GREEN, !LED_ACTIVE);
+        //gpioWrite(PIN_LED_GREEN, !LED_ACTIVE);
     }
 }
 
