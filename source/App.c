@@ -71,11 +71,22 @@ void App_Init (void)
 {
 	initDisplay();
 
-	digit_t msg[] = {IDX_H, IDX_O, IDX_L, IDX_A, IDX_CLEAR, IDX_C, IDX_H, IDX_I, IDX_C, IDX_O, IDX_S};
+	//digit_t msg[] = {IDX_H, IDX_O, IDX_L, IDX_A, IDX_CLEAR, IDX_C, IDX_H, IDX_I, IDX_C, IDX_O, IDX_S};
+	
 	// setStaticMode();
 	// loadBuffer(&msg[0], 4);
-	setScrollMode();
-  	loadBuffer(&msg[0], 11);
+
+	// setScrollMode();
+  	//loadBuffer(&msg[0], 11);
+
+  	digit_t pass[] = { IDX_DASH, IDX_DASH, IDX_DASH, IDX_5 };
+  	loadBuffer(&pass[0], 4);
+	bool blink_arr[] = { false, false, false, true};
+	setBlinkingDigits( &blink_arr[0] );
+	setBlinkMode();
+	//setBufferIndex(2);
+	showLastDigits(true);
+
 }
 
 /* Función que se llama constantemente en un ciclo infinito */

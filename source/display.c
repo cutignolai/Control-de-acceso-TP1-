@@ -247,7 +247,7 @@ void setBlinkMode(){
         timerReset(blink_timer);
         timerReset(scroll_timer);
         blink = false;
-        timerActivate(blink_timer);
+        timerRestart(blink_timer);
     }
     display_state = DISPLAY_BLINK;
 }
@@ -348,7 +348,13 @@ void refresh_display()
 			break;
 
 		case DISPLAY_BLINK:
-			display_blink(&buffer[buffer_idx]);
+			if (blink && blinking_digits[display_idx]){
+                set_digit(IDX_CLEAR, display_idx);
+            } else {
+            set_digit(buffer[buffer_idx + display_idx], display_idx);
+            }
+            
+			//display_blink(&buffer[buffer_idx]);
 			break;
 
 		case DISPLAY_STATIC:
