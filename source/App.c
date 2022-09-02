@@ -46,7 +46,7 @@ typedef enum{
 
 //----------- COLORES DEL LED ------------
 typedef enum{
-    LED1,
+    LED1 = 0,
     LED2,
     LED3
 }colored_led_t;

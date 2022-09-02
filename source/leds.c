@@ -39,10 +39,10 @@ static void callback_leds();
  ******************************************************************************/
 bool leds[NUM_LEDS];
 led_selector_t led_selector[] = {
-  {  LOW, LOW  },  //00 --> NINGUN LED
   {  LOW, HIGH },  //01 --> LED1
   { HIGH, LOW  },  //10 --> LED2
-  { HIGH, HIGH }   //11 --> LED3
+  { HIGH, HIGH },   //11 --> LED3
+  {  LOW, LOW  },  //00 --> NINGUN LED
 };
 uint8_t index = 0;
 tim_id_t leds_timer;
@@ -92,16 +92,16 @@ void toggle_led(int l)    //not leds
 static void callback_leds()         //callback
 {
   if(leds[index]){
-	printf("%d", led_selector[index].led_bit_0);
-	printf("%d\n", led_selector[index].led_bit_1);
-	// gpioWrite (LED_CONF_1, led_selector[index].led_bit_0);     //escribo en el primer selector, lo que vale el bit 0
-    // gpioWrite (LED_CONF_2, led_selector[index].led_bit_1);     //escribo en el segundo selector, lo que vale el bit 1
+	// printf("%d", led_selector[index].led_bit_0);
+	// printf("%d\n", led_selector[index].led_bit_1);
+	gpioWrite (LED_CONF_1, led_selector[index].led_bit_0);     //escribo en el primer selector, lo que vale el bit 0
+    gpioWrite (LED_CONF_2, led_selector[index].led_bit_1);     //escribo en el segundo selector, lo que vale el bit 1
   }
   else{
-	printf("%d", led_selector[index].led_bit_0);
-	printf("%d\n", led_selector[index].led_bit_1);
-    // gpioWrite (LED_CONF_1, led_selector[LOW].led_bit_0);     //escribo en el primer selector, lo que vale el bit 0
-    // gpioWrite (LED_CONF_2, led_selector[LOW].led_bit_1);     //escribo en el segundo selector, lo que vale el bit 1
+	// printf("%d", led_selector[index].led_bit_0);
+	// printf("%d\n", led_selector[index].led_bit_1);
+    gpioWrite (LED_CONF_1, led_selector[NUM_LEDS].led_bit_0);     //escribo en el primer selector, lo que vale el bit 0
+    gpioWrite (LED_CONF_2, led_selector[NUM_LEDS].led_bit_1);     //escribo en el segundo selector, lo que vale el bit 1
   }
   index++;
   index = (index == NUM_LEDS)? 0 : index;                     //si es mayor a la cantidad de leds, vuelvo el counter a 0
