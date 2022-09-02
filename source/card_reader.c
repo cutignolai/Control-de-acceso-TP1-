@@ -27,15 +27,14 @@
 #define FS '='
 #define ES '?'
 
+#define MAX_DATA 200
+
 /*******************************************************************************
  * STATIC VARIABLES AND CONST VARIABLES WITH FILE LEVEL SCOPE
  ******************************************************************************/
-typedef enum {NO_ERROR,UNFINISHED_MESSAGE,DATA_AFTER_LRC,SS_EXPECTED,FS_EXPECTED, ES_EXPECTED, PARITY_ERROR, UNEXPECTED_CHARACTER, BAD_LRC, TO_ERROR}ERROR_TYPE;
-
 static ERROR_TYPE error_type;
 
-
-static bool init;      //True after call to initCardReader()
+static bool init;   //True after call to initCardReader()
 
 typedef struct{
     uint8_t parity      :1;
@@ -43,106 +42,122 @@ typedef struct{
 	uint8_t loaded_bits :3;
 } card_char;
 
+
 static card_char current_char;
-static char* Track;
+static char Track[40]; 
 
-static int* ID;
-static int* stored_ID;
-static int track_index;
+static uint8_t* ID;
+static uint8_t stored_ID[] = {0, 0, 0, 0, 0, 0, 0, 0};
+static uint8_t track_index;
 
-static bool clock_received = false;
+static uint8_t data[200];
+static uint8_t index;
+
+static bool volatile clock_received;
 static bool data_was_stored;
+static bool volatile enable_interrupt;
+static bool SS_arrived;
 /*******************************************************************************
  *                      GLOBAL FUNCTION PROTOTYPES
  ******************************************************************************/
-int getError(void);
-bool CardReaderIsReady (void);
-int* getID (void);
-void readCard (void);
-void initCardReader(void);
-void resetReader (void);
+
 static void irq_enable (void);
 static void irq_clk_falling_edge (void);
-static void pin2data (bool pin);
+static void readCard (void);
+static void pin2data (bool pin, uint8_t index);
+static void orderData (uint8_t pin);
 bool validateParity (void);
-bool validateChar (uint8_t new_char);
-void add2track (uint8_t new_char);
-void add2ID (int index, uint8_t new_char);
 void validate_LRC(uint8_t new_char);
+void add2track (uint8_t new_char);
+void add2ID (uint8_t index, uint8_t new_char);
+
+
 
 /*******************************************************************************
  *******************************************************************************
                         GLOBAL FUNCTION DEFINITIONS
  *******************************************************************************
  ******************************************************************************/
-int getError (void){
-	return error_type;
-}
-
-bool CardReaderIsReady (void){
-	if (error_type == NO_ERROR)
-	        return data_was_stored;  //in case data was stored, but an unexpected error happened
-	    else
-	        return false;
-}
-
-int* getID (void){
-    if (error_type == NO_ERROR)
-        return stored_ID;           //In case the function is called and a card is being slided
-    else
-        return NULL;
-}
-
-
-void readCard (void){
-	while((gpioRead(PIN_CR_ENABLE) == 0) && (error_type == NO_ERROR)){ //card is sliding and no error was detected
-
-		if (clock_received){                    //was a falling edge was detected?
-			clock_received = false;             //flag down to expect next edge
-			pin2data(!gpioRead(PIN_CR_DATA));   //thus, it proceeds to read incomming data
-		}
-
-		}
-		if (track_index != 40){     //It finished reading & there are less characters than expected
-			error_type = UNFINISHED_MESSAGE;
-		}
-
-		for (int i = 0; i<=40; i++){
-			stored_ID[i] = ID[i];
-		}
-		data_was_stored = true;     //finished reading, new ID stored
-}
 
 void initCardReader(void){
-    if(!init){ //to avoid more than one call at a time to this FSM
+    if(!init){  //to avoid more than one call at a time to the Card Reader program
         init = true;
         error_type = NO_ERROR;
         current_char.parity = 0b0;
 		current_char.data = 0x0;
 		current_char.loaded_bits = 0;
         track_index = 0; 
+        index = 0;
 
         gpioMode(PIN_CR_DATA, INPUT);
         gpioMode(PIN_CR_CLOCK, INPUT);
         gpioIRQ(PIN_CR_CLOCK, GPIO_IRQ_MODE_FALLING_EDGE, irq_clk_falling_edge);
         gpioMode(PIN_CR_ENABLE, INPUT);
-        gpioIRQ(PIN_CR_ENABLE, GPIO_IRQ_MODE_FALLING_EDGE, irq_enable);
+        gpioIRQ(PIN_CR_ENABLE, GPIO_IRQ_MODE_BOTH_EDGES, irq_enable);
+
+        NVIC_EnableIRQ(PORTB_IRQn);
 
         clock_received = false;
         data_was_stored = false;
+        enable_interrupt = false;
+        SS_arrived = false;
+      
     }
 }
 
 void resetReader (void){
     init = true;
     error_type = NO_ERROR;
+    data_pin = false;
+    index = 0;
+
+    data_was_stored = false;
+    enable_interrupt = false;
+    SS_arrived = false;
+
     current_char.parity = 0b0;
 	current_char.data = 0x0;
 	current_char.loaded_bits = 0;
+
     track_index = 0;
-    clock_received = false;
-    data_was_stored = false;
+
+    uint8_t i;
+    for (i = 0; i<=7; i++){
+		stored_ID[i] = 0;
+	}
+    for (i = 0; i<=7; i++){
+		Track[i] = '0';
+	}
+
 }
+
+bool CardReaderIsReady (void){
+	 return data_was_stored;
+}
+
+ERROR_TYPE getError (void){
+	return error_type;
+}
+
+uint8_t* getData (void){
+    if (getError() == NO_ERROR)
+        return &data[0]; 
+    else
+        return NULL;
+}
+
+uint8_t* processData (void){
+    track_index = 0;
+    current_char.parity = 0b0;
+	current_char.data = 0x0;
+	current_char.loaded_bits = 0;
+    uint8_t data_index;
+    for (data_index = 0; data_index < MAX_DATA; data_index++){      //the 200 bits of the array
+        orderData(data[data_index]);
+    }
+    return &stored_ID[0];
+}
+
 
 /*******************************************************************************
  ******************************************************************************/
@@ -152,70 +167,118 @@ void resetReader (void){
                         LOCAL FUNCTION DEFINITIONS
  *******************************************************************************
  ******************************************************************************/
-static void irq_enable (void) {   
-    readCard();						//stores data until main asks for it
-}
-static void irq_clk_falling_edge (void) {   
-    clock_received = true;         //for the FSM to ask if it's expecting data
+
+static void irq_enable (void) {
+    enable_interrupt = !gpioRead(PIN_CR_ENABLE);
+    
 }
 
-static void pin2data (bool pin){
-    if (current_char.loaded_bits <= 4){
-        current_char.data |= pin<<current_char.loaded_bits;
-        current_char.loaded_bits++;
+static void irq_clk_falling_edge (void) {	
+    if (enable_interrupt && (!data_was_stored)){
+        readCard();   
     }
-    else if (current_char.loaded_bits > 4){
-    	current_char.parity |= pin;
-    	        if (validateParity()){
-    	            uint8_t validated_char = (current_char.data & 0x0F) | '0';
-    	            if (validateChar(validated_char))
-    	                add2track(validated_char);
-    	            current_char.parity = 0b0;
-    	            current_char.data = 0x0;
-    	            current_char.loaded_bits = 0;
-    	        }
-    	        else{
-    	            error_type = PARITY_ERROR;
-    	        }
+
+}
+
+static void readCard (void){
+    data_pin = !gpioRead(PIN_CR_DATA);
+    if(index<MAX_DATA){
+        pin2data(data_pin, index);          //thus, it proceeds to read incomming data
+    }
+    else if (index == MAX_DATA){
+        data_was_stored = true;
+        uint8_t a;
+        gpioWrite(PIN_LED_RED, HIGH);
     }
     else{
-    	//do nothing
+        //do nothing
     }
+}
+
+static void pin2data (bool pin, uint8_t index){
+    if(!SS_arrived){
+        if (pin == 1){
+        	SS_arrived = true;
+			data[index] = 1;
+            index++;
+        }
+
+    }
+    else{
+        if(pin == 1){
+		    data[index] = 1;
+            index++;
+        }
+        else{
+            data[index] = 0;
+            index++;
+        }
+                
+    }
+}
+
+static void orderData (uint8_t pin){
+    if (current_char.loaded_bits < 4){
+            if (pin == 1)
+                current_char.data |= 0b1<<current_char.loaded_bits;
+            else
+                current_char.data |= 0b0<<current_char.loaded_bits;
+            current_char.loaded_bits++;
+        }
+        else if (current_char.loaded_bits >= 4){
+    	    current_char.parity |= pin;
+             
+    	    if (track_index <= 38){
+                if (validateParity()){
+                    uint8_t new_char = (current_char.data & 0x0F) | '0';
+                    add2track(new_char);
+                }
+                else{
+                    printf("0");
+                    error_type = PARITY_ERROR;
+                }
+            }
+            else{                                                       //LRC doesn't check parity!
+                uint8_t new_char = (current_char.data & 0x0F) | '0';
+                add2track(new_char);
+            }
+            current_char.data = 0x0;
+            current_char.loaded_bits = 0;
+            current_char.parity = 0;       
+        }
+        else{
+    	//do nothing
+        }
 }
 
 bool validateParity (void){
-    int counter = 0;
-    bool one;
-    for (int i = 0; i<4; i++){
-        one = current_char.data&(1<<i);
-        if (one)
+    uint8_t counter = 0;
+    uint8_t zero;                                   //how many zeros does it have?
+    uint8_t i;
+    for (i = 0; i<4; i++){
+        zero = (current_char.data & (1<<i)) & 0x0F;
+        if (zero == 0x00)
             counter++;
-    }
-    if (current_char.parity == !(one%2))
+    }                                           
+    if ((!current_char.parity) == (counter%2))
         return true;
     else
         return false;
 }
 
-bool validateChar (uint8_t new_char){
-    if ((track_index <= 20) || (track_index == 38))
-    {
-        if (new_char >= '0' && new_char <= '9')
-            return true;
-        else if (new_char == SS)
-            return true;
-        else if (new_char == FS)
-            return true;
-        else if (new_char == ES)
-            return true;
-        else{
-            error_type = UNEXPECTED_CHARACTER;
-            return false;
-        }
-    }
-    else
-        return true;        //It doesn't check AD, DD or LRC characters as they may not be those listed above
+void validate_LRC(uint8_t new_char){
+	uint8_t LRC = current_char.data;
+    uint8_t xor_char = 0;
+    uint8_t i;
+	for (i = 0; i<track_index;i++)
+		xor_char ^= Track[i];
+	if((uint8_t)(LRC & 0x0F) == (uint8_t)(xor_char & 0x0F))
+		Track[39] = new_char;
+	else{
+		error_type = BAD_LRC;
+	}
 }
+
 
 void add2track (uint8_t new_char){
     if (track_index == 0){                      //SS
@@ -224,6 +287,8 @@ void add2track (uint8_t new_char){
             track_index++;
         }          
         else{
+            Track[track_index] = new_char;
+            track_index++;
             error_type = SS_EXPECTED;
         }
     }  
@@ -234,6 +299,9 @@ void add2track (uint8_t new_char){
             track_index++;
         }
         else{
+            Track[track_index] = new_char;
+            add2ID(track_index, new_char);
+            track_index++;
             error_type = UNEXPECTED_CHARACTER;
         }        
     }
@@ -243,6 +311,8 @@ void add2track (uint8_t new_char){
             track_index++;
         }          
         else{
+            Track[track_index] = new_char;
+            track_index++;
             error_type = FS_EXPECTED;
         }
     }
@@ -256,37 +326,24 @@ void add2track (uint8_t new_char){
             track_index++;
         }          
         else{
+            Track[track_index] = new_char;
+            track_index++;
             error_type = ES_EXPECTED;
         }
     }
-    else if (track_index == 39){                //LRC
+    else{                                       //LRC
         validate_LRC(new_char);
         Track[track_index] = new_char;
         track_index++;   
     }
-    else{
-        error_type = DATA_AFTER_LRC;            //There's no other data expected from here
+   
+}
+
+void add2ID (uint8_t index, uint8_t new_char){
+    if (index > 11){                                 //takes the last 8 digits of the PAN
+        uint8_t converted_char = (new_char - '0');   //Converts from char to uint8_t the current number
+        stored_ID[index-12] = converted_char;
     }
 }
 
-void add2ID (int index, uint8_t new_char){
-    if (index > 11){                            //takes the last 8 digits of the PAN
-        int converted_char = (new_char - '0');   //Converts from char to int the current number
-        ID[index-12] = converted_char;
-    }
-}
 
-void validate_LRC(uint8_t new_char){
-	uint8_t LRC = current_char.data;
-    uint8_t xor_char = 0;
-	for (int i = 0; i<track_index;i++)
-		xor_char ^= Track[i];
-	if((uint8_t)(LRC & 0x0F) == (uint8_t)(xor_char & 0x0F))
-		Track[39] = new_char;
-	else{
-		error_type = BAD_LRC;
-	}
-}
-
-/*******************************************************************************
- ******************************************************************************/
