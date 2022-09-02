@@ -123,15 +123,16 @@ void gpioMode (pin_t pin, uint8_t mode)
 }
 
 void gpioWrite (pin_t pin, bool value) {
-    if ( !(pin > PORTNUM2PIN(PE,31)) ){
-		uint32_t new_value =  (uint32_t)(1 << PIN2NUM(pin));
-		GPIO_Type* gpio_ptr = GPIO_PTRS[PIN2PORT(pin)];
-		if(value) {
-			gpio_ptr->PSOR = new_value;
-		}
-		else {
-			gpio_ptr->PCOR = new_value;
-		}
+    if ( pin > PORTNUM2PIN(PE,31) ) return false;
+
+    uint32_t new_value =  (uint32_t)(1 << PIN2NUM(pin));
+    GPIO_Type* gpio_ptr = GPIO_PTRS[PIN2PORT(pin)];
+    if(value)
+    {
+        gpio_ptr->PSOR = new_value;
+    }
+    else{
+        gpio_ptr->PCOR = new_value;
     }
 }
 
@@ -144,10 +145,9 @@ bool gpioRead (pin_t pin) {
 }
 
 void gpioToggle (pin_t pin) {   //no hay mucha magia, es lo mismo que el Write pero sin el if
-    if ( !(pin > PORTNUM2PIN(PE,31)) ){
-    	GPIO_Type* gpio_ptr = GPIO_PTRS[PIN2PORT(pin)];
-    	gpio_ptr->PTOR = (uint32_t)(1 << PIN2NUM(pin));
-    }
+    if ( pin > PORTNUM2PIN(PE,31) ) return false;
+    GPIO_Type* gpio_ptr = GPIO_PTRS[PIN2PORT(pin)];
+    gpio_ptr->PTOR = (uint32_t)(1 << PIN2NUM(pin));
 }
 
 
@@ -178,6 +178,9 @@ bool gpioIRQ (pin_t pin, uint8_t irqMode, pinIrqFun_t irqFun) {
 }
 
 
+
+
+
 static void IRQHandler(int32_t port) {
 
 	PORT_Type* port_ptr = PORT_PTRS[port];
@@ -195,6 +198,12 @@ __ISR__ PORTB_IRQHandler(void) { IRQHandler(PB); }
 __ISR__ PORTC_IRQHandler(void) { IRQHandler(PC); }
 __ISR__ PORTD_IRQHandler(void) { IRQHandler(PD); }
 __ISR__ PORTE_IRQHandler(void) { IRQHandler(PE); }
+
+
+
+
+
+
 
 
 //----------------------------------------- Comentarios extras -------------------------------------------
