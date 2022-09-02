@@ -68,15 +68,30 @@ bool CardReaderIsReady();
 /* Función que se llama 1 vez, al comienzo del programa */
 void App_Init (void)
 {
-    initDisplay();
-    // initCardReader();
+  initDisplay();
+  // initCardReader();
 }
 
 /* Función que se llama constantemente en un ciclo infinito */
 void App_Run (void)
 {
-	
-    
+
+  digit_t msg[] = {IDX_H, IDX_O, IDX_L, IDX_A};
+  setStaticMode();
+  loadBuffer(&msg[0], 4);
+
+  // setScrollMode();
+  // loadBuffer(&msg[0], 4);
+
+  // digit_t msg2[] = {IDX_C, IDX_O, IDX_C, IDX_A, IDX_C, IDX_O, IDX_L, IDX_A};
+  // loadBuffer(&msg2[0], 8);
+
+  // bool blink_arr = { false, true, false, false};
+  // setBlinkingDigits( &blink_arr );
+  // setBlinkMode();
+  // setBufferIndex(2);
+  // showLastDigits(true);
+
 }
 
 

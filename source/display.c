@@ -42,7 +42,7 @@
 #define SEL0    DIO_2
 #define SEL1    DIO_4
 
-#define N_PINS  10
+#define N_PINS  8
 
 /**** DIGITS ****/
 #define DIG0    0
@@ -78,15 +78,28 @@
 #define CLEAR       0x00 //0b00000000
 #define LET_A       0x77 //0b01110111
 #define LET_a       0x5F //0b01011111
+#define LET_C       0x39 //0b00111001
+#define LET_d       0x5E //0b01011110
 #define LET_E       0x79 //0b01111001
 #define LET_e       0x7B //0b01111011
+#define LET_F       0x71 //0b01110001
+#define LET_G       NUM_6
+#define LET_g       0x6F //0b01101111
+#define LET_H       0x76 //0b01110110
+#define LET_h       0x74 //0b01110100
 #define LET_I       NUM_1
+#define LET_J       0x1F //0b00011111
+#define LET_j       0x1E //0b00011110
+#define LET_l       NUM_1
+#define LET_L       0x38 //0b00111000
 #define LET_n       0x37 //0b00110111
 #define LET_O       NUM_0
 #define LET_P       0x73 //0b01110011
+#define LET_Q       (NUM_0 | POINT)
 #define LET_r       0x33 //0b00110011
 #define LET_S       NUM_5
 #define LET_U       0x3E //0b00111110
+#define LET_X       0x75 //0b01110110
 #define LET_Y       0x6E //0b01101110
 
 /*******************************************************************************
@@ -126,7 +139,10 @@ void auto_set_buffer_index();
 /*******************************************************************************
  * STATIC VARIABLES AND CONST VARIABLES WITH FILE LEVEL SCOPE
  ******************************************************************************/
-digit_t char_arr[] = {NUM_0, NUM_1, NUM_2, NUM_3, NUM_4, NUM_5, NUM_6, NUM_7, NUM_8, NUM_9, DASH, LOW_DASH, POINT, CLEAR, LET_A, LET_a, LET_E, LET_e, LET_I, LET_n, LET_O, LET_P, LET_r, LET_S, LET_U, LET_Y };
+digit_t char_arr[] = {NUM_0, NUM_1, NUM_2, NUM_3, NUM_4, NUM_5, NUM_6, NUM_7, NUM_8, NUM_9, DASH, LOW_DASH, POINT, CLEAR, 
+LET_A, LET_a, LET_C, LET_d, LET_E, LET_e, LET_F, LET_G, LET_g, LET_H, LET_h, LET_I, LET_J, LET_j, LET_l, LET_L, LET_n, 
+LET_O, LET_P, LET_Q, LET_r, LET_S, LET_U, LET_X, LET_Y };
+
 uint8_t seg_arr[] = {SEGA, SEGB, SEGC, SEGD, SEGE, SEGF, SEGG, SEGDP};
 
 display_states_t display_state = CLEAR;
@@ -158,11 +174,15 @@ tim_id_t scroll_timer;
 void initDisplay(){
     
     // INIT PINS
-    pin_t pin_arr[] = {DIO_1, DIO_3, DIO_5, DIO_7, DIO_9, DIO_11, DIO_13, DIO_15, DIO_2, DIO_4};
+    //pin_t pin_arr[] = {DIO_1, DIO_3, DIO_5, DIO_7, DIO_9, DIO_11, DIO_13, DIO_15, DIO_2, DIO_4};
     uint8_t i;
     for(i = 0; i < N_PINS; i++){
-        gpioMode(pin_arr[i], OUTPUT);
+        gpioMode(seg_arr[i], OUTPUT);
     }
+    gpioMode(SEL0, OUTPUT);
+    gpioMode(SEL1, OUTPUT);
+
+    clear_display();
 
     // CREATE TIMERS
     timerInit();
@@ -402,7 +422,7 @@ void scroll_message(){
         for (i = scroll_idx; i < buffer_len; i++){
             set_digit(buffer[i], i - scroll_idx);
         }
-        set_digit(CLEAR, i - scroll_idx);
+        set_digit(IDX_CLEAR, i - scroll_idx);
         for (i = i + 1; i < scroll_idx + DISPLAY_LEN; i++){
             set_digit(buffer[i - buffer_len - 1], i - scroll_idx);
         }
@@ -430,7 +450,7 @@ void display_blink(digit_t* arr){
     uint8_t i;
     for (i = 0; i < DISPLAY_LEN; i++){
         if (blink && blinking_digits[i]){
-            set_digit(CLEAR, i);
+            set_digit(IDX_CLEAR, i);
         } else {
             set_digit(*(arr + i), i);
         }
@@ -466,8 +486,7 @@ void blink_digits(){
 void clear_buffer(void)
 {
     uint8_t i;
-    for (i = 0; i < buffer_len; i++)
-    {
+    for (i = 0; i < buffer_len; i++){
     	buffer[i] = CLEAR;
     }
     buffer_len = 0;
