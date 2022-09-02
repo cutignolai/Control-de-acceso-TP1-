@@ -367,8 +367,7 @@ void refresh_display()
     }
 
     display_idx++;
-    if (display_idx >= DISPLAY_LEN && intensity % BRIGHTNESS_HIGH){ display_idx = 0; }
-    else if( intensity % BRIGHTNESS_HIGH)
+    if (display_idx >= DISPLAY_LEN && intensity){ display_idx = 0; }
 }
 
 
