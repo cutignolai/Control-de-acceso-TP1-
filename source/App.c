@@ -63,8 +63,9 @@ void App_Init (void)
 void App_Run (void)
 {
 	if (sec == 10){
-		timerStop(red_timer);
-		gpioWrite(PIN_LED_RED, !LED_ACTIVE);
+		timerChangePeriod(red_timer, TIMER_MS2TICKS(500));
+		gpioWrite(PIN_LED_BLUE, !LED_ACTIVE);
+		sec++;
 	}
 
 }
@@ -79,7 +80,7 @@ void red_callback(){
     sec++;
     red_state = !red_state;
     gpioWrite(PIN_LED_RED, red_state);
-    //printf("sec: %i\n", sec/1000);
+    printf("sec: %i\n", sec);
 }
 
 void blue_callback(){

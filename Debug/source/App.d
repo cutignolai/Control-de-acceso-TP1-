@@ -1,17 +1,8 @@
 source/App.o source/App.d: ../source/App.c ../source/board.h \
- ../source/gpio.h ../source/display.h ../source/leds.h \
- ../source/encoder.h ../source/button.h ../source/user.h
+ ../source/gpio.h ../source/timer.h
 
 ../source/board.h:
 
 ../source/gpio.h:
 
-../source/display.h:
-
-../source/leds.h:
-
-../source/encoder.h:
-
-../source/button.h:
-
-../source/user.h:
+../source/timer.h:
