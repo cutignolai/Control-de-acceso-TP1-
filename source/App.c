@@ -71,9 +71,11 @@ void App_Init (void)
 {
 	initDisplay();
 
-	digit_t msg[] = {IDX_H, IDX_O, IDX_L, IDX_A};
-	setStaticMode();
-	loadBuffer(&msg[0], 4);
+	digit_t msg[] = {IDX_H, IDX_O, IDX_L, IDX_A, IDX_CLEAR, IDX_C, IDX_H, IDX_I, IDX_C, IDX_O, IDX_S};
+	// setStaticMode();
+	// loadBuffer(&msg[0], 4);
+	setScrollMode();
+  	loadBuffer(&msg[0], 11);
 }
 
 /* Función que se llama constantemente en un ciclo infinito */

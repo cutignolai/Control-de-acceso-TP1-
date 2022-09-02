@@ -26,8 +26,8 @@
 #define MIN_BRIGHTNESS  1
 
 #define BLINK_T         500
-#define SCROLL_T        500
-#define MAX_REFRESH_T   10
+#define SCROLL_T        700
+#define MAX_REFRESH_T   8
 
 /******* PINS *******/
 #define SEGA    DIO_1
@@ -145,15 +145,16 @@ LET_O, LET_P, LET_Q, LET_r, LET_S, LET_U, LET_X, LET_Y };
 
 uint8_t seg_arr[] = {SEGA, SEGB, SEGC, SEGD, SEGE, SEGF, SEGG, SEGDP};
 
-display_states_t display_state = CLEAR;
+display_states_t display_state = DISPLAY_CLEAR;
+uint8_t display_idx = 0;        // Índice que indica qué dígito del display configurar
 
-digit_t buffer[BUFFER_MAX_LEN];
+digit_t buffer[BUFFER_MAX_LEN + 1] = {IDX_CLEAR, IDX_CLEAR, IDX_CLEAR, IDX_CLEAR, IDX_CLEAR, IDX_CLEAR, IDX_CLEAR, IDX_CLEAR, IDX_CLEAR, IDX_CLEAR, IDX_CLEAR, IDX_CLEAR, IDX_CLEAR, IDX_CLEAR, IDX_CLEAR, IDX_CLEAR, IDX_CLEAR};
 uint8_t buffer_len;         // Cantidad de caracteres seteados del buffer
-uint8_t buffer_idx;         // Caracter a partir del cual mostrar
+uint8_t buffer_idx;         // Caracter a partir de la cual mostrar
 
 uint8_t brightness = 1;
 
-uint8_t scroll_idx;
+uint8_t scroll_idx;         // Índice que indica el dígito del buffer que se va a mostrar en la posición 1 en ese instante de scroll
 
 bool show_last = false;
 
@@ -195,6 +196,7 @@ void initDisplay(){
     // INIT 7 SEGMENTS
     buffer_len = BUFFER_MAX_LEN;
     clear_buffer();
+    buffer[BUFFER_MAX_LEN] = 0;
     clear_display();
 
     // START DISPLAY
@@ -339,7 +341,7 @@ void refresh_display()
 
 		case DISPLAY_SCROLL:
 			if (buffer_len <= DISPLAY_LEN){
-				set_display(&buffer[0]);
+				set_digit(buffer[display_idx], display_idx);
 			} else {
 				scroll_message();
 			}
@@ -350,18 +352,40 @@ void refresh_display()
 			break;
 
 		case DISPLAY_STATIC:
-			set_display(&buffer[buffer_idx]);
+			set_digit(buffer[buffer_idx + display_idx], display_idx);
 			break;
-		// case DISPLAY_PASS:
-		//     display_pass();
-		//     break;
 
 		case DISPLAY_CLEAR:
 		default:
 			clear_display();
 			break;
     }
+
+    display_idx++;
+    if (display_idx == DISPLAY_LEN){ display_idx = 0; }
 }
+
+
+void scroll_message() {
+
+    set_digit(buffer[(scroll_idx + display_idx) % (buffer_len + 1)], display_idx);
+    if (scroll_idx == buffer_len + 1){
+    	scroll_idx = 0;
+    }
+    //set_digit(buffer[CLEAR], display_idx);
+    if (display_idx == DISPLAY_LEN){
+    	scroll_idx++;
+    }
+}
+
+
+
+//     buffer_idx;
+//     set_digit(buffer_idx + display_idx);
+
+
+//     scroll_idx++;
+// }
 
 void clear_display(){
     clear_buffer();
@@ -413,22 +437,26 @@ void auto_set_buffer_index(){
     }
 }
 
-void scroll_message(){
-    digit_t* idx = &buffer[0];
-    if (scroll_idx > buffer_len){ scroll_idx = 0; }
-    if (scroll_idx + DISPLAY_LEN <= buffer_len){
-        set_display(idx + scroll_idx);
-    } else {
-        uint8_t i;
-        for (i = scroll_idx; i < buffer_len; i++){
-            set_digit(buffer[i], i - scroll_idx);
-        }
-        set_digit(IDX_CLEAR, i - scroll_idx);
-        for (i = i + 1; i < scroll_idx + DISPLAY_LEN; i++){
-            set_digit(buffer[i - buffer_len - 1], i - scroll_idx);
-        }
-    }
-}
+
+//     digit_t* idx = &buffer[0];
+//     if (scroll_idx > buffer_len){ 
+//         scroll_idx = 0;
+//         buffer_idx = 0; 
+//         }
+//     if (scroll_idx + DISPLAY_LEN <= buffer_len){
+//         buffer_idx = idx + scroll_idx;
+//         set_digit(buffer[buffer_idx + scroll_idx);
+//     } else {
+//         uint8_t i;
+//         for (i = scroll_idx; i < buffer_len; i++){
+//             set_digit(buffer[i], i - scroll_idx);
+//         }
+//         set_digit(IDX_CLEAR, i - scroll_idx);
+//         for (i = i + 1; i < scroll_idx + DISPLAY_LEN; i++){
+//             set_digit(buffer[i - buffer_len - 1], i - scroll_idx);
+//         }
+//     }
+// }
 
 // void display_blink(){
 //     digit_t* idx;
@@ -488,7 +516,7 @@ void clear_buffer(void)
 {
     uint8_t i;
     for (i = 0; i < buffer_len; i++){
-    	buffer[i] = CLEAR;
+    	buffer[i] = IDX_CLEAR;
     }
     buffer_len = 0;
 }
