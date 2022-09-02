@@ -19,13 +19,13 @@
 
 #define PIN_A   DIO_6
 #define PIN_B   DIO_8
-
+#define ENCODER_TIME    1
 
 /*******************************************************************************
  *                              ENUMS AND STRUCTURES                            *
  ******************************************************************************/
 
-enum states {START, LEFT_1, LEFT_2, LEFT_3, RIGHT_1, RIGHT_2, RIGHT_3};           //FSM
+enum estados {START, LEFT_1, LEFT_2, LEFT_3, RIGHT_1, RIGHT_2, RIGHT_3};           //FSM
 
 
 /*******************************************************************************
@@ -40,14 +40,12 @@ static void get_current_values(void);
 /*******************************************************************************
  *                                  VARIABLES                                   *
  ******************************************************************************/
-enum states current_state = START;
-bool current_A;                      //Valor actual de A
-bool current_B;                      //Valor actual de B
-bool status;                         //Estado del encoder (para la FSM)
-encoderEvent_t encoder_event;        //Eveneto del encoder
-tim_id_t encoder_timer;              //timer
-
-
+static uint8_t current_state = START;
+static bool current_A;                      //Valor actual de A
+static bool current_B;                      //Valor actual de B
+static bool status;                         //Estado del encoder (para la FSM)
+static encoderEvent_t encoder_event;        //Eveneto del encoder
+static tim_id_t encoder_timer;              //timer
 
 /*******************************************************************************
  *******************************************************************************
@@ -70,7 +68,7 @@ void initEncoder() {
     status = false;                     //Variable de cambio en falso
 
     //Periodic Interuption ---> encoder_callback (1ms)
-	timerStart(encoder_timer, TIMER_MS2TICKS(1), TIM_MODE_PERIODIC, callback_encoder);
+	timerStart(encoder_timer, TIMER_MS2TICKS(ENCODER_TIME), TIM_MODE_PERIODIC, callback_encoder);
 }
 
 bool encoderGetStatus(){            //Si hay un evento, devolveme true, sino devolveme un false
