@@ -12,6 +12,7 @@
 #include "board.h"
 #include "gpio.h"
 #include "display.h"
+#include "timer.h"
 
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
@@ -43,22 +44,21 @@
  * ENUMS AND STRUCTURES
  ******************************************************************************/
 
-
-
-
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
  ******************************************************************************/
 
 static void reset_all (void);
 bool CardReaderIsReady();
+void bright_callback();
 
 
 /*******************************************************************************
  * VARIABLES
  ******************************************************************************/
 pin_t pin_arr[] = {DIO_1, DIO_3, DIO_5, DIO_7, DIO_10, DIO_11, DIO_13, DIO_15, DIO_2, DIO_4};
-
+tim_id_t intensity_timer;
+uint8_t b;
 
 /*******************************************************************************
  *******************************************************************************
@@ -71,21 +71,27 @@ void App_Init (void)
 {
 	initDisplay();
 
-	//digit_t msg[] = {IDX_H, IDX_O, IDX_L, IDX_A, IDX_CLEAR, IDX_C, IDX_H, IDX_I, IDX_C, IDX_O, IDX_S};
-	
-	// setStaticMode();
-	// loadBuffer(&msg[0], 4);
+	digit_t msg[] = {IDX_8, IDX_8, IDX_8, IDX_8};
+	// igit_t msg[] = {IDX_H, IDX_O, IDX_L, IDX_A, IDX_CLEAR, IDX_C, IDX_H, IDX_I, IDX_C, IDX_O, IDX_S};
 
+	setBrightness(1);
+
+	setStaticMode();
+	loadBuffer(&msg[0], 4);
+
+	intensity_timer = timerGetId();
+	timerCreate(intensity_timer, TIMER_MS2TICKS(5000), TIM_MODE_PERIODIC, bright_callback);
+		
 	// setScrollMode();
-  	//loadBuffer(&msg[0], 11);
+  	// loadBuffer(&msg[0], 11);
 
-  	digit_t pass[] = { IDX_DASH, IDX_DASH, IDX_DASH, IDX_5 };
-  	loadBuffer(&pass[0], 4);
-	bool blink_arr[] = { false, false, false, true};
-	setBlinkingDigits( &blink_arr[0] );
-	setBlinkMode();
-	//setBufferIndex(2);
-	showLastDigits(true);
+  	// digit_t pass[] = { IDX_DASH, IDX_DASH, IDX_DASH, IDX_5 };
+  	// loadBuffer(&pass[0], 4);
+	// bool blink_arr[] = { false, false, false, true};
+	// setBlinkingDigits( &blink_arr[0] );
+	// setBlinkMode();
+	// //setBufferIndex(2);
+	// showLastDigits(true);
 
 }
 
@@ -102,6 +108,10 @@ void App_Run (void)
 	// 	}
 	// }
 
+	if (b == 4){
+		timerStop(intensity_timer);
+		setBrightness(1);
+	}
 
   // setScrollMode();
   // loadBuffer(&msg[0], 4);
@@ -123,7 +133,10 @@ void App_Run (void)
                         LOCAL FUNCTION DEFINITIONS
  *******************************************************************************
  ******************************************************************************/
-
+void bright_callback(){
+	b++;
+	upBrightness();
+}
 
 /*******************************************************************************
  ******************************************************************************/
