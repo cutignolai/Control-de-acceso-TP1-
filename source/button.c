@@ -67,6 +67,11 @@ void initButton() {
 
     //Pins Modes//
 	gpioMode(PIN_C, INPUT);             //modo del pin
+    
+    // Led para mostrar cuando se ejecuta una interrupcion
+    gpioMode(PIN_LED_BLUE, OUTPUT);
+
+
 
     button_event = NONE_CLICK;               //Se inicializa con el evento nulo (que no hay)
     status = false;                     //Variable de cambio en falso
@@ -133,12 +138,15 @@ static buttonEvent_t event_coming(bool C){         //FSM: check if the user swit
 }
 
 
-static void callback_button(void){                          //el callback
+static void callback_button(void){ 
+    gpioWrite(PIN_LED_BLUE, LED_ACTIVE);                         //el callback
     get_current_values();                                   //Me fijo valores actuales de los pines de A, B y C
     button_event = event_coming(current_C);                 //Me fijo si hubo un cambio en C
+    gpioWrite(PIN_LED_BLUE, !LED_ACTIVE);
 }
 
-static void callback_click(void){                           //el callback
+static void callback_click(void){ 
+    gpioWrite(PIN_LED_BLUE, LED_ACTIVE);                          //el callback
     buttonEvent_t turn = NONE_CLICK;
     if(long_click_counter >= MAX_LONG_CLICK){       //branch
         turn = CLICK_LONG;              //si se apreto mucho tiempo, tengo un click sostenido
@@ -165,14 +173,17 @@ static void callback_click(void){                           //el callback
         long_click_counter = 0;
     }
     button_event = turn;
+    gpioWrite(PIN_LED_BLUE, !LED_ACTIVE);
 }
 
 static void get_current_values(void){       //Me fijo valor actual del pin
     current_C = gpioRead(PIN_C);
 }
 
-static void callback_click_long(void){                      //el callback
+static void callback_click_long(void){ 
+    gpioWrite(PIN_LED_BLUE, LED_ACTIVE);                     //el callback
     long_click_counter += PERIODIC_BUTTON_TIME;             //sumo counter del click long
+    gpioWrite(PIN_LED_BLUE, !LED_ACTIVE);
 }       //branch
 
 /*******************************************************************************
