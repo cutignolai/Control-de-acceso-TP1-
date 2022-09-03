@@ -65,6 +65,7 @@ void timer_isr(void);
 
 timer_t timers[TIMERS_MAX_CANT];
 tim_id_t timers_cant = TIMER_ID_INTERNAL+1;
+static bool yaInit = false;
 
 
 /*******************************************************************************
@@ -75,7 +76,6 @@ tim_id_t timers_cant = TIMER_ID_INTERNAL+1;
 
 void timerInit(void)
 {
-    bool yaInit = false;
     if (yaInit)
         return;
     

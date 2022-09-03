@@ -1,6 +1,6 @@
 /***************************************************************************//**
   @file     leds.c
-  @brief    leds driver
+  @brief    Leds Driver
   @author   Micho
  ******************************************************************************/
 
@@ -17,8 +17,10 @@
  *            CONSTANT AND MACRO DEFINITIONS USING #DEFINE                    *
  ******************************************************************************/
 
-#define LED_CONF_1  DIO_12
-#define LED_CONF_2  DIO_14
+#define LED_CONF_1  DIO_14
+#define LED_CONF_2  DIO_12
+
+#define LED_TIME	4
 
 /*******************************************************************************
  *                  ENUMERATIONS AND STRUCTURES AND TYPEDEFS                    *
@@ -64,7 +66,7 @@ void initLeds(){
 
 	leds_timer = timerGetId();
 	//Periodic Interuption ---> leds_callback (4ms)
-	timerStart(leds_timer, TIMER_MS2TICKS(4), TIM_MODE_PERIODIC, callback_leds);
+	timerStart(leds_timer, TIMER_MS2TICKS(LED_TIME), TIM_MODE_PERIODIC, callback_leds);
 
 }
 

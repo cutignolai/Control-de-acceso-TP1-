@@ -130,18 +130,17 @@ void App_Init (void)
     initLeds();
     initButton(); 
     initCardReader();
+
+    set_led(LED1);
+    set_led(LED3);
+
 }
 
 /* Función que se llama constantemente en un ciclo infinito */
 void App_Run (void)
 {
-	if( i == 0)
-    {
-        set_led(2);
-        //showMessage(&id, MAX_UNIT_ID, posicion_id);
-    }
-
     
+
 }
 
 
