@@ -24,7 +24,8 @@
 
 #define BLINK_T         500
 #define SCROLL_T        700
-#define MAX_REFRESH_T   8
+#define MAX_REFRESH_T   2
+#define MAX_INTENSITY   4
 
 /******* PINS *******/
 #define SEGA    DIO_1
@@ -149,8 +150,9 @@ digit_t buffer[BUFFER_MAX_LEN + 1] = {IDX_CLEAR, IDX_CLEAR, IDX_CLEAR, IDX_CLEAR
 uint8_t buffer_len;         // Cantidad de caracteres seteados del buffer
 uint8_t buffer_idx = 0;         // Caracter a partir de la cual mostrar
 
-uint8_t brightness = 1;
-uint8_t intensity = 1;
+uint8_t brightness = BRIGHTNESS_LOW;
+uint8_t brightness_count = 0;
+uint8_t intensity = MAX_INTENSITY >> BRIGHTNESS_LOW;
 
 uint8_t scroll_idx;         // Índice que indica el dígito del buffer que se va a mostrar en la posición 1 en ese instante de scroll
 
@@ -277,9 +279,9 @@ void setBlinkingDigits(bool* arr){
 void setBrightness(brightness_states_t bright){
     if ( BRIGHTNESS_LOW <= bright && bright <= BRIGHTNESS_HIGH ){
         brightness = bright;
+        uint8_t intensity = MAX_INTENSITY >> brightness;
     }
-    uint8_t intensity = 1 << brightness;
-    timerChangePeriod(refresh_timer, TIMER_MS2TICKS(MAX_REFRESH_T/intensity));
+    //timerChangePeriod(refresh_timer, TIMER_MS2TICKS(MAX_REFRESH_T/intensity));
 }
 
 void upBrightness(){
@@ -289,7 +291,6 @@ void upBrightness(){
 void downBrightness(){
     setBrightness(brightness - 1);
 }
-
 
 // void showLastBlinking(uint8_t input_idx){
 //     if (display_state != DISPLAY_BLINK){
@@ -334,40 +335,49 @@ void downBrightness(){
 
 void refresh_display()
 {
+    if( ! ( brightness_count % intensity ) ){
 
-    switch (display_state)
-    {
+        switch (display_state)
+        {
+            case DISPLAY_SCROLL:
+                if (buffer_len <= DISPLAY_LEN){
+                    set_digit(buffer[display_idx], display_idx);
+                } else {
+                    scroll_message();
+                }
+                break;
 
-		case DISPLAY_SCROLL:
-			if (buffer_len <= DISPLAY_LEN){
-				set_digit(buffer[display_idx], display_idx);
-			} else {
-				scroll_message();
-			}
-			break;
+            case DISPLAY_BLINK:
+                if (blink && blinking_digits[display_idx]){
+                    set_digit(IDX_CLEAR, display_idx);
+                } else {
+                set_digit(buffer[buffer_idx + display_idx], display_idx);
+                }
+                break;
 
-		case DISPLAY_BLINK:
-			if (blink && blinking_digits[display_idx]){
-                set_digit(IDX_CLEAR, display_idx);
-            } else {
-            set_digit(buffer[buffer_idx + display_idx], display_idx);
-            }
-            
-			//display_blink(&buffer[buffer_idx]);
-			break;
+            case DISPLAY_STATIC:
+                set_digit(buffer[buffer_idx + display_idx], display_idx);
+                break;
 
-		case DISPLAY_STATIC:
-			set_digit(buffer[buffer_idx + display_idx], display_idx);
-			break;
+            case DISPLAY_CLEAR:
+            default:
+                clear_display();
+                break;
+        }
+    }
+    
+	display_idx++;
 
-		case DISPLAY_CLEAR:
-		default:
-			clear_display();
-			break;
+    // brightness_count++;
+    if ( display_idx == DISPLAY_LEN){ 
+        display_idx = 0; 
+        brightness_count++;
+        if ( brightness_count >= MAX_INTENSITY ){
+            brightness_count = 0;
+        }
     }
 
-    display_idx++;
-    if (display_idx >= DISPLAY_LEN && intensity){ display_idx = 0; }
+    
 }
 
 
