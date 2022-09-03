@@ -175,7 +175,6 @@ tim_id_t scroll_timer;
 void initDisplay(){
     
     // INIT PINS
-    //pin_t pin_arr[] = {DIO_1, DIO_3, DIO_5, DIO_7, DIO_9, DIO_11, DIO_13, DIO_15, DIO_2, DIO_4};
     uint8_t i;
     for(i = 0; i < N_PINS; i++){
         gpioMode(seg_arr[i], OUTPUT);
@@ -183,15 +182,16 @@ void initDisplay(){
     gpioMode(SEL0, OUTPUT);
     gpioMode(SEL1, OUTPUT);
 
-
     // CREATE TIMERS
     timerInit();
     refresh_timer = timerGetId();
-    timerCreate(refresh_timer, TIMER_MS2TICKS(MAX_REFRESH_T/brightness), TIM_MODE_PERIODIC, refresh_display);
+    timerCreate(refresh_timer, TIMER_MS2TICKS(MAX_REFRESH_T), TIM_MODE_PERIODIC, refresh_display);
     blink_timer = timerGetId();
     timerCreate(blink_timer, TIMER_MS2TICKS(BLINK_T), TIM_MODE_PERIODIC, blink_digits);
     scroll_timer = timerGetId();
     timerCreate(scroll_timer, TIMER_MS2TICKS(SCROLL_T), TIM_MODE_PERIODIC, scroll_buffer);
+
+    setBrightness(BRIGHTNESS_MEDIUM);
 
     // INIT 7 SEGMENTS
     buffer_len = BUFFER_MAX_LEN;
@@ -202,20 +202,6 @@ void initDisplay(){
     // START DISPLAY
     timerActivate(refresh_timer);
 }                     
-
-// void showMessage(uint8_t *message, uint8_t message_len){
-//     if (display_state != DISPLAY_MESSAGE){
-//         timerReset(blink_timer);
-//         timerReset(scroll_timer);
-//         if (buffer_len > DISPLAY_LEN){
-//             timerActivate(scroll_timer);
-//         }
-//     }
-//     if (message_len > BUFFER_MAX_LEN) { message_len = BUFFER_MAX_LEN; }
-//     set_buffer(message, message_len);
-//     scroll_idx = 0;
-//     display_state = DISPLAY_MESSAGE;
-// }
 
 void setClearMode(){
     if (display_state != DISPLAY_CLEAR){
@@ -279,9 +265,8 @@ void setBlinkingDigits(bool* arr){
 void setBrightness(brightness_states_t bright){
     if ( BRIGHTNESS_LOW <= bright && bright <= BRIGHTNESS_HIGH ){
         brightness = bright;
-        uint8_t intensity = MAX_INTENSITY >> brightness;
+        intensity = MAX_INTENSITY >> brightness;
     }
-    //timerChangePeriod(refresh_timer, TIMER_MS2TICKS(MAX_REFRESH_T/intensity));
 }
 
 void upBrightness(){
@@ -291,41 +276,6 @@ void upBrightness(){
 void downBrightness(){
     setBrightness(brightness - 1);
 }
-
-// void showLastBlinking(uint8_t input_idx){
-//     if (display_state != DISPLAY_BLINK){
-//         timerReset(blink_timer);
-//         timerReset(scroll_timer);
-//         if (buffer_len != BUFFER_MAX_LEN){ 
-//             buffer[buffer_len] = char_arr[input_idx];
-//             buffer_len++; 
-//         } else {
-//             buffer[buffer_len - 1] = char_arr[input_idx];
-//         }
-//         blink = false;
-//         timerActivate(blink_timer);
-//     }
-//     else {
-//         buffer[buffer_len - 1] = char_arr[input_idx];
-//     }
-//     display_state = DISPLAY_BLINK;
-// }
-
-// NO VA EN CAPA DRIVERS
-// void showPasswordDigit(uint8_t char_idx, uint8_t position){
-//     if (display_state != DISPLAY_PASS){
-//         timerReset(blink_timer);
-//         timerReset(scroll_timer);
-//         blink = false;
-//         timerActivate(blink_timer);
-//     }
-//     display_state = DISPLAY_PASS;
-//     digit_t arr[] = {LOW_DASH, LOW_DASH, LOW_DASH, LOW_DASH};
-//     if ( position == DISPLAY_LEN){ position = DISPLAY_LEN - 1; }
-//     arr[position] = char_arr[char_idx];
-//     set_buffer(&arr[0], DISPLAY_LEN);
-//     // init timer
-// }
 
 /*******************************************************************************
  *******************************************************************************
@@ -364,11 +314,12 @@ void refresh_display()
                 clear_display();
                 break;
         }
+    } else {
+    	set_digit(IDX_CLEAR, DISPLAY_LEN - 1);
     }
     
 	display_idx++;
 
-    // brightness_count++;
     if ( display_idx == DISPLAY_LEN){ 
         display_idx = 0; 
         brightness_count++;
@@ -376,10 +327,7 @@ void refresh_display()
             brightness_count = 0;
         }
     }
-
-    
 }
-
 
 void scroll_message() {
 
@@ -392,15 +340,6 @@ void scroll_message() {
     	scroll_idx++;
     }
 }
-
-
-
-//     buffer_idx;
-//     set_digit(buffer_idx + display_idx);
-
-
-//     scroll_idx++;
-// }
 
 void clear_display(){
     clear_buffer();
@@ -422,6 +361,7 @@ void set_digit(digit_t number, uint8_t position){
     gpioWrite(SEL0, GET_SEL0(position));
     gpioWrite(SEL1, GET_SEL1(position));
 
+    // Segments ON
     uint8_t idx;
     for (idx = 0; idx < SEGMENTS; idx++){
         uint8_t set = character & 1;
@@ -452,43 +392,14 @@ void auto_set_buffer_index(){
     }
 }
 
-
-//     digit_t* idx = &buffer[0];
-//     if (scroll_idx > buffer_len){ 
-//         scroll_idx = 0;
-//         buffer_idx = 0; 
-//         }
-//     if (scroll_idx + DISPLAY_LEN <= buffer_len){
-//         buffer_idx = idx + scroll_idx;
-//         set_digit(buffer[buffer_idx + scroll_idx);
-//     } else {
-//         uint8_t i;
-//         for (i = scroll_idx; i < buffer_len; i++){
-//             set_digit(buffer[i], i - scroll_idx);
-//         }
-//         set_digit(IDX_CLEAR, i - scroll_idx);
-//         for (i = i + 1; i < scroll_idx + DISPLAY_LEN; i++){
-//             set_digit(buffer[i - buffer_len - 1], i - scroll_idx);
-//         }
-//     }
-// }
-
-// void display_blink(){
-//     digit_t* idx;
-//     if (buffer_len < DISPLAY_LEN){
-//         idx = &buffer[0];
-//     } else {
-//         idx = &buffer[buffer_len - DISPLAY_LEN]; 
-//     }
-//     uint8_t i;
-//     for (i = 0; i < DISPLAY_LEN; i++){
-//         if ( blink && ( i == buffer_len - 1 || ( buffer_len > DISPLAY_LEN - 1 && i == DISPLAY_LEN - 1))){
-//             set_digit(CLEAR, i);
-//         } else {
-//             set_digit(*(idx + i), i);
-//         }
-//     }
-// }
+void clear_buffer(void)
+{
+    uint8_t i;
+    for (i = 0; i < buffer_len; i++){
+    	buffer[i] = IDX_CLEAR;
+    }
+    buffer_len = 0;
+}
 
 void display_blink(digit_t* arr){
     uint8_t i;
@@ -501,39 +412,14 @@ void display_blink(digit_t* arr){
     }
 }
 
-// void display_pass(){
-//     uint8_t i;
-//     for (i = 0; i < DISPLAY_LEN; i++){
-//         if ( i == buffer_len - 1 ){
-//             if (blink){
-//                 set_digit(CLEAR, i);
-//             } else {
-//                 set_digit(buffer[buffer_len - 1], i);
-//             }
-//         } else if (i < buffer_len - 1){
-//             set_digit(DASH, i);
-//         } else {
-//             set_digit(CLEAR, i);
-//         }
-//     }
-// }
-
-// callback
+// callback scroll
 void scroll_buffer(){
     scroll_idx++;
 }
 
+// callback blink
 void blink_digits(){
     blink = !blink;
-}
-
-void clear_buffer(void)
-{
-    uint8_t i;
-    for (i = 0; i < buffer_len; i++){
-    	buffer[i] = IDX_CLEAR;
-    }
-    buffer_len = 0;
 }
 
 /*******************************************************************************

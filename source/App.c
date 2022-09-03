@@ -71,30 +71,36 @@ void App_Init (void)
 {
 	initDisplay();
 
-	digit_t msg[] = {IDX_8, IDX_8, IDX_8, IDX_8};
-	//digit_t msg[] = {IDX_H, IDX_O, IDX_L, IDX_A, IDX_CLEAR, IDX_C, IDX_H, IDX_I, IDX_C, IDX_O, IDX_S};
+	/***** TEST SCROLL *****/
+	digit_t msg[] = {IDX_H, IDX_O, IDX_L, IDX_A, IDX_CLEAR, IDX_C, IDX_H, IDX_I, IDX_C, IDX_O, IDX_S};
+	setScrollMode();
+  	loadBuffer(&msg[0], 11);
 
-	setBrightness(BRIGHTNESS_LOW);
-	gpioMode(PIN_LED_RED, OUTPUT);
-    gpioMode(PIN_LED_GREEN, OUTPUT);
+	// /***** TEST STATIC *****/
+	// digit_t msg[] = {IDX_H, IDX_O, IDX_L, IDX_A};
+	// setStaticMode();
+	// loadBuffer(&msg[0], 4);
 
-    gpioWrite(PIN_LED_RED, !LED_ACTIVE);
-    gpioWrite(PIN_LED_GREEN, !LED_ACTIVE);
+	// /***** TEST BRILLO *****/
+	// digit_t msg[] = {IDX_8, IDX_8, IDX_8, IDX_8};
+	// setBrightness(BRIGHTNESS_LOW);
+	// intensity_timer = timerGetId();
+	// timerStart(intensity_timer, TIMER_MS2TICKS(5000), TIM_MODE_PERIODIC, bright_callback);
 
-	setStaticMode();
-	loadBuffer(&msg[0], 4);
+	// /***** LEDS PARA TEST *****/
+	// gpioMode(PIN_LED_RED, OUTPUT);
+    // gpioMode(PIN_LED_GREEN, OUTPUT);
+    // gpioWrite(PIN_LED_RED, !LED_ACTIVE);
+    // gpioWrite(PIN_LED_GREEN, !LED_ACTIVE);
 
-	intensity_timer = timerGetId();
-	timerStart(intensity_timer, TIMER_MS2TICKS(5000), TIM_MODE_PERIODIC, bright_callback);
-		
-	// setScrollMode();
-  	// loadBuffer(&msg[0], 11);
-
+	// /***** TEST BLINK *****/
   	// digit_t pass[] = { IDX_DASH, IDX_DASH, IDX_DASH, IDX_5 };
   	// loadBuffer(&pass[0], 4);
 	// bool blink_arr[] = { false, false, false, true};
 	// setBlinkingDigits( &blink_arr[0] );
 	// setBlinkMode();
+
+	// /***** TEST BUFFER IDX *****/		
 	// //setBufferIndex(2);
 	// showLastDigits(true);
 
@@ -103,6 +109,7 @@ void App_Init (void)
 /* Función que se llama constantemente en un ciclo infinito */
 void App_Run (void)
 {
+	/***** TEST PINES *****/
 	// int j;
 	// for (j = 0; j < 4; j++){
 	// 	gpioWrite(DIO_2, GET_SEL0(j));
@@ -113,25 +120,16 @@ void App_Run (void)
 	// 	}
 	// }
 
-	if (b == 3){
-		timerStop(intensity_timer);
-		setBrightness(BRIGHTNESS_LOW);
-		gpioWrite(PIN_LED_GREEN, !LED_ACTIVE);
-		gpioWrite(PIN_LED_RED, LED_ACTIVE);
-		b++;
-	}
+	//			:)
 
-  // setScrollMode();
-  // loadBuffer(&msg[0], 4);
-
-  // digit_t msg2[] = {IDX_C, IDX_O, IDX_C, IDX_A, IDX_C, IDX_O, IDX_L, IDX_A};
-  // loadBuffer(&msg2[0], 8);
-
-  // bool blink_arr = { false, true, false, false};
-  // setBlinkingDigits( &blink_arr );
-  // setBlinkMode();
-  // setBufferIndex(2);
-  // showLastDigits(true);
+	// /***** TEST BRILLO *****/
+	// if (b == 3){
+	// 	timerStop(intensity_timer);
+	// 	setBrightness(BRIGHTNESS_LOW);
+	// 	gpioWrite(PIN_LED_GREEN, !LED_ACTIVE);
+	// 	gpioWrite(PIN_LED_RED, LED_ACTIVE);
+	// 	b++;
+	// }
 
 }
 
