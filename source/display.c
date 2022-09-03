@@ -32,7 +32,7 @@
 #define SEGB    DIO_3
 #define SEGC    DIO_5
 #define SEGD    DIO_7
-#define SEGE    DIO_10
+#define SEGE    DIO_9
 #define SEGF    DIO_11
 #define SEGG    DIO_13
 #define SEGDP   DIO_15

@@ -40,6 +40,8 @@
 #define GET_SEL0(x) (x & 1)
 #define GET_SEL1(x) ((x >> 1) & 1)
 
+#define GET_SIZE(x, y)      ( ( sizeof (x) ) / ( sizeof (y) ) )
+
 /*******************************************************************************
  * ENUMS AND STRUCTURES
  ******************************************************************************/
@@ -51,7 +53,7 @@
 static void reset_all (void);
 bool CardReaderIsReady();
 void bright_callback();
-
+static void show_input(digit_t *input_ptr, uint8_t input_ptr_len, uint8_t pos);
 
 /*******************************************************************************
  * VARIABLES
@@ -71,10 +73,10 @@ void App_Init (void)
 {
 	initDisplay();
 
-	/***** TEST SCROLL *****/
-	digit_t msg[] = {IDX_H, IDX_O, IDX_L, IDX_A, IDX_CLEAR, IDX_C, IDX_H, IDX_I, IDX_C, IDX_O, IDX_S};
-	setScrollMode();
-  	loadBuffer(&msg[0], 11);
+	// /***** TEST SCROLL *****/
+	// digit_t msg[] = {IDX_H, IDX_O, IDX_L, IDX_A, IDX_CLEAR, IDX_C, IDX_H, IDX_I, IDX_C, IDX_O, IDX_S};
+	// setScrollMode();
+  	// loadBuffer(&msg[0], 11);
 
 	// /***** TEST STATIC *****/
 	// digit_t msg[] = {IDX_H, IDX_O, IDX_L, IDX_A};
@@ -103,6 +105,10 @@ void App_Init (void)
 	// /***** TEST BUFFER IDX *****/		
 	// //setBufferIndex(2);
 	// showLastDigits(true);
+
+    /***** TEST SHOW INPUT *****/
+    digit_t msg[] = {1, 2, 3};
+    show_input(&msg[0], GET_SIZE(msg, msg[0]), GET_SIZE(msg, msg[0]) - 1);
 
 }
 
@@ -148,6 +154,30 @@ void bright_callback(){
 	} else {
 		gpioWrite(PIN_LED_GREEN, LED_ACTIVE);
 	}
+}
+
+static void show_input(digit_t *input_ptr, uint8_t input_len, uint8_t pos)
+{
+    bool blink[] = {false, false, false, false};
+    if(pos<DISPLAY_LEN)
+    {
+        blink[pos] = true;
+    }
+    else
+    {
+        blink[DISPLAY_LEN-1] = true;
+    }
+
+    setBlinkingDigits(&blink[0]);
+    showLastDigits(true);
+    loadBuffer(input_ptr, input_len);
+    setBlinkMode();
+}
+
+static void show_message(digit_t *msg_ptr, uint8_t msg_len)
+{
+    loadBuffer(msg_ptr, msg_len);
+    setScrollMode();
 }
 
 /*******************************************************************************
