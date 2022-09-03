@@ -11,6 +11,7 @@
 #include "leds.h"
 #include "timer.h"
 #include "board.h"
+#include "gpio.h"
 
 /*******************************************************************************
  *            CONSTANT AND MACRO DEFINITIONS USING #DEFINE                    *
@@ -31,17 +32,17 @@ typedef struct {
  *      FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE         *
  ******************************************************************************/
 
-void callback_leds();
+static void callback_leds();
 
 /*******************************************************************************
  *                                  VARIABLES                                   *
  ******************************************************************************/
 bool leds[NUM_LEDS];
 led_selector_t led_selector[] = {
-  {  LOW, LOW  },  //00 --> NINGUN LED
   {  LOW, HIGH },  //01 --> LED1
   { HIGH, LOW  },  //10 --> LED2
-  { HIGH, HIGH }   //11 --> LED3
+  { HIGH, HIGH },   //11 --> LED3
+  {  LOW, LOW  },  //00 --> NINGUN LED
 };
 uint8_t index = 0;
 tim_id_t leds_timer;
@@ -52,15 +53,17 @@ tim_id_t leds_timer;
  *******************************************************************************
  ******************************************************************************/
 void initLeds(){
-  gpioMode(LED_CONF_1, OUTPUT);
+	timerInit();
+	gpioMode(LED_CONF_1, OUTPUT);
 	gpioMode(LED_CONF_2, OUTPUT);
 
-  for(int i = 0; i < NUM_LEDS; i++){
+	for(int i = 0; i < NUM_LEDS; i++)
+	{
 		clear_led(i);
 	}
 
-  leds_timer = timerGetId();
-  //Periodic Interuption ---> leds_callback (4ms)
+	leds_timer = timerGetId();
+	//Periodic Interuption ---> leds_callback (4ms)
 	timerStart(leds_timer, TIMER_MS2TICKS(4), TIM_MODE_PERIODIC, callback_leds);
 
 }
@@ -86,16 +89,19 @@ void toggle_led(int l)    //not leds
  *******************************************************************************
  ******************************************************************************/
 
-
-void callback_leds()         //callback
+static void callback_leds()         //callback
 {
   if(leds[index]){
-    gpioWrite (LED_CONF_1, led_selector[index].led_bit_0);     //escribo en el primer selector, lo que vale el bit 0
+	// printf("%d", led_selector[index].led_bit_0);
+	// printf("%d\n", led_selector[index].led_bit_1);
+	gpioWrite (LED_CONF_1, led_selector[index].led_bit_0);     //escribo en el primer selector, lo que vale el bit 0
     gpioWrite (LED_CONF_2, led_selector[index].led_bit_1);     //escribo en el segundo selector, lo que vale el bit 1
   }
   else{
-    gpioWrite (LED_CONF_1, led_selector[LOW].led_bit_0);     //escribo en el primer selector, lo que vale el bit 0
-    gpioWrite (LED_CONF_2, led_selector[LOW].led_bit_1);     //escribo en el segundo selector, lo que vale el bit 1
+	// printf("%d", led_selector[index].led_bit_0);
+	// printf("%d\n", led_selector[index].led_bit_1);
+    gpioWrite (LED_CONF_1, led_selector[NUM_LEDS].led_bit_0);     //escribo en el primer selector, lo que vale el bit 0
+    gpioWrite (LED_CONF_2, led_selector[NUM_LEDS].led_bit_1);     //escribo en el segundo selector, lo que vale el bit 1
   }
   index++;
   index = (index == NUM_LEDS)? 0 : index;                     //si es mayor a la cantidad de leds, vuelvo el counter a 0

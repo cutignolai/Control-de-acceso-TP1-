@@ -23,9 +23,10 @@
 /*******************************************************************************
  *               ENUMERATIONS AND STRUCTURES AND TYPEDEFS                       *
  ******************************************************************************/
-typedef enum{LEFT,
-	RIGHT,
-	NONE
+typedef enum{
+  NONE_ENCODER = 0,
+  LEFT,
+  RIGHT
 }encoderEvent_t;
 
 

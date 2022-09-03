@@ -1,7 +1,7 @@
 /***************************************************************************//**
   @file     gpio.h
   @brief    Simple GPIO Pin services, similar to Arduino
-  @author   Nicolás Magliola
+  @author   Nicolï¿½s Magliola
  ******************************************************************************/
 
 #ifndef _GPIO_H_
@@ -13,7 +13,6 @@
 
 #include <stdint.h>
 #include <stdbool.h>
-
 
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
