@@ -172,8 +172,7 @@ void App_Run (void)
             default: break;
 		}
 	}
-
-
+}
 
 /*******************************************************************************
  *******************************************************************************
@@ -427,7 +426,6 @@ static estadosDelMenu_t modificar_brillo(eventosDelMenu_t evento)
     // evento izquierdas: -1 en el contador, con el punto
     // evento click: seleccionar en el con contador (setear con brillo X)
 
-
 	return proximo_estado;
 }
 
@@ -464,6 +462,12 @@ static estadosDelMenu_t verificar_estado (void)
 
     return proximo_estado;
 }
+
+/*******************************************************************************
+ *******************************************************************************
+                        LOCAL FUNCTION DEFINITIONS
+ *******************************************************************************
+ ******************************************************************************/
 
 static void reset_all (void)
 {
