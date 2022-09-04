@@ -33,27 +33,40 @@
 #define IDX_LOW_DASH    11
 #define IDX_POINT       12
 #define IDX_CLEAR       13
-#define IDX_A       14 
-#define IDX_a       15
-#define IDX_E       16
-#define IDX_e       17
-#define IDX_I       18
-#define IDX_O       19
-#define IDX_P       20
-#define IDX_r       21
-#define IDX_S       22
-#define IDX_U       23
-#define IDX_Y       24
+#define IDX_A     14
+#define IDX_a     15
+#define IDX_C     16
+#define IDX_d     17
+#define IDX_E     18
+#define IDX_e     19
+#define IDX_F     20
+#define IDX_G     21
+#define IDX_g     22
+#define IDX_H     23
+#define IDX_h     24
+#define IDX_I     25
+#define IDX_J     26
+#define IDX_j     27
+#define IDX_l     28
+#define IDX_L     29
+#define IDX_n     30
+#define IDX_O     31
+#define IDX_P     32
+#define IDX_Q     33
+#define IDX_r     34
+#define IDX_S     35
+#define IDX_U     36
+#define IDX_X     37
+#define IDX_Y     38
 
 /*******************************************************************************
  *               ENUMERATIONS AND STRUCTURES AND TYPEDEFS                       *
  ******************************************************************************/
 typedef uint8_t digit_t;
 typedef enum {
-   BRIGHTNESS_LOW = 1,
-   BRIGHTNESS_MEDIUM = 2,
-   BRIGHTNESS_HIGH = 3,
-   BRIGHTNESS_MAX = 4
+   BRIGHTNESS_LOW = 0,
+   BRIGHTNESS_MEDIUM = 1,
+   BRIGHTNESS_HIGH = 2
 } brightness_states_t;
 
 /*******************************************************************************

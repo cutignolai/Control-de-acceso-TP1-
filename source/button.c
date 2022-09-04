@@ -71,14 +71,14 @@ void initButton() {
 	gpioMode(PIN_C, INPUT);             //modo del pin
     
     // Led para mostrar cuando se ejecuta una interrupcion
-    gpioMode(PIN_LED_BLUE, OUTPUT);
-
-
+    // gpioMode(PIN_LED_BLUE, OUTPUT);
+    // gpioWrite(PIN_LED_BLUE, !LED_ACTIVE);
 
     button_event = NONE_CLICK;               //Se inicializa con el evento nulo (que no hay)
     status = false;                     //Variable de cambio en falso
 
     //Periodic Interuption ---> button_callback (1ms)
+	button_timer = timerGetId();
 	timerStart(button_timer, TIMER_MS2TICKS(PERIODIC_BUTTON_TIME), TIM_MODE_PERIODIC, callback_button);
 	timerCreate(click_timer, TIMER_MS2TICKS(SINGLESHOT_CLICK_TIME), TIM_MODE_SINGLESHOT, callback_click);     //inicializo el timer (de clicks futuros)
 	timerCreate(click_long_timer, TIMER_MS2TICKS(PERIODIC_LONG_CLICK_TIME), TIM_MODE_PERIODIC, callback_click_long);     //pregunto cada 10 ms si sigo ahi, y sumo counter long
@@ -142,15 +142,11 @@ static buttonEvent_t event_coming(bool C){         //FSM: check if the user swit
 
 
 static void callback_button(void){ 
-    gpioWrite(PIN_LED_BLUE, LED_ACTIVE);                         //el callback
     get_current_values();                                   //Me fijo valores actuales de los pines de A, B y C
     button_event = event_coming(current_C);                 //Me fijo si hubo un cambio en C
-    gpioWrite(PIN_LED_BLUE, !LED_ACTIVE);
 }
 
 static void callback_click(void){ 
-    gpioWrite(PIN_LED_BLUE, LED_ACTIVE);                          //el callback
-
 
     if(long_click_counter >= MAX_LONG_CLICK){       //branch
         turn = CLICK_LONG;              //si se apreto mucho tiempo, tengo un click sostenido
@@ -179,7 +175,6 @@ static void callback_click(void){
         long_click_counter = 0;
     }
     button_event = turn;
-    gpioWrite(PIN_LED_BLUE, !LED_ACTIVE);
 }
 
 static void get_current_values(void){       //Me fijo valor actual del pin

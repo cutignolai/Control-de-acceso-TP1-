@@ -55,7 +55,7 @@ typedef enum{
 
 
 #define MAX_UNIT_ID         8
-#define MAX_UNIT_PASS       4
+#define MAX_UNIT_PASS       5
 
 #define READY               true
 #define NOT_READY           !READY
@@ -88,7 +88,11 @@ static estadosDelMenu_t modificar_pass(eventosDelMenu_t evento);
 static estadosDelMenu_t modificar_brillo(eventosDelMenu_t evento);
 static estadosDelMenu_t verificar_estado (void);
 static void reset_all (void);
-static void showMessage(digit_t *input_ptr, uint8_t input_ptr_len, uint8_t pos);
+static void show_input(digit_t *input_ptr, uint8_t input_len, uint8_t pos);
+static void show_message(digit_t *msg_ptr, uint8_t msg_len);
+static void show_pass(digit_t *pass_ptr, uint8_t pass_len);
+static void show_enter(digit_t *input_ptr, uint8_t input_len);
+// static void showMessage(digit_t *input_ptr, uint8_t input_ptr_len, uint8_t pos);
 
 
 /*******************************************************************************
@@ -100,12 +104,12 @@ static estadosDelMenu_t estado = ESTADO_ID;
 static estadosDelMenu_t ultimo_estado = ESTADO_ID;
 
 // ID 
-static int id[] = {0, 0, 0, 0, 0, 0, 0, 0};
+static uint8_t id[] = {0, 0, 0, 0, 0, 0, 0, 0};
 static int posicion_id = 0;
 //static int id_buffer[MAX_UNIT_ID];
 
 // CONTRASENA
-static int pass[] = {0, 0, 0, 0};
+static uint8_t pass[] = {0, 0, 0, 0};
 static int posicion_pass = 0;
 
 // MESSAGE COMPLETE
@@ -129,11 +133,16 @@ void App_Init (void)
     initLeds();
     initButton(); 
     initCardReader();
+
+    set_led(LED1);
+    set_led(LED3);
+
 }
 
 /* Función que se llama constantemente en un ciclo infinito */
 void App_Run (void)
 {
+
 	eventosDelMenu_t evento = EVENTO_NONE;
 
     // Analizo si hubo un evento
@@ -172,10 +181,7 @@ void App_Run (void)
             default: break;
 		}
 	}
-
-    
 }
-
 
 /*******************************************************************************
  *******************************************************************************
@@ -201,7 +207,7 @@ static estadosDelMenu_t modificar_id(eventosDelMenu_t evento)
                     id[posicion_id] = 0;
                 }
                 
-                showMessage(&id, MAX_UNIT_ID, posicion_id);
+                show_input(&id[0], posicion_id + 1, posicion_id);
             }
             break;
 
@@ -211,12 +217,12 @@ static estadosDelMenu_t modificar_id(eventosDelMenu_t evento)
                 id[posicion_id] -= 1;
 
                 // Si ya alcance el maximo, vuelvo a cero
-                if (id[posicion_id] < 0)
+                if (id[posicion_id] > 9)
                 {
                     id[posicion_id] = 9;
                 }
 
-                showMessage(&id, MAX_UNIT_ID, posicion_id);
+                show_input(&id[0], posicion_id + 1, posicion_id);
             }
             break;
 
@@ -226,13 +232,14 @@ static estadosDelMenu_t modificar_id(eventosDelMenu_t evento)
 
             posicion_id += 1;
 
-            if(posicion_id > MAX_UNIT_ID)
+            if(posicion_id >= MAX_UNIT_ID)
             {
                 posicion_id = 0;
                 proximo_estado = ESTADO_PASS;
             }
 
-            showMessage(&id, MAX_UNIT_ID, posicion_id);
+            //show_enter(&id[0], posicion_id);
+            show_input(&id[0], posicion_id + 1, posicion_id);
 
             break;
 
@@ -255,9 +262,7 @@ static estadosDelMenu_t modificar_id(eventosDelMenu_t evento)
                 id[posicion_id] = 0;
             }
 
-            showMessage(&id, MAX_UNIT_ID, posicion_id);
-
-
+            show_input(&id[0], posicion_id + 1, posicion_id);
 
             break;
         
@@ -268,7 +273,7 @@ static estadosDelMenu_t modificar_id(eventosDelMenu_t evento)
                 reset_all();
             }
 
-            showMessage(&id, MAX_UNIT_ID, posicion_id);
+            show_input(&id[0], posicion_id + 1, posicion_id);
 
             break;
             
@@ -277,7 +282,7 @@ static estadosDelMenu_t modificar_id(eventosDelMenu_t evento)
             //id_buffer = getIdTarjeta();
             //hacer for
             proximo_estado = ESTADO_PASS;
-            showMessage(&id, MAX_UNIT_ID, posicion_id);
+            show_input(&id[0], posicion_id + 1, posicion_id);
             posicion_id = 0;
             break;
         
@@ -308,9 +313,7 @@ static estadosDelMenu_t modificar_pass(eventosDelMenu_t evento)
                     pass[posicion_pass] = 0;
                 }
 
-                digit_t pass_censored[] = {10, 10, 10, 10};
-                pass_censored[posicion_pass] = pass[posicion_pass];
-                showMessage(&pass_censored, MAX_UNIT_PASS, posicion_pass);
+                show_pass(&pass[0], posicion_pass + 1);
             }
             break;
 
@@ -320,21 +323,19 @@ static estadosDelMenu_t modificar_pass(eventosDelMenu_t evento)
                 pass[posicion_pass] -= 1;
 
                 // Si ya alcance el maximo, vuelvo a cero
-                if (pass[posicion_pass] < 0)
+                if (pass[posicion_pass] > 9)
                 {
                     pass[posicion_pass] = 9;
                 }
 
-                digit_t pass_censored[] = {10, 10, 10, 10};
-                pass_censored[posicion_pass] = pass[posicion_pass];
-                showMessage(&pass_censored, MAX_UNIT_PASS, posicion_pass);
+                show_pass(&pass[0], posicion_pass + 1);
             }
             break;
 
       
         case EVENTO_CLICK:
             
-            if(ha_hecho_click == SI)
+            ha_hecho_click == SI;
             {
                 posicion_pass += 1;
 
@@ -345,11 +346,9 @@ static estadosDelMenu_t modificar_pass(eventosDelMenu_t evento)
                     user_is_ready = READY;
                 }
             }
-            
 
-            digit_t pass_censored[] = {10, 10, 10, 10};
-            pass_censored[posicion_pass] = pass[posicion_pass];
-            showMessage(&pass_censored, MAX_UNIT_PASS, posicion_pass);
+            show_pass(&pass[0], posicion_pass + 1);
+
             break;
 
         case EVENTO_CLICK_2:
@@ -364,9 +363,7 @@ static estadosDelMenu_t modificar_pass(eventosDelMenu_t evento)
                 posicion_pass -=1;
                 id[posicion_pass] = 0;
 
-                int pass_censored[] = {10, 10, 10, 10};
-                pass_censored[posicion_pass] = pass[posicion_pass];
-                showMessage(&pass_censored, MAX_UNIT_PASS, posicion_pass);
+                show_pass(&pass[0], posicion_pass + 1);
             }
 
             break;
@@ -429,7 +426,6 @@ static estadosDelMenu_t modificar_brillo(eventosDelMenu_t evento)
     // evento izquierdas: -1 en el contador, con el punto
     // evento click: seleccionar en el con contador (setear con brillo X)
 
-
 	return proximo_estado;
 }
 
@@ -467,6 +463,12 @@ static estadosDelMenu_t verificar_estado (void)
     return proximo_estado;
 }
 
+/*******************************************************************************
+ *******************************************************************************
+                        LOCAL FUNCTION DEFINITIONS
+ *******************************************************************************
+ ******************************************************************************/
+
 static void reset_all (void)
 {
     // RESETEO ID
@@ -488,30 +490,49 @@ static void reset_all (void)
     ultimo_estado = ESTADO_ID;
 
     // RESETEO INTERFAZ
-    showMessage(&id, MAX_UNIT_ID, posicion_id);
+    setClearMode();
     //poner timer
     //clear_led(TODOS);
     ha_hecho_click = NO;
 
 }
 
-static void showMessage(digit_t *input_ptr, uint8_t input_ptr_len, uint8_t pos)
-{
-    bool blink[] = {false, false, false, false};
-    if(pos<DISPLAY_LEN)
-    {
+static void show_input(digit_t *input_ptr, uint8_t input_len, uint8_t pos){
 
+    bool blink[] = {false, false, false, false};
+    if (pos < DISPLAY_LEN) {
         blink[pos] = true;
     }
-    else
-    {
+    else {
         blink[DISPLAY_LEN-1] = true;
     }
 
     setBlinkingDigits(&blink[0]);
     showLastDigits(true);
-    loadBuffer(input_ptr, input_ptr_len);
+    printf("%i\n", *(input_ptr + 1));
+    loadBuffer(input_ptr, input_len);
     setBlinkMode();
+}
+
+static void show_message(digit_t *msg_ptr, uint8_t msg_len){
+
+    loadBuffer(msg_ptr, msg_len);
+    setScrollMode();
+} 
+
+static void show_enter(digit_t *input_ptr, uint8_t input_len){
+
+	loadBuffer(input_ptr, input_len);
+    showLastDigits(true);
+    setStaticMode();
+}
+
+static void show_pass(digit_t *pass_ptr, uint8_t pass_len){
+
+    digit_t pass[] = { IDX_DASH, IDX_DASH, IDX_DASH, IDX_DASH};
+    pass[pass_len - 1] = *(pass_ptr + pass_len - 1);
+    show_input(&pass[0], pass_len, pass_len - 1);
+
 }
 
 /*******************************************************************************
