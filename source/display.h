@@ -35,29 +35,31 @@
 #define IDX_CLEAR       13
 #define IDX_A     14
 #define IDX_a     15
-#define IDX_C     16
-#define IDX_d     17
-#define IDX_E     18
-#define IDX_e     19
-#define IDX_F     20
-#define IDX_G     21
-#define IDX_g     22
-#define IDX_H     23
-#define IDX_h     24
-#define IDX_I     25
-#define IDX_J     26
-#define IDX_j     27
-#define IDX_l     28
-#define IDX_L     29
-#define IDX_n     30
-#define IDX_O     31
-#define IDX_P     32
-#define IDX_Q     33
-#define IDX_r     34
-#define IDX_S     35
-#define IDX_U     36
-#define IDX_X     37
-#define IDX_Y     38
+#define IDX_b     16
+#define IDX_C     17
+#define IDX_d     18
+#define IDX_E     19
+#define IDX_e     20
+#define IDX_F     21
+#define IDX_G     22
+#define IDX_g     23
+#define IDX_H     24
+#define IDX_h     25
+#define IDX_I     26
+#define IDX_J     27
+#define IDX_j     28
+#define IDX_l     29
+#define IDX_L     30
+#define IDX_n     31
+#define IDX_O     32
+#define IDX_P     33
+#define IDX_Q     34
+#define IDX_r     35
+#define IDX_S     36
+#define IDX_t     37
+#define IDX_U     38
+#define IDX_X     39
+#define IDX_Y     40
 
 /*******************************************************************************
  *               ENUMERATIONS AND STRUCTURES AND TYPEDEFS                       *
@@ -156,6 +158,11 @@ void upBrightness();
  */
 void downBrightness();
 
+/**
+ * @brief Devuelve el nivel de brillo actual del display
+ * @return uint8_t brightness, puede ser BRIGHTNESS_LOW(0), BRIGHTNESS_MEDIUM(1) o BRIGHTNESS_HIGH(2)
+ */
+uint8_t getBrightnessState();
 // /**
 //  * @brief Muestra en el display un mensaje de longitud variable entre 1 y 16 dígitos
 //  * 

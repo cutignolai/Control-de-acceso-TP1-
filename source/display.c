@@ -76,6 +76,7 @@
 #define CLEAR       0x00 //0b00000000
 #define LET_A       0x77 //0b01110111
 #define LET_a       0x5F //0b01011111
+#define LET_b       0x7C //0b01111100
 #define LET_C       0x39 //0b00111001
 #define LET_d       0x5E //0b01011110
 #define LET_E       0x79 //0b01111001
@@ -96,6 +97,7 @@
 #define LET_Q       (NUM_0 | POINT)
 #define LET_r       0x33 //0b00110011
 #define LET_S       NUM_5
+#define LET_t       0x78 //0b01111000
 #define LET_U       0x3E //0b00111110
 #define LET_X       0x75 //0b01110110
 #define LET_Y       0x6E //0b01101110
@@ -138,8 +140,8 @@ void auto_set_buffer_index();
  * STATIC VARIABLES AND CONST VARIABLES WITH FILE LEVEL SCOPE
  ******************************************************************************/
 digit_t char_arr[] = {NUM_0, NUM_1, NUM_2, NUM_3, NUM_4, NUM_5, NUM_6, NUM_7, NUM_8, NUM_9, DASH, LOW_DASH, POINT, CLEAR, 
-LET_A, LET_a, LET_C, LET_d, LET_E, LET_e, LET_F, LET_G, LET_g, LET_H, LET_h, LET_I, LET_J, LET_j, LET_l, LET_L, LET_n, 
-LET_O, LET_P, LET_Q, LET_r, LET_S, LET_U, LET_X, LET_Y };
+LET_A, LET_a, LET_b, LET_C, LET_d, LET_E, LET_e, LET_F, LET_G, LET_g, LET_H, LET_h, LET_I, LET_J, LET_j, LET_l, LET_L, LET_n, 
+LET_O, LET_P, LET_Q, LET_r, LET_S, LET_t, LET_U, LET_X, LET_Y };
 
 uint8_t seg_arr[] = {SEGA, SEGB, SEGC, SEGD, SEGE, SEGF, SEGG, SEGDP};
 
@@ -275,6 +277,10 @@ void upBrightness(){
 
 void downBrightness(){
     setBrightness(brightness - 1);
+}
+
+uint8_t getBrightnessState(){
+    return brightness;
 }
 
 /*******************************************************************************

@@ -11,6 +11,7 @@
 #include <string.h>
 #include "board.h"
 #include "gpio.h"
+#include "timer.h"
 #include "display.h"
 #include "leds.h"
 #include "encoder.h"
@@ -25,11 +26,12 @@
 
 //----------- ESTADOS DEL MENU -----------
 typedef enum{
+    ESTADO_INIT,
     ESTADO_ID,
     ESTADO_PASS,
     ESTADO_BRILLO,
     ESTADO_VERIFICAR
-}estadosDelMenu_t;
+} estadosDelMenu_t;
 //----------------------------------------
 
 //----------- EVENTOS DEL MENU -----------
@@ -40,8 +42,9 @@ typedef enum{
     EVENTO_CLICK,
     EVENTO_CLICK_2,
     EVENTO_CLICK_3,
-    EVENTO_TARJETA
-}eventosDelMenu_t;
+    EVENTO_TARJETA,
+    EVENTO_MSG
+} eventosDelMenu_t;
 //----------------------------------------
 
 //----------- COLORES DEL LED ------------
@@ -49,7 +52,7 @@ typedef enum{
     LED1,
     LED2,
     LED3
-}colored_led_t;
+} colored_led_t;
 //-----------------------------------------
 
 
@@ -73,6 +76,8 @@ typedef enum{
 #define ACTIVADO            true
 #define DESACTIVADO         false
 
+#define MSG_TIME            500
+
 /*******************************************************************************
  * ENUMS AND STRUCTURES
  ******************************************************************************/
@@ -83,6 +88,7 @@ typedef enum{
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
  ******************************************************************************/
+static estadosDelMenu_t idle(eventosDelMenu_t evento);
 static estadosDelMenu_t modificar_id(eventosDelMenu_t evento);
 static estadosDelMenu_t modificar_pass(eventosDelMenu_t evento);
 static estadosDelMenu_t modificar_brillo(eventosDelMenu_t evento);
@@ -92,8 +98,7 @@ static void show_input(digit_t *input_ptr, uint8_t input_len, uint8_t pos);
 static void show_message(digit_t *msg_ptr, uint8_t msg_len);
 static void show_pass(digit_t *pass_ptr, uint8_t pass_len);
 static void show_enter(digit_t *input_ptr, uint8_t input_len);
-// static void showMessage(digit_t *input_ptr, uint8_t input_ptr_len, uint8_t pos);
-
+static void show_brightness();
 
 /*******************************************************************************
  * VARIABLES
@@ -116,9 +121,6 @@ static int posicion_pass = 0;
 static bool ha_hecho_click = NO;
 static bool user_is_ready = false;
 
-
-
-
 /*******************************************************************************
  *******************************************************************************
                         GLOBAL FUNCTION DEFINITIONS
@@ -128,15 +130,14 @@ static bool user_is_ready = false;
 /* Función que se llama 1 vez, al comienzo del programa */
 void App_Init (void)
 {
+    timerInit();
     initDisplay();
     initEncoder();
     initLeds();
     initButton(); 
     initCardReader();
 
-    set_led(LED1);
-    set_led(LED3);
-
+    messageSetStatus(ACTIVADO);
 }
 
 /* Función que se llama constantemente en un ciclo infinito */
@@ -161,11 +162,19 @@ void App_Run (void)
 		evento = buttonGetEvent();	
         buttonSetStatus(DESACTIVADO);
 	}
+    else if(messageHandlerStatus())
+    {
+    	evento = messageGetEvent();
+    	messageSetStatus(DESACTIVADO);
+    }
 
     // Si hubo un evento, veo en que estado de mi FSM estoy y le envio el evento
 	if(evento != EVENTO_NONE)
     {
 		switch(estado){
+            case ESTADO_INIT:
+                estado = idle(evento);
+                break;
             case ESTADO_ID:
                 estado = modificar_id(evento);
                 break;
@@ -173,7 +182,7 @@ void App_Run (void)
                 estado = modificar_pass(evento);
                 break;
             case ESTADO_BRILLO:
-                estado = modificar_brillo(evento);
+				estado = modificar_brillo(evento);
                 break;
             case ESTADO_VERIFICAR:
                 estado = verificar_estado();
@@ -189,9 +198,56 @@ void App_Run (void)
  *******************************************************************************
  ******************************************************************************/
 
+static estadosDelMenu_t idle(eventosDelMenu_t evento)
+{
+	digit_t msg[] = {IDX_I, IDX_d, IDX_L, IDX_E};
+	estadosDelMenu_t proximo_estado = ESTADO_INIT;
+
+    switch(evento)
+    {
+        case EVENTO_DER:
+        case EVENTO_IZQ:
+        case EVENTO_CLICK:
+
+            proximo_estado = ESTADO_ID;
+            messageSetStatus(ACTIVADO);
+
+            break;
+
+        case EVENTO_CLICK_2:
+        case EVENTO_CLICK_3:
+
+            proximo_estado = ESTADO_BRILLO;
+            messageSetStatus(ACTIVADO);
+
+            break;
+            
+
+        case EVENTO_TARJETA:
+            //id_buffer = getIdTarjeta();
+            //hacer for
+            proximo_estado = ESTADO_PASS;
+            messageSetStatus(ACTIVADO);
+            // show_input(&id[0], posicion_id + 1, posicion_id);
+            // posicion_id = 0;
+            break;
+        
+        case EVENTO_MSG:
+            show_message(&msg[0], 4);
+            break;
+        
+        default:
+            break;
+
+    }
+
+	return proximo_estado;
+}
+
 static estadosDelMenu_t modificar_id(eventosDelMenu_t evento)
 {
 	estadosDelMenu_t proximo_estado = ESTADO_ID;
+    digit_t msg[] = {IDX_U, IDX_S, IDX_e, IDX_r};
 
     switch(evento)
     {
@@ -236,6 +292,7 @@ static estadosDelMenu_t modificar_id(eventosDelMenu_t evento)
             {
                 posicion_id = 0;
                 proximo_estado = ESTADO_PASS;
+                messageSetStatus(ACTIVADO);
             }
 
             //show_enter(&id[0], posicion_id);
@@ -245,11 +302,12 @@ static estadosDelMenu_t modificar_id(eventosDelMenu_t evento)
 
         case EVENTO_CLICK_2:
 
-            if(ha_hecho_click == NO)
+            if( ha_hecho_click == NO )
             {
                 // Guardo el estado actual para luego retomar desde aca
                 ultimo_estado = ESTADO_ID;
                 proximo_estado = ESTADO_BRILLO;
+                messageSetStatus(ACTIVADO);
             }
 
             else if (ha_hecho_click == SI)
@@ -260,6 +318,9 @@ static estadosDelMenu_t modificar_id(eventosDelMenu_t evento)
                 // Me ubico en el ultimo digito ingresado y lo pongo en 0
                 posicion_id -=1;
                 id[posicion_id] = 0;
+                if (!posicion_id) {
+                	ha_hecho_click = NO;
+                }
             }
 
             show_input(&id[0], posicion_id + 1, posicion_id);
@@ -268,7 +329,7 @@ static estadosDelMenu_t modificar_id(eventosDelMenu_t evento)
         
         case EVENTO_CLICK_3:
 
-            if(ha_hecho_click == SI)
+            if( ha_hecho_click == SI )
             {
                 reset_all();
             }
@@ -282,9 +343,13 @@ static estadosDelMenu_t modificar_id(eventosDelMenu_t evento)
             //id_buffer = getIdTarjeta();
             //hacer for
             proximo_estado = ESTADO_PASS;
-            show_input(&id[0], posicion_id + 1, posicion_id);
-            posicion_id = 0;
+            messageSetStatus(ACTIVADO);
+            // show_input(&id[0], posicion_id + 1, posicion_id);
+            // posicion_id = 0;
             break;
+
+        case EVENTO_MSG:
+            show_message(&msg[0], 4);
         
         default:
             break;
@@ -298,6 +363,7 @@ static estadosDelMenu_t modificar_id(eventosDelMenu_t evento)
 static estadosDelMenu_t modificar_pass(eventosDelMenu_t evento)
 {
 	estadosDelMenu_t proximo_estado = ESTADO_PASS;
+    digit_t msg[] = {IDX_P, IDX_A, IDX_S, IDX_S};
 
     switch(evento)
     {
@@ -376,10 +442,12 @@ static estadosDelMenu_t modificar_pass(eventosDelMenu_t evento)
             }
 
             break;
+    
+        case EVENTO_MSG:
+            show_message(&msg[0], 4);
 
         default:
             break;
-    
     
     }
 
@@ -390,6 +458,7 @@ static estadosDelMenu_t modificar_pass(eventosDelMenu_t evento)
 static estadosDelMenu_t modificar_brillo(eventosDelMenu_t evento)
 {
 	estadosDelMenu_t proximo_estado = ESTADO_BRILLO;
+    digit_t msg[] = {IDX_b, IDX_r, IDX_I, IDX_g, IDX_h, IDX_t, IDX_n, IDX_e, IDX_S, IDX_S};
 
     // Mostrar un caracter
     //showPasswordDigit(0, 0, MAX_UNIT_PASS);
@@ -398,17 +467,24 @@ static estadosDelMenu_t modificar_brillo(eventosDelMenu_t evento)
     {
         case EVENTO_DER:
 
-            //bright_up();
+            upBrightness();
+            show_brightness();
             break;
 
         case EVENTO_IZQ:
-
-            //bright_down();
+            
+            downBrightness();
+            show_brightness();
             break;
 
         case EVENTO_CLICK:
             
             proximo_estado = ultimo_estado;
+            messageSetStatus(ACTIVADO);
+            break;
+
+        case EVENTO_MSG:
+            show_message(&msg[0], 10);    
             break;
     
         default:
@@ -450,10 +526,14 @@ static estadosDelMenu_t verificar_estado (void)
 
     if( checkUser(id_char, pass_char) == USUARIO_VALIDO)
     {
+        digit_t msg[] = {IDX_C, IDX_L, IDX_O, IDX_S, IDX_E, IDX_d};
+        show_message(&msg[0], 6);
         set_led(LED2);
     } 
     else
     {
+        digit_t msg[] = {IDX_O, IDX_P, IDX_e, IDX_n};
+        show_message(&msg[0], 4);
         set_led(LED3);
     }
     
@@ -533,6 +613,44 @@ static void show_pass(digit_t *pass_ptr, uint8_t pass_len){
     pass[pass_len - 1] = *(pass_ptr + pass_len - 1);
     show_input(&pass[0], pass_len, pass_len - 1);
 
+}
+
+static void show_brightness(){
+    switch (getBrightnessState()) {
+        digit_t bmsg[BRIGHTNESS_HIGH + 1];
+    case BRIGHTNESS_LOW:
+        bmsg[0] = IDX_b;
+        bmsg[1] = BRIGHTNESS_LOW + 1;
+        show_message(&bmsg[0], 2);
+        clear_led(LED1);
+        clear_led(LED2);
+        set_led(LED3);
+        break;
+    
+    case BRIGHTNESS_MEDIUM:
+        bmsg[0] = IDX_b;
+        bmsg[1] = IDX_CLEAR;
+        bmsg[2] = BRIGHTNESS_MEDIUM + 1;
+        show_message(&bmsg[0], 3);
+        clear_led(LED1);
+        set_led(LED2);
+        set_led(LED3);
+        break;
+
+    case BRIGHTNESS_HIGH:
+        bmsg[0] = IDX_b;
+        bmsg[1] = IDX_CLEAR;
+        bmsg[2] = IDX_CLEAR;
+        bmsg[3] = BRIGHTNESS_HIGH + 1;
+        show_message(&bmsg[0], 4);
+        set_led(LED1);
+        set_led(LED2);
+        set_led(LED3);
+        break;
+
+    default:
+        break;
+    }
 }
 
 /*******************************************************************************
