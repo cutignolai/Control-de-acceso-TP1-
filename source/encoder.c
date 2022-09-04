@@ -62,7 +62,7 @@ void initEncoder() {
 	gpioMode(PIN_B, INPUT);
 
     // Led para mostrar cuando se ejecuta una interrupcion
-    gpioMode(PIN_LED_BLUE, OUTPUT);
+    // gpioMode(PIN_LED_BLUE, OUTPUT);
 
     encoder_event = NONE_ENCODER;               //Se inicializa con el evento nulo (que no hay)
     status = false;                     //Variable de cambio en falso
