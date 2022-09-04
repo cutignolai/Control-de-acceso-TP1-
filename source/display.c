@@ -22,8 +22,8 @@
 #define SEG_ON  1
 #define SEG_OFF 0
 
-#define BLINK_T         500
-#define SCROLL_T        700
+#define BLINK_T         200
+#define SCROLL_T        600
 #define MAX_REFRESH_T   2
 #define MAX_INTENSITY   4
 
@@ -32,7 +32,7 @@
 #define SEGB    DIO_3
 #define SEGC    DIO_5
 #define SEGD    DIO_7
-#define SEGE    DIO_10
+#define SEGE    DIO_9
 #define SEGF    DIO_11
 #define SEGG    DIO_13
 #define SEGDP   DIO_15
