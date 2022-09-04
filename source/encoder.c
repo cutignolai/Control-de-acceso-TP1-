@@ -17,15 +17,15 @@
  *                 CONSTANT AND MACRO DEFINITIONS USING #DEFINE                 *
  ******************************************************************************/
 
-#define PIN_A   DIO_6
-#define PIN_B   DIO_8
-
+#define PIN_A   DIO_8
+#define PIN_B   DIO_6
+#define ENCODER_TIME    1
 
 /*******************************************************************************
  *                              ENUMS AND STRUCTURES                            *
  ******************************************************************************/
 
-enum states {START, LEFT_1, LEFT_2, LEFT_3, RIGHT_1, RIGHT_2, RIGHT_3};           //FSM
+enum estados {START, LEFT_1, LEFT_2, LEFT_3, RIGHT_1, RIGHT_2, RIGHT_3};           //FSM
 
 
 /*******************************************************************************
@@ -33,21 +33,19 @@ enum states {START, LEFT_1, LEFT_2, LEFT_3, RIGHT_1, RIGHT_2, RIGHT_3};         
  ******************************************************************************/
 
 static encoderEvent_t event_coming(bool A, bool B);
-static void callback_encoder(void);
+void callback_encoder(void);
 static void get_current_values(void);
 
 
 /*******************************************************************************
  *                                  VARIABLES                                   *
  ******************************************************************************/
-static enum states current_state = START;
+
 static bool current_A;                      //Valor actual de A
 static bool current_B;                      //Valor actual de B
 static bool status;                         //Estado del encoder (para la FSM)
 static encoderEvent_t encoder_event;        //Eveneto del encoder
 static tim_id_t encoder_timer;              //timer
-
-
 
 /*******************************************************************************
  *******************************************************************************
@@ -63,11 +61,14 @@ void initEncoder() {
 	gpioMode(PIN_A, INPUT);
 	gpioMode(PIN_B, INPUT);
 
+    // Led para mostrar cuando se ejecuta una interrupcion
+    gpioMode(PIN_LED_BLUE, OUTPUT);
+
     encoder_event = NONE_ENCODER;               //Se inicializa con el evento nulo (que no hay)
     status = false;                     //Variable de cambio en falso
 
     //Periodic Interuption ---> encoder_callback (1ms)
-	timerStart(encoder_timer, TIMER_MS2TICKS(1), TIM_MODE_PERIODIC, &callback_encoder);
+	timerStart(encoder_timer, TIMER_MS2TICKS(ENCODER_TIME), TIM_MODE_PERIODIC, callback_encoder);
 }
 
 bool encoderGetStatus(){            //Si hay un evento, devolveme true, sino devolveme un false
@@ -86,6 +87,7 @@ encoderEvent_t encoderGetEvent(){          //Getter del evento del encoder
 
 bool encoderSetStatus(bool change_state){            //Setter para que la app me lo pueda cambiar
 	status = change_state;
+	return status;
 }
 
 /*******************************************************************************
@@ -95,6 +97,8 @@ bool encoderSetStatus(bool change_state){            //Setter para que la app me
  ******************************************************************************/
 
 static encoderEvent_t event_coming(bool A, bool B){         //FSM: check if the user switch left or right
+
+	static uint8_t current_state = START;
 
     encoderEvent_t turn = NONE_ENCODER;                             //Todavía no hay giro ni nada
     // Veo si hubo cambió (flanco descendente o ascendente)
@@ -190,10 +194,13 @@ static encoderEvent_t event_coming(bool A, bool B){         //FSM: check if the 
 }
 
 
-static void callback_encoder(void){                         //el callback
+void callback_encoder(void){  
+    //gpioWrite(PIN_LED_BLUE, LED_ACTIVE);                       //el callback
     get_current_values();                                   //Me fijo valores actuales de los pines de A y B
     encoder_event = event_coming(current_A, current_B);     //Me fijo si hubo un cambio en A o en B
+    //gpioWrite(PIN_LED_BLUE, !LED_ACTIVE);
 }
+
 
 static void get_current_values(void){       //Me fijo valor actual del pin
 	current_A = gpioRead(PIN_A);

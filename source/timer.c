@@ -165,11 +165,15 @@ void timerActivate(tim_id_t id){
 
 // Modifica el tiempo de un timer y lo reinicia
 void timerChangePeriod(tim_id_t id, ttick_t ticks){
+    // printf("ticks anteriores: %i\n", timers[id].cnt);
+    // printf("período anterior: %i\n", timers[id].period);
     timers[id].running = 0;
     timers[id].period = ticks;
     timers[id].cnt = ticks;
     timers[id].expired = 0;
     timers[id].running = 1;
+    // printf("ticks nuevos: %i\n", timers[id].cnt);
+    // printf("período nuevo: %i\n", timers[id].period);
 }
 
 // Modifica la callback de un timer y lo reinicia

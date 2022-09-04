@@ -11,24 +11,27 @@
  ******************************************************************************/
 
 
-
-
 /*******************************************************************************
  *          CONSTANT AND MACRO DEFINITIONS USING #DEFINE                        *
  ******************************************************************************/
 
-
+#define PERIODIC_BUTTON_TIME    1     //ms
+#define SINGLESHOT_CLICK_TIME   500   //ms
 
 
 /*******************************************************************************
  *               ENUMERATIONS AND STRUCTURES AND TYPEDEFS                       *
  ******************************************************************************/
+
 typedef enum{
+  NONE_CLICK,
+  NOT_FOR_ME1,
+  NOT_FOR_ME2,
   CLICK,
-	CLICK_2,
+  CLICK_2,
   CLICK_3,
-	NONE_CLICK
-} buttonEvent_t;
+}buttonEvent_t;
+
 
 /*******************************************************************************
  *                  VARIABLE PROTOTYPES WITH GLOBAL SCOPE                       *
@@ -38,13 +41,15 @@ typedef enum{
  *                   FUNCTION PROTOTYPES WITH GLOBAL SCOPE                      *
  ******************************************************************************/
 
-void initButton(void);                           //Inicialización del encoder
+
+void initButton();                           //Inicialización del encoder
 
 bool buttonGetStatus();                      //Me devuelve si hubo un cambio en la perilla
 
 bool buttonSetStatus(bool change_state);     //Me setea el status para que no quede en evento
 
-buttonEvent_t buttonGetEvent();             //Me devuelve si fue un giro hacia la derecha, izquierda, click o nada aun
+buttonEvent_t buttonGetEvent();              //Me devuelve si fue un giro hacia la derecha, izquierda, click o nada aun
+
 
 /*******************************************************************************
  ******************************************************************************/
