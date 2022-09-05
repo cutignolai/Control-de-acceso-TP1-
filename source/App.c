@@ -227,6 +227,7 @@ static estadosDelMenu_t idle(eventosDelMenu_t evento)
 {
 	digit_t msg[] = {IDX_I, IDX_d, IDX_L, IDX_E};
 	estadosDelMenu_t proximo_estado = ESTADO_ID;
+	uint8_t *p;
 
     switch(evento)
     {
@@ -249,7 +250,7 @@ static estadosDelMenu_t idle(eventosDelMenu_t evento)
             
 
         case EVENTO_TARJETA:
-            uint8_t *p = processData();
+        	p = processData();
             if (getError() == NO_ERROR){
                 uint8_t i;
                 for (i=0; i<8; i++)
@@ -261,7 +262,7 @@ static estadosDelMenu_t idle(eventosDelMenu_t evento)
                 posicion_id = 0;
             }
             else{
-                reset_all()
+                reset_all();
                 proximo_estado = ESTADO_INIT;
                 messageSetStatus(ACTIVADO);
             }
@@ -284,6 +285,8 @@ static estadosDelMenu_t modificar_id(eventosDelMenu_t evento)
 {
 	estadosDelMenu_t proximo_estado = ESTADO_ID;
     digit_t msg[] = {IDX_U, IDX_S, IDX_e, IDX_r};
+    uint8_t *p;
+    clear_leds();
 
     switch(evento)
     {
@@ -378,7 +381,7 @@ static estadosDelMenu_t modificar_id(eventosDelMenu_t evento)
             
 
         case EVENTO_TARJETA:
-            uint8_t *p = processData();
+            p = processData();
             if (getError() == NO_ERROR){
                 uint8_t i;
                 for (i=0; i<8; i++)
@@ -390,7 +393,7 @@ static estadosDelMenu_t modificar_id(eventosDelMenu_t evento)
                 posicion_id = 0;
             }
             else{
-                reset_all()
+                reset_all();
                 proximo_estado = ESTADO_INIT;
                 messageSetStatus(ACTIVADO);
             }
@@ -413,6 +416,7 @@ static estadosDelMenu_t modificar_pass(eventosDelMenu_t evento)
 {
 	estadosDelMenu_t proximo_estado = ESTADO_PASS;
     digit_t msg[] = {IDX_P, IDX_A, IDX_S, IDX_S};
+    clear_leds();
 
     switch(evento)
     {
@@ -505,7 +509,7 @@ static estadosDelMenu_t modificar_pass(eventosDelMenu_t evento)
         	break;
 
         case EVENTO_TARJETA:
-            reset_all()
+            reset_all();
             proximo_estado = ESTADO_INIT;
             //messageSetStatus(ACTIVADO); 
             break;
