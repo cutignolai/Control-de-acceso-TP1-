@@ -31,7 +31,9 @@ typedef enum{
     ESTADO_ID,
     ESTADO_PASS,
     ESTADO_BRILLO,
-    ESTADO_VERIFICAR
+    ESTADO_VERIFICAR,
+    ESTADO_OPEN,
+    ESTADO_CLOSE
 } estadosDelMenu_t;
 //----------------------------------------
 
@@ -79,7 +81,8 @@ typedef enum{
 #define ACTIVADO            true
 #define DESACTIVADO         false
 
-#define MSG_TIME            500
+#define OPEN_TIME           5000
+#define SEC                 1000
 
 /*******************************************************************************
  * ENUMS AND STRUCTURES
@@ -96,12 +99,15 @@ static estadosDelMenu_t modificar_id(eventosDelMenu_t evento);
 static estadosDelMenu_t modificar_pass(eventosDelMenu_t evento);
 static estadosDelMenu_t modificar_brillo(eventosDelMenu_t evento);
 static estadosDelMenu_t verificar_estado (void);
+static estadosDelMenu_t open_door(void);
 static void reset_all (void);
+static void open_callback(void);
 static void show_input(digit_t *input_ptr, uint8_t input_len, uint8_t pos);
 static void show_message(digit_t *msg_ptr, uint8_t msg_len);
 static void show_pass(digit_t *pass_ptr, uint8_t pass_len);
 static void show_enter(digit_t *input_ptr, uint8_t input_len);
 static void show_brightness();
+
 
 /*******************************************************************************
  * VARIABLES
@@ -123,6 +129,10 @@ static uint8_t posicion_pass = 0;
 static bool ha_hecho_click = NO;
 static bool user_is_ready = false;
 
+// TIMERS
+static tim_id_t open_timer;
+static uint8_t open_count;
+
 /*******************************************************************************
  *******************************************************************************
                         GLOBAL FUNCTION DEFINITIONS
@@ -138,6 +148,9 @@ void App_Init (void)
     initLeds();
     initButton(); 
     initCardReader();
+
+    open_timer = timerGetId();
+    timerCreate(open_timer, TIMER_MS2TICKS(SEC), TIM_MODE_PERIODIC, open_callback);
 
     messageSetStatus(ACTIVADO);
 }
@@ -189,6 +202,8 @@ void App_Run (void)
             case ESTADO_VERIFICAR:
                 estado = verificar_estado();
                 break;
+            case ESTADO_OPEN:
+                estado = open_door();
             default: break;
 		}
 	}
@@ -410,6 +425,7 @@ static estadosDelMenu_t modificar_pass(eventosDelMenu_t evento)
 
                 if(posicion_pass >= MAX_UNIT_PASS)
                 {
+                	posicion_pass -= 1;
                     proximo_estado = ESTADO_VERIFICAR;
                     user_is_ready = READY;
                     messageSetStatus(ACTIVADO);
@@ -527,15 +543,9 @@ static estadosDelMenu_t verificar_estado (void)
         	pass_char[i] = (char)(pass[i]);
         }
 
-    if( checkUser(id_char, pass_char, posicion_pass) )
+    if( checkUser(id_char, pass_char, posicion_pass + 1) )
     {
-    	digit_t msg[] = {IDX_O, IDX_P, IDX_e, IDX_n};
-		show_message(&msg[0], 4);
-		clear_led(LED1);
-		clear_led(LED2);
-		set_led(LED3);
-		timerDelay(TIMER_MS2TICKS(5000));
-		// poner timer
+		proximo_estado = ESTADO_OPEN;
     } 
     else
     {
@@ -547,8 +557,25 @@ static estadosDelMenu_t verificar_estado (void)
 		timerDelay(TIMER_MS2TICKS(5000));
     }
     
-    reset_all();
-    //showMessage(id, MAX_UNIT_ID);
+    //reset_all();
+
+    return proximo_estado;
+}
+
+static estadosDelMenu_t open_door(void)
+{
+    estadosDelMenu_t proximo_estado = ESTADO_OPEN;
+    digit_t msg[] = {IDX_O, IDX_P, IDX_e, IDX_n};
+    show_message(&msg[0], 4);
+    toggle_led(LED1);
+    clear_led(LED2);
+    set_led(LED3);
+
+    if (open_count >= OPEN_TIME/SEC){
+        timerReset(open_timer);
+        reset_all();
+        proximo_estado = ESTADO_INIT;
+    }
 
     return proximo_estado;
 }
@@ -581,12 +608,17 @@ static void reset_all (void)
 
     // RESETEO INTERFAZ
     setClearMode();
-    //poner timer
-    //clear_led(TODOS);
+    clear_leds();
     ha_hecho_click = NO;
+    timerReset(open_timer);
 
     messageSetStatus(ACTIVADO);
 
+}
+
+static void open_callback(void){
+    open_count++;
+    messageSetStatus(ACTIVADO);
 }
 
 static void show_input(digit_t *input_ptr, uint8_t input_len, uint8_t pos){
