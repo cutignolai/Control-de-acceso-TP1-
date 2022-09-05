@@ -22,11 +22,11 @@
 /*******************************************************************************
  *                  VARIABLE PROTOTYPES WITH GLOBAL SCOPE                       *
  ******************************************************************************/
-User_t user1 = {{0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 255}};
-User_t user2 = {{0, 0, 0, 0, 0, 0, 0, 1}, {0, 0, 0, 0, 1}};
-User_t user3 = {{1, 2, 3, 4, 0, 0, 0, 0}, {1, 1, 4, 4, 255}};
-User_t user4 = {{3, 4, 8, 9, 0, 2, 2, 3}, {2, 3, 9, 1, 0}};
-User_t user5 = {{1, 2, 3, 4, 5, 6, 7, 8}, {1, 2, 3, 4, 255}};
+User_t user1 = {{0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0}, 4};
+User_t user2 = {{0, 0, 0, 0, 0, 0, 0, 1}, {0, 0, 0, 0, 1}, 5};
+User_t user3 = {{1, 2, 3, 4, 0, 0, 0, 0}, {1, 1, 4, 4}, 4};
+User_t user4 = {{3, 4, 8, 9, 0, 2, 2, 3}, {2, 3, 9, 1, 0}, 5};
+User_t user5 = {{1, 2, 3, 4, 5, 6, 7, 8}, {1, 2, 3, 4}, 4};
 
 
 
@@ -58,7 +58,7 @@ bool checkUser(uint8_t id[], uint8_t pass[], uint8_t pass_len)
     uint8_t i;
     for(i = 0; i < ( sizeof all_users)/(sizeof all_users[0]); i++)
     {
-        if ( arr_eq(all_users[i].id, MAX_ID, id, MAX_ID) && arr_eq(all_users[i].pass, (sizeof all_users[i].pass)/(sizeof i), pass, pass_len) )
+        if ( arr_eq(all_users[i].id, MAX_ID, id, MAX_ID) && arr_eq(all_users[i].pass, all_users[i].len, pass, pass_len) )
         {
             answer = true;
             break;

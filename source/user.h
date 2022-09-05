@@ -29,6 +29,7 @@
 typedef struct Users {
 	uint8_t id[MAX_ID];
 	uint8_t pass[MAX_PASS];
+	uint8_t len;
 } User_t;
 
 

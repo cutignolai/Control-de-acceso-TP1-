@@ -70,6 +70,14 @@ void initLeds(){
 
 }
 
+void clear_leds()
+{
+	uint8_t i;
+	for (i = 0; i < NUM_LEDS; i++){
+		leds[i] = false;
+	}
+}
+
 void set_led(int l)       //set  true
 {
 	leds[l] = true;
