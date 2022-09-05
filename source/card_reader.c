@@ -18,9 +18,9 @@
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
  //Pins from the card reader
-#define PIN_CR_DATA    PORTNUM2PIN(PB,2)        //Card reader data entry, LS bit comes out first
-#define PIN_CR_CLOCK    PORTNUM2PIN(PB,3)       //Card reader clock entry, data changes on positive edge
-#define PIN_CR_ENABLE    PORTNUM2PIN(PB,10)     //Card reader enable, low while card is sliding
+#define PIN_CR_DATA      PORTNUM2PIN(PB,11)        //Card reader data entry, LS bit comes out first
+#define PIN_CR_CLOCK     PORTNUM2PIN(PC,11)      //Card reader clock entry, data changes on positive edge
+#define PIN_CR_ENABLE    PORTNUM2PIN(PC,10)     //Card reader enable, low while card is sliding
 
 //Characters from the card
 #define SS ';'
@@ -71,6 +71,9 @@ static void validate_LRC(uint8_t new_char);
 static void add2track (uint8_t new_char);
 static void add2ID (uint8_t index, uint8_t new_char);
 
+
+void write_data (bool pin);
+void print_data (void);
 /*******************************************************************************
  *******************************************************************************
                         GLOBAL FUNCTION DEFINITIONS
@@ -92,7 +95,7 @@ void initCardReader(void){
         gpioMode(PIN_CR_ENABLE, INPUT);
         gpioIRQ(PIN_CR_ENABLE, GPIO_IRQ_MODE_BOTH_EDGES, irq_enable);
 
-        NVIC_EnableIRQ(PORTB_IRQn);
+        NVIC_EnableIRQ(PORTC_IRQn);
 
         data_was_stored = false;
         enable_interrupt = false;
@@ -118,12 +121,15 @@ void resetReader (void){
     track_index = 0;
 
     uint8_t i;
-    for (i = 0; i<=7; i++){
+    for (i = 0; i<8; i++){
 		stored_ID[i] = 0;
 	}
-    for (i = 0; i<=7; i++){
+    for (i = 0; i<40; i++){
 		Track[i] = '0';
 	}
+    for (i = 0; i<200; i++){
+        data[i] = 0;
+    }
 
 }
 
@@ -163,22 +169,21 @@ uint8_t* processData (void){
                         LOCAL FUNCTION DEFINITIONS
  *******************************************************************************
  ******************************************************************************/
-static void irq_enable (void) {
-    enable_interrupt = !gpioRead(PIN_CR_ENABLE);
-    
+static void irq_enable () {
+    enable_interrupt = !gpioRead(PIN_CR_ENABLE);        
 }
-
-static void irq_clk_falling_edge (void) {	
+static void irq_clk_falling_edge () {	
     if (enable_interrupt && (!data_was_stored)){
         readCard();   
     }
-
 }
 
 static void readCard (void){
+
     data_pin = !gpioRead(PIN_CR_DATA);
     if(index<MAX_DATA){
         pin2data(data_pin, index);          //thus, it proceeds to read incomming data
+        
     }
     else if (index == MAX_DATA){
         data_was_stored = true;
@@ -192,23 +197,19 @@ static void pin2data (bool pin, uint8_t index){
     if(!SS_arrived){
         if (pin == 1){
         	SS_arrived = true;
-			data[index] = 1;
-            index++;
+            write_data(pin);       
         }
-
     }
-    else{
-        if(pin == 1){
-		    data[index] = 1;
-            index++;
-        }
-        else{
-            data[index] = 0;
-            index++;
-        }
-                
+    else{       
+        write_data(pin);
     }
 }
+
+void write_data (bool pin){         
+    data[index] = pin;
+    index++;
+}
+
 
 static void orderData (uint8_t pin){
     if (current_char.loaded_bits < 4){
@@ -227,7 +228,6 @@ static void orderData (uint8_t pin){
                     add2track(new_char);
                 }
                 else{
-                    printf("0");
                     error_type = PARITY_ERROR;
                 }
             }
@@ -285,7 +285,7 @@ static void add2track (uint8_t new_char){
             error_type = SS_EXPECTED;
         }
     }  
-    else if (track_index <= 19){                //PAN
+    else if (track_index <= 16){                //PAN
         if (new_char >= '0' && new_char <= '9'){
             Track[track_index] = new_char;
             add2ID(track_index, new_char);
@@ -298,7 +298,7 @@ static void add2track (uint8_t new_char){
             error_type = UNEXPECTED_CHARACTER;
         }        
     }
-    else if (track_index == 20){                //FS
+    else if (track_index == 17){                //FS
         if (new_char == FS){
             Track[track_index] = new_char;
             track_index++;
@@ -333,11 +333,12 @@ static void add2track (uint8_t new_char){
 }
 
 static void add2ID (uint8_t index, uint8_t new_char){
-    if (index > 11){                                 //takes the last 8 digits of the PAN
+    if (index > 8){                                 //takes the last 8 digits of the PAN
         uint8_t converted_char = (new_char - '0');   //Converts from char to uint8_t the current number
-        stored_ID[index-12] = converted_char;
+        stored_ID[index-9] = converted_char;
     }
 }
+
 
 /*******************************************************************************
  ******************************************************************************/
