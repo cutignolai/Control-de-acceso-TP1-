@@ -10,6 +10,7 @@
 #include "MK64F12.h"
 #include "hardware.h"
 #include "gpio.h"
+#include "board.h"
 
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
