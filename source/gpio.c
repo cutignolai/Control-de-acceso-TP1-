@@ -20,6 +20,9 @@
 #define PORT_LIMIT_MASK_CLK 0x3E00
 #define CLK_CONTROL(port,x) (((uint32_t)(((uint32_t)(x)) << (9+port))) & PORT_LIMIT_MASK_CLK)
 
+#define SYSTICK_TEST_MODE   1
+#define TEST_PIN            DIO_19
+
 
 #define PORTX_IRQn(p) (PORTA_IRQn+p)
 #define PINS_PER_PORT 32
@@ -183,6 +186,10 @@ bool gpioIRQ (pin_t pin, uint8_t irqMode, pinIrqFun_t irqFun) {
 
 static void IRQHandler(int32_t port) {
 
+    #ifdef SYSTICK_TEST_MODE
+        gpioWrite(TEST_PIN, HIGH);
+    #endif
+
 	PORT_Type* port_ptr = PORT_PTRS[port];
 	uint32_t ISFR = port_ptr->ISFR;
 	for(int pin = 0; pin<PINS_PER_PORT; pin++) {
@@ -191,6 +198,10 @@ static void IRQHandler(int32_t port) {
 			(*CALLBACKS[PINS_PER_PORT*port + pin])();
 		}
 	}
+
+    #ifdef SYSTICK_TEST_MODE
+        gpioWrite(TEST_PIN, LOW);
+    #endif
 }
 
 __ISR__ PORTA_IRQHandler(void) { IRQHandler(PA); }

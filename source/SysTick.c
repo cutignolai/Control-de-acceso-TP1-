@@ -11,11 +11,16 @@
 #include "SysTick.h"
 #include "MK64F12.h"
 #include "hardware.h"
+#include "board.h"
 
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
 #define CLK_FREQ 	        __CORE_CLOCK__			//100MHz
+
+#define SYSTICK_TEST_MODE   1
+#define TEST_PIN            DIO_19
+
 
 // Status Registrer
 #define CSR_MASK            0x00010007
@@ -65,11 +70,24 @@ bool SysTick_Init (void (*callback)(void))
 
     callback_ptr = callback;
 
+    #ifdef SYSTICK_TEST_MODE
+        gpioMode(TEST_PIN, OUTPUT);
+    #endif
+    
+
     return true;
 
 }
 
 __ISR__ SysTick_Handler(void)
 {	
+    #ifdef SYSTICK_TEST_MODE
+        gpioWrite(TEST_PIN, HIGH);
+    #endif
+
     (*callback_ptr)();
+
+    #ifdef SYSTICK_TEST_MODE
+        gpioWrite(TEST_PIN, LOW);
+    #endif
 }
