@@ -22,18 +22,18 @@
 /*******************************************************************************
  *                  VARIABLE PROTOTYPES WITH GLOBAL SCOPE                       *
  ******************************************************************************/
-User_t user1 = {"00000000", "0000"};
-User_t user2 = {"00000001", "0001"};
-User_t user3 = {"12340000", "1144"};
-User_t user4 = {"34890223", "2341"};
-User_t user5 = {"12345678", "1234"};
+User_t user1 = {{0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 255}};
+User_t user2 = {{0, 0, 0, 0, 0, 0, 0, 1}, {0, 0, 0, 0, 1}};
+User_t user3 = {{1, 2, 3, 4, 0, 0, 0, 0}, {1, 1, 4, 4, 255}};
+User_t user4 = {{3, 4, 8, 9, 0, 2, 2, 3}, {2, 3, 9, 1, 0}};
+User_t user5 = {{1, 2, 3, 4, 5, 6, 7, 8}, {1, 2, 3, 4, 255}};
 
 
 
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
  ******************************************************************************/
-
+bool arr_eq(uint8_t* arr1, uint8_t arr1_len, uint8_t * arr2, uint8_t arr2_len);
 
 /*******************************************************************************
  * ROM CONST VARIABLES WITH FILE LEVEL SCOPE
@@ -50,26 +50,24 @@ User_t user5 = {"12345678", "1234"};
  *******************************************************************************
  ******************************************************************************/
 
-bool checkUser(char id[], char pass[])
+bool checkUser(uint8_t id[], uint8_t pass[], uint8_t pass_len)
 {
 	User_t all_users[] = {user1, user2, user3, user4, user5};
     bool answer = false;
 
-    for(int i = 0; i < sizeof(all_users)/sizeof(all_users[0]); i++)
+    uint8_t i;
+    for(i = 0; i < ( sizeof all_users)/(sizeof all_users[0]); i++)
     {
-        if ( (all_users[i].id == id) && (all_users[i].pass == pass) )
+        if ( arr_eq(all_users[i].id, MAX_ID, id, MAX_ID) && arr_eq(all_users[i].pass, (sizeof all_users[i].pass)/(sizeof i), pass, pass_len) )
         {
             answer = true;
             break;
         }
-        
     }
 
     return answer;
 
 }
-
-
 
 
 /*******************************************************************************
@@ -78,6 +76,21 @@ bool checkUser(char id[], char pass[])
  *******************************************************************************
  ******************************************************************************/
 
+bool arr_eq(uint8_t* arr1, uint8_t arr1_len, uint8_t * arr2, uint8_t arr2_len){
+	bool r = false;
+	uint8_t i;
+	if (arr1_len == arr2_len){
+		for (i = 0; i < arr1_len; i++){
+			if (*(arr1 + i) == *(arr2 + i)){
+				r = true;
+			} else {
+				r = false;
+				break;
+			}
+		}
+	}
+	return r;
+}
 
 /*******************************************************************************
  ******************************************************************************/

@@ -145,7 +145,7 @@ bool gpioRead (pin_t pin) {
 }
 
 void gpioToggle (pin_t pin) {   //no hay mucha magia, es lo mismo que el Write pero sin el if
-    if ( pin > PORTNUM2PIN(PE,31) ) return false;
+    if ( pin > PORTNUM2PIN(PE,31) ) return;
     GPIO_Type* gpio_ptr = GPIO_PTRS[PIN2PORT(pin)];
     gpio_ptr->PTOR = (uint32_t)(1 << PIN2NUM(pin));
 }
