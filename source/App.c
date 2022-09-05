@@ -529,7 +529,6 @@ static estadosDelMenu_t modificar_brillo(eventosDelMenu_t evento)
 static estadosDelMenu_t verificar_estado (void)
 {
     estadosDelMenu_t proximo_estado = ESTADO_ID;
-    set_led(LED1);
     
     uint8_t id_char[MAX_UNIT_ID];
     for(int i = 0 ; i < MAX_UNIT_ID ; i++)
@@ -546,6 +545,7 @@ static estadosDelMenu_t verificar_estado (void)
     if( checkUser(id_char, pass_char, posicion_pass + 1) )
     {
 		proximo_estado = ESTADO_OPEN;
+		timerActivate(open_timer);
     } 
     else
     {
@@ -567,9 +567,9 @@ static estadosDelMenu_t open_door(void)
     estadosDelMenu_t proximo_estado = ESTADO_OPEN;
     digit_t msg[] = {IDX_O, IDX_P, IDX_e, IDX_n};
     show_message(&msg[0], 4);
+    set_led(LED3);
     toggle_led(LED1);
     clear_led(LED2);
-    set_led(LED3);
 
     if (open_count >= OPEN_TIME/SEC){
         timerReset(open_timer);

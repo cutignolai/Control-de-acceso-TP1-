@@ -33,6 +33,7 @@
  ******************************************************************************/
 
 void initLeds();
+void clear_leds();
 void set_led(int l);
 void clear_led(int l);
 void toggle_led(int l);
