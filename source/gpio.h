@@ -1,7 +1,7 @@
 /***************************************************************************//**
   @file     gpio.h
   @brief    Simple GPIO Pin services, similar to Arduino
-  @author   Nicol�s Magliola
+  @author   Nicolás Magliola
  ******************************************************************************/
 
 #ifndef _GPIO_H_
@@ -13,6 +13,8 @@
 
 #include <stdint.h>
 #include <stdbool.h>
+#include "hardware.h"
+
 
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
@@ -27,6 +29,9 @@ enum { PA, PB, PC, PD, PE };
 #define PORTNUM2PIN(p,n)    (((p)<<5) + (n))
 #define PIN2PORT(p)         (((p)>>5) & 0x07)
 #define PIN2NUM(p)          ((p) & 0x1F)
+#define PORTS_CNT			5
+#define PINS_CNT			32
+
 
 
 // Modes
@@ -65,9 +70,13 @@ typedef uint8_t pin_t;
 typedef void (*pinIrqFun_t)(void);
 
 
+
 /*******************************************************************************
  * VARIABLE PROTOTYPES WITH GLOBAL SCOPE
  ******************************************************************************/
+
+
+
 
 /*******************************************************************************
  * FUNCTION PROTOTYPES WITH GLOBAL SCOPE
@@ -108,6 +117,13 @@ void gpioToggle (pin_t pin);
  * @return HIGH or LOW
  */
 bool gpioRead (pin_t pin);
+
+
+/**
+ * @brief  clears the ISF flag from a specified pin.
+ * @param pin the pin to clear the ISF flag(according PORTNUM2PIN)
+ */
+void PORT_ClearInterruptFlag (pin_t pin);
 
 
 /*******************************************************************************
