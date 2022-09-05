@@ -10,6 +10,7 @@
 #include "MK64F12.h"
 #include "gpio.h"
 #include "card_reader.h"
+#include "board.h"
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -18,9 +19,9 @@
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
  //Pins from the card reader
-#define PIN_CR_DATA      PORTNUM2PIN(PB,11)        //Card reader data entry, LS bit comes out first
-#define PIN_CR_CLOCK     PORTNUM2PIN(PC,11)      //Card reader clock entry, data changes on positive edge
-#define PIN_CR_ENABLE    PORTNUM2PIN(PC,10)     //Card reader enable, low while card is sliding
+#define PIN_CR_DATA      DIO_16         //Card reader data entry, LS bit comes out first
+#define PIN_CR_CLOCK     DIO_17         //Card reader clock entry, data changes on positive edge
+#define PIN_CR_ENABLE    DIO_18         //Card reader enable, low while card is sliding
 
 //Characters from the card
 #define SS ';'
