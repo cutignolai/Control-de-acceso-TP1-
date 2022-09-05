@@ -33,7 +33,7 @@ typedef enum{
     ESTADO_BRILLO,
     ESTADO_VERIFICAR,
     ESTADO_OPEN,
-    ESTADO_CLOSE
+    ESTADO_WRONG
 } estadosDelMenu_t;
 //----------------------------------------
 
@@ -60,7 +60,6 @@ typedef enum{
 //-----------------------------------------
 
 
-
 #define MAX_UNIT_ID         8
 #define MIN_UNIT_PASS		4
 #define MAX_UNIT_PASS       5
@@ -83,6 +82,8 @@ typedef enum{
 
 #define OPEN_TIME           5000
 #define SEC                 1000
+#define WRONG_TIME_1        5
+#define WRONG_TIME_2        30
 
 /*******************************************************************************
  * ENUMS AND STRUCTURES
@@ -100,14 +101,16 @@ static estadosDelMenu_t modificar_pass(eventosDelMenu_t evento);
 static estadosDelMenu_t modificar_brillo(eventosDelMenu_t evento);
 static estadosDelMenu_t verificar_estado (void);
 static estadosDelMenu_t open_door(void);
+static estadosDelMenu_t wrong_pin();
 static void reset_all (void);
-static void open_callback(void);
+static void sec_callback(void);
 static void show_input(digit_t *input_ptr, uint8_t input_len, uint8_t pos);
 static void show_message(digit_t *msg_ptr, uint8_t msg_len);
 static void show_pass(digit_t *pass_ptr, uint8_t pass_len);
 static void show_enter(digit_t *input_ptr, uint8_t input_len);
 static void show_brightness();
-
+static void id_reset();
+static void pass_reset();
 
 /*******************************************************************************
  * VARIABLES
@@ -130,8 +133,9 @@ static bool ha_hecho_click = NO;
 static bool user_is_ready = false;
 
 // TIMERS
-static tim_id_t open_timer;
-static uint8_t open_count;
+static tim_id_t sec_timer;
+static uint8_t sec_count;
+static uint8_t wrong_count;
 
 /*******************************************************************************
  *******************************************************************************
@@ -149,8 +153,8 @@ void App_Init (void)
     initButton(); 
     initCardReader();
 
-    open_timer = timerGetId();
-    timerCreate(open_timer, TIMER_MS2TICKS(SEC), TIM_MODE_PERIODIC, open_callback);
+    sec_timer = timerGetId();
+    timerCreate(sec_timer, TIMER_MS2TICKS(SEC), TIM_MODE_PERIODIC, sec_callback);
 
     messageSetStatus(ACTIVADO);
 }
@@ -204,6 +208,10 @@ void App_Run (void)
                 break;
             case ESTADO_OPEN:
                 estado = open_door();
+                break;
+            case ESTADO_WRONG:
+                estado = wrong_pin();
+                break;
             default: break;
 		}
 	}
@@ -491,9 +499,6 @@ static estadosDelMenu_t modificar_brillo(eventosDelMenu_t evento)
 	estadosDelMenu_t proximo_estado = ESTADO_BRILLO;
     digit_t msg[] = {IDX_b, IDX_r, IDX_I, IDX_g, IDX_h, IDX_t, IDX_n, IDX_e, IDX_S, IDX_S};
 
-    // Mostrar un caracter
-    //showPasswordDigit(0, 0, MAX_UNIT_PASS);
-
     switch(evento)
     {
         case EVENTO_DER:
@@ -537,25 +542,21 @@ static estadosDelMenu_t verificar_estado (void)
     }
 
     uint8_t pass_char[posicion_pass + 1];
-        for(int i = 0 ; i < posicion_pass + 1; i++)
-        {
-        	pass_char[i] = (char)(pass[i]);
-        }
+    for(int i = 0 ; i < posicion_pass + 1; i++)
+    {
+        pass_char[i] = (char)(pass[i]);
+    }
 
     if( checkUser(id_char, pass_char, posicion_pass + 1) )
     {
 		proximo_estado = ESTADO_OPEN;
-		timerActivate(open_timer);
     } 
     else
     {
-    	digit_t msg[] = {IDX_C, IDX_L, IDX_O, IDX_S, IDX_E, IDX_d};
-		show_message(&msg[0], 6);
-		clear_led(LED1);
-		clear_led(LED3);
-		set_led(LED2);
-		timerDelay(TIMER_MS2TICKS(5000));
+    	proximo_estado = ESTADO_WRONG;
+        wrong_count += 1;   
     }
+    timerActivate(sec_timer);
     
     //reset_all();
 
@@ -565,19 +566,54 @@ static estadosDelMenu_t verificar_estado (void)
 static estadosDelMenu_t open_door(void)
 {
     estadosDelMenu_t proximo_estado = ESTADO_OPEN;
+
     digit_t msg[] = {IDX_O, IDX_P, IDX_e, IDX_n};
     show_message(&msg[0], 4);
+
     set_led(LED3);
     toggle_led(LED1);
     clear_led(LED2);
 
-    if (open_count >= OPEN_TIME/SEC){
-        timerReset(open_timer);
+    if (sec_count >= OPEN_TIME/SEC){
+        timerReset(sec_timer);
         reset_all();
         proximo_estado = ESTADO_INIT;
+        messageSetStatus(ACTIVADO);
     }
 
     return proximo_estado;
+}
+
+static estadosDelMenu_t wrong_pin()
+{
+    digit_t msg[] = {IDX_C, IDX_L, IDX_O, IDX_S, IDX_E, IDX_d};
+    show_message(&msg[0], 6);
+
+    toggle_led(LED1);
+    clear_led(LED3);
+    set_led(LED2);
+
+    estadosDelMenu_t proximo_estado = ESTADO_WRONG;
+    if ( (wrong_count == 1 && sec_count >= WRONG_TIME_1) || (wrong_count == 2 && sec_count >= WRONG_TIME_2)){
+        timerReset(sec_timer);
+        pass_reset();
+        proximo_estado = ESTADO_PASS;
+        messageSetStatus(ACTIVADO);
+
+    } else if ( wrong_count >= 3 ){
+    	uint8_t id_char[MAX_UNIT_ID];
+		for(int i = 0 ; i < MAX_UNIT_ID ; i++)
+		{
+			id_char[i] = (uint8_t)(id[i]);
+		}
+        blockUser(&id_char[0]);
+        reset_all();
+        proximo_estado = ESTADO_INIT;
+        messageSetStatus(ACTIVADO);
+    }
+    
+    return proximo_estado;
+
 }
 
 /*******************************************************************************
@@ -589,18 +625,10 @@ static estadosDelMenu_t open_door(void)
 static void reset_all (void)
 {
     // RESETEO ID
-    for (int i = 0; i < MAX_UNIT_ID; i++)
-    {
-        id[i] = 0;
-    }   
-    posicion_id = 0;
+    id_reset();
 
     // RESETEO PASSWORD
-    for (int i = 0; i < MAX_UNIT_PASS; i++)
-    {
-        pass[i] = 0;
-    }   
-    posicion_pass = 0;
+    pass_reset();
 
     // RESETEO ESTADOS
     estado = ESTADO_INIT;
@@ -610,14 +638,32 @@ static void reset_all (void)
     setClearMode();
     clear_leds();
     ha_hecho_click = NO;
-    timerReset(open_timer);
+    timerReset(sec_timer);
+    wrong_count = 0;
 
     messageSetStatus(ACTIVADO);
 
 }
 
-static void open_callback(void){
-    open_count++;
+static void id_reset(){
+for (int i = 0; i < MAX_UNIT_ID; i++)
+    {
+        id[i] = 0;
+    }   
+    posicion_id = 0;
+}
+
+static void pass_reset(){
+    for (int i = 0; i < MAX_UNIT_PASS; i++)
+    {
+        pass[i] = 0;
+    }   
+    posicion_pass = 0;
+}
+
+
+static void sec_callback(void){
+    sec_count++;
     messageSetStatus(ACTIVADO);
 }
 

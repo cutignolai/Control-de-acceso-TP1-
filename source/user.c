@@ -34,6 +34,12 @@ User_t user5 = {{1, 2, 3, 4, 5, 6, 7, 8}, {1, 2, 3, 4}, 4};
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
  ******************************************************************************/
 bool arr_eq(uint8_t* arr1, uint8_t arr1_len, uint8_t * arr2, uint8_t arr2_len);
+User_t all_users[] = {  {{0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0},    4},
+                        {{0, 0, 0, 0, 0, 0, 0, 1}, {0, 0, 0, 0, 1}, 5},
+                        {{1, 2, 3, 4, 0, 0, 0, 0}, {1, 1, 4, 4},    4},
+                        {{3, 4, 8, 9, 0, 2, 2, 3}, {2, 3, 9, 1, 0}, 5},
+                        {{1, 2, 3, 4, 5, 6, 7, 8}, {1, 2, 3, 4},    4}  };
+uint16_t user_num = 5;
 
 /*******************************************************************************
  * ROM CONST VARIABLES WITH FILE LEVEL SCOPE
@@ -52,11 +58,10 @@ bool arr_eq(uint8_t* arr1, uint8_t arr1_len, uint8_t * arr2, uint8_t arr2_len);
 
 bool checkUser(uint8_t id[], uint8_t pass[], uint8_t pass_len)
 {
-	User_t all_users[] = {user1, user2, user3, user4, user5};
     bool answer = false;
 
     uint8_t i;
-    for(i = 0; i < ( sizeof all_users)/(sizeof all_users[0]); i++)
+    for(i = 0; i < user_num; i++)
     {
         if ( arr_eq(all_users[i].id, MAX_ID, id, MAX_ID) && arr_eq(all_users[i].pass, all_users[i].len, pass, pass_len) )
         {
@@ -69,6 +74,15 @@ bool checkUser(uint8_t id[], uint8_t pass[], uint8_t pass_len)
 
 }
 
+void blockUser(uint8_t id[]){
+    uint8_t i;
+    for(i = 0; i < user_num; i++){
+        if (arr_eq(all_users[i].id, MAX_ID, id, MAX_ID)){
+            all_users[i].pass[0] = 100;
+            break;
+        }
+    }
+}
 
 /*******************************************************************************
  *******************************************************************************
