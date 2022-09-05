@@ -263,7 +263,7 @@ static estadosDelMenu_t idle(eventosDelMenu_t evento)
                 posicion_id = 0;
             }
             else{
-            	printf("hubo error");
+            	//printf("hubo error");
             	resetReader();
                 reset_all();
                 proximo_estado = ESTADO_INIT;
@@ -385,7 +385,7 @@ static estadosDelMenu_t modificar_id(eventosDelMenu_t evento)
 
         case EVENTO_TARJETA:
             p = processData();
-            printall();
+            //printall();
             if (getError() == NO_ERROR){
             	uint8_t i;
 				for (i=0; i<8; i++)
@@ -398,7 +398,7 @@ static estadosDelMenu_t modificar_id(eventosDelMenu_t evento)
 				posicion_id = 0;
             }
             else{
-            	printf("hubo error");
+            	//printf("hubo error");
             	resetReader();
                 reset_all();
                 proximo_estado = ESTADO_INIT;
