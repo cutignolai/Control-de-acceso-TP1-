@@ -114,7 +114,6 @@ static estadosDelMenu_t ultimo_estado = ESTADO_INIT;
 // ID 
 static uint8_t id[] = {0, 0, 0, 0, 0, 0, 0, 0};
 static uint8_t posicion_id = 0;
-//static int id_buffer[MAX_UNIT_ID];
 
 // CONTRASENA
 static uint8_t pass[] = {0, 0, 0, 0, 0};
@@ -299,7 +298,6 @@ static estadosDelMenu_t modificar_id(eventosDelMenu_t evento)
                 messageSetStatus(ACTIVADO);
             }
 
-            //show_enter(&id[0], posicion_id);
             show_input(&id[0], posicion_id + 1, posicion_id);
 
             break;
@@ -412,7 +410,6 @@ static estadosDelMenu_t modificar_pass(eventosDelMenu_t evento)
 
                 if(posicion_pass >= MAX_UNIT_PASS)
                 {
-                    //posicion_pass = 0;
                     proximo_estado = ESTADO_VERIFICAR;
                     user_is_ready = READY;
                     messageSetStatus(ACTIVADO);
@@ -429,11 +426,11 @@ static estadosDelMenu_t modificar_pass(eventosDelMenu_t evento)
             if(ha_hecho_click == SI)
             {
                 // Dejo en 0 el digito en donde estaba
-                id[posicion_pass] = 0;
+                pass[posicion_pass] = 0;
 
                 // Me ubico en el ultimo digito ingresado y lo pongo en 0
                 posicion_pass -= 1;
-                id[posicion_pass] = 0;
+                pass[posicion_pass] = 0;
 
                 show_pass(&pass[0], posicion_pass + 1);
             }
@@ -518,7 +515,6 @@ static estadosDelMenu_t verificar_estado (void)
     estadosDelMenu_t proximo_estado = ESTADO_ID;
     set_led(LED1);
     
-    // traducir de arreglo a string de numeros
     uint8_t id_char[MAX_UNIT_ID];
     for(int i = 0 ; i < MAX_UNIT_ID ; i++)
     {
