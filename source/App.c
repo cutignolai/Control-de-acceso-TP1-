@@ -226,7 +226,7 @@ void App_Run (void)
 static estadosDelMenu_t idle(eventosDelMenu_t evento)
 {
 	digit_t msg[] = {IDX_I, IDX_d, IDX_L, IDX_E};
-	estadosDelMenu_t proximo_estado = ESTADO_INIT;
+	estadosDelMenu_t proximo_estado = ESTADO_ID;
 
     switch(evento)
     {
@@ -259,6 +259,7 @@ static estadosDelMenu_t idle(eventosDelMenu_t evento)
         
         case EVENTO_MSG:
             show_message(&msg[0], 4);
+        	messageSetStatus(ACTIVADO);
             break;
         
         default:
@@ -639,6 +640,7 @@ static void reset_all (void)
     clear_leds();
     ha_hecho_click = NO;
     timerReset(sec_timer);
+    sec_count = 0;
     wrong_count = 0;
 
     messageSetStatus(ACTIVADO);
