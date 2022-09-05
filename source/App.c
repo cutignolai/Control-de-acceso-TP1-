@@ -249,12 +249,22 @@ static estadosDelMenu_t idle(eventosDelMenu_t evento)
             
 
         case EVENTO_TARJETA:
-            //id_buffer = getIdTarjeta();
-            //hacer for
-            proximo_estado = ESTADO_PASS;
-            messageSetStatus(ACTIVADO);
-            // show_input(&id[0], posicion_id + 1, posicion_id);
-            // posicion_id = 0;
+            uint8_t *p = processData();
+            if (getError() == NO_ERROR){
+                uint8_t i;
+                for (i=0; i<8; i++)
+                {
+                    id[i] = *(p+i);
+                }
+                resetReader();
+                proximo_estado = ESTADO_PASS;
+                posicion_id = 0;
+            }
+            else{
+                reset_all()
+                proximo_estado = ESTADO_INIT;
+                messageSetStatus(ACTIVADO);
+            }
             break;
         
         case EVENTO_MSG:
@@ -358,6 +368,8 @@ static estadosDelMenu_t modificar_id(eventosDelMenu_t evento)
             if( ha_hecho_click == SI )
             {
                 reset_all();
+                proximo_estado = ESTADO_INIT;
+                messageSetStatus(ACTIVADO);
             }
 
             show_input(&id[0], posicion_id + 1, posicion_id);
@@ -366,12 +378,22 @@ static estadosDelMenu_t modificar_id(eventosDelMenu_t evento)
             
 
         case EVENTO_TARJETA:
-            //id_buffer = getIdTarjeta();
-            //hacer for
-            proximo_estado = ESTADO_PASS;
-            messageSetStatus(ACTIVADO);
-            // show_input(&id[0], posicion_id + 1, posicion_id);
-            // posicion_id = 0;
+            uint8_t *p = processData();
+            if (getError() == NO_ERROR){
+                uint8_t i;
+                for (i=0; i<8; i++)
+                {
+                    id[i] = *(p+i);
+                }
+                resetReader();
+                proximo_estado = ESTADO_PASS;
+                posicion_id = 0;
+            }
+            else{
+                reset_all()
+                proximo_estado = ESTADO_INIT;
+                messageSetStatus(ACTIVADO);
+            }
             break;
 
         case EVENTO_MSG:
@@ -481,6 +503,12 @@ static estadosDelMenu_t modificar_pass(eventosDelMenu_t evento)
 				show_pass(&pass[0], posicion_pass + 1);
 			}
         	break;
+
+        case EVENTO_TARJETA:
+            reset_all()
+            proximo_estado = ESTADO_INIT;
+            //messageSetStatus(ACTIVADO); 
+            break;
     
         case EVENTO_MSG:
             show_message(&msg[0], 4);
