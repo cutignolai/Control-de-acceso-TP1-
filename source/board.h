@@ -32,7 +32,7 @@
 #define DIO_2           PORTNUM2PIN(PC, 2)	  // PTC12
 #define DIO_3           PORTNUM2PIN(PA, 2)	    // PTC5
 #define DIO_4           PORTNUM2PIN(PB, 23)	    // PTC3
-#define DIO_5           PORTNUM2PIN(PA, 1)	    // PTC7
+#define DIO_5           PORTNUM2PIN(PB, 18)	    // PTC7
 #define DIO_6           PORTNUM2PIN(PB, 9)	    // PTC2
 #define DIO_7           PORTNUM2PIN(PC, 17)	    // PTC0
 #define DIO_8           PORTNUM2PIN(PC, 16)	    // PTA2
