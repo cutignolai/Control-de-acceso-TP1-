@@ -28,6 +28,7 @@
 #define LED_ACTIVE      LOW
 
 // PINES DIGITALES
+//PLACA
 #define DIO_1           PORTNUM2PIN(PC, 3)	    // PTC3
 #define DIO_2           PORTNUM2PIN(PC, 2)	    // PTC2
 #define DIO_3           PORTNUM2PIN(PA, 2)	    // PTA2
@@ -47,6 +48,8 @@
 #define DIO_16          PORTNUM2PIN(PB,11)	    // PTB11
 #define DIO_17          PORTNUM2PIN(PC,11)	    // PTC11
 #define DIO_18          PORTNUM2PIN(PC,10)	    // PTC10
+//TEST PIN
+#define DIO_19          PORTNUM2PIN(PB,10)	    // PTC10
 
 
 /*******************************************************************************
