@@ -152,7 +152,7 @@ void App_Init (void)
     initLeds();
     initButton(); 
     initCardReader();
-
+    resetReader();
     sec_timer = timerGetId();
     timerCreate(sec_timer, TIMER_MS2TICKS(SEC), TIM_MODE_PERIODIC, sec_callback);
 
@@ -162,7 +162,7 @@ void App_Init (void)
 /* Función que se llama constantemente en un ciclo infinito */
 void App_Run (void)
 {
-
+    /*
 	eventosDelMenu_t evento = EVENTO_NONE;
 
     // Analizo si hubo un evento
@@ -214,7 +214,13 @@ void App_Run (void)
                 break;
             default: break;
 		}
-	}
+	}*/
+    if (CardReaderIsReady()){
+        uint8_t *p = processData();
+        printall();
+        resetReader();    
+    }
+
 }
 
 /*******************************************************************************

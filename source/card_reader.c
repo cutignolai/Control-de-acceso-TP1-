@@ -9,6 +9,7 @@
  ******************************************************************************/
 #include "MK64F12.h"
 #include "gpio.h"
+#include "board.h"
 #include "card_reader.h"
 #include <stdbool.h>
 #include <stdint.h>
@@ -21,6 +22,9 @@
 #define PIN_CR_DATA      PORTNUM2PIN(PB,11)        //Card reader data entry, LS bit comes out first
 #define PIN_CR_CLOCK     PORTNUM2PIN(PC,11)      //Card reader clock entry, data changes on positive edge
 #define PIN_CR_ENABLE    PORTNUM2PIN(PC,10)     //Card reader enable, low while card is sliding
+#define PIN_CR_DATA      DIO_16     //Card reader data entry, LS bit comes out first
+#define PIN_CR_CLOCK     DIO_17     //Card reader clock entry, data changes on positive edge
+#define PIN_CR_ENABLE    DIO_18     //Card reader enable, low while card is sliding
 
 //Characters from the card
 #define SS ';'
@@ -33,7 +37,6 @@
 /*******************************************************************************
  * STATIC VARIABLES AND CONST VARIABLES WITH FILE LEVEL SCOPE
  ******************************************************************************/
-static bool init;   //True after call to initCardReader()
 
 static ERROR_TYPE error_type;
 
@@ -51,6 +54,13 @@ static uint8_t stored_ID[] = {0, 0, 0, 0, 0, 0, 0, 0};
 
 static uint8_t data[200];
 static uint8_t index;
+static char Track[MAX_TRACK]; 
+static uint16_t track_index;
+
+static uint16_t stored_ID[MAX_ID];
+
+static uint8_t data[MAX_DATA];
+static uint16_t index;
 
 static bool data_pin;
 
@@ -81,32 +91,15 @@ void print_data (void);
  *******************************************************************************
  ******************************************************************************/
 void initCardReader(void){
-    if(!init){  //to avoid more than one call at a time to the Card Reader program
-        init = true;
-        error_type = NO_ERROR;
-        current_char.parity = 0b0;
-		current_char.data = 0x0;
-		current_char.loaded_bits = 0;
-        track_index = 0; 
-        index = 0;
+    gpioMode(PIN_CR_DATA, INPUT);
+    gpioMode(PIN_CR_CLOCK, INPUT);
+    gpioMode(PIN_CR_ENABLE, INPUT);
+    gpioIRQ(PIN_CR_CLOCK, GPIO_IRQ_MODE_FALLING_EDGE, irq_clk_falling_edge);
+    gpioIRQ(PIN_CR_ENABLE, GPIO_IRQ_MODE_BOTH_EDGES, irq_enable);
 
-        gpioMode(PIN_CR_DATA, INPUT);
-        gpioMode(PIN_CR_CLOCK, INPUT);
-        gpioIRQ(PIN_CR_CLOCK, GPIO_IRQ_MODE_FALLING_EDGE, irq_clk_falling_edge);
-        gpioMode(PIN_CR_ENABLE, INPUT);
-        gpioIRQ(PIN_CR_ENABLE, GPIO_IRQ_MODE_BOTH_EDGES, irq_enable);
-
-        NVIC_EnableIRQ(PORTC_IRQn);
-
-        data_was_stored = false;
-        enable_interrupt = false;
-        SS_arrived = false;
-
-    }
 }
 
 void resetReader (void){
-    init = true;
     error_type = NO_ERROR;
     data_pin = false;
     index = 0;
@@ -171,20 +164,28 @@ uint8_t* processData (void){
  *******************************************************************************
  ******************************************************************************/
 static void irq_enable () {
-    enable_interrupt = !gpioRead(PIN_CR_ENABLE);        
+	if ((gpioRead(PIN_CR_ENABLE) == 0) && (!data_was_stored)){		//Falling edge and it's not reading
+		enable_interrupt = true;									//avails to read
+	}
+    else if ((gpioRead(PIN_CR_ENABLE) == 1) && data_was_stored){    //rising edge and it's read
+        enable_interrupt = false;	
+    }
+    else {                                                          //any other case
+        enable_interrupt = false;
+    }
+
 }
 static void irq_clk_falling_edge () {	
     if (enable_interrupt && (!data_was_stored)){
-        readCard();   
+        readCard();
     }
 }
 
-static void readCard (void){
+static void readCard (void){		//CUANDO PASO LA TARJETA ENTRA MAS DE 200 VECES ACA
 
-    data_pin = !gpioRead(PIN_CR_DATA);
+    data_pin = !gpioRead(PIN_CR_DATA);				//ACA ESTA EL PROBLEMA, CUANDO LEE NUNCA ES 0
     if(index<MAX_DATA){
         pin2data(data_pin, index);          //thus, it proceeds to read incomming data
-        
     }
     else if (index == MAX_DATA){
         data_was_stored = true;
@@ -196,9 +197,9 @@ static void readCard (void){
 
 static void pin2data (bool pin, uint8_t index){
     if(!SS_arrived){
-        if (pin == 1){
+        if (pin == true){
         	SS_arrived = true;
-            write_data(pin);       
+            write_data(pin);
         }
     }
     else{       
@@ -338,6 +339,23 @@ static void add2ID (uint8_t index, uint8_t new_char){
         uint8_t converted_char = (new_char - '0');   //Converts from char to uint8_t the current number
         stored_ID[index-9] = converted_char;
     }
+}
+
+void printall(void){
+    uint8_t i;
+    printf("\n ID: ");
+    for (i=0; i<8; i++){
+        printf("%d", stored_ID[i]);
+    }
+    printf("\n Track: ");
+    for (i=0; i<40; i++){
+        printf("%c", Track[i]);
+    }
+    printf("\n Error type: %d", getError());
+    /*printf("\n Data: ");
+    for (i=0; i<200; i++){
+        printf("%d", data[i]);
+    }*/
 }
 
 
