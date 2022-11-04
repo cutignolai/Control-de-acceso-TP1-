@@ -66,7 +66,7 @@ void gpioMode (pin_t pin, uint8_t mode)
 {
     
     // Verifico que se ingresaron los datos correctos
-    if ( pin > PORTNUM2PIN(PE,31) ) return false;
+    if ( pin > PORTNUM2PIN(PE,31) ) return;
 
     // Obtengo el puerto y el numero de pin
     uint32_t port = PIN2PORT(pin);
