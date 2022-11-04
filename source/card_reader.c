@@ -11,6 +11,7 @@
 #include "gpio.h"
 #include "board.h"
 #include "card_reader.h"
+#include "board.h"
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -19,23 +20,23 @@
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
  //Pins from the card reader
-<<<<<<< HEAD
-#define PIN_CR_DATA      PORTNUM2PIN(PB,11)        //Card reader data entry, LS bit comes out first
-#define PIN_CR_CLOCK     PORTNUM2PIN(PC,11)      //Card reader clock entry, data changes on positive edge
-#define PIN_CR_ENABLE    PORTNUM2PIN(PC,10)     //Card reader enable, low while card is sliding
-=======
 #define PIN_CR_DATA      DIO_16     //Card reader data entry, LS bit comes out first
 #define PIN_CR_CLOCK     DIO_17     //Card reader clock entry, data changes on positive edge
 #define PIN_CR_ENABLE    DIO_18     //Card reader enable, low while card is sliding
->>>>>>> tarjeta_micho
 
 //Characters from the card
 #define SS ';'
 #define FS '='
 #define ES '?'
 
-//Maximum data size
+
+#define MAX_BITS 4
 #define MAX_DATA 200
+#define MAX_TRACK 40
+#define MAX_ID 8
+#define PAN 16
+#define AD_DD 37
+#define SPECIAL_CHAR 1
 
 /*******************************************************************************
  * STATIC VARIABLES AND CONST VARIABLES WITH FILE LEVEL SCOPE
@@ -50,15 +51,6 @@ typedef struct{
 } card_char;
 static card_char current_char;
 
-<<<<<<< HEAD
-static char Track[40]; 
-static uint8_t track_index;
-
-static uint8_t stored_ID[] = {0, 0, 0, 0, 0, 0, 0, 0};
-
-static uint8_t data[200];
-static uint8_t index;
-=======
 static char Track[MAX_TRACK]; 
 static uint16_t track_index;
 
@@ -66,31 +58,31 @@ static uint16_t stored_ID[MAX_ID];
 
 static uint8_t data[MAX_DATA];
 static uint16_t index;
->>>>>>> tarjeta_micho
 
 static bool data_pin;
 
 static bool data_was_stored;
 static bool volatile enable_interrupt;
 static bool SS_arrived;
-
+static int variable = 0;
 /*******************************************************************************
  *         FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
  ******************************************************************************/
+// Interruptions
 static void irq_enable (void);
 static void irq_clk_falling_edge (void);
+// Data saving
 static void readCard (void);
 static void pin2data (bool pin, uint8_t index);
+static void write_data (bool pin);
+// Data processing
 static void orderData (uint8_t pin);
 static bool validateParity (void);
 static void validate_LRC(uint8_t new_char);
 static void add2track (uint8_t new_char);
 static void add2ID (uint8_t index, uint8_t new_char);
-void printall(void);
 
 
-void write_data (bool pin);
-void print_data (void);
 /*******************************************************************************
  *******************************************************************************
                         GLOBAL FUNCTION DEFINITIONS
@@ -121,13 +113,13 @@ void resetReader (void){
     track_index = 0;
 
     uint8_t i;
-    for (i = 0; i<8; i++){
+    for (i = 0; i<MAX_ID; i++){
 		stored_ID[i] = 0;
 	}
-    for (i = 0; i<40; i++){
+    for (i = 0; i<MAX_TRACK; i++){
 		Track[i] = '0';
 	}
-    for (i = 0; i<200; i++){
+    for (i = 0; i<MAX_DATA; i++){
         data[i] = 0;
     }
 
@@ -220,17 +212,17 @@ void write_data (bool pin){
 
 
 static void orderData (uint8_t pin){
-    if (current_char.loaded_bits < 4){
+    if (current_char.loaded_bits < MAX_BITS){
             if (pin == 1)
                 current_char.data |= 0b1<<current_char.loaded_bits;
             else
                 current_char.data |= 0b0<<current_char.loaded_bits;
             current_char.loaded_bits++;
         }
-        else if (current_char.loaded_bits >= 4){
+        else if (current_char.loaded_bits >= MAX_BITS){
     	    current_char.parity |= pin;
              
-    	    if (track_index <= 38){
+    	    if (track_index <= (AD_DD + SPECIAL_CHAR)){
                 if (validateParity()){
                     uint8_t new_char = (current_char.data & 0x0F) | '0';
                     add2track(new_char);
@@ -256,7 +248,7 @@ static bool validateParity (void){
     uint8_t counter = 0;
     uint8_t zero;                                   //how many zeros does it have?
     uint8_t i;
-    for (i = 0; i<4; i++){
+    for (i = 0; i<MAX_BITS; i++){
         zero = (current_char.data & (1<<i)) & 0x0F;
         if (zero == 0x00)
             counter++;
@@ -274,7 +266,7 @@ static void validate_LRC(uint8_t new_char){
 	for (i = 0; i<track_index;i++)
 		xor_char ^= Track[i];
 	if((uint8_t)(LRC & 0x0F) == (uint8_t)(xor_char & 0x0F))
-		Track[39] = new_char;
+		Track[(MAX_TRACK-1)] = new_char;
 	else{
 		error_type = BAD_LRC;
 	}
@@ -293,7 +285,7 @@ static void add2track (uint8_t new_char){
             error_type = SS_EXPECTED;
         }
     }  
-    else if (track_index <= 16){                //PAN
+    else if (track_index <= PAN){                //PAN
         if (new_char >= '0' && new_char <= '9'){
             Track[track_index] = new_char;
             add2ID(track_index, new_char);
@@ -306,7 +298,7 @@ static void add2track (uint8_t new_char){
             error_type = UNEXPECTED_CHARACTER;
         }        
     }
-    else if (track_index == 17){                //FS
+    else if (track_index == (PAN + SPECIAL_CHAR)){                //FS
         if (new_char == FS){
             Track[track_index] = new_char;
             track_index++;
@@ -317,11 +309,11 @@ static void add2track (uint8_t new_char){
             error_type = FS_EXPECTED;
         }
     }
-    else if (track_index <= 37){                //AD & DD
+    else if (track_index <= AD_DD){                //AD & DD
         Track[track_index] = new_char;
         track_index++;                
     }
-    else if (track_index == 38){                //ES
+    else if (track_index == (AD_DD + SPECIAL_CHAR)){                //ES
         if (new_char == ES){
             Track[track_index] = new_char;
             track_index++;
@@ -341,9 +333,9 @@ static void add2track (uint8_t new_char){
 }
 
 static void add2ID (uint8_t index, uint8_t new_char){
-    if (index > 8){                                 //takes the last 8 digits of the PAN
+    if (index > (PAN - MAX_ID)){                                 //takes the last 8 digits of the PAN
         uint8_t converted_char = (new_char - '0');   //Converts from char to uint8_t the current number
-        stored_ID[index-9] = converted_char;
+        stored_ID[index - (MAX_ID + SPECIAL_CHAR)] = converted_char;
     }
 }
 
@@ -358,27 +350,6 @@ void printall(void){
         printf("%c", Track[i]);
     }
     printf("\n Error type: %d", getError());
-    /*printf("\n Data: ");
-    for (i=0; i<200; i++){
-        printf("%d", data[i]);
-    }*/
-}
-
-
-/*******************************************************************************
- ******************************************************************************/
-
-void printall(void){
-    uint8_t i;
-    printf("\n ID: ");
-    for (i=0; i<8; i++){
-        printf("%d", stored_ID[i]);
-    }
-    printf("\n Track: ");
-    for (i=0; i<40; i++){
-        printf("%c", Track[i]);
-    }
-    printf("Error type: %d", getError());
     /*printf("\n Data: ");
     for (i=0; i<200; i++){
         printf("%d", data[i]);

@@ -3,7 +3,7 @@
   @brief    Application functions
   @author   Nicolás Magliola
  ******************************************************************************/
-//prueba para git
+
 /*******************************************************************************
  * INCLUDE HEADER FILES
  ******************************************************************************/
@@ -136,7 +136,7 @@ static bool user_is_ready = false;
 static tim_id_t sec_timer;
 static uint8_t sec_count;
 static uint8_t wrong_count;
-
+static uint8_t evento = EVENTO_NONE;
 /*******************************************************************************
  *******************************************************************************
                         GLOBAL FUNCTION DEFINITIONS
@@ -146,80 +146,76 @@ static uint8_t wrong_count;
 /* Función que se llama 1 vez, al comienzo del programa */
 void App_Init (void)
 {
-    timerInit();
-    initDisplay();
-    initEncoder();
-    initLeds();
-    initButton(); 
-    initCardReader();
-    resetReader();
-    sec_timer = timerGetId();
-    timerCreate(sec_timer, TIMER_MS2TICKS(SEC), TIM_MODE_PERIODIC, sec_callback);
+	 timerInit();
+	initDisplay();
+	initEncoder();
+	initLeds();
+	initButton();
+	initCardReader();
 
-    messageSetStatus(ACTIVADO);
+	sec_timer = timerGetId();
+	timerCreate(sec_timer, TIMER_MS2TICKS(SEC), TIM_MODE_PERIODIC, sec_callback);
+
+	messageSetStatus(ACTIVADO);
+
 }
 
 /* Función que se llama constantemente en un ciclo infinito */
 void App_Run (void)
 {
-    /*
 	eventosDelMenu_t evento = EVENTO_NONE;
 
-    // Analizo si hubo un evento
-    if(CardReaderIsReady())
-    {
+	    // Analizo si hubo un evento
+	if(CardReaderIsReady())
+	{
 		evento = EVENTO_TARJETA;
 	}
-    else if(encoderGetStatus())
-    {
-		evento = encoderGetEvent();	
-        encoderSetStatus(DESACTIVADO);
-        
-	}
-    else if(buttonGetStatus())
-    {
-		evento = buttonGetEvent();	
-        buttonSetStatus(DESACTIVADO);
-	}
-    else if(messageHandlerStatus())
-    {
-    	evento = messageGetEvent();
-    	messageSetStatus(DESACTIVADO);
-    }
+	else if(encoderGetStatus())
+	{
+		evento = encoderGetEvent();
+		encoderSetStatus(DESACTIVADO);
 
-    // Si hubo un evento, veo en que estado de mi FSM estoy y le envio el evento
+	}
+	else if(buttonGetStatus())
+	{
+		evento = buttonGetEvent();
+		buttonSetStatus(DESACTIVADO);
+	}
+	else if(messageHandlerStatus())
+	{
+		evento = messageGetEvent();
+		messageSetStatus(DESACTIVADO);
+	}
+
+	// Si hubo un evento, veo en que estado de mi FSM estoy y le envio el evento
 	if(evento != EVENTO_NONE)
-    {
+	{
 		switch(estado){
-            case ESTADO_INIT:
-                estado = idle(evento);
-                break;
-            case ESTADO_ID:
-                estado = modificar_id(evento);
-                break;
-            case ESTADO_PASS:
-                estado = modificar_pass(evento);
-                break;
-            case ESTADO_BRILLO:
+			case ESTADO_INIT:
+				estado = idle(evento);
+				break;
+			case ESTADO_ID:
+				estado = modificar_id(evento);
+				break;
+			case ESTADO_PASS:
+				estado = modificar_pass(evento);
+				break;
+			case ESTADO_BRILLO:
 				estado = modificar_brillo(evento);
-                break;
-            case ESTADO_VERIFICAR:
-                estado = verificar_estado();
-                break;
-            case ESTADO_OPEN:
-                estado = open_door();
-                break;
-            case ESTADO_WRONG:
-                estado = wrong_pin();
-                break;
-            default: break;
+				break;
+			case ESTADO_VERIFICAR:
+				estado = verificar_estado();
+				break;
+			case ESTADO_OPEN:
+				estado = open_door();
+				break;
+			case ESTADO_WRONG:
+				estado = wrong_pin();
+				break;
+			default: break;
 		}
-	}*/
-    if (CardReaderIsReady()){
-        uint8_t *p = processData();
-        printall();
-        resetReader();    
-    }
+	}
+
 
 }
 
@@ -265,12 +261,9 @@ static estadosDelMenu_t idle(eventosDelMenu_t evento)
                 }
                 resetReader();
                 proximo_estado = ESTADO_PASS;
-                messageSetStatus(ACTIVADO);
                 posicion_id = 0;
             }
             else{
-            	//printf("hubo error");
-            	resetReader();
                 reset_all();
                 proximo_estado = ESTADO_INIT;
                 messageSetStatus(ACTIVADO);
@@ -391,21 +384,17 @@ static estadosDelMenu_t modificar_id(eventosDelMenu_t evento)
 
         case EVENTO_TARJETA:
             p = processData();
-            //printall();
             if (getError() == NO_ERROR){
-            	uint8_t i;
-				for (i=0; i<8; i++)
-				{
-					id[i] = *(p+i);
-				}
-				resetReader();
-				proximo_estado = ESTADO_PASS;
-				messageSetStatus(ACTIVADO);
-				posicion_id = 0;
+                uint8_t i;
+                for (i=0; i<8; i++)
+                {
+                    id[i] = *(p+i);
+                }
+                resetReader();
+                proximo_estado = ESTADO_PASS;
+                posicion_id = 0;
             }
             else{
-            	//printf("hubo error");
-            	resetReader();
                 reset_all();
                 proximo_estado = ESTADO_INIT;
                 messageSetStatus(ACTIVADO);
@@ -675,9 +664,6 @@ static void reset_all (void)
 
     // RESETEO PASSWORD
     pass_reset();
-
-    // RESETEO TARJETA
-    resetReader();
 
     // RESETEO ESTADOS
     estado = ESTADO_INIT;
