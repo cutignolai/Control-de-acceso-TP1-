@@ -136,7 +136,7 @@ static bool user_is_ready = false;
 static tim_id_t sec_timer;
 static uint8_t sec_count;
 static uint8_t wrong_count;
-
+static uint8_t evento = EVENTO_NONE;
 /*******************************************************************************
  *******************************************************************************
                         GLOBAL FUNCTION DEFINITIONS
@@ -146,75 +146,85 @@ static uint8_t wrong_count;
 /* Función que se llama 1 vez, al comienzo del programa */
 void App_Init (void)
 {
-    timerInit();
-    initDisplay();
-    initEncoder();
-    initLeds();
-    initButton(); 
-    initCardReader();
+	timerInit();
+	initDisplay();
+	initEncoder();
+	initLeds();
+	initButton();
+	initCardReader();
 
-    sec_timer = timerGetId();
-    timerCreate(sec_timer, TIMER_MS2TICKS(SEC), TIM_MODE_PERIODIC, sec_callback);
+	sec_timer = timerGetId();
+	timerCreate(sec_timer, TIMER_MS2TICKS(SEC), TIM_MODE_PERIODIC, sec_callback);
 
-    messageSetStatus(ACTIVADO);
+	messageSetStatus(ACTIVADO);
+	resetReader();
+
 }
 
 /* Función que se llama constantemente en un ciclo infinito */
 void App_Run (void)
 {
-
 	eventosDelMenu_t evento = EVENTO_NONE;
 
-    // Analizo si hubo un evento
-    if(CardReaderIsReady())
-    {
+	// Analizo si hubo un evento
+	if(CardReaderIsReady())
+	{
 		evento = EVENTO_TARJETA;
 	}
-    else if(encoderGetStatus())
-    {
-		evento = encoderGetEvent();	
-        encoderSetStatus(DESACTIVADO);
-        
-	}
-    else if(buttonGetStatus())
-    {
-		evento = buttonGetEvent();	
-        buttonSetStatus(DESACTIVADO);
-	}
-    else if(messageHandlerStatus())
-    {
-    	evento = messageGetEvent();
-    	messageSetStatus(DESACTIVADO);
-    }
+	else if(encoderGetStatus())
+	{
+		evento = encoderGetEvent();
+		encoderSetStatus(DESACTIVADO);
 
-    // Si hubo un evento, veo en que estado de mi FSM estoy y le envio el evento
+	}
+	else if(buttonGetStatus())
+	{
+		evento = buttonGetEvent();
+		buttonSetStatus(DESACTIVADO);
+	}
+	else if(messageHandlerStatus())
+	{
+		evento = messageGetEvent();
+		messageSetStatus(DESACTIVADO);
+	}
+
+	// Si hubo un evento, veo en que estado de mi FSM estoy y le envio el evento
 	if(evento != EVENTO_NONE)
-    {
+	{
 		switch(estado){
-            case ESTADO_INIT:
-                estado = idle(evento);
-                break;
-            case ESTADO_ID:
-                estado = modificar_id(evento);
-                break;
-            case ESTADO_PASS:
-                estado = modificar_pass(evento);
-                break;
-            case ESTADO_BRILLO:
+			case ESTADO_INIT:
+				estado = idle(evento);
+				break;
+			case ESTADO_ID:
+				estado = modificar_id(evento);
+				break;
+			case ESTADO_PASS:
+				estado = modificar_pass(evento);
+				break;
+			case ESTADO_BRILLO:
 				estado = modificar_brillo(evento);
-                break;
-            case ESTADO_VERIFICAR:
-                estado = verificar_estado();
-                break;
-            case ESTADO_OPEN:
-                estado = open_door();
-                break;
-            case ESTADO_WRONG:
-                estado = wrong_pin();
-                break;
-            default: break;
+				break;
+			case ESTADO_VERIFICAR:
+				estado = verificar_estado();
+				break;
+			case ESTADO_OPEN:
+				estado = open_door();
+				break;
+			case ESTADO_WRONG:
+				estado = wrong_pin();
+				break;
+			default: break;
 		}
 	}
+
+	/*	// Analizo si hubo un evento
+	if(CardReaderIsReady())
+	{
+		toggle_led(LED1);
+		resetReader();
+	}*/
+
+
 }
 
 /*******************************************************************************
@@ -262,6 +272,7 @@ static estadosDelMenu_t idle(eventosDelMenu_t evento)
                 posicion_id = 0;
             }
             else{
+            	resetReader();
                 reset_all();
                 proximo_estado = ESTADO_INIT;
                 messageSetStatus(ACTIVADO);
