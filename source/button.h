@@ -49,7 +49,7 @@ void initButton();                           //Inicialización del encoder
 
 bool buttonGetStatus();                      //Me devuelve si hubo un cambio en la perilla
 
-bool buttonSetStatus(bool change_state);     //Me setea el status para que no quede en evento
+void buttonSetStatus(bool change_state);     //Me setea el status para que no quede en evento
 
 buttonEvent_t buttonGetEvent();              //Me devuelve si fue un giro hacia la derecha, izquierda, click o nada aun
 

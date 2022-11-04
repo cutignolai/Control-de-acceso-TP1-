@@ -98,7 +98,7 @@ buttonEvent_t buttonGetEvent(){          //Getter del evento del button
 	return button_event;
 }
 
-bool buttonSetStatus(bool change_status){            //Setter para que la app me lo pueda cambiar
+void buttonSetStatus(bool change_status){            //Setter para que la app me lo pueda cambiar
 	status = change_status;
 }
 
