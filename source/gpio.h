@@ -119,12 +119,15 @@ void gpioToggle (pin_t pin);
 bool gpioRead (pin_t pin);
 
 
+<<<<<<< HEAD
 /**
  * @brief  clears the ISF flag from a specified pin.
  * @param pin the pin to clear the ISF flag(according PORTNUM2PIN)
  */
 void PORT_ClearInterruptFlag (pin_t pin);
 
+=======
+>>>>>>> tarjeta_micho
 
 /*******************************************************************************
  ******************************************************************************/

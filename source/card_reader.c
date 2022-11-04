@@ -19,12 +19,15 @@
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
  //Pins from the card reader
+<<<<<<< HEAD
 #define PIN_CR_DATA      PORTNUM2PIN(PB,11)        //Card reader data entry, LS bit comes out first
 #define PIN_CR_CLOCK     PORTNUM2PIN(PC,11)      //Card reader clock entry, data changes on positive edge
 #define PIN_CR_ENABLE    PORTNUM2PIN(PC,10)     //Card reader enable, low while card is sliding
+=======
 #define PIN_CR_DATA      DIO_16     //Card reader data entry, LS bit comes out first
 #define PIN_CR_CLOCK     DIO_17     //Card reader clock entry, data changes on positive edge
 #define PIN_CR_ENABLE    DIO_18     //Card reader enable, low while card is sliding
+>>>>>>> tarjeta_micho
 
 //Characters from the card
 #define SS ';'
@@ -47,6 +50,7 @@ typedef struct{
 } card_char;
 static card_char current_char;
 
+<<<<<<< HEAD
 static char Track[40]; 
 static uint8_t track_index;
 
@@ -54,6 +58,7 @@ static uint8_t stored_ID[] = {0, 0, 0, 0, 0, 0, 0, 0};
 
 static uint8_t data[200];
 static uint8_t index;
+=======
 static char Track[MAX_TRACK]; 
 static uint16_t track_index;
 
@@ -61,6 +66,7 @@ static uint16_t stored_ID[MAX_ID];
 
 static uint8_t data[MAX_DATA];
 static uint16_t index;
+>>>>>>> tarjeta_micho
 
 static bool data_pin;
 

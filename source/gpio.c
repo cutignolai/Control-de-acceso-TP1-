@@ -14,6 +14,7 @@ static pinIrqFun_t isr_Matrix [PORTS_CNT][PINS_CNT];
 
 
 
+<<<<<<< HEAD
 __ISR__ PORTD_IRQHandler (void){
 
 	uint8_t i = 0;
@@ -21,6 +22,7 @@ __ISR__ PORTD_IRQHandler (void){
 	{
 		i++;
 	}
+=======
 /*
     0b1000: Interrupt/DMA request disabled
     0b1001: Interrupt when logic 0
@@ -110,11 +112,13 @@ void gpioMode (pin_t pin, uint8_t mode)
     //-----------------------------------------------------------------
 
     return true;
+>>>>>>> tarjeta_micho
 
 	isr_Matrix[PD][i]();
 	PORT_ClearInterruptFlag(PORTNUM2PIN(PD,i));
 }
 
+<<<<<<< HEAD
 __ISR__ PORTA_IRQHandler (void){
 
 	uint8_t i = 0;
@@ -125,6 +129,7 @@ __ISR__ PORTA_IRQHandler (void){
 
 	isr_Matrix[PA][i]();
 	PORT_ClearInterruptFlag(PORTNUM2PIN(PA,i));
+=======
 void gpioWrite (pin_t pin, bool value) {
     if ( !(pin > PORTNUM2PIN(PE,31)) ){
 		uint32_t new_value =  (uint32_t)(1 << PIN2NUM(pin));
@@ -136,6 +141,7 @@ void gpioWrite (pin_t pin, bool value) {
 			gpio_ptr->PCOR = new_value;
 		}
     }
+>>>>>>> tarjeta_micho
 }
 
 __ISR__ PORTB_IRQHandler (void){
@@ -150,6 +156,7 @@ __ISR__ PORTB_IRQHandler (void){
 	PORT_ClearInterruptFlag(PORTNUM2PIN(PB,i));
 }
 
+<<<<<<< HEAD
 __ISR__ PORTE_IRQHandler (void){
 
 	uint8_t i = 0;
@@ -160,11 +167,13 @@ __ISR__ PORTE_IRQHandler (void){
 
 	isr_Matrix[PE][i]();
 	PORT_ClearInterruptFlag(PORTNUM2PIN(PE,i));
+=======
 void gpioToggle (pin_t pin) {   //no hay mucha magia, es lo mismo que el Write pero sin el if
     if ( !(pin > PORTNUM2PIN(PE,31)) ){
     	GPIO_Type* gpio_ptr = GPIO_PTRS[PIN2PORT(pin)];
     	gpio_ptr->PTOR = (uint32_t)(1 << PIN2NUM(pin));
     }
+>>>>>>> tarjeta_micho
 }
 
 
@@ -279,12 +288,14 @@ bool gpioIRQ(pin_t pin, uint8_t irqMode, pinIrqFun_t irqFun){
 }
 
 
+<<<<<<< HEAD
 void PORT_ClearInterruptFlag (pin_t pin){
 	PORT_Type *port = portPtrs[PIN2PORT(pin)];
 	port->PCR[PIN2NUM(pin)] |= PORT_PCR_ISF_MASK;
 }
 /*******************************************************************************
  ******************************************************************************/
+=======
 static void IRQHandler(int32_t port) {
 
 	PORT_Type* port_ptr = PORT_PTRS[port];
@@ -312,3 +323,4 @@ __ISR__ PORTE_IRQHandler(void) { IRQHandler(PE); }
     "freno de mano", si esta en Fast(0) reacciona rapido, si esta en Slow(1) tarda mucho en accionarse. Nostotros
     necesitaDAmos que sea rapido
 */
+>>>>>>> tarjeta_micho
