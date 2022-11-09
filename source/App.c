@@ -275,8 +275,8 @@ static estadosDelMenu_t idle(eventosDelMenu_t evento)
             	resetReader();
                 reset_all();
                 proximo_estado = ESTADO_INIT;
-                messageSetStatus(ACTIVADO);
             }
+			messageSetStatus(ACTIVADO);
             break;
         
         case EVENTO_MSG:
