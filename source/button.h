@@ -15,6 +15,7 @@
  *          CONSTANT AND MACRO DEFINITIONS USING #DEFINE                        *
  ******************************************************************************/
 
+#define BUTTON_DEV_MODE
 #define PERIODIC_BUTTON_TIME    4     //ms
 #define SINGLESHOT_CLICK_TIME   150   //ms
 #define PERIODIC_LONG_CLICK_TIME   1  //ms

@@ -7,22 +7,24 @@
 /*******************************************************************************
  * INCLUDE HEADER FILES
  ******************************************************************************/
+#include <stdbool.h>
+#include <stdint.h>
+#include <stdio.h>
 #include "MK64F12.h"
 #include "gpio.h"
 #include "board.h"
 #include "card_reader.h"
-#include "board.h"
-#include <stdbool.h>
-#include <stdint.h>
-#include <stdio.h>
 
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
  //Pins from the card reader
-#define PIN_CR_DATA      DIO_16     //Card reader data entry, LS bit comes out first
-#define PIN_CR_CLOCK     DIO_17     //Card reader clock entry, data changes on positive edge
-#define PIN_CR_ENABLE    DIO_18     //Card reader enable, low while card is sliding
+#define PIN_CR_DATA      PTB11     //Card reader data entry, LS bit comes out first
+#define PIN_CR_CLOCK     PTC11     //Card reader clock entry, data changes on positive edge
+#define PIN_CR_ENABLE    PTC10     //Card reader enable, low while card is sliding
+#ifdef CARD_DEV_MODE
+	#define CARD_TEST_PIN	PTB10
+#endif
 
 //Characters from the card
 #define SS ';'
@@ -94,7 +96,9 @@ void initCardReader(void){
     gpioMode(PIN_CR_ENABLE, INPUT);
     gpioIRQ(PIN_CR_CLOCK, GPIO_IRQ_MODE_FALLING_EDGE, irq_clk_falling_edge);
     gpioIRQ(PIN_CR_ENABLE, GPIO_IRQ_MODE_BOTH_EDGES, irq_enable);
-
+#ifdef CARD_DEV_MODE
+	gpioMode(CARD_TEST_PIN, OUTPUT);
+#endif
 }
 
 void resetReader (void){
@@ -162,6 +166,10 @@ uint8_t* processData (void){
  *******************************************************************************
  ******************************************************************************/
 static void irq_enable () {
+#ifdef CARD_DEV_MODE
+	gpioWrite(CARD_TEST_PIN, 1);
+#endif
+
 	if ((gpioRead(PIN_CR_ENABLE) == 0) && (!data_was_stored)){		//Falling edge and it's not reading
 		enable_interrupt = true;									//avails to read
 	}
@@ -172,11 +180,25 @@ static void irq_enable () {
         enable_interrupt = false;
     }
 
+#ifdef CARD_DEV_MODE
+	gpioWrite(CARD_TEST_PIN, 0);
+#endif
+
 }
 static void irq_clk_falling_edge () {	
+
+#ifdef CARD_DEV_MODE
+	gpioWrite(CARD_TEST_PIN, 1);
+#endif
+
     if (enable_interrupt && (!data_was_stored)){
         readCard();
     }
+
+#ifdef CARD_DEV_MODE
+	gpioWrite(CARD_TEST_PIN, 0);
+#endif
+
 }
 
 static void readCard (void){		//CUANDO PASO LA TARJETA ENTRA MAS DE 200 VECES ACA

@@ -8,6 +8,7 @@
  *                      INCLUDE HEADER FILES                                    *
  ******************************************************************************/
 #include "gpio.h"
+#include "board_encoder_display.h"
 #include "board.h"
 #include "display.h"
 #include "timer.h"
@@ -41,6 +42,10 @@
 #define SEL1    DIO_4
 
 #define N_PINS  8
+
+#ifdef DISPLAY_DEV_MODE
+	#define DISPLAY_TEST_PIN	PTC4
+#endif
 
 /**** DIGITS ****/
 #define DIG0    0
@@ -185,6 +190,10 @@ void initDisplay(){
         gpioMode(seg_arr[i], OUTPUT);
     }
 
+#ifdef DISPLAY_DEV_MODE
+	gpioMode(DISPLAY_TEST_PIN, OUTPUT);
+#endif
+
     // CREATE TIMERS
     timerInit();
     refresh_timer = timerGetId();
@@ -292,6 +301,11 @@ uint8_t getBrightnessState(){
 
 void refresh_display()
 {
+
+#ifdef DISPLAY_DEV_MODE
+	gpioWrite(DISPLAY_TEST_PIN, 1);
+#endif
+
     if( ! ( brightness_count % intensity ) ){
 
         switch (display_state)
@@ -334,6 +348,11 @@ void refresh_display()
             brightness_count = 0;
         }
     }
+
+#ifdef DISPLAY_DEV_MODE
+	gpioWrite(DISPLAY_TEST_PIN, 0);
+#endif
+
 }
 
 void scroll_message() {

@@ -147,10 +147,10 @@ static uint8_t evento = EVENTO_NONE;
 void App_Init (void)
 {
 	timerInit();
-	initDisplay();
 	initEncoder();
-	initLeds();
 	initButton();
+	initDisplay();
+	initLeds();
 	initCardReader();
 
 	sec_timer = timerGetId();

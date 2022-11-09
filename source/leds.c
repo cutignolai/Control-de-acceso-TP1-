@@ -10,7 +10,7 @@
 
 #include "leds.h"
 #include "timer.h"
-#include "board.h"
+#include "board_encoder_display.h"
 #include "gpio.h"
 
 /*******************************************************************************
@@ -102,14 +102,10 @@ void toggle_led(int l)    //not leds
 static void callback_leds()         //callback
 {
   if(leds[index]){
-	// printf("%d", led_selector[index].led_bit_0);
-	// printf("%d\n", led_selector[index].led_bit_1);
 	gpioWrite (LED_CONF_1, led_selector[index].led_bit_0);     //escribo en el primer selector, lo que vale el bit 0
     gpioWrite (LED_CONF_2, led_selector[index].led_bit_1);     //escribo en el segundo selector, lo que vale el bit 1
   }
   else{
-	// printf("%d", led_selector[index].led_bit_0);
-	// printf("%d\n", led_selector[index].led_bit_1);
     gpioWrite (LED_CONF_1, led_selector[NUM_LEDS].led_bit_0);     //escribo en el primer selector, lo que vale el bit 0
     gpioWrite (LED_CONF_2, led_selector[NUM_LEDS].led_bit_1);     //escribo en el segundo selector, lo que vale el bit 1
   }

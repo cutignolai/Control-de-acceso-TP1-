@@ -18,8 +18,7 @@
  ******************************************************************************/
 #define CLK_FREQ 	        __CORE_CLOCK__			//100MHz
 
-#define SYSTICK_TEST_MODE   1
-#define TEST_PIN            DIO_19
+#define TEST_PIN            PTB20
 
 
 // Status Registrer
@@ -70,7 +69,7 @@ bool SysTick_Init (void (*callback)(void))
 
     callback_ptr = callback;
 
-    #ifdef SYSTICK_TEST_MODE
+    #ifdef SYSTICK_DEV_MODE
         gpioMode(TEST_PIN, OUTPUT);
     #endif
     
@@ -81,13 +80,13 @@ bool SysTick_Init (void (*callback)(void))
 
 __ISR__ SysTick_Handler(void)
 {	
-    #ifdef SYSTICK_TEST_MODE
+    #ifdef SYSTICK_DEV_MODE
         gpioWrite(TEST_PIN, HIGH);
     #endif
 
     (*callback_ptr)();
 
-    #ifdef SYSTICK_TEST_MODE
+    #ifdef SYSTICK_DEV_MODE
         gpioWrite(TEST_PIN, LOW);
     #endif
 }

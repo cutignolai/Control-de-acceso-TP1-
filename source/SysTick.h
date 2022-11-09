@@ -1,7 +1,7 @@
 /***************************************************************************//**
   @file     SysTick.h
   @brief    SysTick driver
-  @author   Nicolás Magliola
+  @author   Nicolï¿½s Magliola
  ******************************************************************************/
 
 #ifndef _SYSTICK_H_
@@ -13,13 +13,12 @@
 
 #include <stdbool.h>
 
-
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
 
+#define SYSTICK_DEV_MODE   1
 #define SYSTICK_ISR_FREQUENCY_HZ 1000U
-
 
 /*******************************************************************************
  * ENUMERATIONS AND STRUCTURES AND TYPEDEFS
@@ -34,7 +33,7 @@
  ******************************************************************************/
 
 /**
- * @brief Initialize SysTic driver
+ * @brief Initialize SysTick driver
  * @param funcallback Function to be call every SysTick
  * @return Initialization and registration succeed
  */

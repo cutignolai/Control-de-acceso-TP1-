@@ -15,6 +15,8 @@
  *          CONSTANT AND MACRO DEFINITIONS USING #DEFINE                        *
  ******************************************************************************/
 
+#define DISPLAY_DEV_MODE
+
 #define BUFFER_MAX_LEN  16
 #define DISPLAY_LEN     4
 

@@ -8,7 +8,7 @@
  *                              INCLUDE HEADER FILES                            *
  ******************************************************************************/
 
-#include "board.h"
+#include "board_encoder_display.h"
 #include "button.h"
 #include "timer.h"
 
@@ -20,7 +20,9 @@
 #define PIN_C   DIO_10
 #define ON      LOW         //Activo bajo ---> Prendido
 #define OFF     HIGH        //Activo bajo ---> Apagado
-
+#ifdef BUTTON_DEV_MODE
+	#define BUTTON_TEST_PIN		PTD2
+#endif
 
 /*******************************************************************************
  *                              ENUMS AND STRUCTURES                            *
@@ -61,6 +63,10 @@ void initButton() {
 	button_timer = timerGetId();
 
 	gpioMode(PIN_C, INPUT);             // Inicializo pin
+
+#ifdef BUTTON_DEV_MODE
+	gpioMode(BUTTON_TEST_PIN, OUTPUT);
+#endif
 
     button_event = NONE_CLICK;          // Se inicializa con el evento nulo (que no hay)
     status = false;                     // Variable de cambio en false
@@ -127,6 +133,11 @@ static void event_coming(bool C){
 
 
 static void callback_button(void){ 
+
+#ifdef BUTTON_DEV_MODE
+	gpioWrite(BUTTON_TEST_PIN, 1);
+#endif
+
 	if (click_en){					// Click timer habilitado?
 		if (long_click_en){				// Long click timer habilitado?
 			long_click_cnt += PERIODIC_BUTTON_TIME;             // Sumo counter del long click
@@ -139,6 +150,11 @@ static void callback_button(void){
 	}
     current_C = gpioRead(PIN_C);             // Me fijo el valor actual de C
 	event_coming(current_C);                 // Me fijo si hubo un cambio
+
+#ifdef BUTTON_DEV_MODE
+	gpioWrite(BUTTON_TEST_PIN, 0);
+#endif
+
 }
 
 static void callback_click(void){ 
