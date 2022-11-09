@@ -406,8 +406,8 @@ static estadosDelMenu_t modificar_id(eventosDelMenu_t evento)
             else{
                 reset_all();
                 proximo_estado = ESTADO_INIT;
-                messageSetStatus(ACTIVADO);
             }
+			messageSetStatus(ACTIVADO);
             break;
 
         case EVENTO_MSG:
