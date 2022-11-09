@@ -3,7 +3,7 @@
   @brief    Application functions
   @author   Nicolás Magliola
  ******************************************************************************/
-//prueba para git
+
 /*******************************************************************************
  * INCLUDE HEADER FILES
  ******************************************************************************/
@@ -269,7 +269,6 @@ static estadosDelMenu_t idle(eventosDelMenu_t evento)
                 }
                 resetReader();
                 proximo_estado = ESTADO_PASS;
-                messageSetStatus(ACTIVADO);
                 posicion_id = 0;
             }
             else{
@@ -394,21 +393,17 @@ static estadosDelMenu_t modificar_id(eventosDelMenu_t evento)
 
         case EVENTO_TARJETA:
             p = processData();
-            //printall();
             if (getError() == NO_ERROR){
-            	uint8_t i;
-				for (i=0; i<8; i++)
-				{
-					id[i] = *(p+i);
-				}
-				resetReader();
-				proximo_estado = ESTADO_PASS;
-				messageSetStatus(ACTIVADO);
-				posicion_id = 0;
+                uint8_t i;
+                for (i=0; i<8; i++)
+                {
+                    id[i] = *(p+i);
+                }
+                resetReader();
+                proximo_estado = ESTADO_PASS;
+                posicion_id = 0;
             }
             else{
-            	//printf("hubo error");
-            	resetReader();
                 reset_all();
                 proximo_estado = ESTADO_INIT;
             }
@@ -678,9 +673,6 @@ static void reset_all (void)
 
     // RESETEO PASSWORD
     pass_reset();
-
-    // RESETEO TARJETA
-    resetReader();
 
     // RESETEO ESTADOS
     estado = ESTADO_INIT;
