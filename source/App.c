@@ -107,7 +107,7 @@ static void sec_callback(void);
 static void show_input(digit_t *input_ptr, uint8_t input_len, uint8_t pos);
 static void show_message(digit_t *msg_ptr, uint8_t msg_len);
 static void show_pass(digit_t *pass_ptr, uint8_t pass_len);
-static void show_enter(digit_t *input_ptr, uint8_t input_len);
+// static void show_enter(digit_t *input_ptr, uint8_t input_len);
 static void show_brightness();
 static void id_reset();
 static void pass_reset();
@@ -136,7 +136,7 @@ static bool user_is_ready = false;
 static tim_id_t sec_timer;
 static uint8_t sec_count;
 static uint8_t wrong_count;
-static uint8_t evento = EVENTO_NONE;
+
 /*******************************************************************************
  *******************************************************************************
                         GLOBAL FUNCTION DEFINITIONS
@@ -734,12 +734,12 @@ static void show_message(digit_t *msg_ptr, uint8_t msg_len){
     setScrollMode();
 } 
 
-static void show_enter(digit_t *input_ptr, uint8_t input_len){
+// static void show_enter(digit_t *input_ptr, uint8_t input_len){
 
-	loadBuffer(input_ptr, input_len);
-    showLastDigits(true);
-    setStaticMode();
-}
+// 	loadBuffer(input_ptr, input_len);
+//     showLastDigits(true);
+//     setStaticMode();
+// }
 
 static void show_pass(digit_t *pass_ptr, uint8_t pass_len){
 

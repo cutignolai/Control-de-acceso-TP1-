@@ -66,7 +66,7 @@ static bool data_pin;
 static bool data_was_stored;
 static bool volatile enable_interrupt;
 static bool SS_arrived;
-static int variable = 0;
+
 /*******************************************************************************
  *         FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
  ******************************************************************************/
