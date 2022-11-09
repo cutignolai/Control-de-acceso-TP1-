@@ -16,7 +16,7 @@
  ******************************************************************************/
 
 #define PERIODIC_BUTTON_TIME    4     //ms
-#define SINGLESHOT_CLICK_TIME   700   //ms
+#define SINGLESHOT_CLICK_TIME   150   //ms
 #define PERIODIC_LONG_CLICK_TIME   1  //ms
 #define MAX_LONG_CLICK   600 //ms
 

@@ -31,29 +31,24 @@
  *      FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE         *
  ******************************************************************************/
 
-static buttonEvent_t event_coming(bool C);
+static void event_coming(bool C);
 static void callback_click(void);
 static void callback_button(void);
-static void callback_click_long(void);
-static void get_current_values(void);
-
 
 /*******************************************************************************
  *                                  VARIABLES                                   *
  ******************************************************************************/
-static int click_counter = 0;               //Cantidad de clicks
-static int long_click_counter = 0;          //Click mantenido                   //branch
-static bool last_state_button = false;      //el switch arranca en false        
-static bool long_click = false;             //el switch arranca en false        //branch
-static bool current_C;                      //Valor actual de C
-static bool status;                         //Estado del button
+static int click_counter = 0;               // Cantidad de clicks
+static bool last_state_button = false;      // el switch arranca en false        
+static bool current_C;                      // Valor actual de C
+static bool status;                         // Estado del button
 static buttonEvent_t turn = NONE_CLICK;
-static buttonEvent_t button_event;          //Eveneto del button
-static tim_id_t button_timer;               //timer
-static tim_id_t click_timer;                //timer
-static tim_id_t click_long_timer;           //timer                             //branch
-
-
+static buttonEvent_t button_event;          // Evento del button
+static tim_id_t button_timer;               // timer
+static bool click_en;	
+static ttick_t click_cnt;                	// timer div
+static bool long_click_en;	
+static ttick_t long_click_cnt;           	// timer div
 
 /*******************************************************************************
  *******************************************************************************
@@ -62,26 +57,17 @@ static tim_id_t click_long_timer;           //timer                             
  ******************************************************************************/
 
 void initButton() {
-	timerInit();                               //Inicializo Timer
+	timerInit();                        // Inicializo Timer
 	button_timer = timerGetId();
-	click_long_timer = timerGetId();                 //inicializo timer
-	click_timer = timerGetId();                 //inicializo timer
 
-    //Pins Modes//
-	gpioMode(PIN_C, INPUT);             //modo del pin
-    
-    // Led para mostrar cuando se ejecuta una interrupcion
-    // gpioMode(PIN_LED_BLUE, OUTPUT);
-    // gpioWrite(PIN_LED_BLUE, !LED_ACTIVE);
+	gpioMode(PIN_C, INPUT);             // Inicializo pin
 
-    button_event = NONE_CLICK;               //Se inicializa con el evento nulo (que no hay)
-    status = false;                     //Variable de cambio en falso
+    button_event = NONE_CLICK;          // Se inicializa con el evento nulo (que no hay)
+    status = false;                     // Variable de cambio en false
 
     //Periodic Interuption ---> button_callback (1ms)
 	button_timer = timerGetId();
 	timerStart(button_timer, TIMER_MS2TICKS(PERIODIC_BUTTON_TIME), TIM_MODE_PERIODIC, callback_button);
-	timerCreate(click_timer, TIMER_MS2TICKS(SINGLESHOT_CLICK_TIME), TIM_MODE_SINGLESHOT, callback_click);     //inicializo el timer (de clicks futuros)
-	timerCreate(click_long_timer, TIMER_MS2TICKS(PERIODIC_LONG_CLICK_TIME), TIM_MODE_PERIODIC, callback_click_long);     //pregunto cada 10 ms si sigo ahi, y sumo counter long
 }
 
 bool buttonGetStatus(){            //Si hay un evento, devolveme true, sino devolveme un false
@@ -108,86 +94,84 @@ void buttonSetStatus(bool change_status){            //Setter para que la app me
  *******************************************************************************
  ******************************************************************************/
 
-static buttonEvent_t event_coming(bool C){         //FSM: check if the user switch left or right
+static void event_coming(bool C){
 
     // Veo si hubo cambió (flanco descendente)
     bool current_state_button = (current_C == ON);
-    if(!last_state_button && current_state_button){         //si el estados de ambos son distintos, entonces hubo un cambio (se pulso el botton)
+    if (!last_state_button && current_state_button){	// Si los estados de ambos son distintos, entonces hubo un cambio (se pulso el botton)
         click_counter += 1;
-        if(click_counter == 1){
-            long_click = true;                          //branch
-            timerActivate(click_timer);
-            timerActivate(click_long_timer);
-
+        if (click_counter == 1){		// Primer click
+            long_click_en = true;                         
+			long_click_cnt = 0;
+			click_en = true;
+			click_cnt = SINGLESHOT_CLICK_TIME;
         }
-        else if(click_counter == 2){
-            timerRestart(click_timer);     //inicializo el timer
+        else if (click_counter == 2){	// Segundo click
+			click_en = true;
+			click_cnt = SINGLESHOT_CLICK_TIME;
         }
-        else{
-            timerFinish(click_timer);
+        else {							// Tercer click: Maximo de clicks
+			click_cnt = 0;
         }
     }
 
-    if(click_counter == 1){     //branch
-        if (last_state_button && !current_state_button && long_click){     //si no fue click long, entonces fue click normal
-            long_click = false;
-            long_click_counter = 0;
-            timerFinish(click_long_timer);     //termino el timer
+    if (click_counter == 1){  
+        if (last_state_button && !current_state_button && long_click_en){     // Si no fue click long, entonces fue click normal
+            long_click_en = false;
+            long_click_cnt = 0;
         }
-    }   //branch
+    }   
 
-    last_state_button = current_state_button;               //cambio variable para que quede arriba
-    return turn;                                            //DEVUELVO EL RESULTADO: IZQ O DERECHA
+    last_state_button = current_state_button;               // Cambio variable para que quede arriba
 }
 
 
 static void callback_button(void){ 
-    get_current_values();                                   //Me fijo valores actuales de los pines de A, B y C
-    button_event = event_coming(current_C);                 //Me fijo si hubo un cambio en C
+	if (click_en){					// Click timer habilitado?
+		if (long_click_en){				// Long click timer habilitado?
+			long_click_cnt += PERIODIC_BUTTON_TIME;             // Sumo counter del long click
+		}
+		if (!click_cnt){
+			callback_click();
+		} else {
+			click_cnt--;
+		}
+	}
+    current_C = gpioRead(PIN_C);             // Me fijo el valor actual de C
+	event_coming(current_C);                 // Me fijo si hubo un cambio
 }
 
 static void callback_click(void){ 
 
-    if(long_click_counter >= MAX_LONG_CLICK){       //branch
-        turn = CLICK_LONG;              //si se apreto mucho tiempo, tengo un click sostenido
-        status = true;                  //hubo un cambio
+	click_en = false;			// Desactivo contador
+
+    if (long_click_cnt >= MAX_LONG_CLICK){
+        turn = CLICK_LONG;              		// Si se apreto mucho tiempo, tengo un click sostenido
+        status = true;                  		// Hubo un cambio
         click_counter = 0;
-        long_click_counter = 0;
+        long_click_cnt = 0;
     }
 
-
-    if(click_counter == 1){         //si se apreto una vez
+    if (click_counter == 1){      // Si se apreto una vez
         turn = CLICK;
-        status = true;            //hubo un cambio
+        status = true;            // Hubo un cambio
         click_counter = 0;
-        long_click_counter = 0;
+        long_click_cnt = 0;
     }
-    else if(click_counter == 2){         //si se apreto dos veces
+    else if (click_counter == 2){   // Si se apreto dos veces
         turn = CLICK_2;
-        status = true;              //hubo un cambio
+        status = true;              // Hubo un cambio
         click_counter = 0;
-        long_click_counter = 0;
+        long_click_cnt = 0;
     }
-    else if(click_counter == 3){
-        turn = CLICK_3;             //si se apreto mas de dos veces, se asume como 3
-        status = true;              //hubo un cambio
+    else if (click_counter >= 3){
+        turn = CLICK_3;             // Si se apreto mas de dos veces, se asume como 3
+        status = true;              // Hubo un cambio
         click_counter = 0;
-        long_click_counter = 0;
+        long_click_cnt = 0;
     }
     button_event = turn;
 }
-
-static void get_current_values(void){       //Me fijo valor actual del pin
-    current_C = gpioRead(PIN_C);
-}
-
-
-static void callback_click_long(void){ 
-    gpioWrite(PIN_LED_BLUE, LED_ACTIVE);                     //el callback
-    long_click_counter += PERIODIC_BUTTON_TIME;             //sumo counter del click long
-    gpioWrite(PIN_LED_BLUE, !LED_ACTIVE);
-}       //branch
-
 
 /*******************************************************************************
  ******************************************************************************/

@@ -22,9 +22,9 @@
 #define SEG_ON  1
 #define SEG_OFF 0
 
-#define BLINK_T         200
+#define BLINK_T         300
 #define SCROLL_T        600
-#define MAX_REFRESH_T   2
+#define MAX_REFRESH_T   1
 #define MAX_INTENSITY   4
 
 /******* PINS *******/
@@ -175,14 +175,15 @@ tim_id_t scroll_timer;
  ******************************************************************************/
 // INIT
 void initDisplay(){
+
+	gpioMode(SEL0, OUTPUT);
+    gpioMode(SEL1, OUTPUT);
     
     // INIT PINS
     uint8_t i;
     for(i = 0; i < N_PINS; i++){
         gpioMode(seg_arr[i], OUTPUT);
     }
-    gpioMode(SEL0, OUTPUT);
-    gpioMode(SEL1, OUTPUT);
 
     // CREATE TIMERS
     timerInit();
